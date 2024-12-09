@@ -1,0 +1,52 @@
+{
+    "nav": {
+        "hewar": "Hewar",
+        "home": "Home",
+        "services": "Services",
+        "about": "About Us",
+        "contact": "Contact Us"
+    },
+    "carouselText": {
+        "title1": "Security",
+        "description1": "The best in the field of security and guarding",
+        "title2": "Guarding",
+        "description2": "Guarding The best in the field of security and guarding",
+        "title3": "The best",
+        "description3": "The best in the field of security and guarding",
+        "hewarTitle": "Hewar is the gold standard of excellence for contract security"
+    },
+    "serviceCards":{
+        "title1": "Private guards",
+        "description1": "The company has a special department for private guards and VIPs, which is a service that the guards rely on providing to men with high-level mental and physical abilities and experience, as it works to train and qualify them with elite cadres who have previously worked in private guards in the police or the armed forces.",
+        "title2": "Securing and guarding facilities",
+        "description2": "Hewar  has a special department whose job is to secure important conferences and parties. We rely on distinguished and trained security personnel in immediate transactions and private guards. The security plan and security concept are developed according to the facility, with the need for trained guards capable of protecting public and important figures and business people.",
+        "title3": "Securing parties and events",
+        "description3": "Hewar has a special department whose job is to secure important conferences and parties. We rely on distinguished and trained security personnel in immediate transactions and private guards. The security plan and security concept are developed according to the facility, with the need for trained guards capable of protecting public and important figures and business people.",
+        "title4": "K9 unit of trained dogs",
+        "description4": "Hewar has a special unit of dogs trained and equipped to help secure facilities and assist security personnel in performing security service with the highest quality, as dogs are trained to guard and detect explosives and fireworks through a training course at the Police Academy at the Ministry of Interior."
+    },
+    "whyChooseUsSection1":{
+        "title": "70% of our new clients are referrals from existing clients",
+        "para1": "In the contract security services industry, a good measure of success is how many new clients are referrals from existing clients.For Secureone Security Services, that figure is around 70%. This figure is even more astonishing when you realize that Secureone charges rates commensurate with the level of our service.",
+        "para2": " Our clients are not looking for minimum-wage guards or bare-minimum solutions that they need to manage; they want the results. Unlike our competitors, that is exactly what Hewar Security Services provides.",
+        "description1":"Security has been a challenge at many of our hotels, but has never been an issue at the hotels that use SecureOne. I am a supporter of yours!! I appreciate your service. Regional Senior Director (Large Hotel Chain) Western Region",
+        "description2":"I get security companies in here all the time trying to sell me their services. I don't bother because in 8 years with SecureOne I have never had a serious security related incident on my property. They constantly reinforce policies and procedures so nobody drops the ball. Doing exactly what I require is what I need. Thank you to everyone involved. Major Transportation Company Manager Chicago, I",
+        "description3":"I get numerous phone calls and in person solicitations all the time from other companies for me to allow a bid, but I don't because I have been pleased with SecureOne's services for 6 years now. Automobile Dealership Facility Manager Scottsdale, AZ",
+        "description4":"Your technology has saved me tens of thousands of dollars just in my time and has allowed me to take care of my community instead of answering questions all day long. Our community has greatly benefited from having SecureOne services on site. HOA Property Manager of 1,800 Home Community Phoenix, AZ",
+        "description5":"Your officers are vital members of our team. They are always reliable and professional. Guest Care Supervisor (Hotel) Nationwide",
+        "description6": " Our clients are not looking for minimum-wage guards or bare-minimum solutions that they need to manage; they want the results. Unlike our competitors, that is exactly what Hewar Security Services provides.",
+        "description7":"I get numerous phone calls and in person solicitations all the time from other companies for me to allow a bid, but I don't because I have been pleased with SecureOne's services for 6 years now. Automobile Dealership Facility Manager Scottsdale, AZ",
+        "description8": "In the contract security services industry, a good measure of success is how many new clients are referrals from existing clients.For Secureone Security Services, that figure is around 70%. This figure is even more astonishing when you realize that Secureone charges rates commensurate with the level of our service."
+    },
+    "whyChooseUsSmallCards": {
+        "title1": "With you around the clock",
+        "description1": "The availability of security guards is always extremely important because disasters are likely to occur in moments",
+        "title2": "We deserve your trust",
+        "description2": "Your facilities and personal belongings are a responsibility that falls on our shoulders, which is why we always bear witness to the distinguished service and honesty with all our customers.",
+        "title3": "A team of experts",
+        "description3": "We have a large team of human cadres and qualified experts to protect you and your facilities, starting from organization and planning to implementation",
+        "title4": "Reliable and proven",
+        "description4": "Anfal Security and Guarding Company receives very high ratings from its customers for our distinguished services",
+        "whyChooseUs": "WHY CHOOSE US"
+    }
+}
