@@ -38,15 +38,22 @@
               "src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss",
-              "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
-
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "./node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.scss",
+              "node_modules/animate.css/animate.min.css",
+              "node_modules/aos/dist/aos.css",
+              "src/styles.scss"
             ],
+           
            
             "scripts": [
               "node_modules/wowjs/dist/wow.min.js",
               "node_modules/aos/dist/aos.js",
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
                "node_modules/wowjs/dist/wow.min.js",
+              "node_modules/wowjs/dist/wow.min.js",
               "node_modules/aos/dist/aos.js",
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ],
