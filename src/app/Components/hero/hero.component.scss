@@ -1,0 +1,11 @@
+@media (max-width: 767px) {
+    .getStart.flex {
+      @apply items-center;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .getStart.flex {
+      @apply justify-start;
+    }
+  }
