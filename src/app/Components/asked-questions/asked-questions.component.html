@@ -1,0 +1,56 @@
+<div class="bg-black ">
+    <div class="accordion-group container mx-auto px-4 py-10 md:w-8/12 lg:w-9/12 animate__animated animate__fadeInUp animate__faster">
+      <div class="flex items-center justify-center ">
+        <button class="animate__animated animate__fadeInUp animate__faster px-6 py-2 rounded-full border mb-8 border-neutral-600 bg-gradient-to-r from-orange-800 via-red-500 to-blue-700 text-transparent bg-clip-text">
+          GOT QUESTIONS?
+        </button>
+      </div>
+        <p class="text-4xl sm:text-5xl md:text-6xl lg:text-4xl text-white font-bold leading-tight text-center">Frequently Asked Questions</p>
+        <div
+          *ngFor="let item of accordionItems; let i = index"
+          class="accordion-item border-b border-gray-300 my-4 py-4 dark:border-neutral-600"
+        >
+          <button
+            class="animate__animated animate__bounce  accordion-toggle flex items-center justify-between w-full px-4 py-3 font-semibold text-gray-800 dark:text-neutral-200 hover:text-gray-500 dark:hover:text-neutral-400 focus:outline-none"
+            [attr.aria-expanded]="isExpanded(i)"
+            (click)="toggleAccordion(i)"
+            
+          >
+            <div class="flex items-center">
+              <svg
+                *ngIf="!isExpanded(i)"
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon  w-6 h-6 text-white bg-gray-800 border rounded-full dark:text-neutral-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="1"
+              >
+                <path d="M5 12h14"></path>
+                <path d="M12 5v14"></path>
+              </svg>
+              <svg
+                *ngIf="isExpanded(i)"
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon w-6 h-6 text-gray-100 bg-gray-800 border rounded-full  dark:text-neutral-400 "
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="1"
+              >
+                <path d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+              <span class="ml-3 text-gray-300">{{ item.title }}</span>
+            </div>
+          </button>
+      
+          <div
+            [class.hidden]="!isExpanded(i)"
+            class="accordion-content pl-9 pr-4 py-2 text-gray-300 dark:text-neutral-200"
+          >
+            {{ item.content }}
+          </div>
+        </div>
+      </div>
+      
+</div>
