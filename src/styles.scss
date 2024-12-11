@@ -118,3 +118,11 @@ a:hover {
 
 ///////////////////////////////////
 /// 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "aos/dist/aos.css";
+html {
+    scroll-behavior: smooth;
+  }
