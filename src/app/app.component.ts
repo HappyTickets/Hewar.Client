@@ -1,6 +1,3 @@
-import { RouterOutlet } from '@angular/router';
-import { NavbarComponent } from "./component/navbar/navbar.component";
-import { FooterComponent } from './component/footer/footer.component';
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { HeroComponent } from "./Components/hero/hero.component";
@@ -14,6 +11,9 @@ import { AskedQuestionsComponent } from "./Components/asked-questions/asked-ques
 import { CardsComponent } from "./Components/cards/cards.component";
 import { StartTodayComponent } from "./Components/start-today/start-today.component";
 import { SecuryWorksComponent } from "./Components/secury-works/secury-works.component";
+import { RouterOutlet } from '@angular/router';
+import { NavbarComponent } from "./component/navbar/navbar.component";
+import { FooterComponent } from './component/footer/footer.component';
 
 
 
