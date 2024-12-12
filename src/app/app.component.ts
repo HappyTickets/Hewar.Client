@@ -1,22 +1,27 @@
+import { RouterOutlet } from '@angular/router';
+import { NavbarComponent } from "./component/navbar/navbar.component";
+import { FooterComponent } from './component/footer/footer.component';
+import { AnalystsBoxComponent } from "./Components/analysts-box/analysts-box.component";
+import { SecuringMoneyComponent } from "./Components/securing-money/securing-money.component";
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { HeroComponent } from "./Components/hero/hero.component";
-
-
-import { WOW } from 'wowjs';
-import { AnalystsBoxComponent } from "./Components/analysts-box/analysts-box.component";
-import { SecuringMoneyComponent } from "./Components/securing-money/securing-money.component";
-import AOS from 'aos';
 import { AskedQuestionsComponent } from "./Components/asked-questions/asked-questions.component";
 import { CardsComponent } from "./Components/cards/cards.component";
 import { StartTodayComponent } from "./Components/start-today/start-today.component";
 import { SecuryWorksComponent } from "./Components/secury-works/secury-works.component";
 
+
+import { WOW } from 'wowjs';
+import AOS from 'aos';
+
+
+
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HeroComponent, AnalystsBoxComponent, SecuringMoneyComponent, AskedQuestionsComponent, CardsComponent, StartTodayComponent, SecuryWorksComponent],
-templateUrl: './app.component.html',
+  imports: [RouterOutlet, NavbarComponent, FooterComponent, AnalystsBoxComponent, SecuringMoneyComponent, AskedQuestionsComponent, CardsComponent, StartTodayComponent, SecuryWorksComponent, HeroComponent],
+  templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {

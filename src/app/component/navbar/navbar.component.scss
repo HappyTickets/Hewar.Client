@@ -1,0 +1,34 @@
+// .navbar{
+//     color:#ffffff;
+//     z-index: 999999999999999999;
+// }
+// .navbar a {
+//     color:black;
+// }
+// body {
+//     padding-top: 80px; /* حجم الـ navbar (يمكنك تعديله حسب الحجم الفعلي للـ navbar) */
+//   }
+  
+//   .container {
+//     padding-top: 20px; /* أو أي قيمة أخرى إذا كانت ضرورية */
+//   }
+  .navbar-nav .circle{
+    width: 150px; /* عرض الدائرة */
+    height: 50px; /* ارتفاع الدائرة */
+    // border-radius: 25%; /* لجعل الشكل دائريًا */
+    border: 2px solid rgb(90, 97, 97); /* إضافة حدود سوداء بعرض 2px */
+    display: flex; /* لتوسيط المحتوى داخل الدائرة */
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease; /* تأثير سلس عند التحريك */
+    box-shadow: 0 0 10px #000000;
+
+  }
+  .text{
+    color: var(--light-color) !important;
+    box-shadow: 0 0 10px #000000;
+
+  }
+  .dropdown-menu{
+    background-color: var( --main-color) !important;
+  }
