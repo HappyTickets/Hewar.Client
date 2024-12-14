@@ -1,0 +1,94 @@
+  
+  .blockchain-section {
+    display: flex;
+    align-items: center;
+background-image: url(../../../assets/imgs/bg_nets.svg);
+    justify-content: center;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  
+  }
+  .layer {
+    position: relative;
+    overflow: hidden;
+    
+    background: 
+      radial-gradient(circle at 40% 40%, rgba(244, 89, 51, 0.8), transparent 50%), 
+      radial-gradient(circle at 60% 60%, rgba(51, 51, 111, 0.8), transparent 50%), 
+      radial-gradient(circle at center, rgba(143, 18, 60, 0.8), transparent 50%); 
+    
+    background-size: 80% 90%;
+    background-position: center center;
+    background-repeat: no-repeat; 
+    z-index: 1;
+  }
+  
+  
+  .blockchain-section .container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 2;
+    position: relative;
+    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .blockchain-section .content {
+    flex: 1 1 50%;
+    padding: 20px;
+  }
+  
+  .blockchain-section .content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--light-color);
+  }
+  
+  .blockchain-section .content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: var(--light-color);
+
+  }
+  .blockchain-section .content .h6{
+    color: var(--light-color);
+
+  }
+
+
+.safe {
+    width: 150px; 
+    height: 50px; 
+    border: 2px solid rgb(201, 212, 212);
+    padding: 10px;
+    margin-bottom: 5px;
+
+   
+    background: linear-gradient(to right, #f45933, #33336f); 
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+
+    font-weight: bold;
+    font-size: 12px;
+}
+
+  
+.blockchain-section .contact-text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+  
+  .blockchain-section .image img {
+    width: 100%;
+    height: auto;
+    transform: rotateY(45deg);
+  }

@@ -14,13 +14,26 @@ import { SecuryWorksComponent } from "./Components/secury-works/secury-works.com
 
 import { WOW } from 'wowjs';
 import AOS from 'aos';
+import { Carsoal1Component } from "./componet/carsoal1/carsoal1.component";
+import { BlockchainComponent } from "./component/blockchain/blockchain.component";
+import { CarsoulMainComponent } from "./component/carsoul-main/carsoul-main.component";
+import { ReviewsComponent } from "./component/reviews/reviews.component";
 
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent, FooterComponent, AnalystsBoxComponent, SecuringMoneyComponent, AskedQuestionsComponent, CardsComponent, StartTodayComponent, SecuryWorksComponent, HeroComponent],
+  imports: [RouterOutlet,
+    NavbarComponent,
+    FooterComponent,
+    AnalystsBoxComponent,
+    SecuringMoneyComponent,
+    AskedQuestionsComponent,
+    CardsComponent,
+    StartTodayComponent,
+    SecuryWorksComponent,
+    HeroComponent, Carsoal1Component, BlockchainComponent, CarsoulMainComponent, ReviewsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

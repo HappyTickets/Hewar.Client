@@ -1,0 +1,19 @@
+.contact{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    background-color: var(--main-color) !important ;
+}
+.row .text  {
+font-size: 22px;
+color: var( --light-color) !important ;
+}
+.container{
+    width: 90%;
+    max-width: 1400px; /* حد أقصى للعرض */
+    margin: 0 auto;
+}
+.item  {
+    transition: transform 0.8s ease, opacity 0.8s ease;
+}

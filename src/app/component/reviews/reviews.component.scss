@@ -1,0 +1,81 @@
+.card {
+    border: 2px solid rgba(157, 154, 154, 0.5); 
+    border-radius: 15px; 
+    width: 100%; 
+    height: 250px; 
+    background-color: transparent; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  }
+  
+  .card p {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8); 
+    margin-top: 10px;
+    flex-grow: 1; 
+  }
+  
+  .card img {
+    object-fit: cover; 
+  }
+  
+  .card h6, .card small {
+    color: rgba(255, 255, 255, 0.9); 
+  }
+  
+  .card h6 {
+    font-size: 16px; 
+    margin-bottom: 5px;
+  }
+  
+  .card .text-muted {
+    font-size: 18px;
+  }
+  
+
+  .contact-terminal .safe3{
+    width: 150px;
+    height: 40px; 
+    border: 2px solid rgb(201, 212, 212);
+    padding: 10px;
+    margin-bottom: 5px;
+
+    background: linear-gradient(to right, #f45933, #33336f); 
+    background-clip: text; 
+    -webkit-background-clip: text; 
+    color: transparent; 
+    font-weight: bold; 
+    font-size: 12px; 
+  }
+  .contact-terminal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+      width: 100%;
+  }
+  .contact-terminal h1{
+    color: var(--light-color);
+    font-size: 50px;
+
+  }
+  .contact-terminal p{
+    color: var(--light-color);
+
+  }
+  section {
+    text-align: center; /* محاذاة النصوص داخل الـ section */
+    margin: 0 auto; /* تفعيل المسافات التلقائية لجعل الـ section في المنتصف */
+    padding: 0 15px; /* إضافة مسافات داخلية ليظهر المحتوى بشكل متناسق */
+}
+// .container {
+//   width: 100%; /* تأكد من أن العرض يغطي كامل الصفحة */
+//   max-width: 1200px; /* أو قم بتحديد عرض أقصى يناسب التصميم */
+//   margin: 0 auto; /* تأكد من أن المحتوى يتمركز بشكل جيد */
+//   padding: 0 15px; /* مسافة داخلية لتفادي الالتصاق بالحواف */
+// }
+
+

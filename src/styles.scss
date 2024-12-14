@@ -1,13 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-// @import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
-// @import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
-.navbar{
-background-color: var(--main-color);
-  z-index: 9999999;
-}
-.navbar a {
-  color: var(--light-color) !important;
-}
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+
+
 
     // padding-top: 80px; /* حجم الـ navbar (يمكنك تعديله حسب الحجم الفعلي للـ navbar) */
     body{
@@ -39,82 +34,10 @@ body {
   font-family: var(--font-family) !important;
 }
 
-.nav-link {
-  transition: unset !important;
-  color: var(--light-color) !important;
-
-}
-.active-link {
-  // background-color: var(--main-color) !important;
-  // background-color: #333131 !important;
-  color: var(--light-color) !important;
-  border-radius: 5px;
-}
-
-
-.rating-color {
-  color: var(--rating-color);
-}
-.cursor-pointer {
-  cursor: pointer;
-}
-a,
-a:hover {
-  color: rgb(239, 232, 232);
-  text-decoration: none;
-}
-
-.product {
-  border-radius: 5px;
-  border: solid 1px var(--main-color);
-  transition: box-shadow 0.5s;
-  overflow: hidden;
-}
-
-
-.product .btn-main{
-  transform: translateY(120%);
-  transition: transform 0.7s;
-}
-.product:hover .btn-main{
-  transform: translateY(0);
-
-}
-.product:hover {
-  box-shadow: 0 0 10px #11bd1168;
-}
-
-.font-sm {
-  font-size: 12px;
-}
-.text-main {
-  color: var(--main-color);
-}
-.bg-main {
-  background-color: var(--main-color) !important;
-}
-.bg-main-light {
-  background-color: var(--light-color) !important;
-}
-.btn-main {
-  background-color: var(--main-color);
-  padding: 7px 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  color: #fff;
-  cursor: pointer;
-  transition: background-color 0.5s;
-}
-.btn-main:disabled {
-  cursor: not-allowed;
-  background-color: #ccc;
-}
-.btn-main:disabled:hover {
-  background-color: #ccc;
-}
-.btn-main:hover {
-  background-color: #11bd11;
-}
+// .container {
+//   max-width: 1200px;  /* تغيير الحد الأقصى للعرض */
+//   width: 100%;        /* جعله يعرض 100% من عرض الشاشة */
+// }
 
 ///////////////////////////////////
 /// 
@@ -129,21 +52,6 @@ html {
   
 // @import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
 // @import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
-.navbar{
-background-color: var(--main-color);
-  z-index: 9999999;
-}
-.navbar a {
-  color: var(--light-color) !important;
-}
-
-    // padding-top: 80px; /* حجم الـ navbar (يمكنك تعديله حسب الحجم الفعلي للـ navbar) */
-    body{
-      background-color: var(--main-color) !important ;
-      padding-top: 80px;
-  }
-
-  
  
   //////////////////////////////////////////////////////////////////////
   /* You can add global styles to this file, and also import other style files */
@@ -165,83 +73,6 @@ background-color: var(--main-color);
 
 body {
   font-family: var(--font-family) !important;
-}
-
-.nav-link {
-  transition: unset !important;
-  color: var(--light-color) !important;
-
-}
-.active-link {
-  // background-color: var(--main-color) !important;
-  // background-color: #333131 !important;
-  color: var(--light-color) !important;
-  border-radius: 5px;
-}
-
-
-.rating-color {
-  color: var(--rating-color);
-}
-.cursor-pointer {
-  cursor: pointer;
-}
-a,
-a:hover {
-  color: rgb(239, 232, 232);
-  text-decoration: none;
-}
-
-.product {
-  border-radius: 5px;
-  border: solid 1px var(--main-color);
-  transition: box-shadow 0.5s;
-  overflow: hidden;
-}
-
-
-.product .btn-main{
-  transform: translateY(120%);
-  transition: transform 0.7s;
-}
-.product:hover .btn-main{
-  transform: translateY(0);
-
-}
-.product:hover {
-  box-shadow: 0 0 10px #11bd1168;
-}
-
-.font-sm {
-  font-size: 12px;
-}
-.text-main {
-  color: var(--main-color);
-}
-.bg-main {
-  background-color: var(--main-color) !important;
-}
-.bg-main-light {
-  background-color: var(--light-color) !important;
-}
-.btn-main {
-  background-color: var(--main-color);
-  padding: 7px 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  color: #fff;
-  cursor: pointer;
-  transition: background-color 0.5s;
-}
-.btn-main:disabled {
-  cursor: not-allowed;
-  background-color: #ccc;
-}
-.btn-main:disabled:hover {
-  background-color: #ccc;
-}
-.btn-main:hover {
-  background-color: #11bd11;
 }
 
 

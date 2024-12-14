@@ -1,29 +1,21 @@
-// .navbar{
-//     color:#ffffff;
-//     z-index: 999999999999999999;
-// }
-// .navbar a {
-//     color:black;
-// }
-// body {
-//     padding-top: 80px; /* حجم الـ navbar (يمكنك تعديله حسب الحجم الفعلي للـ navbar) */
-//   }
-  
-//   .container {
-//     padding-top: 20px; /* أو أي قيمة أخرى إذا كانت ضرورية */
-//   }
+
   .navbar-nav .circle{
-    width: 150px; /* عرض الدائرة */
-    height: 50px; /* ارتفاع الدائرة */
-    // border-radius: 25%; /* لجعل الشكل دائريًا */
-    border: 2px solid rgb(90, 97, 97); /* إضافة حدود سوداء بعرض 2px */
-    display: flex; /* لتوسيط المحتوى داخل الدائرة */
+    width: 150px; 
+    height: 50px; 
+    border: 2px solid rgb(90, 97, 97); 
+    display: flex;
     justify-content: center;
     align-items: center;
-    transition: all 0.3s ease; /* تأثير سلس عند التحريك */
+    transition: all 0.3s ease;
     box-shadow: 0 0 10px #000000;
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    text-align: center;
 
+    padding-top: 10px;
   }
+
   .text{
     color: var(--light-color) !important;
     box-shadow: 0 0 10px #000000;
@@ -32,3 +24,39 @@
   .dropdown-menu{
     background-color: var( --main-color) !important;
   }
+  .navbar a{
+    color: var(--light-color) !important;
+    display: block;
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .nav-link {
+    transition: unset !important;
+    color: var(--light-color) !important;
+  
+  }
+  .active-link {
+    color: var(--light-color) !important;
+    border-radius: 5px;
+  }
+  a,
+  a:hover {
+    color: rgb(239, 232, 232);
+    text-decoration: none;
+  }  
+
+
+.navbar-nav .dropdown:hover .dropdown-menu {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease;
+}
+
+.navbar-nav .dropdown .dropdown-menu {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+}
