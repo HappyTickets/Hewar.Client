@@ -8,6 +8,10 @@ import { LoginComponent } from './component/login/login.component';
 import { TeamComponent } from './component/team/team.component';
 import { ServicesComponent } from './component/services/services.component';
 import { CompanyComponent } from './componet/company/company.component';
+import { CreateAccountComponent } from './Components/create-account/create-account.component';
+import { FacilityAccountComponent } from './Components/AccountsForms/facility-account/facility-account.component';
+import { IndividualAccountComponent } from './Components/AccountsForms/individual-account/individual-account.component';
+import { CompanyAccountComponent } from './Components/AccountsForms/company-account/company-account.component';
 
 export const routes: Routes = [
 
@@ -18,24 +22,16 @@ export const routes: Routes = [
     {path:'contact',component:ContactusComponent, title:'contact'},
     {path:'register',component:RegisterComponent, title:'register'},
     {path:'login',component:LoginComponent, title:'login'},
-
     {path:'team',component:TeamComponent, title:'team'},
     {path:'services',component:ServicesComponent, title:'services'},
     {path:'company',component:CompanyComponent, title:'company'},
-
-
-
+    {path: "createAccount",  children: [
+        {path: "", component: CreateAccountComponent, title: "CreateAccount"},
+        {path: "companyAcc", component: CompanyAccountComponent, title: "CompanyAccount"},
+        {path: "individualAcc", component: IndividualAccountComponent, title: "IndividualAccount"},
+        {path: "facilityAcc", component: FacilityAccountComponent, title: "FacilityAccount"},
+    ]},
 
 
     {path:'**',component:NotfoundComponent ,title:'notFound'}
-
-
-
-
-
-
-
-
-
-
 ];
