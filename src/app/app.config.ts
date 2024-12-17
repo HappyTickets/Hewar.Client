@@ -1,22 +1,52 @@
 import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withViewTransitions } from '@angular/router';
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
-import { provideHttpClient, withFetch } from '@angular/common/http'; 
+import { HttpClient, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http'; 
 import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
-// أو أي مزود آخر تستخدمه
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+
 
 
 // تأكد من استيراده
 // استيراد معالج HTTP إذا كنت بحاجة
 // import { withFetch } from '@angular/common/http';
 
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }), 
-    provideRouter(routes), 
-    provideHttpClient(withFetch())
+    provideRouter(routes, withViewTransitions()),
+    provideClientHydration(),
+     provideHttpClient(withFetch(),
+    //  withInterceptors([loadingInterceptor])
+    ),
+
+provideAnimations(),
+// provideToastr(),
+importProvidersFrom(
+  TranslateModule.forRoot({
+    defaultLanguage:'en',
+    loader: {
+      provide: TranslateLoader,
+      useFactory:HttpLoaderFactory,
+      deps: [HttpClient]
+    }
+  })
+)
+
+
+ 
+
+
   ]
+};    
+
 
   //   providers: [
   //     provideRouter(routes),
@@ -38,5 +68,5 @@ export const appConfig: ApplicationConfig = {
   //   //   }
   //   // })
   // ]
-};
+
 
