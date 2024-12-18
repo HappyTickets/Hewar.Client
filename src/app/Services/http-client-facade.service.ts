@@ -12,7 +12,7 @@ export class HttpClientFacadeService {
   private baseUrl = environment.baseURL; 
   private authToken: string | null = null;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private Router: Router) {}
 
   get<T>(endpoint: string, useAuth:boolean = true): Observable<T> {
     const headers = useAuth ? this.setAuthHeader() : {};
@@ -73,4 +73,5 @@ export class HttpClientFacadeService {
     // }
     throw error;
   }
+ 
 }
