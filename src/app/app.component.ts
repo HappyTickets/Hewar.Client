@@ -6,7 +6,6 @@ import { isPlatformBrowser } from '@angular/common';
 import AOS from 'aos';
 import { WOW } from 'wowjs';
 
-
 @Component({
   selector: 'app-root',
   standalone: true,

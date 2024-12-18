@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientFacadeService } from '../../../Services/http-client-facade.service';
+import { RegexPatterns } from '../../../regex-patterns';
+import { CustomValidators } from '../../../custom-validators';
 @Component({
   selector: 'app-facility-account',
   standalone: true,
@@ -18,8 +20,10 @@ export class FacilityAccountComponent {
   ngOnInit() {
     this.userForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email]],
-      phone: [ '', [Validators.required, Validators.pattern('^[0-9]{10,15}$')]],
+      email: ['', [Validators.required, Validators.email, Validators.pattern(RegexPatterns.email)]],
+      phone: ['',[Validators.required, Validators.pattern(RegexPatterns.phoneNumber)]],
+      password: ['',[Validators.required,Validators.minLength(8), Validators.pattern(RegexPatterns.password)]],
+      confirmPassword: [{ value: '', disabled: true }, Validators.required],
       address: ['', Validators.required],
       city: ['', Validators.required],
       type: ['', Validators.required],
@@ -27,12 +31,20 @@ export class FacilityAccountComponent {
       commercialRegistration: ['', Validators.required],
       responsibleName: ['', Validators.required],
       responsiblePhone: ['', Validators.required],
-      password: ['',[
-          Validators.required,
-          Validators.minLength(8),
-          Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/), 
-        ],
-      ],
+    },
+      {
+        validators: CustomValidators.mustMatch('password', 'confirmPassword'),
+      }
+    );
+
+    this.userForm.get('password')?.statusChanges.subscribe((status) => {
+      const confirmPasswordControl = this.userForm.get('confirmPassword');
+      if (status === 'VALID') {
+        confirmPasswordControl?.enable();
+      } else {
+        confirmPasswordControl?.disable();
+        confirmPasswordControl?.reset();
+      }
     });
   }
 

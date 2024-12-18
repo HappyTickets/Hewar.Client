@@ -4,6 +4,8 @@ import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideHttpClient, withFetch } from '@angular/common/http'; 
 import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+
 // أو أي مزود آخر تستخدمه
 
 
@@ -15,7 +17,10 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }), 
     provideRouter(routes), 
-    provideHttpClient(withFetch())
+    provideHttpClient(withFetch()),
+    provideAnimations(),
+    BrowserAnimationsModule,
+    importProvidersFrom(CarouselModule)
   ]
 
   //   providers: [

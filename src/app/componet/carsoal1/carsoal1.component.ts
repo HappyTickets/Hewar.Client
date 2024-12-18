@@ -11,30 +11,22 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 export class Carsoal1Component {
   customOptionsMain: OwlOptions = {
     loop: true,
-    mouseDrag: true,
-    touchDrag: true,
-    autoplay:true,
-    autoplayTimeout:2000,
-    autoplayHoverPause:true,
+    autoplay: true,
+    autoplayTimeout: 5000,
+    autoplaySpeed: 4000,
+    autoplayHoverPause: false,
+    slideTransition: 'linear',
+    smartSpeed: 4000,
     pullDrag: false,
-    dots: false ,
-    smartSpeed: 800,
-    navSpeed: 700,
-    navText: ['', ''],
+    dots: false,
+    rtl: true,
+    nav: false,
+    rewind: false,
     responsive: {
-      0: {
-        items: 1
-      },
-      400: {
-        items: 2
-      },
-      740: {
-        items: 3
-      },
-      940: {
-        items: 4
-      }
+      0: { items: 1 },
+      300: { items: 2 },
+      600: { items: 3 },
+      900: { items: 4 },
     },
-    nav: false
   }
 }
