@@ -1,24 +1,10 @@
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from "./component/navbar/navbar.component";
 import { FooterComponent } from './component/footer/footer.component';
-import { AnalystsBoxComponent } from "./Components/analysts-box/analysts-box.component";
-import { SecuringMoneyComponent } from "./Components/securing-money/securing-money.component";
-import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { HeroComponent } from "./Components/hero/hero.component";
-import { AskedQuestionsComponent } from "./Components/asked-questions/asked-questions.component";
-import { CardsComponent } from "./Components/cards/cards.component";
-import { StartTodayComponent } from "./Components/start-today/start-today.component";
-import { SecuryWorksComponent } from "./Components/secury-works/secury-works.component";
-
-
-import { WOW } from 'wowjs';
 import AOS from 'aos';
-import { Carsoal1Component } from "./componet/carsoal1/carsoal1.component";
-import { BlockchainComponent } from "./component/blockchain/blockchain.component";
-import { CarsoulMainComponent } from "./component/carsoul-main/carsoul-main.component";
-import { ReviewsComponent } from "./component/reviews/reviews.component";
-
+import { WOW } from 'wowjs';
 
 
 @Component({
@@ -27,13 +13,7 @@ import { ReviewsComponent } from "./component/reviews/reviews.component";
   imports: [RouterOutlet,
     NavbarComponent,
     FooterComponent,
-    AnalystsBoxComponent,
-    SecuringMoneyComponent,
-    AskedQuestionsComponent,
-    CardsComponent,
-    StartTodayComponent,
-    SecuryWorksComponent,
-    HeroComponent, Carsoal1Component, BlockchainComponent, CarsoulMainComponent, ReviewsComponent],
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

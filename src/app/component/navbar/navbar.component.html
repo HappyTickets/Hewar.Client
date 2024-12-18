@@ -9,50 +9,39 @@
       <div class="collapse navbar-collapse " id="navbarNav">
         <ul class="navbar-nav me-auto lg:w-auto">
           <li class="nav-item">
-            <a class="nav-link "  routerLinkActive="active-link " routerLink="company">Company</a>
+            <a class="nav-link "  routerLinkActive="active-link " routerLink="company">{{"navbar.company" | translate}}   </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link "   routerLinkActive="active-link " routerLink="contact">Contact Us</a>
+            <a class="nav-link "   routerLinkActive="active-link " routerLink="contact"> {{"navbar.contact" | translate}}   </a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              All Pages
-            </a>
+              {{"navbar.allPages" | translate}}            </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" routerLink="home" routerLinkActive="active-link">Home</a></li>
-              <li><a class="dropdown-item" routerLink="about" routerLinkActive="active-link">About Us</a></li>
-              <li><a class="dropdown-item" routerLink="services" routerLinkActive="active-link">Services</a></li>
-              <li><a class="dropdown-item" routerLink="team" routerLinkActive="active-link">Team</a></li>
+              <li><a class="dropdown-item" routerLink="home" routerLinkActive="active-link"> {{"navbar.home" | translate}}</a></li>
+              <li><a class="dropdown-item" routerLink="about" routerLinkActive="active-link"> {{"navbar.about" | translate}}</a></li>
+              <li><a class="dropdown-item" routerLink="services" routerLinkActive="active-link"> {{"navbar.services" | translate}}</a></li>
+              <li><a class="dropdown-item" routerLink="team" routerLinkActive="active-link"> {{"navbar.team" | translate}}</a></li>
             </ul>
           </li>
           
-          
-          <!-- <li class="nav-item dropdown">
+          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              All Pages
+              {{"navbar.lang" | translate}}
             </a>
             <ul class="dropdown-menu">
-              <li class="nav-item">
-                <a class="nav-link "  routerLinkActive="active-link " routerLink="home">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link "   routerLinkActive="active-link " routerLink="about">About Us</a>
-              </li>
-             
-              
-              <li class="nav-item">
-                <a class="nav-link "   routerLinkActive="active-link " routerLink="services">Services</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link "   routerLinkActive="active-link " routerLink="team">Team</a>
-              </li>
-            </ul> -->
+              <li  (click)="change('en')"     ><a class="  cursor-pointer    dropdown-item">EN</a></li>
+              <li   (click)="change('ar')"      ><a class="  cursor-pointer  dropdown-item">AR</a></li>
+
+            
+            </ul>
+      
         </ul>
         <ul class="navbar-nav ms-auto ">
       
         <div class="circle rounded-pill">
           <div class="text">
-            Get Started   <i class="fa-solid fa-arrow-right"></i>
+            {{"navbar.get"| translate}}   <i class="fa-solid fa-arrow-right"></i>
           </div>
         </div>
          
@@ -64,17 +53,18 @@
                     {{"navbar.signout"| translate}}
                 </a>
               </li> -->
-              <!-- <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  {{"navbar.lang" | translate}}
-                </a>
-                <ul class="dropdown-menu">
-                  <li  (click)="change('en')"     ><a class="  cursor-pointer    dropdown-item">EN</a></li>
-                  <li   (click)="change('ar')"      ><a class="  cursor-pointer  dropdown-item">AR</a></li>
-    
-                
-                </ul> -->
+         
           </ul>
       </div>
+      <a routerLink="/login">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mx-2   rounded">
+          {{"navbar.login"| translate}}        </button>
+      </a>
+      <a routerLink="/createAccount">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          {{"navbar.register"| translate}}
+        </button>
+      </a>
+
     </div>
   </nav>
