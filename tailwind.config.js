@@ -2,11 +2,11 @@
 module.exports = {
   content: [
     "./src/**/*.{html,ts}",
-  ],  
+  ],
   theme: {
     extend: {
       animation: {
-        'rotate-infinite': 'rotate 15s linear infinite', 
+        'rotate-infinite': 'rotate 50s linear infinite', 
       },
       keyframes: {
         rotate: {

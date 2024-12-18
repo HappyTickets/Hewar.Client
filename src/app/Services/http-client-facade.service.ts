@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment.development';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,7 @@ export class HttpClientFacadeService {
   constructor(private http: HttpClient, private router: Router) {}
 
   get<T>(endpoint: string, useAuth:boolean = true): Observable<T> {
-    const headers = useAuth ? this.setAuthHeader() : {};
+    const headers = useAuth ? this.setAuthHeader() : undefined;
     return this.http.get<T>(`${this.baseUrl}/${endpoint}`, { headers })
     .pipe(
       catchError((err) => this.handleError(err))
@@ -23,7 +24,7 @@ export class HttpClientFacadeService {
   }
 
   post<T>(endpoint: string, data: any, useAuth:boolean = true): Observable<T> {
-    const headers = useAuth ? this.setAuthHeader() : {};
+    const headers = useAuth ? this.setAuthHeader() : undefined;
     return this.http.post<T>(`${this.baseUrl}/${endpoint}`, data, { headers })
     .pipe(
       catchError((err) => this.handleError(err))
@@ -31,7 +32,7 @@ export class HttpClientFacadeService {
   }
 
   put<T>(endpoint: string, data: any, useAuth:boolean = true): Observable<T> {
-    const headers = useAuth ? this.setAuthHeader() : {};
+    const headers = useAuth ? this.setAuthHeader() : undefined;
     return this.http.put<T>(`${this.baseUrl}/${endpoint}`, data, { headers })
     .pipe(
       catchError((err) => this.handleError(err))
@@ -39,7 +40,7 @@ export class HttpClientFacadeService {
   }
 
   patch<T>(endpoint: string, data: any, useAuth:boolean = true): Observable<T> {
-    const headers = useAuth ? this.setAuthHeader() : {};
+    const headers = useAuth ? this.setAuthHeader() : undefined;
     return this.http.patch<T>(`${this.baseUrl}/${endpoint}`, data, { headers })
     .pipe(
       catchError((err) => this.handleError(err))
@@ -47,7 +48,7 @@ export class HttpClientFacadeService {
   }
 
   delete<T>(endpoint: string, useAuth:boolean = true): Observable<T> {
-    const headers = useAuth ? this.setAuthHeader() : {};
+    const headers = useAuth ? this.setAuthHeader() : undefined;
     return this.http.delete<T>(`${this.baseUrl}/${endpoint}`, { headers })
     .pipe(
       catchError((err) => this.handleError(err))
@@ -57,12 +58,13 @@ export class HttpClientFacadeService {
   private setAuthHeader(): HttpHeaders {
     if (!this.authToken) {
       this.authToken = localStorage.getItem('authToken');
-      // this.router.navigate(['/login']);
-      // throw new Error('Unauthorized');
+      // if (!this.authToken) {
+        // this.router.navigate(['/login']);
+        // throw new Error('Unauthorized');
+      // }
     }
-
     return new HttpHeaders({
-      Authorization: `=> ${this.authToken}`,
+      Authorization: `Bearer ${this.authToken}`,
     });
   }
 
@@ -71,6 +73,7 @@ export class HttpClientFacadeService {
     // if (error.status === 401 || error.status === 403) {
     //   this.router.navigate(['/login']);
     // }
-    throw error;
+    // throw error;
+    return throwError(() => new Error(error.message || 'An error occurred'));
   }
 }

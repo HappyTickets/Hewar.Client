@@ -1,5 +1,5 @@
 <div class="bg-[url('./assets/imgs/bg_nets.svg')] bg-no-repeat bg-cover bg-black py-5">
-    <p class="text-4xl sm:text-5xl md:text-4xl lg:text-5xl text-gray-300 leading-tight text-center mb-10">Get In Touche</p>
+    <p class="text-4xl sm:text-5xl md:text-4xl lg:text-5xl text-gray-300 leading-tight text-center mb-10">Register As Facility</p>
     <div class="max-w-3xl mx-auto my-10 bg-black border-1 border-zinc-700 p-10 rounded-lg shadow-lg">
         <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="space-y-6">
             <div class="grid grid-cols-1 md:grid-cols-2 sm:grid-cols-2  gap-6">
@@ -37,7 +37,31 @@
                         A valid email is required.  
                     </span>
                 </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 sm:grid-cols-2 gap-6">
+              <div class="aos-init aos-animate  animate__animated animate__backInUp animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
+                <label for="password" class="block text-sm font-medium text-zinc-300">Password</label>
+                <input id="password"  formControlName="password" type="password" placeholder="Password" class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+                <p *ngIf="userForm.get('password')?.touched && userForm.get('password')?.invalid" class="text-red-500 text-xs mt-1 flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+                    </svg>  
+                    <span class="ml-2">
+                        Invalid password! ensure that it contains at least 8 characters, at least one digit, at least one capital and one small letters, and at least one special character
+                    </span>
+                </p>
               </div>
+              <div class="aos-init aos-animate  animate__animated animate__backInUp animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
+                <label for="confirmPassword" class="block text-sm font-medium text-zinc-300">Confirm Password</label>
+                <input id="confirmPassword" formControlName="confirmPassword" type="password" placeholder="Confirm Password" class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+                <p *ngIf="userForm.get('confirmPassword')?.touched && userForm.get('confirmPassword')?.invalid && userForm.get('confirmPassword')?.errors?.['mustMatch']" class="text-red-500 text-xs mt-1 flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+                    </svg>  
+                    <span class="ml-2">Confirm Password Must Be Like Password Feild</span>
+                </p>
+              </div>
+          </div>
             <div class="grid grid-cols-1 md:grid-cols-2 sm:grid-cols-2 gap-6">
                 <div class="aos-init aos-animate  animate__animated animate__backInLeft animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
                   <label for="address" class="block text-sm font-medium text-zinc-300">Address</label>
@@ -64,19 +88,6 @@
                   </p>
                 </div>
             </div>
-
-              <div class="aos-init aos-animate  animate__animated animate__backInUp animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
-                <label for="password" class="block text-sm font-medium text-zinc-300">Password</label>
-                <input id="password"  formControlName="password" type="password" placeholder="Password" class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
-                <p *ngIf="userForm.get('password')?.touched && userForm.get('password')?.invalid" class="text-red-500 text-xs mt-1 flex">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
-                    </svg>  
-                    <span class="ml-2">
-                        Invalid password! ensure that it contains at least 8 characters, at least one digit, at least one capital and one small letters, and at least one special character
-                    </span>
-                </p>
-              </div>
             <div class="grid grid-cols-1 md:grid-cols-2 sm:grid-cols-2 gap-6">
                 <div class="aos-init aos-animate  animate__animated animate__backInLeft animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
                   <label for="type" class="block text-sm font-medium text-zinc-300">Type</label>
