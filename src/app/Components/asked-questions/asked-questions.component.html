@@ -1,12 +1,12 @@
 <div class="bg-black pt-32">
     <div class="accordion-group container mx-auto px-4 py-10 md:w-8/12 lg:w-9/12 animate__animated animate__fadeInUp animate__faster">
-      <div class="flex items-center justify-center ">
-        <button class="animate__animated animate__fadeInUp animate__faster px-6 py-2 rounded-full border-1 mb-8 border-neutral-600 bg-gradient-to-r from-orange-800 via-red-500 to-blue-700 text-transparent bg-clip-text">
+      <div FadeInView class="flex items-center justify-center ">
+        <button class="animate__animated animate__fadeInUp animate__faster px-6 py-2 rounded-full border mb-8 border-neutral-600 bg-gradient-to-r from-orange-800 via-red-500 to-blue-700 text-transparent bg-clip-text">
           GOT QUESTIONS?
         </button>
       </div>
-        <p class="text-4xl sm:text-5xl md:text-6xl lg:text-4xl text-zinc-300 font-bold leading-tight text-center pt-2">Frequently Asked Questions</p>
-        <div
+        <p FadeInView class="text-4xl sm:text-5xl md:text-6xl lg:text-4xl text-zinc-300 font-bold leading-tight text-center pt-2">Frequently Asked Questions</p>
+        <div FadeInView
           *ngFor="let item of accordionItems; let i = index"
           class="accordion-item  my-4 py-4 "
           style="border-bottom: 1px solid #3e3e3e;"

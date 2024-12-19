@@ -1,17 +1,18 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { NavbarComponent } from "./component/navbar/navbar.component";
-import { FooterComponent } from './component/footer/footer.component';
+import {  RouterOutlet } from '@angular/router';
+import { FooterComponent } from './Components/footer/footer.component';
 import { isPlatformBrowser } from '@angular/common';
 import AOS from 'aos';
 import { WOW } from 'wowjs';
+import { NavbarComponent } from './Components/navbar/navbar.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,
-    NavbarComponent,
+  imports: [
+    RouterOutlet,
     FooterComponent,
+    NavbarComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
