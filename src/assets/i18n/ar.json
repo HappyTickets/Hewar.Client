@@ -10,7 +10,11 @@
     "team":"فريق العمل",
     "get":" لنبدا",
     "login":"تسجيل الدخول",
-    "register":" انشاء حساب"
+    "register":" انشاء حساب",
+    "price":"طلب السعر",
+    "FacilityDetailes":"تفاصصيل المبني"
+
+
 
  
 },
@@ -23,8 +27,97 @@
         "passRequired":"كلمه السر مطلوبه",
         "validPass":"الارجاء ادخال كلمه مرور صحيحه",
         "validEmail":"الارجاءادخال ايميل حقيقي",
-       "emailRequired" :"الايميل مطلوب "
+       "emailRequired" :"الايميل مطلوب ",
+       "signup":"انشاء حساب"
 
 
-    }
+
+    },
+    "Price-request": {
+  "PriceRequest": "طلب سعر",
+  "securityrole": "الدور الأمني",
+  "guardsCount": "عدد الحراس",
+  "workShift": "نوبة العمل",
+  "contractType": "نوع العقد",
+  "StartDate": "تاريخ البداية",
+  "EndDate": "تاريخ النهاية",
+  "Description": "الوصف",
+  "Company Id": "معرف الشركة",
+  "request":"طلب",
+  "role": "الدور الأمني مطلوب",
+  "guardsNum": "عدد الحراس يجب أن يكون رقمًا",
+  "guardsRequred": "عدد الحراس مطلوب",
+  "WorkNum": "نوبة العمل يجب أن تكون رقمًا",
+  "WorkRequred": "نوبة العمل مطلوبة",
+  "startDateRe": "تاريخ البداية مطلوب",
+  "endDateRe": "تاريخ النهاية مطلوب",
+  "endDateValid": "تاريخ النهاية يجب أن يكون لاحقًا أو مساويًا لتاريخ البداية",
+  "ContractRequred": "نوع العقد مطلوب",
+  "companyRequred": "معرف الشركة مطلوب",
+  "companyNum": "معرف الشركة يجب أن يكون رقمًا",
+  "descriptionRequred": "الوصف مطلوب"
+},
+
+  "facilityDetalies": {
+    "facilityDetalies": "تفاصيل المنشأة",
+    "FacilityName": "اسم المنشأة",
+    "facilityNameReq": "اسم المنشأة مطلوب",
+    "FacilityEmail": "البريد الإلكتروني للمنشأة",
+    "FacilityEmailReq": "البريد الإلكتروني للمنشأة مطلوب",
+    "FacilityEmailValid": "أدخل بريد إلكتروني صالح",
+    "FacilityPhone": "هاتف المنشأة",
+    "FacilityPhoneReq": "هاتف المنشأة مطلوب",
+    "FacilityPhoneValid": "أدخل رقم هاتف صالح",
+    "FacilityAddress": "عنوان المنشأة",
+    "FacilityAddressReq": "عنوان المنشأة مطلوب",
+    "FacilitySize": "حجم المنشأة",
+    "FacilitySizeReq": "حجم المنشأة مطلوب",
+    "FacilityActivity": "نشاط المنشأة",
+    "FacilityActivityReq": "نشاط المنشأة مطلوب",
+    "Next": "التالي",
+    "FacilityCommercialRegistrationNumber": "رقم السجل التجاري للمنشأة",
+    "FacilityCommercialRegistrationNumberReq": "رقم السجل التجاري للمنشأة مطلوب",
+    "FacilityCommercialRegistrationExpiryDate": "تاريخ انتهاء السجل التجاري للمنشأة",
+    "FacilityCommercialRegistrationExpiryDateReq": "تاريخ انتهاء السجل التجاري للمنشأة مطلوب",
+    "FacilityLicenseNumber": "رقم رخصة المنشأة",
+    "FacilityLicenseNumberReq": "رقم رخصة المنشأة مطلوب",
+    "FacilityLicenseExpiryDate": "تاريخ انتهاء رخصة المنشأة",
+    "FacilityLicenseExpiryDateReq": "تاريخ انتهاء رخصة المنشأة مطلوب",
+    "FacilityNotes": "ملاحظات المنشأة",
+    "FacilityNotesReq": "ملاحظات المنشأة مطلوبة",
+    "RepresentativeName": "اسم الممثل",
+    "RepresentativeNameReq": "اسم الممثل مطلوب",
+    "RepresentativeEmail": "البريد الإلكتروني للممثل",
+    "RepresentativeEmailReq": "البريد الإلكتروني للممثل مطلوب",
+    "RepresentativeEmailValid": "أدخل بريد إلكتروني صالح",
+    "RepresentativePhone": "هاتف الممثل",
+    "RepresentativePhoneReq": "هاتف الممثل مطلوب",
+    "RepresentativePhoneValid": "أدخل رقم هاتف صالح",
+    "RepresentativeId": "هوية الممثل",
+    "RepresentativeIdReq": "هوية الممثل الوطنية مطلوبة",
+    "RepresentativeNationality": "جنسية الممثل",
+    "RepresentativeNationalityReq": "جنسية الممثل مطلوبة",
+    "RepresentativeNotes": "ملاحظات الممثل",
+    "RepresentativeNotesReq": "ملاحظات الممثل مطلوبة",
+    "CommissionerName": "اسم المفوض",
+    "CommissionerNameReq": "اسم المفوض مطلوب",
+    "CommissionerEmail": "البريد الإلكتروني للمفوض",
+    "CommissionerEmailReq": "البريد الإلكتروني للمفوض مطلوب",
+    "CommissionerEmailValid": "أدخل بريد إلكتروني صالح",
+    "CommissionerPhone": "هاتف المفوض",
+    "CommissionerPhoneReq": "هاتف المفوض مطلوب",
+    "CommissionerPhoneValid": "أدخل رقم هاتف صالح",
+    "CommissionerId": "هوية المفوض",
+    "CommissionerIdReq": "هوية المفوض الوطنية مطلوبة",
+    "CommissionerNationality": "جنسية المفوض",
+    "CommissionerNationalityReq": "جنسية المفوض مطلوبة",
+    "CommissionerNotes": "ملاحظات المفوض",
+    "CommissionerNotesReq": "ملاحظات المفوض مطلوبة",
+    "PriceRequestId": "رقم طلب السعر",
+    "PriceRequestIdReq": "رقم طلب السعر مطلوب",
+    "Submit": "إرسال"
+  }
 }
+
+
+

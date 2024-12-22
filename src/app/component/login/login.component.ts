@@ -10,7 +10,7 @@ import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, NgClass, TranslateModule],
+  imports: [ReactiveFormsModule, NgClass, TranslateModule , RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -19,7 +19,6 @@ export class LoginComponent {
   endPoint: string = 'api/auth/loginCompany';
 
 
-  // constructor(private _HttpClientFacadeService: HttpClient, private fb: FormBuilder) {}
 
   loginForm: FormGroup = new FormGroup({
     email: new FormControl(null, [Validators.required, Validators.email]),

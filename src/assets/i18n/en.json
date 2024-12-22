@@ -11,10 +11,13 @@
     "team":"Team",
     "get":"Get Start",
     "login":"Sign In",
-    "register":"Sign up"
+    "register":"Sign up",
+    "price":"Price Request",
+    "FacilityDetailes":"Facility Detailes"
 
  
 },
+
 
     "login":{
         "welcome":"Wlcome Back",
@@ -25,7 +28,98 @@
         "passRequired":"Password Is Required",
         "validPass":"Enter Valid Password",
         "validEmail":"Enter Valid Email",
-       "emailRequired" :"Email Is Required"
+       "emailRequired" :"Email Is Required",
+       "signup":"sign Up"
 
-    }
+    },
+    "Price-request":{
+    "PriceRequest":"Price Request",
+    "securityrole":"Security role",
+    "guardsCount":"Guards Count",
+    "workShift":"Work Shift",
+    "contractType":"Contract Type",
+    "StartDate":"Start Date",
+    "EndDate":"End Date",
+    "Description":"Description",
+    "request":"Request",
+
+    "Company Id":"Company Id",
+    "role":"Security Role Is Required",
+    "guardsNum":"Guards Count Must Be Number",
+    "guardsRequred":"Guards Count is Required",
+    "WorkNum":"Work Shift Must Be Number",
+    "WorkRequred":"Work Shift is Required",
+    "startDateRe":"Start Date Is Required",
+    "endDateRe":"End Date Is Required",
+    "endDateValid":"End Date must be later than or equal to Start Date.",
+
+    "ContractRequred":"Contract Type Is Required",
+    "companyRequred":"Company Id is Required",
+
+    "companyNum":"Company Id Must Be Number",
+    "descriptionRequred":"Description Is Required"
+
+},
+"facilityDetalies":{
+    "facilityDetalies":"Facility Detalies",
+    "FacilityName":"Facility Name",
+    "facilityNameReq":"Facility Name Is Required",
+    "FacilityEmail":"Facility Email",
+    "FacilityEmailReq":"Facility Email is Required",
+    "FacilityEmailValid":"Enter Valid Email",
+    "FacilityPhone":"Facility Phone",
+    "FacilityPhoneReq":"Facility Phone is Required",
+    "FacilityPhoneValid":"Enter Valid Phone",
+    "FacilityAddress":"Facility Address",
+    "FacilityAddressReq":"Facility Address is Required",
+    "FacilitySize":"Facility Size",
+    "FacilitySizeReq":"Facility Size is Required",
+    "FacilityActivity":"Facility Activity",
+    "FacilityActivityReq":"Facility Activity is Required",
+    "Next":"Next",
+    "FacilityCommercialRegistrationNumber":"Facility Commercial Registration Number",
+    "FacilityCommercialRegistrationNumberReq":"Facility Commercial Registration Number Is Required ",
+    "FacilityCommercialRegistrationExpiryDate":"Facility Commercial Registration Expiry Date",
+    "FacilityCommercialRegistrationExpiryDateReq":"Facility Commercial Registration Expiry Date Is Required",
+    "FacilityLicenseNumber":" Facility License Number",
+    "FacilityLicenseNumberReq":"Facility License Number Is Required",
+    "FacilityLicenseExpiryDate":"Facility License Expiry Date",
+    "FacilityLicenseExpiryDateReq":"Facility License Expiry Date Is Required",
+    "FacilityNotes":"Facility Notes",
+    "FacilityNotesReq":"Facility Notes is Required",
+    "RepresentativeName":"Representative Name",
+    "RepresentativeNameReq":"Representative Name is Required",
+    "RepresentativeEmail":"Representative Email",
+    "RepresentativeEmailReq":"Email is Required",
+    "RepresentativeEmailValid":"Enter Valid Email",
+    "RepresentativePhone":"Representative Phone",
+    "RepresentativePhoneReq":"Phone is Required",
+    "RepresentativePhoneValid":"Enter Valid Phone",
+    "RepresentativeId":"Representative Id",
+    "RepresentativeIdReq":"Representative National Id Is Required",
+    "RepresentativeNationality":"Representative Nationality",
+    "RepresentativeNationalityReq":"Representative Nationality Is Required",
+    "RepresentativeNotes":"Representative Notes",
+    "RepresentativeNotesReq":"Representative Notes Is Required",
+    "CommissionerName":"Commissioner Name",
+    "CommissionerNameReq":"Commissioner Name is Required",
+    "CommissionerEmail":"Commissioner Email",
+    "CommissionerEmailReq":"Email is Required",
+    "CommissionerEmailValid":"Enter Valid Email",
+    "CommissionerPhone":"Commissioner Phone",
+    "CommissionerPhoneReq":"Phone is Required",
+    "CommissionerPhoneValid":"Enter Valid Phone",
+    "CommissionerId":"Commissioner Id",
+    "CommissionerIdReq":"Commissioner National Id Is Required",
+    "CommissionerNationality":"Commissioner Nationality",
+    "CommissionerNationalityReq":"Commissioner Nationality Is Required",
+    "CommissionerNotes":"Commissioner Notes",
+    "CommissionerNotesReq":"Commissioner Notes Is Required",
+    "PriceRequestId":"Price Request Id",
+    "PriceRequestIdReq":"Price Request Id Is Required",
+    "Submit":"Submit"
+   
+}
+
+
 }

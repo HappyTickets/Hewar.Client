@@ -1,0 +1,189 @@
+<div class="bg-[url('./assets/imgs/bg_nets.svg')] bg-no-repeat bg-cover bg-black py-5">
+    <p class="text-4xl sm:text-5xl md:text-4xl lg:text-5xl text-gray-300 leading-tight text-center mb-10">
+        {{"Price-request.PriceRequest"| translate}}</p>
+    <div class="max-w-3xl mx-auto my-10 bg-black border-1 border-zinc-700 p-10 rounded-lg shadow-lg">
+        <form [formGroup]="priceRequestForm" (ngSubmit)="onSubmit()" class="space-y-6">
+
+            <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft animate__delay-0.4s"
+                data-aos="fade-up-sm" data-aos-delay="200">
+                <label for=" securityRole" class="block text-sm font-medium text-zinc-300"> {{"Price-request.securityrole"| translate}}</label>
+                <input [ngClass]="{
+                  'is-Valid':!priceRequestForm.get('securityRole')?.errors && (priceRequestForm.get('securityRole')?.touched ||priceRequestForm.get('securityRole')?.dirty),
+                  'is-invalid':priceRequestForm.get('securityRole')?.errors && (priceRequestForm.get(' securityRole')?.touched || priceRequestForm.get('securityRole')?.dirty),
+                }" id="securityRole" formControlName="securityRole" type="text" placeholder='{{"Price-request.securityrole"| translate}}'
+                    class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+                @if(priceRequestForm.get('securityRole')?.errors && (priceRequestForm.get('securityRole')?.touched ||
+                priceRequestForm.get('securityRole')?.dirty) ){
+                <div class="text-red-500 text-xs mt-1 flex">
+                    @if(priceRequestForm.get('securityRole')?.getError('required')){
+                    <p class="m-0">{{"Price-request.role"| translate}}</p>
+                    }
+           
+
+                </div>
+                }
+
+            </div>
+
+            <div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s"
+                data-aos="fade-up-sm" data-aos-delay="200">
+                <label for="guardsCount" class="block text-sm font-medium text-zinc-300">   {{"Price-request.guardsCount"| translate}}</label>
+                <input [ngClass]="{
+                  'is-Valid':!priceRequestForm.get('guardsCount')?.errors && (priceRequestForm.get('guardsCount')?.touched ||priceRequestForm.get('guardsCount')?.dirty),
+                  'is-invalid':priceRequestForm.get('guardsCount')?.errors && (priceRequestForm.get('guardsCount')?.touched || priceRequestForm.get('guardsCount')?.dirty),
+                }" id="guardsCount" formControlName="guardsCount" type="number" placeholder='{{"Price-request.guardsCount"| translate}}'
+                    class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+
+                @if(priceRequestForm.get('guardsCount')?.errors && (priceRequestForm.get('guardsCount')?.touched ||
+                priceRequestForm.get('guardsCount')?.dirty) ){
+                <div class="text-red-500 text-xs mt-1 flex">
+                    @if(priceRequestForm.get('guardsCount')?.getError('required')){
+                    <p class="m-0"> {{"Price-request.guardsRequred"| translate}}</p>
+                    }
+                    @else if(priceRequestForm.get('guardsCount')?.getError('pattern')){
+                    <p class="m-0"> {{"Price-request.guardsNum"| translate}}</p>
+                    }
+
+                </div>
+                }
+            </div>
+            <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft animate__delay-0.4s"
+            data-aos="fade-up-sm" data-aos-delay="200">
+            <label for="workShift" class="block text-sm font-medium text-zinc-300">  {{"Price-request.workShift"| translate}}</label>
+            <input [ngClass]="{
+              'is-Valid':!priceRequestForm.get('workShift')?.errors && (priceRequestForm.get('workShift')?.touched ||priceRequestForm.get('workShift')?.dirty),
+              'is-invalid':priceRequestForm.get('workShift')?.errors && (priceRequestForm.get('workShift')?.touched || priceRequestForm.get('workShift')?.dirty),
+            }" id="workShift" formControlName="workShift" type="number" placeholder='{{"Price-request.workShift"| translate}}'
+                class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+
+            @if(priceRequestForm.get('workShift')?.errors && (priceRequestForm.get('workShift')?.touched ||
+            priceRequestForm.get('workShift')?.dirty) ){
+            <div class="text-red-500 text-xs mt-1 flex">
+                @if(priceRequestForm.get('workShift')?.getError('required')){
+                <p class="m-0"> {{"Price-request.WorkRequred"| translate}}</p>
+                }
+                @else if(priceRequestForm.get('workShift')?.getError('pattern')){
+                <p class="m-0"> {{"Price-request.WorkNum"| translate}}</p>
+                }
+
+            </div>
+            }
+        </div>
+        
+        <div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s"
+        data-aos="fade-up-sm" data-aos-delay="200">
+        <label for="guardsCount" class="block text-sm font-medium text-zinc-300"> {{"Price-request.contractType"| translate}}</label>
+        <input [ngClass]="{
+          'is-Valid':!priceRequestForm.get('contractType')?.errors && (priceRequestForm.get('contractType')?.touched ||priceRequestForm.get('contractType')?.dirty),
+          'is-invalid':priceRequestForm.get('contractType')?.errors && (priceRequestForm.get('contractType')?.touched || priceRequestForm.get('contractType')?.dirty),
+        }" id="contractType" formControlName="contractType" type="text" placeholder='{{"Price-request.contractType"| translate}}'
+            class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+
+        @if(priceRequestForm.get('contractType')?.errors && (priceRequestForm.get('contractType')?.touched ||
+        priceRequestForm.get('contractType')?.dirty) ){
+        <div class="text-red-500 text-xs mt-1 flex">
+            @if(priceRequestForm.get('contractType')?.getError('required')){
+            <p class="m-0">{{"Price-request.ContractRequred"| translate}}</p>
+            }
+         
+        </div>
+        }
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 sm:grid-cols-2  gap-6">
+        <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft animate__delay-0.4s"
+        data-aos="fade-up-sm" data-aos-delay="200">
+        <label for="startDate" class="block text-sm font-medium text-zinc-300"> {{"Price-request.StartDate"| translate}}</label>
+        <input [ngClass]="{
+          'is-Valid':!priceRequestForm.get('startDate')?.errors && (priceRequestForm.get('startDate')?.touched ||priceRequestForm.get('startDate')?.dirty),
+          'is-invalid':priceRequestForm.get('startDate')?.errors && (priceRequestForm.get('startDate')?.touched || priceRequestForm.get('startDate')?.dirty),
+        }" id="startDate" formControlName="startDate" type="date" placeholder='{{"Price-request.StartDate"| translate}}'
+      [attr.min]="today"
+      class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+
+        @if(priceRequestForm.get('startDate')?.errors && (priceRequestForm.get('startDate')?.touched ||
+        priceRequestForm.get('startDate')?.dirty) ){
+        <div class="text-red-500 text-xs mt-1 flex">
+            @if(priceRequestForm.get('startDate')?.getError('required')){
+            <p class="m-0">{{"Price-request.startDateRe"| translate}}</p>
+            }
+        
+
+        </div>
+        }
+    </div>
+    
+    <div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s"
+    data-aos="fade-up-sm" data-aos-delay="200">
+    <label for="endDate" class="block text-sm font-medium text-zinc-300"> {{"Price-request.EndDate"| translate}}</label>
+    <input [ngClass]="{
+      'is-Valid':!priceRequestForm.get('endDate')?.errors && (priceRequestForm.get('endDate')?.touched ||priceRequestForm.get('endDate')?.dirty),
+      'is-invalid':priceRequestForm.get('endDate')?.errors && (priceRequestForm.get('endDate')?.touched || priceRequestForm.get('endDate')?.dirty),
+    }" id="endDate" formControlName="endDate" type="date" placeholder='{{"Price-request.EndDate"| translate}}'
+      [attr.min]="priceRequestForm.get('startDate')?.value"
+      class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+
+    @if(priceRequestForm.get('endDate')?.errors && (priceRequestForm.get('endDate')?.touched ||
+    priceRequestForm.get('endDate')?.dirty) ){
+    <div class="text-red-500 text-xs mt-1 flex">
+        @if(priceRequestForm.get('endDate')?.getError('required')){
+        <p class="m-0">{{"Price-request.endDateRe"| translate}}</p>
+        }
+        @else if(priceRequestForm.get('endDate')?.getError('invalidEndDate')){
+            <p class="m-0">     {{"Price-request.endDateValid"| translate}}
+            </p>
+            }
+    </div>
+    }
+</div>
+    </div>
+    <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft animate__delay-0.4s"
+    data-aos="fade-up-sm" data-aos-delay="200">
+    <label for="description" class="block text-sm font-medium text-zinc-300">  {{"Price-request.Description"| translate}}</label>
+    <textarea [ngClass]="{
+      'is-Valid':!priceRequestForm.get('description')?.errors && (priceRequestForm.get('description')?.touched ||priceRequestForm.get('description')?.dirty),
+      'is-invalid':priceRequestForm.get('description')?.errors && (priceRequestForm.get('description')?.touched || priceRequestForm.get('description')?.dirty),
+    }" id="description" formControlName="description" type="text" placeholder='{{"Price-request.Description"| translate}}'
+        class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" ></textarea> 
+
+    @if(priceRequestForm.get('description')?.errors && (priceRequestForm.get('description')?.touched ||
+    priceRequestForm.get('description')?.dirty) ){
+    <div class="text-red-500 text-xs mt-1 flex">
+        @if(priceRequestForm.get('description')?.getError('required')){
+        <p class="m-0"> {{"Price-request.descriptionRequred"| translate}}</p>
+        }
+    
+
+    </div>
+    }
+</div>
+<div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s"
+data-aos="fade-up-sm" data-aos-delay="200">
+<label for="guardsCount" class="block text-sm font-medium text-zinc-300"> {{"Price-request.Company Id"| translate}}  </label>
+<input [ngClass]="{
+  'is-Valid':!priceRequestForm.get('companyId')?.errors && (priceRequestForm.get('companyId')?.touched ||priceRequestForm.get('companyId')?.dirty),
+  'is-invalid':priceRequestForm.get('companyId')?.errors && (priceRequestForm.get('companyId')?.touched || priceRequestForm.get('companyId')?.dirty),
+}" id="companyId" formControlName="companyId" type="number" placeholder='{{"Price-request.Company Id"| translate}}'
+    class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+
+@if(priceRequestForm.get('companyId')?.errors && (priceRequestForm.get('companyId')?.touched ||
+priceRequestForm.get('companyId')?.dirty) ){
+<div class="text-red-500 text-xs mt-1 flex">
+    @if(priceRequestForm.get('companyId')?.getError('required')){
+    <p class="m-0">{{"Price-request.companyRequred"| translate}}</p>
+    }
+    @else if(priceRequestForm.get('companyId')?.getError('pattern')){
+    <p class="m-0">{{"Price-request.companyNum"| translate}}</p>
+    }
+
+</div>
+}
+</div>
+            <div>
+                <button type="submit"
+                    class="w-full bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 disabled:bg-zinc-950  aos-init aos-animate my-4 animate__animated animate__backInUp animate__delay-0.4s ">
+                    {{"Price-request.request"| translate}} </button>
+
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,308 @@
+<div class="bg-[url('./assets/imgs/bg_nets.svg')] bg-no-repeat bg-cover bg-black py-5">
+    <p class="text-4xl sm:text-5xl md:text-4xl lg:text-5xl text-gray-300 leading-tight text-center mb-10">
+        {{"facilityDetalies.facilityDetalies" | translate}}
+    </p>
+    <div class="max-w-3xl mx-auto my-10 bg-black border-1 border-zinc-700 p-10 rounded-lg shadow-lg">
+        <form [formGroup]="FacilityDetaliesForm" (ngSubmit)="saveData()" class="space-y-6">
+
+            <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft animate__delay-0.4s"
+                data-aos="fade-up-sm" data-aos-delay="200">
+                <label for=" facilityName" class="block text-sm font-medium text-zinc-300">
+                    {{"facilityDetalies.FacilityName" | translate}}
+                </label>
+                <input [ngClass]="{
+                  'is-Valid':!FacilityDetaliesForm.get('facilityName')?.errors && (FacilityDetaliesForm.get('facilityName')?.touched ||FacilityDetaliesForm.get('facilityName')?.dirty),
+                  'is-invalid':FacilityDetaliesForm.get('facilityName')?.errors && (FacilityDetaliesForm.get('facilityName')?.touched || FacilityDetaliesForm.get('facilityName')?.dirty),
+                }" id="facilityName" formControlName="facilityName" type="text"
+                    placeholder='{{"facilityDetalies.FacilityName" | translate}}'
+                    class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+                @if(FacilityDetaliesForm.get('facilityName')?.errors &&
+                (FacilityDetaliesForm.get('facilityName')?.touched ||
+                FacilityDetaliesForm.get('facilityName')?.dirty) ){
+                <div class="text-red-500 text-xs mt-1 flex">
+                    @if(FacilityDetaliesForm.get('facilityName')?.getError('required')){
+                    <p class="m-0">{{"facilityDetalies.facilityNameReq" | translate}}</p>
+                    }
+
+
+                </div>
+                }
+
+            </div>
+
+            
+            <div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s  "
+            data-aos="fade-up-sm" data-aos-delay="200">
+            <label for="facilityEmail" class="block text-sm font-medium text-zinc-300">
+                {{"facilityDetalies.FacilityEmail" | translate}}</label>
+            <input [ngClass]="{
+              'is-Valid':!FacilityDetaliesForm.get('facilityEmail')?.errors && (FacilityDetaliesForm.get('facilityEmail')?.touched ||FacilityDetaliesForm.get('facilityEmail')?.dirty),
+              'is-invalid':FacilityDetaliesForm.get('facilityEmail')?.errors && (FacilityDetaliesForm.get('facilityEmail')?.touched || FacilityDetaliesForm.get('facilityEmail')?.dirty),
+            }" id="facilityEmail" formControlName="facilityEmail" type="email"
+                placeholder='{{"facilityDetalies.FacilityEmail" | translate}}'
+                class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+
+            @if(FacilityDetaliesForm.get('facilityEmail')?.errors &&
+            (FacilityDetaliesForm.get('facilityEmail')?.touched ||
+            FacilityDetaliesForm.get('facilityEmail')?.dirty) ){
+            <div class="text-red-500 text-xs mt-1 flex">
+                @if(FacilityDetaliesForm.get('facilityEmail')?.getError('required')){
+                <p class="m-0">{{"facilityDetalies.FacilityEmailReq" | translate}}</p>
+                }
+                @else if(FacilityDetaliesForm.get('facilityEmail')?.getError('email')){
+                <p class="m-0">{{"facilityDetalies.FacilityEmailValid" | translate}}</p>
+                }
+            </div>
+            }
+        </div>
+
+  
+         
+            
+            <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft  animate__delay-0.4s"
+                data-aos="fade-up-sm" data-aos-delay="200">
+                <label for="facilityPhone" class="block text-sm font-medium text-zinc-300">
+                    {{"facilityDetalies.FacilityPhone" | translate}}</label>
+                <input [ngClass]="{
+                  'is-Valid':!FacilityDetaliesForm.get('facilityPhone')?.errors && (FacilityDetaliesForm.get('facilityPhone')?.touched ||FacilityDetaliesForm.get('facilityPhone')?.dirty),
+                  'is-invalid':FacilityDetaliesForm.get('facilityPhone')?.errors && (FacilityDetaliesForm.get('facilityPhone')?.touched || FacilityDetaliesForm.get('facilityPhone')?.dirty),
+                }" id="facilityPhone" formControlName="facilityPhone" type="phone"
+                    placeholder='{{"facilityDetalies.FacilityPhone" | translate}}'
+                    class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400 " />
+
+                @if(FacilityDetaliesForm.get('facilityPhone')?.errors &&
+                (FacilityDetaliesForm.get('facilityPhone')?.touched ||
+                FacilityDetaliesForm.get('facilityPhone')?.dirty) ){
+                <div class="text-red-500 text-xs mt-1 flex">
+                    @if(FacilityDetaliesForm.get('facilityPhone')?.getError('required')){
+                    <p class="m-0">{{"facilityDetalies.FacilityPhoneReq" | translate}}</p>
+                    }
+                    @else if(FacilityDetaliesForm.get('facilityPhone')?.getError('pattern')){
+                    <p class="m-0">{{"facilityDetalies.FacilityPhoneValid" | translate}}</p>
+                    }
+                </div>
+                }
+            </div>
+
+
+            <div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s"
+                data-aos="fade-up-sm" data-aos-delay="200">
+                <label for="facilityAddress" class="block text-sm font-medium text-zinc-300">
+                    {{"facilityDetalies.FacilityAddress" | translate}}</label>
+                <input [ngClass]="{
+              'is-Valid':!FacilityDetaliesForm.get('facilityAddress')?.errors && (FacilityDetaliesForm.get('facilityAddress')?.touched ||FacilityDetaliesForm.get('facilityAddress')?.dirty),
+              'is-invalid':FacilityDetaliesForm.get('facilityAddress')?.errors && (FacilityDetaliesForm.get('facilityAddress')?.touched || FacilityDetaliesForm.get('facilityAddress')?.dirty),
+            }" id="facilityAddress" formControlName="facilityAddress" type="text"
+                    placeholder='{{"facilityDetalies.FacilityAddress" | translate}}'
+                    class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+
+                @if(FacilityDetaliesForm.get('facilityAddress')?.errors &&
+                (FacilityDetaliesForm.get('facilityAddress')?.touched ||
+                FacilityDetaliesForm.get('facilityAddress')?.dirty) ){
+                <div class="text-red-500 text-xs mt-1 flex">
+                    @if(FacilityDetaliesForm.get('facilityAddress')?.getError('required')){
+                    <p class="m-0">{{"facilityDetalies.FacilityAddressReq" | translate}}</p>
+                    }
+
+                </div>
+                }
+            </div>
+            <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft  animate__delay-0.4s"
+                data-aos="fade-up-sm" data-aos-delay="200">
+                <label for="facilitySize" class="block text-sm font-medium text-zinc-300">
+                    {{"facilityDetalies.FacilitySize" | translate}}</label>
+                <input [ngClass]="{
+          'is-Valid':!FacilityDetaliesForm.get('facilitySize')?.errors && (FacilityDetaliesForm.get('facilitySize')?.touched ||FacilityDetaliesForm.get('facilitySize')?.dirty),
+          'is-invalid':FacilityDetaliesForm.get('facilitySize')?.errors && (FacilityDetaliesForm.get('facilitySize')?.touched || FacilityDetaliesForm.get('facilitySize')?.dirty),
+        }" id="facilitySize" formControlName="facilitySize" type="text"
+                    placeholder='{{"facilityDetalies.FacilitySize" | translate}}'
+                    class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+
+                @if(FacilityDetaliesForm.get('facilitySize')?.errors &&
+                (FacilityDetaliesForm.get('facilitySize')?.touched ||
+                FacilityDetaliesForm.get('facilitySize')?.dirty) ){
+                <div class="text-red-500 text-xs mt-1 flex">
+                    @if(FacilityDetaliesForm.get('facilitySize')?.getError('required')){
+                    <p class="m-0">{{"facilityDetalies.FacilitySizeReq" | translate}}</p>
+                    }
+
+                </div>
+                }
+            </div>
+            <div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s"
+                data-aos="fade-up-sm" data-aos-delay="200">
+                <label for="facilityActivityType"
+                    class="block text-sm font-medium text-zinc-300">{{"facilityDetalies.FacilityActivity" |
+                    translate}}</label>
+                <input [ngClass]="{
+          'is-Valid':!FacilityDetaliesForm.get('facilityActivityType')?.errors && (FacilityDetaliesForm.get('facilityActivityType')?.touched ||FacilityDetaliesForm.get('facilityActivityType')?.dirty),
+          'is-invalid':FacilityDetaliesForm.get('facilityActivityType')?.errors && (FacilityDetaliesForm.get('facilityActivityType')?.touched || FacilityDetaliesForm.get('facilityActivityType')?.dirty),
+        }" id="facilityActivityType" formControlName="facilityActivityType" type="text"
+                    placeholder='{{"facilityDetalies.FacilityActivity" | translate}}'
+                    class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+
+                @if(FacilityDetaliesForm.get('facilityActivityType')?.errors &&
+                (FacilityDetaliesForm.get('facilityActivityType')?.touched ||
+                FacilityDetaliesForm.get('facilityActivityType')?.dirty) ){
+                <div class="text-red-500 text-xs mt-1 flex">
+                    @if(FacilityDetaliesForm.get('facilityAddress')?.getError('required')){
+                    <p class="m-0">{{"facilityDetalies.FacilityActivityReq" | translate}}</p>
+                    }
+
+                </div>
+                }
+            </div>
+            <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft animate__delay-0.4s"
+                data-aos="fade-up-sm" data-aos-delay="200">
+                <label for="  facilityCommercialRegistrationNumber" class="block text-sm font-medium text-zinc-300">
+                    {{"facilityDetalies.FacilityCommercialRegistrationNumber" | translate}}</label>
+                <input [ngClass]="{
+                  'is-Valid':!FacilityDetaliesForm.get('facilityCommercialRegistrationNumber')?.errors && (FacilityDetaliesForm.get('facilityCommercialRegistrationNumber')?.touched ||FacilityDetaliesForm.get('facilityCommercialRegistrationNumber')?.dirty),
+                  'is-invalid':FacilityDetaliesForm.get('facilityCommercialRegistrationNumber')?.errors && (FacilityDetaliesForm.get('facilityCommercialRegistrationNumber')?.touched || FacilityDetaliesForm.get('facilityCommercialRegistrationNumber')?.dirty),
+                }" id="facilityCommercialRegistrationNumber" formControlName="facilityCommercialRegistrationNumber"
+                    type="text" placeholder='  {{"facilityDetalies.FacilityCommercialRegistrationNumber" | translate}}'
+                    class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+                @if(FacilityDetaliesForm.get('facilityCommercialRegistrationNumber')?.errors &&
+                (FacilityDetaliesForm.get('facilityCommercialRegistrationNumber')?.touched ||
+                FacilityDetaliesForm.get('facilityCommercialRegistrationNumber')?.dirty) ){
+                <div class="text-red-500 text-xs mt-1 flex">
+                    @if(FacilityDetaliesForm.get('facilityCommercialRegistrationNumber')?.getError('required')){
+                    <p class="m-0">{{"facilityDetalies.FacilityCommercialRegistrationNumberReq" | translate}}</p>
+                    }
+
+
+                </div>
+                }
+
+            </div>
+
+            <div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s"
+                data-aos="fade-up-sm" data-aos-delay="200">
+                <label for="facilityCommercialRegistrationExpiryDate" class="block text-sm font-medium text-zinc-300">
+                    {{"facilityDetalies.FacilityCommercialRegistrationExpiryDate" | translate}}</label>
+                <input [ngClass]="{
+                  'is-Valid':!FacilityDetaliesForm.get('facilityCommercialRegistrationExpiryDate')?.errors && (FacilityDetaliesForm.get('facilityCommercialRegistrationExpiryDate')?.touched ||FacilityDetaliesForm.get('facilityCommercialRegistrationExpiryDate')?.dirty),
+                  'is-invalid':FacilityDetaliesForm.get('facilityCommercialRegistrationExpiryDate')?.errors && (FacilityDetaliesForm.get('facilityCommercialRegistrationExpiryDate')?.touched || FacilityDetaliesForm.get('facilityCommercialRegistrationExpiryDate')?.dirty),
+                }" id="facilityCommercialRegistrationExpiryDate"
+                    formControlName="facilityCommercialRegistrationExpiryDate" type="date"
+                    placeholder='{{"facilityDetalies.FacilityCommercialRegistrationExpiryDate" | translate}}'
+                    class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+
+                @if(FacilityDetaliesForm.get('facilityCommercialRegistrationExpiryDate')?.errors &&
+                (FacilityDetaliesForm.get('facilityCommercialRegistrationExpiryDate')?.touched ||
+                FacilityDetaliesForm.get('facilityCommercialRegistrationExpiryDate')?.dirty) ){
+                <div class="text-red-500 text-xs mt-1 flex">
+                    @if(FacilityDetaliesForm.get('facilityCommercialRegistrationExpiryDate')?.getError('required')){
+                    <p class="m-0">{{"facilityDetalies.FacilityCommercialRegistrationExpiryDateReq" | translate}}</p>
+                    }
+
+                </div>
+                }
+            </div>
+
+
+            <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft  animate__delay-0.4s"
+                data-aos="fade-up-sm" data-aos-delay="200">
+                <label for="facilityLicenseNumber" class="block text-sm font-medium text-zinc-300">
+                    {{"facilityDetalies.FacilityLicenseNumber" | translate}}</label>
+                <input [ngClass]="{
+                  'is-Valid':!FacilityDetaliesForm.get('facilityLicenseNumber')?.errors && (FacilityDetaliesForm.get('facilityLicenseNumber')?.touched ||FacilityDetaliesForm.get('facilityLicenseNumber')?.dirty),
+                  'is-invalid':FacilityDetaliesForm.get('facilityLicenseNumber')?.errors && (FacilityDetaliesForm.get('facilityLicenseNumber')?.touched || FacilityDetaliesForm.get('facilityLicenseNumber')?.dirty),
+                }" id="facilityLicenseNumber" formControlName="facilityLicenseNumber" type="text"
+                    placeholder='{{"facilityDetalies.FacilityLicenseNumber" | translate}}'
+                    class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+
+                @if(FacilityDetaliesForm.get('facilityLicenseNumber')?.errors &&
+                (FacilityDetaliesForm.get('facilityLicenseNumber')?.touched ||
+                FacilityDetaliesForm.get('facilityLicenseNumber')?.dirty) ){
+                <div class="text-red-500 text-xs mt-1 flex">
+                    @if(FacilityDetaliesForm.get('facilityLicenseNumber')?.getError('required')){
+                    <p class="m-0">{{"facilityDetalies.FacilityLicenseNumberReq" | translate}}</p>
+                    }
+
+                </div>
+                }
+            </div>
+
+            <div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s"
+                data-aos="fade-up-sm" data-aos-delay="200">
+                <label for="facilityLicenseExpiryDate"
+                    class="block text-sm font-medium text-zinc-300">{{"facilityDetalies.FacilityLicenseExpiryDate" |
+                    translate}}</label>
+                <input [ngClass]="{
+              'is-Valid':!FacilityDetaliesForm.get('facilityLicenseExpiryDate')?.errors && (FacilityDetaliesForm.get('facilityLicenseExpiryDate')?.touched ||FacilityDetaliesForm.get('facilityLicenseExpiryDate')?.dirty),
+              'is-invalid':FacilityDetaliesForm.get('facilityLicenseExpiryDate')?.errors && (FacilityDetaliesForm.get('facilityLicenseExpiryDate')?.touched || FacilityDetaliesForm.get('facilityLicenseExpiryDate')?.dirty),
+            }" id="facilityLicenseExpiryDate" formControlName="facilityLicenseExpiryDate" type="date"
+                    placeholder='{{"facilityDetalies.FacilityLicenseExpiryDate" | translate}}'
+                    class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+
+                @if(FacilityDetaliesForm.get('facilityLicenseExpiryDate')?.errors &&
+                (FacilityDetaliesForm.get('facilityLicenseExpiryDate')?.touched ||
+                FacilityDetaliesForm.get('facilityLicenseExpiryDate')?.dirty) ){
+                <div class="text-red-500 text-xs mt-1 flex">
+                    @if(FacilityDetaliesForm.get('facilityLicenseExpiryDate')?.getError('required')){
+                    <p class="m-0">{{"facilityDetalies.FacilityLicenseExpiryDateReq" | translate}}</p>
+                    }
+
+                </div>
+                }
+            </div>
+
+            <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft  animate__delay-0.4s"
+                data-aos="fade-up-sm" data-aos-delay="200">
+                <label for="facilityNotes" class="block text-sm font-medium text-zinc-300">
+                    {{"facilityDetalies.FacilityNotes" | translate}}</label>
+                <input [ngClass]="{
+          'is-Valid':!FacilityDetaliesForm.get('facilityNotes')?.errors && (FacilityDetaliesForm.get('facilityNotes')?.touched ||FacilityDetaliesForm.get('facilityNotes')?.dirty),
+          'is-invalid':FacilityDetaliesForm.get('facilityNotes')?.errors && (FacilityDetaliesForm.get('facilityNotes')?.touched || FacilityDetaliesForm.get('facilityNotes')?.dirty),
+        }" id="facilityNotes" formControlName="facilityNotes" type="text"
+                    placeholder='{{"facilityDetalies.FacilityNotes" | translate}}'
+                    class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+
+                @if(FacilityDetaliesForm.get('facilityNotes')?.errors &&
+                (FacilityDetaliesForm.get('facilityNotes')?.touched ||
+                FacilityDetaliesForm.get('facilityNotes')?.dirty) ){
+                <div class="text-red-500 text-xs mt-1 flex">
+                    @if(FacilityDetaliesForm.get('facilityNotes')?.getError('required')){
+                    <p class="m-0">{{"facilityDetalies.FacilityNotesReq" | translate}}</p>
+                    }
+
+                </div>
+                }
+            </div>
+
+            <div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s"
+                data-aos="fade-up-sm" data-aos-delay="200">
+                <label for="representativeName" class="block text-sm font-medium text-zinc-300">
+                    {{"facilityDetalies.RepresentativeName" | translate}}</label>
+                <input [ngClass]="{
+          'is-Valid':!FacilityDetaliesForm.get('representativeName')?.errors && (FacilityDetaliesForm.get('representativeName')?.touched ||FacilityDetaliesForm.get('representativeName')?.dirty),
+          'is-invalid':FacilityDetaliesForm.get('representativeName')?.errors && (FacilityDetaliesForm.get('representativeName')?.touched || FacilityDetaliesForm.get('representativeName')?.dirty),
+        }" id="representativeName" formControlName="representativeName" type="text"
+                    placeholder='{{"facilityDetalies.RepresentativeName" | translate}}'
+                    class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+
+                @if(FacilityDetaliesForm.get('representativeName')?.errors &&
+                (FacilityDetaliesForm.get('representativeName')?.touched ||
+                FacilityDetaliesForm.get('representativeName')?.dirty) ){
+                <div class="text-red-500 text-xs mt-1 flex">
+                    @if(FacilityDetaliesForm.get('representativeName')?.getError('required')){
+                    <p class="m-0">{{"facilityDetalies.RepresentativeNameReq" | translate}}</p>
+                    }
+
+                </div>
+                }
+            </div>
+
+
+            <div>
+                <button type="button" (click)="saveData()"
+                    class="w-full bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 disabled:bg-zinc-950 aos-init aos-animate my-4 animate__animated animate__backInUp animate__delay-0.4s">
+                    {{"facilityDetalies.Next" | translate}}
+                </button>
+
+
+            </div>
+        </form>
+    </div>
+</div>

@@ -12,6 +12,9 @@ import { CreateAccountComponent } from './Components/create-account/create-accou
 import { FacilityAccountComponent } from './Components/AccountsForms/facility-account/facility-account.component';
 import { IndividualAccountComponent } from './Components/AccountsForms/individual-account/individual-account.component';
 import { CompanyAccountComponent } from './Components/AccountsForms/company-account/company-account.component';
+import { PriceRequestComponent } from './component/price-request/price-request.component';
+import { FacilityDetaliesComponent } from './component/facility-detalies/facility-detalies.component';
+import { FacilityDetaliesOneComponent } from './component/facility-detalies-one/facility-detalies-one.component';
 
 export const routes: Routes = [
 
@@ -23,6 +26,14 @@ export const routes: Routes = [
     {path:'register',component:RegisterComponent, title:'register'},
     {path:'login',component:LoginComponent, title:'login'},
     {path:'team',component:TeamComponent, title:'team'},
+    {path:'price',component:PriceRequestComponent, title:'Price Request'},
+    {path: "FacilityDetailes",  children: [
+        {path: "", component: FacilityDetaliesComponent, title: "FacilityDetailes"},
+        {path: "FacilityDetailesOne", component: FacilityDetaliesOneComponent, title: "FacilityDetailes"},
+       
+    ]},
+
+
     {path:'services',component:ServicesComponent, title:'services'},
     {path:'company',component:CompanyComponent, title:'company'},
     {path: "createAccount",  children: [
