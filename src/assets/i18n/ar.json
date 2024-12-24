@@ -115,7 +115,9 @@
     "CommissionerNotesReq": "ملاحظات المفوض مطلوبة",
     "PriceRequestId": "رقم طلب السعر",
     "PriceRequestIdReq": "رقم طلب السعر مطلوب",
-    "Submit": "إرسال"
+    "Submit": "إرسال",
+    "back":"السابق"
+
   }
 }
 

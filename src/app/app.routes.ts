@@ -27,6 +27,7 @@ export const routes: Routes = [
     {path:'login',component:LoginComponent, title:'login'},
     {path:'team',component:TeamComponent, title:'team'},
     {path:'price',component:PriceRequestComponent, title:'Price Request'},
+
     {path: "FacilityDetailes",  children: [
         {path: "", component: FacilityDetaliesComponent, title: "FacilityDetailes"},
         {path: "FacilityDetailesOne", component: FacilityDetaliesOneComponent, title: "FacilityDetailes"},

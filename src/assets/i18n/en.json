@@ -117,7 +117,8 @@
     "CommissionerNotesReq":"Commissioner Notes Is Required",
     "PriceRequestId":"Price Request Id",
     "PriceRequestIdReq":"Price Request Id Is Required",
-    "Submit":"Submit"
+    "Submit":"Submit",
+    "back":"Back"
    
 }
 

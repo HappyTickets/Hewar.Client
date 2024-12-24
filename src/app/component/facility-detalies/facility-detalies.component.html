@@ -1,124 +1,140 @@
+
 <div class="bg-[url('./assets/imgs/bg_nets.svg')] bg-no-repeat bg-cover bg-black py-5">
-    <p class="text-4xl sm:text-5xl md:text-4xl lg:text-5xl text-gray-300 leading-tight text-center mb-10">
+    <p class='text-4xl sm:text-5xl md:text-4xl lg:text-5xl text-gray-300 leading-tight text-center mb-10'>
         {{"facilityDetalies.facilityDetalies" | translate}}
     </p>
-    <div class="max-w-3xl mx-auto my-10 bg-black border-1 border-zinc-700 p-10 rounded-lg shadow-lg">
-        <form [formGroup]="FacilityDetaliesForm" (ngSubmit)="saveData()" class="space-y-6">
-
-            <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft animate__delay-0.4s"
-                data-aos="fade-up-sm" data-aos-delay="200">
-                <label for=" facilityName" class="block text-sm font-medium text-zinc-300">
-                    {{"facilityDetalies.FacilityName" | translate}}
-                </label>
-                <input [ngClass]="{
-                  'is-Valid':!FacilityDetaliesForm.get('facilityName')?.errors && (FacilityDetaliesForm.get('facilityName')?.touched ||FacilityDetaliesForm.get('facilityName')?.dirty),
-                  'is-invalid':FacilityDetaliesForm.get('facilityName')?.errors && (FacilityDetaliesForm.get('facilityName')?.touched || FacilityDetaliesForm.get('facilityName')?.dirty),
-                }" id="facilityName" formControlName="facilityName" type="text"
-                    placeholder='{{"facilityDetalies.FacilityName" | translate}}'
-                    class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
-                @if(FacilityDetaliesForm.get('facilityName')?.errors &&
-                (FacilityDetaliesForm.get('facilityName')?.touched ||
-                FacilityDetaliesForm.get('facilityName')?.dirty) ){
-                <div class="text-red-500 text-xs mt-1 flex">
-                    @if(FacilityDetaliesForm.get('facilityName')?.getError('required')){
-                    <p class="m-0">{{"facilityDetalies.facilityNameReq" | translate}}</p>
-                    }
-
-
-                </div>
-                }
-
-            </div>
-
+<div class="max-w-3xl mx-auto my-10 bg-black border-1 border-zinc-700 p-10 rounded-lg shadow-lg  ">
+    
+<div class="test">
+ <mat-horizontal-stepper>
+    <!-------------form1---------->
+      
+       <div class="flex flex-col justify-center items-center bg-black min-h-screen bg-dark text-zink-300">
+            <div class="contact w-full max-w-lg bg-gray-900 p-8 rounded-lg shadow-lg" >
+              <mat-step [stepControl]="FacilityDetaliesForm" [completed]="FacilityDetaliesForm.valid">
+                <form [formGroup]="FacilityDetaliesForm">
+                  <mat-form-field class="w-full">
+                    <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft animate__delay-0.4s"
+                      data-aos="fade-up-sm" data-aos-delay="200">
+                      <label for="facilityName" class="block text-sm font-medium  text-zinc-300">
+                        {{"facilityDetalies.FacilityName" | translate}}
+                      </label>
+                      <input matInput [ngClass]="{
+                        'is-Valid': !FacilityDetaliesForm.get('facilityName')?.errors && (FacilityDetaliesForm.get('facilityName')?.touched || FacilityDetaliesForm.get('facilityName')?.dirty),
+                        'is-invalid': FacilityDetaliesForm.get('facilityName')?.errors && (FacilityDetaliesForm.get('facilityName')?.touched || FacilityDetaliesForm.get('facilityName')?.dirty)
+                      }" id="facilityName" formControlName="facilityName" type="text"
+                        placeholder='{{"facilityDetalies.FacilityName" | translate}}'
+                        class="bg-zinc-800 border border-zinc-700 p-3 mt-1 block w-full rounded-md shadow-sm focus:border-amber-200 outline-none text-zinc-400" />
+                      <mat-error>
+                  
+                            @if(FacilityDetaliesForm.get('facilityName')?.errors &&
+                            (FacilityDetaliesForm.get('facilityName')?.touched ||
+                            FacilityDetaliesForm.get('facilityName')?.dirty) ){
+                            <div class="text-red-500 text-xs mt-1 flex">
+                                @if(FacilityDetaliesForm.get('facilityName')?.getError('required')){
+                                <p class="m-0">{{"facilityDetalies.facilityNameReq" | translate}}</p>
+                                }
             
-            <div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s  "
-            data-aos="fade-up-sm" data-aos-delay="200">
-            <label for="facilityEmail" class="block text-sm font-medium text-zinc-300">
-                {{"facilityDetalies.FacilityEmail" | translate}}</label>
-            <input [ngClass]="{
-              'is-Valid':!FacilityDetaliesForm.get('facilityEmail')?.errors && (FacilityDetaliesForm.get('facilityEmail')?.touched ||FacilityDetaliesForm.get('facilityEmail')?.dirty),
-              'is-invalid':FacilityDetaliesForm.get('facilityEmail')?.errors && (FacilityDetaliesForm.get('facilityEmail')?.touched || FacilityDetaliesForm.get('facilityEmail')?.dirty),
-            }" id="facilityEmail" formControlName="facilityEmail" type="email"
-                placeholder='{{"facilityDetalies.FacilityEmail" | translate}}'
-                class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
-
-            @if(FacilityDetaliesForm.get('facilityEmail')?.errors &&
-            (FacilityDetaliesForm.get('facilityEmail')?.touched ||
-            FacilityDetaliesForm.get('facilityEmail')?.dirty) ){
-            <div class="text-red-500 text-xs mt-1 flex">
-                @if(FacilityDetaliesForm.get('facilityEmail')?.getError('required')){
-                <p class="m-0">{{"facilityDetalies.FacilityEmailReq" | translate}}</p>
-                }
-                @else if(FacilityDetaliesForm.get('facilityEmail')?.getError('email')){
-                <p class="m-0">{{"facilityDetalies.FacilityEmailValid" | translate}}</p>
-                }
-            </div>
-            }
-        </div>
-
-  
-         
             
-            <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft  animate__delay-0.4s"
-                data-aos="fade-up-sm" data-aos-delay="200">
-                <label for="facilityPhone" class="block text-sm font-medium text-zinc-300">
-                    {{"facilityDetalies.FacilityPhone" | translate}}</label>
-                <input [ngClass]="{
-                  'is-Valid':!FacilityDetaliesForm.get('facilityPhone')?.errors && (FacilityDetaliesForm.get('facilityPhone')?.touched ||FacilityDetaliesForm.get('facilityPhone')?.dirty),
-                  'is-invalid':FacilityDetaliesForm.get('facilityPhone')?.errors && (FacilityDetaliesForm.get('facilityPhone')?.touched || FacilityDetaliesForm.get('facilityPhone')?.dirty),
-                }" id="facilityPhone" formControlName="facilityPhone" type="phone"
-                    placeholder='{{"facilityDetalies.FacilityPhone" | translate}}'
-                    class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400 " />
-
-                @if(FacilityDetaliesForm.get('facilityPhone')?.errors &&
-                (FacilityDetaliesForm.get('facilityPhone')?.touched ||
-                FacilityDetaliesForm.get('facilityPhone')?.dirty) ){
-                <div class="text-red-500 text-xs mt-1 flex">
-                    @if(FacilityDetaliesForm.get('facilityPhone')?.getError('required')){
-                    <p class="m-0">{{"facilityDetalies.FacilityPhoneReq" | translate}}</p>
-                    }
-                    @else if(FacilityDetaliesForm.get('facilityPhone')?.getError('pattern')){
-                    <p class="m-0">{{"facilityDetalies.FacilityPhoneValid" | translate}}</p>
-                    }
-                </div>
-                }
-            </div>
-
-
-            <div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s"
-                data-aos="fade-up-sm" data-aos-delay="200">
-                <label for="facilityAddress" class="block text-sm font-medium text-zinc-300">
-                    {{"facilityDetalies.FacilityAddress" | translate}}</label>
-                <input [ngClass]="{
-              'is-Valid':!FacilityDetaliesForm.get('facilityAddress')?.errors && (FacilityDetaliesForm.get('facilityAddress')?.touched ||FacilityDetaliesForm.get('facilityAddress')?.dirty),
-              'is-invalid':FacilityDetaliesForm.get('facilityAddress')?.errors && (FacilityDetaliesForm.get('facilityAddress')?.touched || FacilityDetaliesForm.get('facilityAddress')?.dirty),
-            }" id="facilityAddress" formControlName="facilityAddress" type="text"
-                    placeholder='{{"facilityDetalies.FacilityAddress" | translate}}'
-                    class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
-
-                @if(FacilityDetaliesForm.get('facilityAddress')?.errors &&
-                (FacilityDetaliesForm.get('facilityAddress')?.touched ||
-                FacilityDetaliesForm.get('facilityAddress')?.dirty) ){
-                <div class="text-red-500 text-xs mt-1 flex">
-                    @if(FacilityDetaliesForm.get('facilityAddress')?.getError('required')){
-                    <p class="m-0">{{"facilityDetalies.FacilityAddressReq" | translate}}</p>
-                    }
-
-                </div>
-                }
-            </div>
-            <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft  animate__delay-0.4s"
-                data-aos="fade-up-sm" data-aos-delay="200">
-                <label for="facilitySize" class="block text-sm font-medium text-zinc-300">
-                    {{"facilityDetalies.FacilitySize" | translate}}</label>
-                <input [ngClass]="{
-          'is-Valid':!FacilityDetaliesForm.get('facilitySize')?.errors && (FacilityDetaliesForm.get('facilitySize')?.touched ||FacilityDetaliesForm.get('facilitySize')?.dirty),
-          'is-invalid':FacilityDetaliesForm.get('facilitySize')?.errors && (FacilityDetaliesForm.get('facilitySize')?.touched || FacilityDetaliesForm.get('facilitySize')?.dirty),
-        }" id="facilitySize" formControlName="facilitySize" type="text"
-                    placeholder='{{"facilityDetalies.FacilitySize" | translate}}'
-                    class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
-
-                @if(FacilityDetaliesForm.get('facilitySize')?.errors &&
+                            </div>
+                            }
+                       
+                       
+                      </mat-error>
+                    </div>
+                  </mat-form-field>
+          
+                  <mat-form-field class="w-full">
+                    <div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
+                      <label for="facilityEmail" class="block text-sm font-medium  text-zinc-300">
+                        {{"facilityDetalies.FacilityEmail" | translate}}
+                      </label>
+                      <input matInput [ngClass]="{
+                        'is-Valid': !FacilityDetaliesForm.get('facilityEmail')?.errors && (FacilityDetaliesForm.get('facilityEmail')?.touched || FacilityDetaliesForm.get('facilityEmail')?.dirty),
+                        'is-invalid': FacilityDetaliesForm.get('facilityEmail')?.errors && (FacilityDetaliesForm.get('facilityEmail')?.touched || FacilityDetaliesForm.get('facilityEmail')?.dirty)
+                      }" id="facilityEmail" formControlName="facilityEmail" type="email"
+                        placeholder='{{"facilityDetalies.FacilityEmail" | translate}}'
+                        class="bg-zinc-800 border border-zinc-700 p-3 mt-1 block w-full rounded-md shadow-sm focus:border-amber-200 outline-none text-zinc-400" />
+                      <mat-error>
+                        @if(FacilityDetaliesForm.get('facilityEmail')?.errors &&
+                        (FacilityDetaliesForm.get('facilityEmail')?.touched ||
+                        FacilityDetaliesForm.get('facilityEmail')?.dirty) ){
+                        <div class="text-red-500 text-xs mt-1 flex">
+                            @if(FacilityDetaliesForm.get('facilityEmail')?.getError('required')){
+                            <p class="m-0">{{"facilityDetalies.FacilityEmailReq" | translate}}</p>
+                            }
+                            @else if(FacilityDetaliesForm.get('facilityEmail')?.getError('email')){
+                            <p class="m-0">{{"facilityDetalies.FacilityEmailValid" | translate}}</p>
+                            }
+                        </div>
+                        }
+                      </mat-error>
+                    </div>
+                  </mat-form-field>
+                  <mat-form-field class="w-full">
+                    <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
+                        <label for="facilityPhone" class="block text-sm font-medium text-zinc-300">
+                            {{"facilityDetalies.FacilityPhone" | translate}}</label>
+                        <input matInput [ngClass]="{
+                          'is-Valid':!FacilityDetaliesForm.get('facilityPhone')?.errors && (FacilityDetaliesForm.get('facilityPhone')?.touched ||FacilityDetaliesForm.get('facilityPhone')?.dirty),
+                          'is-invalid':FacilityDetaliesForm.get('facilityPhone')?.errors && (FacilityDetaliesForm.get('facilityPhone')?.touched || FacilityDetaliesForm.get('facilityPhone')?.dirty),
+                        }" id="facilityPhone" formControlName="facilityPhone" type="phone"
+                            placeholder='{{"facilityDetalies.FacilityPhone" | translate}}'
+                            class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400 " />
+                      <mat-error>
+                        @if(FacilityDetaliesForm.get('facilityPhone')?.errors &&
+                        (FacilityDetaliesForm.get('facilityPhone')?.touched ||
+                        FacilityDetaliesForm.get('facilityPhone')?.dirty) ){
+                        <div class="text-red-500 text-xs mt-1 flex">
+                            @if(FacilityDetaliesForm.get('facilityPhone')?.getError('required')){
+                            <p class="m-0">{{"facilityDetalies.FacilityPhoneReq" | translate}}</p>
+                            }
+                            @else if(FacilityDetaliesForm.get('facilityPhone')?.getError('pattern')){
+                            <p class="m-0">{{"facilityDetalies.FacilityPhoneValid" | translate}}</p>
+                            }
+                        </div>
+                        }
+                      </mat-error>
+                    </div>
+                  </mat-form-field>
+                  <mat-form-field class="w-full">
+                    <div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
+                        <label for="facilityAddress" class="block text-sm font-medium text-zinc-300">
+                            {{"facilityDetalies.FacilityAddress" | translate}}</label>
+                        <input matInput 
+                        [ngClass]="{
+                            'is-Valid':!FacilityDetaliesForm.get('facilityAddress')?.errors && (FacilityDetaliesForm.get('facilityAddress')?.touched ||FacilityDetaliesForm.get('facilityAddress')?.dirty),
+                            'is-invalid':FacilityDetaliesForm.get('facilityAddress')?.errors && (FacilityDetaliesForm.get('facilityAddress')?.touched || FacilityDetaliesForm.get('facilityAddress')?.dirty),
+                          }" id="facilityAddress" formControlName="facilityAddress" type="text"
+                                  placeholder='{{"facilityDetalies.FacilityAddress" | translate}}'
+                                  class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+                      <mat-error>
+                        @if(FacilityDetaliesForm.get('facilityAddress')?.errors &&
+                        (FacilityDetaliesForm.get('facilityAddress')?.touched ||
+                        FacilityDetaliesForm.get('facilityAddress')?.dirty) ){
+                        <div class="text-red-500 text-xs mt-1 flex">
+                            @if(FacilityDetaliesForm.get('facilityAddress')?.getError('required')){
+                            <p class="m-0">{{"facilityDetalies.FacilityAddressReq" | translate}}</p>
+                            }
+        
+                        </div>
+                        }
+                      </mat-error>
+                    </div>
+                  </mat-form-field>
+                  <mat-form-field class="w-full">
+                    <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
+                        <label for="facilitySize" class="block text-sm font-medium text-zinc-300">
+                            {{"facilityDetalies.FacilitySize" | translate}}</label>
+                        <input matInput 
+                        [ngClass]="{
+                            'is-Valid':!FacilityDetaliesForm.get('facilitySize')?.errors && (FacilityDetaliesForm.get('facilitySize')?.touched ||FacilityDetaliesForm.get('facilitySize')?.dirty),
+                            'is-invalid':FacilityDetaliesForm.get('facilitySize')?.errors && (FacilityDetaliesForm.get('facilitySize')?.touched || FacilityDetaliesForm.get('facilitySize')?.dirty),
+                          }" id="facilitySize" formControlName="facilitySize" type="text"
+                                      placeholder='{{"facilityDetalies.FacilitySize" | translate}}'
+                                      class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+                      <mat-error>
+                        @if(FacilityDetaliesForm.get('facilitySize')?.errors &&
                 (FacilityDetaliesForm.get('facilitySize')?.touched ||
                 FacilityDetaliesForm.get('facilitySize')?.dirty) ){
                 <div class="text-red-500 text-xs mt-1 flex">
@@ -128,181 +144,618 @@
 
                 </div>
                 }
+                      </mat-error>
+                    </div>
+                  </mat-form-field>
+
+               
+
+                  <button mat-button matStepperNext [disabled]="!FacilityDetaliesForm.valid"
+                  class=" bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 disabled:bg-zinc-950 aos-init aos-animate my-4 animate__animated animate__backInUp animate__delay-0.4s">
+                  Next</button>
+                </form>
+              </mat-step>
             </div>
-            <div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s"
-                data-aos="fade-up-sm" data-aos-delay="200">
-                <label for="facilityActivityType"
+          </div>
+   
+    <!-------------form2---------->
+
+          <div class="flex flex-col justify-center items-center bg-black min-h-screen bg-dark text-zink-300">
+            <div class="contact w-full max-w-lg bg-gray-900 p-8 rounded-lg shadow-lg" >
+
+        <mat-step [stepControl]=" FacilityDetaliesCompleteForm" [completed]=" FacilityDetaliesCompleteForm.valid">
+          <form [formGroup]=" FacilityDetaliesCompleteForm">
+            <mat-form-field class="w-full">
+                <div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
+                    <label for="facilityActivityType"
                     class="block text-sm font-medium text-zinc-300">{{"facilityDetalies.FacilityActivity" |
                     translate}}</label>
-                <input [ngClass]="{
-          'is-Valid':!FacilityDetaliesForm.get('facilityActivityType')?.errors && (FacilityDetaliesForm.get('facilityActivityType')?.touched ||FacilityDetaliesForm.get('facilityActivityType')?.dirty),
-          'is-invalid':FacilityDetaliesForm.get('facilityActivityType')?.errors && (FacilityDetaliesForm.get('facilityActivityType')?.touched || FacilityDetaliesForm.get('facilityActivityType')?.dirty),
-        }" id="facilityActivityType" formControlName="facilityActivityType" type="text"
-                    placeholder='{{"facilityDetalies.FacilityActivity" | translate}}'
-                    class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
-
-                @if(FacilityDetaliesForm.get('facilityActivityType')?.errors &&
-                (FacilityDetaliesForm.get('facilityActivityType')?.touched ||
-                FacilityDetaliesForm.get('facilityActivityType')?.dirty) ){
-                <div class="text-red-500 text-xs mt-1 flex">
-                    @if(FacilityDetaliesForm.get('facilityAddress')?.getError('required')){
-                    <p class="m-0">{{"facilityDetalies.FacilityActivityReq" | translate}}</p>
+                    <input matInput 
+                    [ngClass]="{
+                        'is-Valid':!FacilityDetaliesCompleteForm.get('facilityActivityType')?.errors && (FacilityDetaliesCompleteForm.get('facilityActivityType')?.touched ||FacilityDetaliesCompleteForm.get('facilityActivityType')?.dirty),
+                        'is-invalid':FacilityDetaliesCompleteForm.get('facilityActivityType')?.errors && (FacilityDetaliesCompleteForm.get('facilityActivityType')?.touched || FacilityDetaliesCompleteForm.get('facilityActivityType')?.dirty),
+                      }" id="facilityActivityType" formControlName="facilityActivityType" type="text"
+                                  placeholder='{{"facilityDetalies.FacilityActivity" | translate}}'
+                                  class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+                  <mat-error>
+                    @if(FacilityDetaliesCompleteForm.get('facilityActivityType')?.errors &&
+                    (FacilityDetaliesCompleteForm.get('facilityActivityType')?.touched ||
+                    FacilityDetaliesCompleteForm.get('facilityActivityType')?.dirty) ){
+                    <div class="text-red-500 text-xs mt-1 flex">
+                        @if(FacilityDetaliesCompleteForm.get('facilityAddress')?.getError('required')){
+                        <p class="m-0">{{"facilityDetalies.FacilityActivityReq" | translate}}</p>
+                        }
+    
+                    </div>
                     }
-
+                  </mat-error>
                 </div>
-                }
-            </div>
-            <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft animate__delay-0.4s"
-                data-aos="fade-up-sm" data-aos-delay="200">
-                <label for="  facilityCommercialRegistrationNumber" class="block text-sm font-medium text-zinc-300">
-                    {{"facilityDetalies.FacilityCommercialRegistrationNumber" | translate}}</label>
-                <input [ngClass]="{
-                  'is-Valid':!FacilityDetaliesForm.get('facilityCommercialRegistrationNumber')?.errors && (FacilityDetaliesForm.get('facilityCommercialRegistrationNumber')?.touched ||FacilityDetaliesForm.get('facilityCommercialRegistrationNumber')?.dirty),
-                  'is-invalid':FacilityDetaliesForm.get('facilityCommercialRegistrationNumber')?.errors && (FacilityDetaliesForm.get('facilityCommercialRegistrationNumber')?.touched || FacilityDetaliesForm.get('facilityCommercialRegistrationNumber')?.dirty),
-                }" id="facilityCommercialRegistrationNumber" formControlName="facilityCommercialRegistrationNumber"
-                    type="text" placeholder='  {{"facilityDetalies.FacilityCommercialRegistrationNumber" | translate}}'
-                    class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
-                @if(FacilityDetaliesForm.get('facilityCommercialRegistrationNumber')?.errors &&
-                (FacilityDetaliesForm.get('facilityCommercialRegistrationNumber')?.touched ||
-                FacilityDetaliesForm.get('facilityCommercialRegistrationNumber')?.dirty) ){
-                <div class="text-red-500 text-xs mt-1 flex">
-                    @if(FacilityDetaliesForm.get('facilityCommercialRegistrationNumber')?.getError('required')){
-                    <p class="m-0">{{"facilityDetalies.FacilityCommercialRegistrationNumberReq" | translate}}</p>
+              </mat-form-field>
+              <mat-form-field class="w-full">
+                <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
+                    <label for="  facilityCommercialRegistrationNumber" class="block text-sm font-medium text-zinc-300">
+                        {{"facilityDetalies.FacilityCommercialRegistrationNumber" | translate}}</label>
+                    <input matInput 
+                    [ngClass]="{
+                        'is-Valid':!FacilityDetaliesCompleteForm.get('facilityCommercialRegistrationNumber')?.errors && (FacilityDetaliesCompleteForm.get('facilityCommercialRegistrationNumber')?.touched ||FacilityDetaliesCompleteForm.get('facilityCommercialRegistrationNumber')?.dirty),
+                        'is-invalid':FacilityDetaliesCompleteForm.get('facilityCommercialRegistrationNumber')?.errors && (FacilityDetaliesCompleteForm.get('facilityCommercialRegistrationNumber')?.touched || FacilityDetaliesCompleteForm.get('facilityCommercialRegistrationNumber')?.dirty),
+                      }" id="facilityCommercialRegistrationNumber" formControlName="facilityCommercialRegistrationNumber"
+                          type="text" placeholder='  {{"facilityDetalies.FacilityCommercialRegistrationNumber" | translate}}'
+                          class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+                  <mat-error>
+                    @if(FacilityDetaliesCompleteForm.get('facilityCommercialRegistrationNumber')?.errors &&
+                    (FacilityDetaliesCompleteForm.get('facilityCommercialRegistrationNumber')?.touched ||
+                    FacilityDetaliesCompleteForm.get('facilityCommercialRegistrationNumber')?.dirty) ){
+                    <div class="text-red-500 text-xs mt-1 flex">
+                        @if(FacilityDetaliesCompleteForm.get('facilityCommercialRegistrationNumber')?.getError('required')){
+                        <p class="m-0">{{"facilityDetalies.FacilityCommercialRegistrationNumberReq" | translate}}</p>
+                        }
+    
+    
+                    </div>
                     }
-
-
+                  </mat-error>
                 </div>
-                }
-
-            </div>
-
-            <div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s"
-                data-aos="fade-up-sm" data-aos-delay="200">
-                <label for="facilityCommercialRegistrationExpiryDate" class="block text-sm font-medium text-zinc-300">
-                    {{"facilityDetalies.FacilityCommercialRegistrationExpiryDate" | translate}}</label>
-                <input [ngClass]="{
-                  'is-Valid':!FacilityDetaliesForm.get('facilityCommercialRegistrationExpiryDate')?.errors && (FacilityDetaliesForm.get('facilityCommercialRegistrationExpiryDate')?.touched ||FacilityDetaliesForm.get('facilityCommercialRegistrationExpiryDate')?.dirty),
-                  'is-invalid':FacilityDetaliesForm.get('facilityCommercialRegistrationExpiryDate')?.errors && (FacilityDetaliesForm.get('facilityCommercialRegistrationExpiryDate')?.touched || FacilityDetaliesForm.get('facilityCommercialRegistrationExpiryDate')?.dirty),
-                }" id="facilityCommercialRegistrationExpiryDate"
-                    formControlName="facilityCommercialRegistrationExpiryDate" type="date"
-                    placeholder='{{"facilityDetalies.FacilityCommercialRegistrationExpiryDate" | translate}}'
-                    class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
-
-                @if(FacilityDetaliesForm.get('facilityCommercialRegistrationExpiryDate')?.errors &&
-                (FacilityDetaliesForm.get('facilityCommercialRegistrationExpiryDate')?.touched ||
-                FacilityDetaliesForm.get('facilityCommercialRegistrationExpiryDate')?.dirty) ){
-                <div class="text-red-500 text-xs mt-1 flex">
-                    @if(FacilityDetaliesForm.get('facilityCommercialRegistrationExpiryDate')?.getError('required')){
-                    <p class="m-0">{{"facilityDetalies.FacilityCommercialRegistrationExpiryDateReq" | translate}}</p>
+              </mat-form-field>
+              <mat-form-field class="w-full">
+                <div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
+                    <label for="facilityCommercialRegistrationExpiryDate" class="block text-sm font-medium text-zinc-300">
+                        {{"facilityDetalies.FacilityCommercialRegistrationExpiryDate" | translate}}</label>
+                    <input matInput 
+                    [ngClass]="{
+                        'is-Valid':!FacilityDetaliesCompleteForm.get('facilityCommercialRegistrationExpiryDate')?.errors && (FacilityDetaliesCompleteForm.get('facilityCommercialRegistrationExpiryDate')?.touched ||FacilityDetaliesCompleteForm.get('facilityCommercialRegistrationExpiryDate')?.dirty),
+                        'is-invalid':FacilityDetaliesCompleteForm.get('facilityCommercialRegistrationExpiryDate')?.errors && (FacilityDetaliesCompleteForm.get('facilityCommercialRegistrationExpiryDate')?.touched || FacilityDetaliesCompleteForm.get('facilityCommercialRegistrationExpiryDate')?.dirty),
+                      }" id="facilityCommercialRegistrationExpiryDate"
+                          formControlName="facilityCommercialRegistrationExpiryDate" type="date"
+                          placeholder='{{"facilityDetalies.FacilityCommercialRegistrationExpiryDate" | translate}}'
+                          class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+                  <mat-error>
+                    @if(FacilityDetaliesCompleteForm.get('facilityCommercialRegistrationExpiryDate')?.errors &&
+                    (FacilityDetaliesCompleteForm.get('facilityCommercialRegistrationExpiryDate')?.touched ||
+                    FacilityDetaliesCompleteForm.get('facilityCommercialRegistrationExpiryDate')?.dirty) ){
+                    <div class="text-red-500 text-xs mt-1 flex">
+                        @if(FacilityDetaliesCompleteForm.get('facilityCommercialRegistrationExpiryDate')?.getError('required')){
+                        <p class="m-0">{{"facilityDetalies.FacilityCommercialRegistrationExpiryDateReq" | translate}}</p>
+                        }
+    
+                    </div>
                     }
-
+                  </mat-error>
                 </div>
-                }
-            </div>
-
-
-            <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft  animate__delay-0.4s"
-                data-aos="fade-up-sm" data-aos-delay="200">
-                <label for="facilityLicenseNumber" class="block text-sm font-medium text-zinc-300">
-                    {{"facilityDetalies.FacilityLicenseNumber" | translate}}</label>
-                <input [ngClass]="{
-                  'is-Valid':!FacilityDetaliesForm.get('facilityLicenseNumber')?.errors && (FacilityDetaliesForm.get('facilityLicenseNumber')?.touched ||FacilityDetaliesForm.get('facilityLicenseNumber')?.dirty),
-                  'is-invalid':FacilityDetaliesForm.get('facilityLicenseNumber')?.errors && (FacilityDetaliesForm.get('facilityLicenseNumber')?.touched || FacilityDetaliesForm.get('facilityLicenseNumber')?.dirty),
-                }" id="facilityLicenseNumber" formControlName="facilityLicenseNumber" type="text"
-                    placeholder='{{"facilityDetalies.FacilityLicenseNumber" | translate}}'
-                    class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
-
-                @if(FacilityDetaliesForm.get('facilityLicenseNumber')?.errors &&
-                (FacilityDetaliesForm.get('facilityLicenseNumber')?.touched ||
-                FacilityDetaliesForm.get('facilityLicenseNumber')?.dirty) ){
+              </mat-form-field>
+              <mat-form-field class="w-full">
+                <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
+                    <label for="facilityLicenseNumber" class="block text-sm font-medium text-zinc-300">
+                        {{"facilityDetalies.FacilityLicenseNumber" | translate}}</label>
+                    <input matInput 
+                    [ngClass]="{
+                        'is-Valid':!FacilityDetaliesCompleteForm.get('facilityLicenseNumber')?.errors && (FacilityDetaliesCompleteForm.get('facilityLicenseNumber')?.touched ||FacilityDetaliesCompleteForm.get('facilityLicenseNumber')?.dirty),
+                        'is-invalid':FacilityDetaliesCompleteForm.get('facilityLicenseNumber')?.errors && (FacilityDetaliesCompleteForm.get('facilityLicenseNumber')?.touched || FacilityDetaliesCompleteForm.get('facilityLicenseNumber')?.dirty),
+                      }" id="facilityLicenseNumber" formControlName="facilityLicenseNumber" type="text"
+                          placeholder='{{"facilityDetalies.FacilityLicenseNumber" | translate}}'
+                          class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+                  <mat-error>
+                    @if(FacilityDetaliesCompleteForm.get('facilityLicenseNumber')?.errors &&
+                (FacilityDetaliesCompleteForm.get('facilityLicenseNumber')?.touched ||
+                FacilityDetaliesCompleteForm.get('facilityLicenseNumber')?.dirty) ){
                 <div class="text-red-500 text-xs mt-1 flex">
-                    @if(FacilityDetaliesForm.get('facilityLicenseNumber')?.getError('required')){
+                    @if(FacilityDetaliesCompleteForm.get('facilityLicenseNumber')?.getError('required')){
                     <p class="m-0">{{"facilityDetalies.FacilityLicenseNumberReq" | translate}}</p>
                     }
 
                 </div>
                 }
-            </div>
-
-            <div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s"
-                data-aos="fade-up-sm" data-aos-delay="200">
-                <label for="facilityLicenseExpiryDate"
+                  </mat-error>
+                </div>
+              </mat-form-field>
+              <mat-form-field class="w-full">
+                <div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
+                    <label for="facilityLicenseExpiryDate"
                     class="block text-sm font-medium text-zinc-300">{{"facilityDetalies.FacilityLicenseExpiryDate" |
                     translate}}</label>
-                <input [ngClass]="{
-              'is-Valid':!FacilityDetaliesForm.get('facilityLicenseExpiryDate')?.errors && (FacilityDetaliesForm.get('facilityLicenseExpiryDate')?.touched ||FacilityDetaliesForm.get('facilityLicenseExpiryDate')?.dirty),
-              'is-invalid':FacilityDetaliesForm.get('facilityLicenseExpiryDate')?.errors && (FacilityDetaliesForm.get('facilityLicenseExpiryDate')?.touched || FacilityDetaliesForm.get('facilityLicenseExpiryDate')?.dirty),
-            }" id="facilityLicenseExpiryDate" formControlName="facilityLicenseExpiryDate" type="date"
-                    placeholder='{{"facilityDetalies.FacilityLicenseExpiryDate" | translate}}'
-                    class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
-
-                @if(FacilityDetaliesForm.get('facilityLicenseExpiryDate')?.errors &&
-                (FacilityDetaliesForm.get('facilityLicenseExpiryDate')?.touched ||
-                FacilityDetaliesForm.get('facilityLicenseExpiryDate')?.dirty) ){
-                <div class="text-red-500 text-xs mt-1 flex">
-                    @if(FacilityDetaliesForm.get('facilityLicenseExpiryDate')?.getError('required')){
-                    <p class="m-0">{{"facilityDetalies.FacilityLicenseExpiryDateReq" | translate}}</p>
+                    <input matInput 
+                    [ngClass]="{
+                        'is-Valid':!FacilityDetaliesCompleteForm.get('facilityLicenseExpiryDate')?.errors && (FacilityDetaliesCompleteForm.get('facilityLicenseExpiryDate')?.touched ||FacilityDetaliesCompleteForm.get('facilityLicenseExpiryDate')?.dirty),
+                        'is-invalid':FacilityDetaliesCompleteForm.get('facilityLicenseExpiryDate')?.errors && (FacilityDetaliesCompleteForm.get('facilityLicenseExpiryDate')?.touched || FacilityDetaliesCompleteForm.get('facilityLicenseExpiryDate')?.dirty),
+                      }" id="facilityLicenseExpiryDate" formControlName="facilityLicenseExpiryDate" type="date"
+                              placeholder='{{"facilityDetalies.FacilityLicenseExpiryDate" | translate}}'
+                              class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+                  <mat-error>
+                    @if(FacilityDetaliesCompleteForm.get('facilityLicenseExpiryDate')?.errors &&
+                    (FacilityDetaliesCompleteForm.get('facilityLicenseExpiryDate')?.touched ||
+                    FacilityDetaliesCompleteForm.get('facilityLicenseExpiryDate')?.dirty) ){
+                    <div class="text-red-500 text-xs mt-1 flex">
+                        @if(FacilityDetaliesCompleteForm.get('facilityLicenseExpiryDate')?.getError('required')){
+                        <p class="m-0">{{"facilityDetalies.FacilityLicenseExpiryDateReq" | translate}}</p>
+                        }
+    
+                    </div>
                     }
-
+                  </mat-error>
                 </div>
-                }
-            </div>
-
-            <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft  animate__delay-0.4s"
-                data-aos="fade-up-sm" data-aos-delay="200">
-                <label for="facilityNotes" class="block text-sm font-medium text-zinc-300">
-                    {{"facilityDetalies.FacilityNotes" | translate}}</label>
-                <input [ngClass]="{
-          'is-Valid':!FacilityDetaliesForm.get('facilityNotes')?.errors && (FacilityDetaliesForm.get('facilityNotes')?.touched ||FacilityDetaliesForm.get('facilityNotes')?.dirty),
-          'is-invalid':FacilityDetaliesForm.get('facilityNotes')?.errors && (FacilityDetaliesForm.get('facilityNotes')?.touched || FacilityDetaliesForm.get('facilityNotes')?.dirty),
-        }" id="facilityNotes" formControlName="facilityNotes" type="text"
-                    placeholder='{{"facilityDetalies.FacilityNotes" | translate}}'
-                    class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
-
-                @if(FacilityDetaliesForm.get('facilityNotes')?.errors &&
-                (FacilityDetaliesForm.get('facilityNotes')?.touched ||
-                FacilityDetaliesForm.get('facilityNotes')?.dirty) ){
-                <div class="text-red-500 text-xs mt-1 flex">
-                    @if(FacilityDetaliesForm.get('facilityNotes')?.getError('required')){
-                    <p class="m-0">{{"facilityDetalies.FacilityNotesReq" | translate}}</p>
+              </mat-form-field>
+              <mat-form-field class="w-full">
+                <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
+                    <label for="facilityNotes" class="block text-sm font-medium text-zinc-300">
+                        {{"facilityDetalies.FacilityNotes" | translate}}</label>
+                    <input matInput 
+                    [ngClass]="{
+                        'is-Valid':!FacilityDetaliesCompleteForm.get('facilityNotes')?.errors && (FacilityDetaliesCompleteForm.get('facilityNotes')?.touched ||FacilityDetaliesCompleteForm.get('facilityNotes')?.dirty),
+                        'is-invalid':FacilityDetaliesCompleteForm.get('facilityNotes')?.errors && (FacilityDetaliesCompleteForm.get('facilityNotes')?.touched || FacilityDetaliesCompleteForm.get('facilityNotes')?.dirty),
+                      }" id="facilityNotes" formControlName="facilityNotes" type="text"
+                                  placeholder='{{"facilityDetalies.FacilityNotes" | translate}}'
+                                  class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+                  <mat-error>
+                    @if(FacilityDetaliesCompleteForm.get('facilityNotes')?.errors &&
+                    (FacilityDetaliesCompleteForm.get('facilityNotes')?.touched ||
+                    FacilityDetaliesCompleteForm.get('facilityNotes')?.dirty) ){
+                    <div class="text-red-500 text-xs mt-1 flex">
+                        @if(FacilityDetaliesCompleteForm.get('facilityNotes')?.getError('required')){
+                        <p class="m-0">{{"facilityDetalies.FacilityNotesReq" | translate}}</p>
+                        }
+    
+                    </div>
                     }
-
+                  </mat-error>
                 </div>
-                }
-            </div>
-
-            <div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s"
-                data-aos="fade-up-sm" data-aos-delay="200">
-                <label for="representativeName" class="block text-sm font-medium text-zinc-300">
-                    {{"facilityDetalies.RepresentativeName" | translate}}</label>
-                <input [ngClass]="{
-          'is-Valid':!FacilityDetaliesForm.get('representativeName')?.errors && (FacilityDetaliesForm.get('representativeName')?.touched ||FacilityDetaliesForm.get('representativeName')?.dirty),
-          'is-invalid':FacilityDetaliesForm.get('representativeName')?.errors && (FacilityDetaliesForm.get('representativeName')?.touched || FacilityDetaliesForm.get('representativeName')?.dirty),
-        }" id="representativeName" formControlName="representativeName" type="text"
-                    placeholder='{{"facilityDetalies.RepresentativeName" | translate}}'
-                    class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
-
-                @if(FacilityDetaliesForm.get('representativeName')?.errors &&
-                (FacilityDetaliesForm.get('representativeName')?.touched ||
-                FacilityDetaliesForm.get('representativeName')?.dirty) ){
-                <div class="text-red-500 text-xs mt-1 flex">
-                    @if(FacilityDetaliesForm.get('representativeName')?.getError('required')){
-                    <p class="m-0">{{"facilityDetalies.RepresentativeNameReq" | translate}}</p>
-                    }
-
-                </div>
-                }
-            </div>
-
-
-            <div>
-                <button type="button" (click)="saveData()"
-                    class="w-full bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 disabled:bg-zinc-950 aos-init aos-animate my-4 animate__animated animate__backInUp animate__delay-0.4s">
+              </mat-form-field>
+              <div class="flex justify-between items-center space-x-6 p-4 ">
+                <button mat-button matStepperPrevious style="background-color: #10b981; color: white;"
+                class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 my-4 
+                animate__animated animate__backInUp animate__delay-0.4s aos-init aos-animate">
+                {{"facilityDetalies.back" | translate}}
+            </button>
+           
+          
+                <button type="button" mat-button matStepperNext [disabled]="!FacilityDetaliesCompleteForm.valid"
+                    class=" bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 disabled:bg-zinc-950 aos-init aos-animate my-4 animate__animated animate__backInUp animate__delay-0.4s">
                     {{"facilityDetalies.Next" | translate}}
                 </button>
 
 
             </div>
-        </form>
+         
+          </form>
+        </mat-step>
     </div>
 </div>
+    <!-------------form3---------->
+
+
+<div class="flex flex-col justify-center items-center bg-black min-h-screen bg-dark text-zink-300">
+    <div class="contact w-full max-w-lg bg-gray-900 p-8 rounded-lg shadow-lg" >
+
+<mat-step [stepControl]="repersentativeDetaliesForm" [completed]="repersentativeDetaliesForm.valid">
+  <form [formGroup]="repersentativeDetaliesForm">
+             <mat-form-field class="w-full">
+                <div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
+                    <label for="representativeName" class="block text-sm font-medium text-zinc-300">
+                        {{"facilityDetalies.RepresentativeName" | translate}}</label>
+                    <input matInput 
+                      [ngClass]="{
+                        'is-Valid':!repersentativeDetaliesForm.get('representativeName')?.errors && (repersentativeDetaliesForm.get('representativeName')?.touched ||repersentativeDetaliesForm.get('representativeName')?.dirty),
+                        'is-invalid':repersentativeDetaliesForm.get('representativeName')?.errors && (repersentativeDetaliesForm.get('representativeName')?.touched || repersentativeDetaliesForm.get('representativeName')?.dirty),
+                      }" id="representativeName" formControlName="representativeName" type="text"
+                                  placeholder='{{"facilityDetalies.RepresentativeName" | translate}}'
+                                  class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+                  <mat-error>
+                    @if(repersentativeDetaliesForm.get('representativeName')?.errors &&
+                    (repersentativeDetaliesForm.get('representativeName')?.touched ||
+                    repersentativeDetaliesForm.get('representativeName')?.dirty) ){
+                    <div class="text-red-500 text-xs mt-1 flex">
+                        @if(repersentativeDetaliesForm.get('representativeName')?.getError('required')){
+                        <p class="m-0">{{"facilityDetalies.RepresentativeNameReq" | translate}}</p>
+                        }
+    
+                    </div>
+                    }
+                  </mat-error>
+                </div>
+              </mat-form-field>
+
+      <mat-form-field class="w-full">
+        <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
+            <label for="representativeEmail" class="block text-sm font-medium text-zinc-300"> {{"facilityDetalies.RepresentativeEmail" | translate}}
+
+            </label>
+            <input matInput 
+            [ngClass]="{
+                'is-Valid':!repersentativeDetaliesForm.get('representativeEmail')?.errors && (repersentativeDetaliesForm.get('representativeEmail')?.touched ||repersentativeDetaliesForm.get('representativeEmail')?.dirty),
+                'is-invalid':repersentativeDetaliesForm.get('representativeEmail')?.errors && (repersentativeDetaliesForm.get('representativeEmail')?.touched || repersentativeDetaliesForm.get('representativeEmail')?.dirty),
+              }" id="representativeEmail" formControlName="representativeEmail" type="email"
+                      placeholder='{{"facilityDetalies.RepresentativeEmail" | translate}}'
+                    
+                      class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+          <mat-error>
+            @if(repersentativeDetaliesForm.get('representativeEmail')?.errors &&
+            (repersentativeDetaliesForm.get('representativeEmail')?.touched ||
+            repersentativeDetaliesForm.get('representativeEmail')?.dirty) ){
+            <div class="text-red-500 text-xs mt-1 flex">
+                @if(repersentativeDetaliesForm.get('representativeEmail')?.getError('required')){
+                <p class="m-0">{{"facilityDetalies.RepresentativeEmailReq" | translate}}
+                </p>
+                }
+                @else if(repersentativeDetaliesForm.get('representativeEmail')?.getError('email')){
+                <p class="m-0">{{"facilityDetalies.RepresentativeEmailReq" | translate}}
+                </p>
+                }
+            </div>
+            }
+          </mat-error>
+        </div>
+      </mat-form-field>
+      <mat-form-field class="w-full">
+        <div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
+            <label for="representativePhone" class="block text-sm font-medium text-zinc-300">{{"facilityDetalies.RepresentativePhone" | translate}}
+            </label>
+            <input matInput 
+            [ngClass]="{
+                'is-Valid':!repersentativeDetaliesForm.get('representativePhone')?.errors && (repersentativeDetaliesForm.get('representativePhone')?.touched ||repersentativeDetaliesForm.get('representativePhone')?.dirty),
+                'is-invalid':repersentativeDetaliesForm.get('representativePhone')?.errors && (repersentativeDetaliesForm.get('representativePhone')?.touched || repersentativeDetaliesForm.get('representativePhone')?.dirty),
+              }" id="representativePhone" formControlName="representativePhone" type="phone"
+                          placeholder='{{"facilityDetalies.RepresentativePhone" | translate}}'
+                          class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+          <mat-error>
+          
+            @if(repersentativeDetaliesForm.get('representativePhone')?.errors &&
+            (repersentativeDetaliesForm.get('representativePhone')?.touched ||
+            repersentativeDetaliesForm.get('representativePhone')?.dirty) ){
+            <div class="text-red-500 text-xs mt-1 flex">
+                @if(repersentativeDetaliesForm.get('representativePhone')?.getError('required')){
+                <p class="m-0">{{"facilityDetalies.RepresentativePhoneReq" | translate}}</p>
+                }
+                @else if(repersentativeDetaliesForm.get('representativePhone')?.getError('pattern')){
+                <p class="m-0">{{"facilityDetalies.RepresentativePhoneValid" | translate}}</p>
+                }
+            </div>
+            }
+          </mat-error>
+        </div>
+      </mat-form-field>
+
+      <mat-form-field class="w-full">
+        <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
+            <label for="representativeNationalId" class="block text-sm font-medium text-zinc-300">
+                    {{"facilityDetalies.RepresentativeId" | translate}}</label>
+            <input matInput 
+            [ngClass]="{
+                'is-Valid':!repersentativeDetaliesForm.get('representativeNationalId')?.errors && (repersentativeDetaliesForm.get('representativeNationalId')?.touched ||repersentativeDetaliesForm.get('representativeNationalId')?.dirty),
+                'is-invalid':repersentativeDetaliesForm.get('representativeNationalId')?.errors && (repersentativeDetaliesForm.get('representativeNationalId')?.touched || repersentativeDetaliesForm.get('representativeNationalId')?.dirty),
+              }" id="representativeNationalId" formControlName='representativeNationalId' type="text"
+                  placeholder="{{'facilityDetalies.RepresentativeId' | translate}}"
+                  class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+          <mat-error>
+            @if(repersentativeDetaliesForm.get('representativeNationalId')?.errors &&
+            (repersentativeDetaliesForm.get('representativeNationalId')?.touched ||
+            repersentativeDetaliesForm.get('representativeNationalId')?.dirty) ){
+            <div class="text-red-500 text-xs mt-1 flex">
+                @if(repersentativeDetaliesForm.get('representativeNationalId')?.getError('required')){
+                <p class="m-0">{{"facilityDetalies.RepresentativeIdReq" | translate}}</p>
+                }
+
+            </div>
+            }
+          </mat-error>
+        </div>
+      </mat-form-field>
+
+      <mat-form-field class="w-full">
+        <div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
+              <label for="representativeNationality" class="block text-sm font-medium text-zinc-300"> 
+                    {{"facilityDetalies.RepresentativeNationality" | translate}}
+                </label>
+            <input matInput 
+            [ngClass]="{
+                'is-Valid':!repersentativeDetaliesForm.get('representativeNationality')?.errors && (repersentativeDetaliesForm.get('representativeNationality')?.touched ||repersentativeDetaliesForm.get('representativeNationality')?.dirty),
+                'is-invalid':repersentativeDetaliesForm.get('representativeNationality')?.errors && (repersentativeDetaliesForm.get('representativeNationality')?.touched || repersentativeDetaliesForm.get('representativeNationality')?.dirty),
+              }" id="representativeNationality" formControlName="representativeNationality" type="text"
+                  placeholder='{{"facilityDetalies.RepresentativeNationality" | translate}}'
+                  class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+          <mat-error>
+           
+            @if(repersentativeDetaliesForm.get('representativeNationality')?.errors &&
+            (repersentativeDetaliesForm.get('representativeNationality')?.touched ||
+            repersentativeDetaliesForm.get('representativeNationality')?.dirty) ){
+            <div class="text-red-500 text-xs mt-1 flex">
+                @if(repersentativeDetaliesForm.get('representativeNationality')?.getError('required')){
+                <p class="m-0">{{"facilityDetalies.RepresentativeNationalityReq" | translate}}</p>
+                }
+
+            </div>
+            }
+          </mat-error>
+        </div>
+      </mat-form-field>
+
+      <mat-form-field class="w-full">
+        <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
+       <label for="representativeNotes" class="block text-sm font-medium text-zinc-300">{{"facilityDetalies.RepresentativeNotes" | translate}}
+
+                </label>
+            <input matInput 
+            [ngClass]="{
+                'is-Valid':!repersentativeDetaliesForm.get('representativeNotes')?.errors && (repersentativeDetaliesForm.get('representativeNotes')?.touched ||repersentativeDetaliesForm.get('representativeNotes')?.dirty),
+                'is-invalid':repersentativeDetaliesForm.get('representativeNotes')?.errors && (repersentativeDetaliesForm.get('representativeNotes')?.touched || repersentativeDetaliesForm.get('representativeNotes')?.dirty),
+              }" id="representativeNotes" formControlName="representativeNotes" type="text"
+                      placeholder='{{"facilityDetalies.RepresentativeNotes" | translate}}'
+                      class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+          <mat-error>
+            @if(repersentativeDetaliesForm.get('representativeNotes')?.errors &&
+            (repersentativeDetaliesForm.get('representativeNotes')?.touched ||
+            repersentativeDetaliesForm.get('representativeNotes')?.dirty) ){
+            <div class="text-red-500 text-xs mt-1 flex">
+                @if(repersentativeDetaliesForm.get('representativeNotes')?.getError('required')){
+                <p class="m-0">{{"facilityDetalies.RepresentativeNotesReq" | translate}}
+
+</p>
+
+                }
+
+            </div>
+            }
+          </mat-error>
+        </div>
+      </mat-form-field>
+    
+      <div class="flex justify-between items-center space-x-6 p-4 ">
+        <button mat-button matStepperPrevious style="background-color: #10b981; color: white;"
+        class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 my-4 
+        animate__animated animate__backInUp animate__delay-0.4s aos-init aos-animate">
+        {{"facilityDetalies.back" | translate}}
+
+      </button>
+      <button type="button" mat-button matStepperNext [disabled]="!repersentativeDetaliesForm.valid"
+      class=" bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 disabled:bg-zinc-950 aos-init aos-animate my-4 animate__animated animate__backInUp animate__delay-0.4s">
+      {{"facilityDetalies.Next" | translate}}
+  </button>
+
+        <!-- <button type="button" mat-button matStepperNext [disabled]="!repersentativeDetaliesForm.valid"
+            class=" bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 disabled:bg-zinc-950 aos-init aos-animate my-4 animate__animated animate__backInUp animate__delay-0.4s">
+            {{"facilityDetalies.Next" | translate}}
+        </button> -->
+
+
+    </div>
+  
+  </form>
+</mat-step>
+</div>
+</div>
+
+    <!-------------form4---------->
+
+    <div class="flex flex-col justify-center items-center bg-black min-h-screen bg-dark text-zink-300">
+        <div class="contact w-full max-w-lg bg-gray-900 p-8 rounded-lg shadow-lg" >
+    
+    <mat-step [stepControl]="commissionerDetaliesForm" [completed]="commissionerDetaliesForm.valid">
+      <form [formGroup]="commissionerDetaliesForm">
+                 <mat-form-field class="w-full">
+                    <div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
+                        <label for="commissionerName" class="block text-sm font-medium text-zinc-300">{{"facilityDetalies.CommissionerName" | translate}}</label>
+
+                        <input matInput 
+                        [ngClass]="{
+                            'is-Valid':!commissionerDetaliesForm.get('commissionerName')?.errors && (commissionerDetaliesForm.get('commissionerName')?.touched ||commissionerDetaliesForm.get('commissionerName')?.dirty),
+                            'is-invalid':commissionerDetaliesForm.get('commissionerName')?.errors && (commissionerDetaliesForm.get('commissionerName')?.touched || commissionerDetaliesForm.get('commissionerName')?.dirty),
+                          }" id="commissionerName" formControlName="commissionerName" type="text" placeholder='{{"facilityDetalies.CommissionerName" | translate}}'
+                                      class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+                      <mat-error>
+                        @if(commissionerDetaliesForm.get('commissionerName')?.errors &&
+                        (commissionerDetaliesForm.get('commissionerName')?.touched ||
+                        commissionerDetaliesForm.get('commissionerName')?.dirty) ){
+                        <div class="text-red-500 text-xs mt-1 flex">
+                            @if(commissionerDetaliesForm.get('commissionerName')?.getError('required')){
+                            <p class="m-0">{{"facilityDetalies.CommissionerNameReq" | translate}}</p>
+                            }
+        
+                        </div>
+                        }
+                      </mat-error>
+                    </div>
+                  </mat-form-field>
+    
+          <mat-form-field class="w-full">
+            <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
+                <label for="commissionerEmail" class="block text-sm font-medium text-zinc-300">
+                    {{"facilityDetalies.CommissionerEmail" | translate}}</label>
+                <input matInput 
+                [ngClass]="{
+                    'is-Valid':!commissionerDetaliesForm.get('commissionerEmail')?.errors && (commissionerDetaliesForm.get('commissionerEmail')?.touched ||commissionerDetaliesForm.get('commissionerEmail')?.dirty),
+                    'is-invalid':commissionerDetaliesForm.get('commissionerEmail')?.errors && (commissionerDetaliesForm.get('commissionerEmail')?.touched || commissionerDetaliesForm.get('commissionerEmail')?.dirty),
+                  }" id="commissionerEmail" formControlName="commissionerEmail" type="email" placeholder='{{"facilityDetalies.CommissionerEmail" | translate}}'
+                              class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+              <mat-error>
+                @if(commissionerDetaliesForm.get('commissionerEmail')?.errors &&
+                (commissionerDetaliesForm.get('commissionerEmail')?.touched ||
+                commissionerDetaliesForm.get('commissionerEmail')?.dirty) ){
+                <div class="text-red-500 text-xs mt-1 flex">
+                    @if(commissionerDetaliesForm.get('commissionerEmail')?.getError('required')){
+                    <p class="m-0">{{"facilityDetalies.CommissionerEmailReq" | translate}}</p>
+                    }
+                    @else if(commissionerDetaliesForm.get('commissionerEmail')?.getError('email')){
+                    <p class="m-0">{{"facilityDetalies.CommissionerEmailValid" | translate}}</p>
+                    }
+                </div>
+                }
+              </mat-error>
+            </div>
+          </mat-form-field>
+          <mat-form-field class="w-full">
+            <div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
+                <label for="commissionerPhone" class="block text-sm font-medium text-zinc-300"> 
+                    {{"facilityDetalies.CommissionerPhone" | translate}}</label>
+                <input matInput 
+                [ngClass]="{
+                    'is-Valid':!commissionerDetaliesForm.get('commissionerPhone')?.errors && (commissionerDetaliesForm.get('commissionerPhone')?.touched ||commissionerDetaliesForm.get('commissionerPhone')?.dirty),
+                    'is-invalid':commissionerDetaliesForm.get('commissionerPhone')?.errors && (commissionerDetaliesForm.get('commissionerPhone')?.touched || commissionerDetaliesForm.get('commissionerPhone')?.dirty),
+                  }" id="commissionerPhone" formControlName="commissionerPhone" type="phone" placeholder='{{"facilityDetalies.CommissionerPhone" | translate}}'
+                                  class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+              <mat-error>
+              
+             
+                @if(commissionerDetaliesForm.get('commissionerPhone')?.errors &&
+                (commissionerDetaliesForm.get('commissionerPhone')?.touched ||
+                commissionerDetaliesForm.get('commissionerPhone')?.dirty) ){
+                <div class="text-red-500 text-xs mt-1 flex">
+                    @if(commissionerDetaliesForm.get('commissionerPhone')?.getError('required')){
+                    <p class="m-0">{{"facilityDetalies.CommissionerPhoneReq" | translate}}</p>
+                    }
+                    @else if(commissionerDetaliesForm.get('commissionerPhone')?.getError('pattern')){
+                    <p class="m-0">{{"facilityDetalies.CommissionerPhoneValid" | translate}}</p>
+                    }
+                </div>
+                }
+              </mat-error>
+            </div>
+          </mat-form-field>
+    
+          <mat-form-field class="w-full">
+            <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
+                <label for="commissionerNationalId" class="block text-sm font-medium text-zinc-300">
+                    {{"facilityDetalies.CommissionerId" | translate}}</label>
+                <input matInput 
+                [ngClass]="{
+                    'is-Valid':!commissionerDetaliesForm.get('commissionerNationalId')?.errors && (commissionerDetaliesForm.get('commissionerNationalId')?.touched ||commissionerDetaliesForm.get('commissionerNationalId')?.dirty),
+                    'is-invalid':commissionerDetaliesForm.get('commissionerNationalId')?.errors && (commissionerDetaliesForm.get('commissionerNationalId')?.touched || commissionerDetaliesForm.get('commissionerNationalId')?.dirty),
+                  }" id="commissionerNationalId" formControlName="commissionerNationalId" type="text"
+                          placeholder='{{"facilityDetalies.CommissionerId" | translate}}'
+                          class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+              <mat-error>
+                @if(commissionerDetaliesForm.get('commissionerNationalId')?.errors &&
+                (commissionerDetaliesForm.get('commissionerNationalId')?.touched ||
+                commissionerDetaliesForm.get('commissionerNationalId')?.dirty) ){
+                <div class="text-red-500 text-xs mt-1 flex">
+                    @if(commissionerDetaliesForm.get('commissionerNationalId')?.getError('required')){
+                    <p class="m-0">{{"facilityDetalies.CommissionerIdReq" | translate}}</p>
+                    }
+
+                </div>
+                }
+              </mat-error>
+            </div>
+          </mat-form-field>
+    
+          <mat-form-field class="w-full">
+            <div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
+                <label for="commissionerNationality" class="block text-sm font-medium text-zinc-300"> 
+                    {{"facilityDetalies.CommissionerNationality" | translate}}                </label>
+                <input matInput 
+                [ngClass]="{
+                    'is-Valid':!commissionerDetaliesForm.get('commissionerNationality')?.errors && (commissionerDetaliesForm.get('commissionerNationality')?.touched ||commissionerDetaliesForm.get('commissionerNationality')?.dirty),
+                    'is-invalid':commissionerDetaliesForm.get('commissionerNationality')?.errors && (commissionerDetaliesForm.get('commissionerNationality')?.touched || commissionerDetaliesForm.get('commissionerNationality')?.dirty),
+                  }" id="commissionerNationality" formControlName="commissionerNationality" type="text"
+                          placeholder='{{"facilityDetalies.CommissionerNationality" | translate}}'
+                          class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+              <mat-error>
+               
+                @if(commissionerDetaliesForm.get('commissionerNationality')?.errors &&
+                (commissionerDetaliesForm.get('commissionerNationality')?.touched ||
+                commissionerDetaliesForm.get('commissionerNationality')?.dirty) ){
+                <div class="text-red-500 text-xs mt-1 flex">
+                    @if(commissionerDetaliesForm.get('commissionerNationality')?.getError('required')){
+                    <p class="m-0">{{"facilityDetalies.CommissionerNationalityReq" | translate}}</p>
+                    }
+
+                </div>
+                }
+              </mat-error>
+            </div>
+          </mat-form-field>
+    
+          <mat-form-field class="w-full">
+            <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
+                <label for="commissionerNotes" class="block text-sm font-medium text-zinc-300"> {{"facilityDetalies.CommissionerNotes" | translate}}
+                </label>
+                <input matInput 
+                [ngClass]="{
+                    'is-Valid':!commissionerDetaliesForm.get('commissionerNotes')?.errors && (commissionerDetaliesForm.get('commissionerNotes')?.touched ||commissionerDetaliesForm.get('commissionerNotes')?.dirty),
+                    'is-invalid':commissionerDetaliesForm.get('commissionerNotes')?.errors && (commissionerDetaliesForm.get('commissionerNotes')?.touched || commissionerDetaliesForm.get('commissionerNotes')?.dirty),
+                  }" id="commissionerNotes" formControlName="commissionerNotes" type="text" placeholder='{{"facilityDetalies.CommissionerNotes" | translate}}'
+                              class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+              <mat-error>
+                @if(commissionerDetaliesForm.get('commissionerNotes')?.errors &&
+                (commissionerDetaliesForm.get('commissionerNotes')?.touched ||
+                commissionerDetaliesForm.get('commissionerNotes')?.dirty) ){
+                <div class="text-red-500 text-xs mt-1 flex">
+                    @if(commissionerDetaliesForm.get('commissionerNotes')?.getError('required')){
+                    <p class="m-0">{{"facilityDetalies.CommissionerNotesReq" | translate}}</p>
+                    }
+
+                </div>
+                }
+              </mat-error>
+            </div>
+          </mat-form-field>
+          <mat-form-field class="w-full">
+            <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
+                <label for="priceRequestId" class="block text-sm font-medium text-zinc-300">{{"facilityDetalies.PriceRequestId" | translate}}</label>
+
+                <input matInput 
+                [ngClass]="{
+                    'is-Valid':!commissionerDetaliesForm.get('priceRequestId')?.errors && (commissionerDetaliesForm.get('priceRequestId')?.touched ||commissionerDetaliesForm.get('priceRequestId')?.dirty),
+                    'is-invalid':commissionerDetaliesForm.get('priceRequestId')?.errors && (commissionerDetaliesForm.get('priceRequestId')?.touched || commissionerDetaliesForm.get('priceRequestId')?.dirty),
+                  }" id="priceRequestId" formControlName="priceRequestId" type="text" placeholder='{{"facilityDetalies.PriceRequestId" | translate}}'
+                                  class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
+              <mat-error>
+                @if(commissionerDetaliesForm.get('priceRequestId')?.errors &&
+                (commissionerDetaliesForm.get('priceRequestId')?.touched ||
+                commissionerDetaliesForm.get('priceRequestId')?.dirty) ){
+                <div class="text-red-500 text-xs mt-1 flex">
+                    @if(commissionerDetaliesForm.get('priceRequestId')?.getError('required')){
+                    <p class="m-0">
+                        {{"facilityDetalies.PriceRequestIdReq" | translate}}
+                       </p>
+                    }
+
+                </div>
+                }
+              </mat-error>
+            </div>
+          </mat-form-field>
+          <div class="flex justify-between items-center space-x-6 p-4 ">
+            <button mat-button matStepperPrevious style="background-color: #10b981; color: white;"
+            class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 my-4 
+            animate__animated animate__backInUp animate__delay-0.4s aos-init aos-animate">
+            {{"facilityDetalies.back" | translate}}
+    
+          </button>
+    
+            <button (click)="onFinish()" type="button" mat-button matStepperNext [disabled]="!commissionerDetaliesForm.valid"
+                class=" bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 disabled:bg-zinc-950 aos-init aos-animate my-4 animate__animated animate__backInUp animate__delay-0.4s">
+                {{"facilityDetalies.Submit" | translate}}
+            </button>
+    
+    
+        </div>
+      
+      </form>
+    </mat-step>
+    </div>
+    </div>
+
+      
+
+      </mat-horizontal-stepper> 
+    </div>
+</div>
+

@@ -6,12 +6,13 @@ import { HttpClient, provideHttpClient, withFetch, withInterceptors } from '@ang
 import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
+import { CdkStepperModule } from '@angular/cdk/stepper';
+import {MatStepperModule} from '@angular/material/stepper';
 
-
-// تأكد من استيراده
-// استيراد معالج HTTP إذا كنت بحاجة
-// import { withFetch } from '@angular/common/http';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -30,7 +31,11 @@ export const appConfig: ApplicationConfig = {
 provideAnimations(),
 // provideToastr(),
 importProvidersFrom(
-  TranslateModule.forRoot({
+  MatFormFieldModule,
+  MatInputModule,
+  CdkStepperModule,
+  MatStepperModule,
+    TranslateModule.forRoot({
     defaultLanguage:'en',
     loader: {
       provide: TranslateLoader,
@@ -38,35 +43,16 @@ importProvidersFrom(
       deps: [HttpClient]
     }
   })
-)
+), provideAnimationsAsync()
 
 
- 
+
 
 
   ]
 };    
 
 
-  //   providers: [
-  //     provideRouter(routes),
-  //     // withViewTransitions()),
-  //     // provideClientHydration(),
-  //   //    provideHttpClient(
-  //   //   //  withInterceptors([loadingInterceptor])
-  //   //  ),
-  //   provideAnimations(), // استرجاعها إذا كنت بحاجة إليها
-  //   // provideToastr(), // استرجاعها إذا كنت بحاجة إليها
-  //   // importProvidersFrom(NgxSpinnerModule), // استرجاعها إذا كنت بحاجة إليها
-  //   // ترجمة وتحديد لغة التطبيق إذا كانت ستستخدم
-  //   // TranslateModule.forRoot({
-  //   //   defaultLanguage: 'en',
-  //   //   loader: {
-  //   //     provide: TranslateLoader,
-  //   //     useFactory: HttpLoaderFactory,
-  //   //     deps: [HttpClient]
-  //   //   }
-  //   // })
-  // ]
+ 
 
 

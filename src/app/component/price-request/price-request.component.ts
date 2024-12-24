@@ -8,10 +8,16 @@ import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-price-request',
   standalone: true,
-  imports: [ReactiveFormsModule, NgClass, TranslateModule],
+  imports: [ReactiveFormsModule,
+     NgClass,
+      TranslateModule,
+     
+    ],
   templateUrl: './price-request.component.html',
   styleUrl: './price-request.component.scss'
 })
+
+
 export class PriceRequestComponent {
   private readonly _HttpClientFacadeService = inject(HttpClientFacadeService);
   endPoint: string = 'api/auth/priceRequest';
