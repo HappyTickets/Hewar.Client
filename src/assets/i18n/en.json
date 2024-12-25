@@ -1,0 +1,86 @@
+{
+
+"navbar":{
+    "lang":"lang",
+    "company":"Company",
+    "contact":"Contact Us",
+    "allPages":"All Pages",
+    "home":"Home",
+    "about":"About Us",
+    "services":"Services",
+    "team":"Team",
+    "get":"Get Start",
+    "login":"Sign In",
+    "register":"Sign up"
+
+ 
+},
+
+    "login":{
+        "welcome":"Wlcome Back",
+        "email":"Email",
+        "pass":"Password",
+        "login":"login",
+        "forget":"Forget Password?",
+        "passRequired":"Password Is Required",
+        "validPass":"Enter Valid Password",
+        "validEmail":"Enter Valid Email",
+       "emailRequired" :"Email Is Required"
+
+    },
+
+    "createAccountPage": {
+        "titleOne": "Choose The Account Type",
+        "titleTwo": "Choose The Type Of Account You Wish To Register",
+        "companyAccount": "Company Account",
+        "guardAccount": "Guard Account",
+        "facilityAccount": "Facility Account",
+        "registerAsCompany": "Register As Company",
+        "registerAsGuard": "Register As Guard",
+        "registerAsFacility": "Register As Facility",
+        "name": "Name",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "userName": "User Name",
+        "dateOfBirth": "Date Of Birth",
+        "skills": "Skills",
+        "email": "Email",
+        "password": "Password",
+        "comfirmPassword": "Comfirm Password",
+        "phone": "Phone",
+        "address": "Address",
+        "city": "City",
+        "submit": "Submit",
+        "type": "Type",
+        "activeType": "Active Type",
+        "resposibleName": "Responsble Name",
+        "responsiblePhone": "Responsble Phone",
+        "commercialRegistration": "Commercial Registeration"
+    },
+    "formsValidationErrorsMessages": {
+        "name": "Name is required and must be at least 3 characters. ",
+        "firstName": "First Name is required and must be at least 3 characters. ",
+        "lastName": "Last Name is required and must be at least 3 characters. ",
+        "userName": "User Name is required and must be at least 3 characters. ",
+        "phone": "Phone number must be 10-15 digits. ",
+        "email": "A valid email is required. ",
+        "password": "Invalid password! ensure that it contains at least 8 characters, at least one digit, at least one capital and one small letters, and at least one special character",
+        "comfirmPassword": "Confirm Password Must Be Like Password Feild",
+        "date": "Date of Birth is required Please enter a valid date. ",
+        "skills": "Skills are required. ",
+        "address": " Address is required. ",
+        "city": "City is required.",
+        "type": "Type is required.",
+        "activeType": "Active Type is required.",
+        "commercialRegistration": "Commercial Registration is required. ",
+        "responsibleName": "Responsible Name is required.",
+        "responsiblePhone": "Responsible Phone is required."
+    },
+    "companies": {
+        "welcomeTitle": "Welcome To Companies Section",
+        "filterTitle": "You Can Filter Here...",
+        "filterPlaceHolder": "Filter Companies",
+        "requestThePrice": "Request The Price",
+        "emptyMsg": "Nothing Match Your Search"
+    }
+}

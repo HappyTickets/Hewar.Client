@@ -1,0 +1,14 @@
+<div class="bg-black bg-[url('./assets/imgs/bg_nets.svg')] bg-no-repeat bg-cover min-h-screen flex flex-col md:flex-row px-20">
+  <div class="w-full md:w-1/2 h-72 md:h-full">
+    <img class="w-96 h-full object-cover" src="./assets/imgs/logo.jpg" [alt]="company?.name" data-aos="fade-up-sm" data-aos-delay="400" />
+  </div>
+  <div class="flex flex-col justify-start p-8 md:p-16 text-zinc-300 space-y-6" data-aos="fade-up-sm" data-aos-delay="400" >
+    <p class="text-lg md:text-xl">{{ company?.name }}</p>
+    <p class="text-lg md:text-xl">{{ company?.email }}</p>
+    <p class="text-lg md:text-xl">{{ company?.phone }}</p>
+    <p class="text-lg md:text-xl">{{ company?.address }}</p>
+    <a  routerLink="/login" class="inline-block bg-zinc-700 text-zinc-400 py-3 px-6 rounded-lg hover:bg-zinc-600 transition-colors duration-200" >
+      {{ 'companies.requestThePrice' | translate }}
+    </a>
+  </div>
+</div>

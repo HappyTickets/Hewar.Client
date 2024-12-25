@@ -1,0 +1,5 @@
+<div class="flex items-center justify-center space-x-4 p-4">
+    <button class="px-4 py-2 bg-zinc-700 text-zinc-300 rounded hover:bg-zinc-600 disabled:opacity-50" [disabled]="currentPage === 1" (click)="goToPreviousPage()" > Previous </button>
+    <span class="text-zinc-300"> Page {{ currentPage }} of {{ totalPages }} </span>
+    <button class="px-4 py-2 bg-zinc-700 text-zinc-300 rounded hover:bg-zinc-600 disabled:opacity-50" [disabled]="currentPage === totalPages" (click)="goToNextPage()"> Next </button>
+</div>

@@ -12,6 +12,8 @@ import { CreateAccountComponent } from './Components/create-account/create-accou
 import { FacilityAccountComponent } from './Components/AccountsForms/facility-account/facility-account.component';
 import { IndividualAccountComponent } from './Components/AccountsForms/individual-account/individual-account.component';
 import { CompanyAccountComponent } from './Components/AccountsForms/company-account/company-account.component';
+import { CompainesComponent } from './Components/compaines/compaines.component';
+import { CompanyDetailsComponent } from './Components/company-details/company-details.component';
 
 export const routes: Routes = [
 
@@ -31,6 +33,8 @@ export const routes: Routes = [
         {path: "individualAcc", component: IndividualAccountComponent, title: "IndividualAccount"},
         {path: "facilityAcc", component: FacilityAccountComponent, title: "FacilityAccount"},
     ]},
+    {path: "companies", component: CompainesComponent, title: "Compaines"},
+    {path: 'companyDetails', component: CompanyDetailsComponent, title: 'Company Details'},
 
 
     {path:'**',component:NotfoundComponent ,title:'notFound'}
