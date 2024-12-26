@@ -17,6 +17,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 // import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -37,11 +38,13 @@ export const appConfig: ApplicationConfig = {
 provideAnimations(),
 importProvidersFrom(
   // NgxIntlTelInputModule,
+  BsDropdownModule.forRoot(),
 
   MatFormFieldModule,
   MatInputModule,
   CdkStepperModule,
   MatStepperModule,
+
     TranslateModule.forRoot({
     defaultLanguage:'en',
     loader: {

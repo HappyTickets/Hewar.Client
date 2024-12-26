@@ -125,22 +125,22 @@
   
         <div class="relative">
           <button class="text-zinc-300 hover:text-gray-300 focus:outline-none flex items-center" (click)="toggleDropdown()">
-            More {{ "navbar.allPages" | translate }}
+            More {{"navbar.allPages" | translate }}
             <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </button>
   
           <div *ngIf="dropdownOpen" class="absolute left-0 w-48 mt-2 bg-black text-white rounded-md shadow-lg z-50">
-            <a class="block px-4 py-2 text-sm hover:bg-zinc-900" routerLink="home" routerLinkActive="active-link">{{ "navbar.home" | translate }}</a>
-            <a class="block px-4 py-2 text-sm hover:bg-zinc-900" routerLink="about" routerLinkActive="active-link">{{ "navbar.about" | translate }}</a>
-            <a class="block px-4 py-2 text-sm hover:bg-zinc-900" routerLink="services" routerLinkActive="active-link">{{ "navbar.services" | translate }}</a>
-            <a class="block px-4 py-2 text-sm hover:bg-zinc-900" routerLink="team" routerLinkActive="active-link">{{ "navbar.team" | translate }}</a>
-            <a class="block px-4 py-2 text-sm hover:bg-zinc-900" routerLink="FacilityDetailes" routerLinkActive="active-link">{{ "navbar.FacilityDetailes" | translate }}</a>
-            <a class="block px-4 py-2 text-sm hover:bg-zinc-900" routerLink="price" routerLinkActive="active-link">{{ "navbar.price" | translate }}</a>
+            <a class="block px-4 py-2 text-sm hover:bg-zinc-900" routerLink="home" routerLinkActive="active-link">{{"navbar.home" | translate }}</a>
+            <a class="block px-4 py-2 text-sm hover:bg-zinc-900" routerLink="about" routerLinkActive="active-link">{{"navbar.about" | translate }}</a>
+            <a class="block px-4 py-2 text-sm hover:bg-zinc-900" routerLink="services" routerLinkActive="active-link">{{"navbar.services" | translate }}</a>
+            <a class="block px-4 py-2 text-sm hover:bg-zinc-900" routerLink="team" routerLinkActive="active-link">{{"navbar.team" | translate }}</a>
+            <a class="block px-4 py-2 text-sm hover:bg-zinc-900" routerLink="FacilityDetailes" routerLinkActive="active-link">{{"navbar.FacilityDetailes" | translate }}</a>
+            <a class="block px-4 py-2 text-sm hover:bg-zinc-900" routerLink="price" routerLinkActive="active-link">{{"navbar.price" | translate }}</a>
   
             <li class="relative">
-              <button class="text-gray-700 hover:text-gray-900 focus:outline-none">{{ "navbar.lang" | translate }}</button>
+              <button class="text-gray-700 hover:text-gray-900 focus:outline-none">{{"navbar.lang" | translate }}</button>
               <ul class="absolute hidden bg-white border border-gray-200 rounded-md shadow-md mt-2 w-32">
                 <li (click)="change('en')">
                   <a class="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">EN</a>

@@ -10,7 +10,11 @@ import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, NgClass, TranslateModule , RouterLink],
+  // imports: [ReactiveFormsModule,
+  //   NgClass,
+  //   TranslateModule,
+  //   RouterLink],
+  imports:[ReactiveFormsModule, NgClass, TranslateModule ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
