@@ -1,4 +1,100 @@
-<nav class="navbar navbar-expand-lg  fixed-top ">
+
+  <nav class="bg-black  py-10">
+    <div class="max-w-screen-xl mx-auto flex justify-between items-center">
+      <a href="/" class="text-zinc-300 text-2xl font-bold">Hewar</a>
+  
+      <div class="hidden md:flex space-x-6 mr-64">
+        <a routerLinkActive="active-link " routerLink="company"  class="text-zinc-300 hover:text-gray-300">{{"navbar.company" | translate}} </a>
+        <a    routerLinkActive="active-link " routerLink="contact"  class="text-zinc-300 hover:text-gray-300">{{"navbar.contact" | translate}}  </a>
+        <div class="relative">
+          <button class="text-zinc-300 hover:text-gray-300 focus:outline-none flex items-center" (click)="toggleDropdown()">
+            More             {{"navbar.allPages" | translate}}  
+
+            <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div *ngIf="dropdownOpen" class="absolute left-0 w-48 mt-2 bg-black text-white rounded-md shadow-lg z-50">
+            <a  class="block px-4 py-2 text-sm hover:bg-zinc-900" routerLink="home" routerLinkActive="active-link" >{{"navbar.home" | translate}}</a>
+            <!-- <a  class="block px-4 py-2 text-sm hover:bg-zinc-900"    >Resourses</a>
+            <a  class="block px-4 py-2 text-sm hover:bg-zinc-900"      >Events</a>
+            <a  class="block px-4 py-2 text-sm hover:bg-zinc-900"      >News</a>
+            <a  class="block px-4 py-2 text-sm hover:bg-zinc-900"     >Privacy</a>
+            <a  class="block px-4 py-2 text-sm hover:bg-zinc-900"     >Terms & Condition</a>
+            <a  class="block px-4 py-2 text-sm hover:bg-zinc-900"      >Elements</a> -->
+            <a  class="block px-4 py-2 text-sm hover:bg-zinc-900" routerLink="about" routerLinkActive="active-link"   >{{"navbar.about" | translate}}</a>
+            <a  class="block px-4 py-2 text-sm hover:bg-zinc-900" routerLink="services" routerLinkActive="active-link"   >{{"navbar.services" | translate}}</a>
+            <a  class="block px-4 py-2 text-sm hover:bg-zinc-900" routerLink="team" routerLinkActive="active-link"   >{{"navbar.team" | translate}}</a>
+
+
+
+            <a  class="block px-4 py-2 text-sm hover:bg-zinc-900" routerLink="FacilityDetailes" routerLinkActive="active-link"   > {{"navbar.FacilityDetailes" | translate}}</a>
+            <a  class="block px-4 py-2 text-sm hover:bg-zinc-900" routerLink="price" routerLinkActive="active-link"    > {{"navbar.price" | translate}}</a>
+
+
+            <!-- <a  class="block px-4 py-2 text-sm hover:bg-zinc-900"    >404</a> -->
+            <li class="relative">
+              <button class="text-gray-700 hover:text-gray-900 focus:outline-none">
+                {{ "navbar.lang" | translate }}
+              </button>
+              <ul class="absolute hidden bg-white border border-gray-200 rounded-md shadow-md mt-2 w-32">
+                <li (click)="change('en')">
+                  <a class="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">EN</a>
+                </li>
+                <li (click)="change('ar')">
+                  <a class="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">AR</a>
+                </li>
+              </ul>
+            </li>
+            
+          </div>
+        </div>
+      </div>
+      <a routerLink="/createAccount" class="group/arrowBtn flex items-center max-w-max gap-x-4  text-zinc-300 bg-black border-1 border-zinc-500 hover:bg-gray-300 py-1 px-3 rounded-full" aria-label="Get Started For Free"> 
+        <span class=""> {{"navbar.register"| translate}}</span> 
+        <div class="relative w-4 h-4 grid place-items-center overflow-hidden"> 
+            <i class="group-hover/arrowBtn:translate-x-full transition-transform duration-500 ease-out w-4 h-4 grid place-items-center"> 
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" 
+                    stroke-linecap="round" stroke-linejoin="round" style="width: 100%; height: 100%;">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg> 
+            </i> 
+            <i class="absolute top-0 right-full group-hover/arrowBtn:translate-x-full transition-transform duration-500 ease-out w-4 h-4 grid place-items-center"> 
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" 
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 100%; height: 100%;">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg> 
+            </i> 
+        </div> 
+    </a>
+    <a routerLink="/login" class="group/arrowBtn flex items-center max-w-max gap-x-4  text-zinc-300 bg-black border-1 border-zinc-500 hover:bg-gray-300 py-1 px-3 rounded-full" aria-label="Get Started For Free"> 
+      <span class="">  {{"navbar.login"| translate}}</span> 
+      <div class="relative w-4 h-4 grid place-items-center overflow-hidden"> 
+          <i class="group-hover/arrowBtn:translate-x-full transition-transform duration-500 ease-out w-4 h-4 grid place-items-center"> 
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" 
+                  stroke-linecap="round" stroke-linejoin="round" style="width: 100%; height: 100%;">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+              </svg> 
+          </i> 
+          <i class="absolute top-0 right-full group-hover/arrowBtn:translate-x-full transition-transform duration-500 ease-out w-4 h-4 grid place-items-center"> 
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" 
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 100%; height: 100%;">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+              </svg> 
+          </i> 
+      </div> 
+  </a>
+      <button class="md:hidden text-white" (click)="toggleMenu()">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+      
+<!-- <nav class="navbar navbar-expand-lg  fixed-top ">
     <div class="container">
       <a class="navbar-brand" routerLink="Home">
         <img src="./assets/imgs/image-contact1.webp" class="w-50"  alt="logo">
@@ -52,11 +148,11 @@
              
              
            
-              <!-- <li class="nav-item">
+              <li class="nav-item">
                 <a class="nav-link cursor-pointer "      (click)="_AuthService.logOut()" >
                     {{"navbar.signout"| translate}}
                 </a>
-              </li> -->
+              </li> 
          
           </ul>
       </div>
@@ -71,4 +167,22 @@
       </a>
 
     </div>
-  </nav>
+     <div *ngIf="isMenuOpen" class="md:hidden flex flex-col space-y-4 mt-4">
+      <a href="#" class="text-zinc-300e hover:text-zinc-400">Company</a>
+      <a href="#" class="text-zinc-300 hover:text-zinc-400">Contact</a>
+  
+      <div class="relative">
+        <button class="text-white hover:text-gray-300 focus:outline-none flex items-center" (click)="toggleDropdown()">
+          More
+          <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div *ngIf="dropdownOpen" class="absolute left-0 w-full mt-2 mb-20 border-1 border-neutral-800 bg-black text-white rounded-md shadow-lg">
+          <a href="#" class="block px-4 py-2 text-sm hover:bg-zinc-900">Contact</a>
+          <a href="#" class="block px-4 py-2 text-sm hover:bg-zinc-900">Blog</a>
+        </div>
+      </div>
+    </div>
+  </nav> -->
+  

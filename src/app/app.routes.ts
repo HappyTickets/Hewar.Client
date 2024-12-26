@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './component/home/home.component';
+import { HomeComponent } from './Components/home/home.component';
 import { ContactusComponent } from './component/contactus/contactus.component';
 import { NotfoundComponent } from './component/notfound/notfound.component';
 import { AboutComponent } from './component/about/about.component';
@@ -15,6 +15,8 @@ import { CompanyAccountComponent } from './Components/AccountsForms/company-acco
 import { PriceRequestComponent } from './component/price-request/price-request.component';
 import { FacilityDetaliesComponent } from './component/facility-detalies/facility-detalies.component';
 import { FacilityDetaliesOneComponent } from './component/facility-detalies-one/facility-detalies-one.component';
+import { CompainesComponent } from './Components/compaines/compaines.component';
+import { CompanyDetailsComponent } from './Components/company-details/company-details.component';
 
 export const routes: Routes = [
 
@@ -43,6 +45,8 @@ export const routes: Routes = [
         {path: "individualAcc", component: IndividualAccountComponent, title: "IndividualAccount"},
         {path: "facilityAcc", component: FacilityAccountComponent, title: "FacilityAccount"},
     ]},
+    {path: "companies", component: CompainesComponent, title: "Compaines"},
+    {path: 'companyDetails', component: CompanyDetailsComponent, title: 'Company Details'},
 
 
     {path:'**',component:NotfoundComponent ,title:'notFound'}

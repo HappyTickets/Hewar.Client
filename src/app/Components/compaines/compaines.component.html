@@ -1,0 +1,33 @@
+
+
+<div class="bg-black bg-[url('./assets/imgs/bg_nets.svg')] bg-no-repeat bg-cover py-32">
+    <p class="text-zinc-300 text-5xl text-center aos-init aos-animate  animate__animated animate__backInDown animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="300">{{'companies.welcomeTitle' | translate}}</p>
+    <p class="text-zinc-300 text-5xl text-center mt-10 aos-init aos-animate  animate__animated animate__rubberBand animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="400">{{'companies.filterTitle' | translate}}</p>
+    <div class="p-4 w-[30%] m-auto mt-10 aos-init aos-animate  animate__animated animate__backInUp animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="300">
+        <input type="text" class="outline-none border border-zinc-700 p-2 rounded w-full mb-4 bg-black text-zinc-500" placeholder="{{'companies.filterPlaceHolder' | translate}}" [(ngModel)]="filterText"  (input)="onFilter()" />
+    </div>
+      <!-- <h1 class="text-white text-2xl">{{filterText}}</h1> -->
+    <div  class="py-16 px-4">
+        @for (company of paginatedItems; track $index) {
+            <div FadeInView (click)="goToDetails(company.id)" class="flex flex-col sm:flex-row items-center w-[75%] p-5 m-auto mb-5 text-zinc-300 border border-zinc-800 group bg-black shadow-md rounded-lg hover:scale-105 transition-transform duration-300 cursor-pointer">
+            <img class="w-full sm:w-32 sm:h-32 h-auto object-cover rounded mb-4 sm:mb-0" src="./assets/imgs/logo.jpg" [alt]="company.name" />
+            <div FadeInView class="sm:px-10">
+              <p class="text-zinc-500 mb-2 text-wrap break-words whitespace-normal">{{ company.name }}</p>
+              <p class="text-zinc-500 mb-2 text-wrap break-words whitespace-normal">{{ company.email }}</p>
+              <p class="text-zinc-500 mb-2 text-wrap break-words whitespace-normal">{{ company.phone }}</p>
+              <p class="text-zinc-500 mb-2 text-wrap break-words whitespace-normal">{{ company.address }}</p>
+            </div>
+          </div>
+          
+        }@empty {
+            <p class="text-zinc-300 text-5xl text-center aos-init aos-animate  animate__animated animate__backInUp animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="300">{{'companies.emptyMsg' | translate}}</p>
+        }
+    </div>
+    <div>
+      <app-paginator 
+        [totalItems]="items.length"
+        [itemsPerPage]="itemsPerPage"
+        (pageChange)="onPageChange($event)"
+      ></app-paginator>
+    </div>
+</div>

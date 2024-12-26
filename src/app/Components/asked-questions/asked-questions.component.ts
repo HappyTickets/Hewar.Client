@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { FadeInViewDirective } from '../../Directives/fade-in-view.directive';
 
 @Component({
   selector: 'app-asked-questions',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FadeInViewDirective],
   templateUrl: './asked-questions.component.html',
   styleUrl: './asked-questions.component.scss'
 })

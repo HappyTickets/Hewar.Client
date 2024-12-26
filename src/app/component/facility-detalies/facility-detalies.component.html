@@ -13,7 +13,9 @@
             <div class="contact w-full max-w-lg bg-gray-900 p-8 rounded-lg shadow-lg" >
               <mat-step [stepControl]="FacilityDetaliesForm" [completed]="FacilityDetaliesForm.valid">
                 <form [formGroup]="FacilityDetaliesForm">
-                  <mat-form-field class="w-full">
+                  <ng-template matStepLabel>Facility Detailes</ng-template>
+
+                 
                     <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft animate__delay-0.4s"
                       data-aos="fade-up-sm" data-aos-delay="200">
                       <label for="facilityName" class="block text-sm font-medium  text-zinc-300">
@@ -25,7 +27,6 @@
                       }" id="facilityName" formControlName="facilityName" type="text"
                         placeholder='{{"facilityDetalies.FacilityName" | translate}}'
                         class="bg-zinc-800 border border-zinc-700 p-3 mt-1 block w-full rounded-md shadow-sm focus:border-amber-200 outline-none text-zinc-400" />
-                      <mat-error>
                   
                             @if(FacilityDetaliesForm.get('facilityName')?.errors &&
                             (FacilityDetaliesForm.get('facilityName')?.touched ||
@@ -40,11 +41,9 @@
                             }
                        
                        
-                      </mat-error>
                     </div>
-                  </mat-form-field>
+                 
           
-                  <mat-form-field class="w-full">
                     <div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
                       <label for="facilityEmail" class="block text-sm font-medium  text-zinc-300">
                         {{"facilityDetalies.FacilityEmail" | translate}}
@@ -55,7 +54,6 @@
                       }" id="facilityEmail" formControlName="facilityEmail" type="email"
                         placeholder='{{"facilityDetalies.FacilityEmail" | translate}}'
                         class="bg-zinc-800 border border-zinc-700 p-3 mt-1 block w-full rounded-md shadow-sm focus:border-amber-200 outline-none text-zinc-400" />
-                      <mat-error>
                         @if(FacilityDetaliesForm.get('facilityEmail')?.errors &&
                         (FacilityDetaliesForm.get('facilityEmail')?.touched ||
                         FacilityDetaliesForm.get('facilityEmail')?.dirty) ){
@@ -68,10 +66,7 @@
                             }
                         </div>
                         }
-                      </mat-error>
                     </div>
-                  </mat-form-field>
-                  <mat-form-field class="w-full">
                     <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
                         <label for="facilityPhone" class="block text-sm font-medium text-zinc-300">
                             {{"facilityDetalies.FacilityPhone" | translate}}</label>
@@ -80,8 +75,7 @@
                           'is-invalid':FacilityDetaliesForm.get('facilityPhone')?.errors && (FacilityDetaliesForm.get('facilityPhone')?.touched || FacilityDetaliesForm.get('facilityPhone')?.dirty),
                         }" id="facilityPhone" formControlName="facilityPhone" type="phone"
                             placeholder='{{"facilityDetalies.FacilityPhone" | translate}}'
-                            class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400 " />
-                      <mat-error>
+                            class="bg-zinc-800 border border-zinc-700 p-3 mt-1 block w-full rounded-md shadow-sm focus:border-amber-200 outline-none text-zinc-400" />
                         @if(FacilityDetaliesForm.get('facilityPhone')?.errors &&
                         (FacilityDetaliesForm.get('facilityPhone')?.touched ||
                         FacilityDetaliesForm.get('facilityPhone')?.dirty) ){
@@ -94,10 +88,7 @@
                             }
                         </div>
                         }
-                      </mat-error>
                     </div>
-                  </mat-form-field>
-                  <mat-form-field class="w-full">
                     <div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
                         <label for="facilityAddress" class="block text-sm font-medium text-zinc-300">
                             {{"facilityDetalies.FacilityAddress" | translate}}</label>
@@ -107,8 +98,7 @@
                             'is-invalid':FacilityDetaliesForm.get('facilityAddress')?.errors && (FacilityDetaliesForm.get('facilityAddress')?.touched || FacilityDetaliesForm.get('facilityAddress')?.dirty),
                           }" id="facilityAddress" formControlName="facilityAddress" type="text"
                                   placeholder='{{"facilityDetalies.FacilityAddress" | translate}}'
-                                  class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
-                      <mat-error>
+                                  class="bg-zinc-800 border border-zinc-700 p-3 mt-1 block w-full rounded-md shadow-sm focus:border-amber-200 outline-none text-zinc-400" />
                         @if(FacilityDetaliesForm.get('facilityAddress')?.errors &&
                         (FacilityDetaliesForm.get('facilityAddress')?.touched ||
                         FacilityDetaliesForm.get('facilityAddress')?.dirty) ){
@@ -119,10 +109,7 @@
         
                         </div>
                         }
-                      </mat-error>
                     </div>
-                  </mat-form-field>
-                  <mat-form-field class="w-full">
                     <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
                         <label for="facilitySize" class="block text-sm font-medium text-zinc-300">
                             {{"facilityDetalies.FacilitySize" | translate}}</label>
@@ -132,8 +119,7 @@
                             'is-invalid':FacilityDetaliesForm.get('facilitySize')?.errors && (FacilityDetaliesForm.get('facilitySize')?.touched || FacilityDetaliesForm.get('facilitySize')?.dirty),
                           }" id="facilitySize" formControlName="facilitySize" type="text"
                                       placeholder='{{"facilityDetalies.FacilitySize" | translate}}'
-                                      class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
-                      <mat-error>
+                                      class="bg-zinc-800 border border-zinc-700 p-3 mt-1 block w-full rounded-md shadow-sm focus:border-amber-200 outline-none text-zinc-400" />
                         @if(FacilityDetaliesForm.get('facilitySize')?.errors &&
                 (FacilityDetaliesForm.get('facilitySize')?.touched ||
                 FacilityDetaliesForm.get('facilitySize')?.dirty) ){
@@ -144,9 +130,7 @@
 
                 </div>
                 }
-                      </mat-error>
                     </div>
-                  </mat-form-field>
 
                
 
@@ -165,7 +149,8 @@
 
         <mat-step [stepControl]=" FacilityDetaliesCompleteForm" [completed]=" FacilityDetaliesCompleteForm.valid">
           <form [formGroup]=" FacilityDetaliesCompleteForm">
-            <mat-form-field class="w-full">
+            <ng-template matStepLabel>Facility Detalies Complete</ng-template>
+
                 <div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
                     <label for="facilityActivityType"
                     class="block text-sm font-medium text-zinc-300">{{"facilityDetalies.FacilityActivity" |
@@ -176,22 +161,20 @@
                         'is-invalid':FacilityDetaliesCompleteForm.get('facilityActivityType')?.errors && (FacilityDetaliesCompleteForm.get('facilityActivityType')?.touched || FacilityDetaliesCompleteForm.get('facilityActivityType')?.dirty),
                       }" id="facilityActivityType" formControlName="facilityActivityType" type="text"
                                   placeholder='{{"facilityDetalies.FacilityActivity" | translate}}'
-                                  class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
-                  <mat-error>
+                                  class="bg-zinc-800 border border-zinc-700 p-3 mt-1 block w-full rounded-md shadow-sm focus:border-amber-200 outline-none text-zinc-400" />
+                 
                     @if(FacilityDetaliesCompleteForm.get('facilityActivityType')?.errors &&
                     (FacilityDetaliesCompleteForm.get('facilityActivityType')?.touched ||
                     FacilityDetaliesCompleteForm.get('facilityActivityType')?.dirty) ){
                     <div class="text-red-500 text-xs mt-1 flex">
-                        @if(FacilityDetaliesCompleteForm.get('facilityAddress')?.getError('required')){
+                        @if(FacilityDetaliesCompleteForm.get('facilityActivityType')?.getError('required')){
                         <p class="m-0">{{"facilityDetalies.FacilityActivityReq" | translate}}</p>
                         }
     
                     </div>
                     }
-                  </mat-error>
+                
                 </div>
-              </mat-form-field>
-              <mat-form-field class="w-full">
                 <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
                     <label for="  facilityCommercialRegistrationNumber" class="block text-sm font-medium text-zinc-300">
                         {{"facilityDetalies.FacilityCommercialRegistrationNumber" | translate}}</label>
@@ -201,8 +184,8 @@
                         'is-invalid':FacilityDetaliesCompleteForm.get('facilityCommercialRegistrationNumber')?.errors && (FacilityDetaliesCompleteForm.get('facilityCommercialRegistrationNumber')?.touched || FacilityDetaliesCompleteForm.get('facilityCommercialRegistrationNumber')?.dirty),
                       }" id="facilityCommercialRegistrationNumber" formControlName="facilityCommercialRegistrationNumber"
                           type="text" placeholder='  {{"facilityDetalies.FacilityCommercialRegistrationNumber" | translate}}'
-                          class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
-                  <mat-error>
+                          class="bg-zinc-800 border border-zinc-700 p-3 mt-1 block w-full rounded-md shadow-sm focus:border-amber-200 outline-none text-zinc-400"/>
+                 
                     @if(FacilityDetaliesCompleteForm.get('facilityCommercialRegistrationNumber')?.errors &&
                     (FacilityDetaliesCompleteForm.get('facilityCommercialRegistrationNumber')?.touched ||
                     FacilityDetaliesCompleteForm.get('facilityCommercialRegistrationNumber')?.dirty) ){
@@ -214,10 +197,8 @@
     
                     </div>
                     }
-                  </mat-error>
+           
                 </div>
-              </mat-form-field>
-              <mat-form-field class="w-full">
                 <div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
                     <label for="facilityCommercialRegistrationExpiryDate" class="block text-sm font-medium text-zinc-300">
                         {{"facilityDetalies.FacilityCommercialRegistrationExpiryDate" | translate}}</label>
@@ -228,8 +209,8 @@
                       }" id="facilityCommercialRegistrationExpiryDate"
                           formControlName="facilityCommercialRegistrationExpiryDate" type="date"
                           placeholder='{{"facilityDetalies.FacilityCommercialRegistrationExpiryDate" | translate}}'
-                          class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
-                  <mat-error>
+                          class="bg-zinc-800 border border-zinc-700 p-3 mt-1 block w-full rounded-md shadow-sm focus:border-amber-200 outline-none text-zinc-400" />
+               
                     @if(FacilityDetaliesCompleteForm.get('facilityCommercialRegistrationExpiryDate')?.errors &&
                     (FacilityDetaliesCompleteForm.get('facilityCommercialRegistrationExpiryDate')?.touched ||
                     FacilityDetaliesCompleteForm.get('facilityCommercialRegistrationExpiryDate')?.dirty) ){
@@ -240,10 +221,9 @@
     
                     </div>
                     }
-                  </mat-error>
+             
                 </div>
-              </mat-form-field>
-              <mat-form-field class="w-full">
+             
                 <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
                     <label for="facilityLicenseNumber" class="block text-sm font-medium text-zinc-300">
                         {{"facilityDetalies.FacilityLicenseNumber" | translate}}</label>
@@ -253,8 +233,8 @@
                         'is-invalid':FacilityDetaliesCompleteForm.get('facilityLicenseNumber')?.errors && (FacilityDetaliesCompleteForm.get('facilityLicenseNumber')?.touched || FacilityDetaliesCompleteForm.get('facilityLicenseNumber')?.dirty),
                       }" id="facilityLicenseNumber" formControlName="facilityLicenseNumber" type="text"
                           placeholder='{{"facilityDetalies.FacilityLicenseNumber" | translate}}'
-                          class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
-                  <mat-error>
+                          class="bg-zinc-800 border border-zinc-700 p-3 mt-1 block w-full rounded-md shadow-sm focus:border-amber-200 outline-none text-zinc-400"/>
+               
                     @if(FacilityDetaliesCompleteForm.get('facilityLicenseNumber')?.errors &&
                 (FacilityDetaliesCompleteForm.get('facilityLicenseNumber')?.touched ||
                 FacilityDetaliesCompleteForm.get('facilityLicenseNumber')?.dirty) ){
@@ -265,10 +245,9 @@
 
                 </div>
                 }
-                  </mat-error>
+              
                 </div>
-              </mat-form-field>
-              <mat-form-field class="w-full">
+        
                 <div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
                     <label for="facilityLicenseExpiryDate"
                     class="block text-sm font-medium text-zinc-300">{{"facilityDetalies.FacilityLicenseExpiryDate" |
@@ -279,8 +258,8 @@
                         'is-invalid':FacilityDetaliesCompleteForm.get('facilityLicenseExpiryDate')?.errors && (FacilityDetaliesCompleteForm.get('facilityLicenseExpiryDate')?.touched || FacilityDetaliesCompleteForm.get('facilityLicenseExpiryDate')?.dirty),
                       }" id="facilityLicenseExpiryDate" formControlName="facilityLicenseExpiryDate" type="date"
                               placeholder='{{"facilityDetalies.FacilityLicenseExpiryDate" | translate}}'
-                              class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
-                  <mat-error>
+                              class="bg-zinc-800 border border-zinc-700 p-3 mt-1 block w-full rounded-md shadow-sm focus:border-amber-200 outline-none text-zinc-400" />
+                
                     @if(FacilityDetaliesCompleteForm.get('facilityLicenseExpiryDate')?.errors &&
                     (FacilityDetaliesCompleteForm.get('facilityLicenseExpiryDate')?.touched ||
                     FacilityDetaliesCompleteForm.get('facilityLicenseExpiryDate')?.dirty) ){
@@ -291,10 +270,9 @@
     
                     </div>
                     }
-                  </mat-error>
+                 
                 </div>
-              </mat-form-field>
-              <mat-form-field class="w-full">
+           
                 <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
                     <label for="facilityNotes" class="block text-sm font-medium text-zinc-300">
                         {{"facilityDetalies.FacilityNotes" | translate}}</label>
@@ -304,8 +282,8 @@
                         'is-invalid':FacilityDetaliesCompleteForm.get('facilityNotes')?.errors && (FacilityDetaliesCompleteForm.get('facilityNotes')?.touched || FacilityDetaliesCompleteForm.get('facilityNotes')?.dirty),
                       }" id="facilityNotes" formControlName="facilityNotes" type="text"
                                   placeholder='{{"facilityDetalies.FacilityNotes" | translate}}'
-                                  class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
-                  <mat-error>
+                                  class="bg-zinc-800 border border-zinc-700 p-3 mt-1 block w-full rounded-md shadow-sm focus:border-amber-200 outline-none text-zinc-400" />
+               
                     @if(FacilityDetaliesCompleteForm.get('facilityNotes')?.errors &&
                     (FacilityDetaliesCompleteForm.get('facilityNotes')?.touched ||
                     FacilityDetaliesCompleteForm.get('facilityNotes')?.dirty) ){
@@ -316,9 +294,8 @@
     
                     </div>
                     }
-                  </mat-error>
+                 
                 </div>
-              </mat-form-field>
               <div class="flex justify-between items-center space-x-6 p-4 ">
                 <button mat-button matStepperPrevious style="background-color: #10b981; color: white;"
                 class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 my-4 
@@ -347,7 +324,10 @@
 
 <mat-step [stepControl]="repersentativeDetaliesForm" [completed]="repersentativeDetaliesForm.valid">
   <form [formGroup]="repersentativeDetaliesForm">
-             <mat-form-field class="w-full">
+    <ng-template matStepLabel>
+      Repersentive Detalies
+   </ng-template>
+
                 <div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
                     <label for="representativeName" class="block text-sm font-medium text-zinc-300">
                         {{"facilityDetalies.RepresentativeName" | translate}}</label>
@@ -357,8 +337,8 @@
                         'is-invalid':repersentativeDetaliesForm.get('representativeName')?.errors && (repersentativeDetaliesForm.get('representativeName')?.touched || repersentativeDetaliesForm.get('representativeName')?.dirty),
                       }" id="representativeName" formControlName="representativeName" type="text"
                                   placeholder='{{"facilityDetalies.RepresentativeName" | translate}}'
-                                  class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
-                  <mat-error>
+                                  class="bg-zinc-800 border border-zinc-700 p-3 mt-1 block w-full rounded-md shadow-sm focus:border-amber-200 outline-none text-zinc-400" />
+               
                     @if(repersentativeDetaliesForm.get('representativeName')?.errors &&
                     (repersentativeDetaliesForm.get('representativeName')?.touched ||
                     repersentativeDetaliesForm.get('representativeName')?.dirty) ){
@@ -369,11 +349,9 @@
     
                     </div>
                     }
-                  </mat-error>
+                 
                 </div>
-              </mat-form-field>
-
-      <mat-form-field class="w-full">
+          
         <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
             <label for="representativeEmail" class="block text-sm font-medium text-zinc-300"> {{"facilityDetalies.RepresentativeEmail" | translate}}
 
@@ -385,8 +363,8 @@
               }" id="representativeEmail" formControlName="representativeEmail" type="email"
                       placeholder='{{"facilityDetalies.RepresentativeEmail" | translate}}'
                     
-                      class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
-          <mat-error>
+                      class="bg-zinc-800 border border-zinc-700 p-3 mt-1 block w-full rounded-md shadow-sm focus:border-amber-200 outline-none text-zinc-400" />
+          
             @if(repersentativeDetaliesForm.get('representativeEmail')?.errors &&
             (repersentativeDetaliesForm.get('representativeEmail')?.touched ||
             repersentativeDetaliesForm.get('representativeEmail')?.dirty) ){
@@ -401,10 +379,9 @@
                 }
             </div>
             }
-          </mat-error>
+         
         </div>
-      </mat-form-field>
-      <mat-form-field class="w-full">
+    
         <div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
             <label for="representativePhone" class="block text-sm font-medium text-zinc-300">{{"facilityDetalies.RepresentativePhone" | translate}}
             </label>
@@ -414,8 +391,8 @@
                 'is-invalid':repersentativeDetaliesForm.get('representativePhone')?.errors && (repersentativeDetaliesForm.get('representativePhone')?.touched || repersentativeDetaliesForm.get('representativePhone')?.dirty),
               }" id="representativePhone" formControlName="representativePhone" type="phone"
                           placeholder='{{"facilityDetalies.RepresentativePhone" | translate}}'
-                          class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
-          <mat-error>
+                          class="bg-zinc-800 border border-zinc-700 p-3 mt-1 block w-full rounded-md shadow-sm focus:border-amber-200 outline-none text-zinc-400" />
+         
           
             @if(repersentativeDetaliesForm.get('representativePhone')?.errors &&
             (repersentativeDetaliesForm.get('representativePhone')?.touched ||
@@ -429,11 +406,9 @@
                 }
             </div>
             }
-          </mat-error>
+        
         </div>
-      </mat-form-field>
-
-      <mat-form-field class="w-full">
+   
         <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
             <label for="representativeNationalId" class="block text-sm font-medium text-zinc-300">
                     {{"facilityDetalies.RepresentativeId" | translate}}</label>
@@ -443,8 +418,7 @@
                 'is-invalid':repersentativeDetaliesForm.get('representativeNationalId')?.errors && (repersentativeDetaliesForm.get('representativeNationalId')?.touched || repersentativeDetaliesForm.get('representativeNationalId')?.dirty),
               }" id="representativeNationalId" formControlName='representativeNationalId' type="text"
                   placeholder="{{'facilityDetalies.RepresentativeId' | translate}}"
-                  class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
-          <mat-error>
+                  class="bg-zinc-800 border border-zinc-700 p-3 mt-1 block w-full rounded-md shadow-sm focus:border-amber-200 outline-none text-zinc-400" />
             @if(repersentativeDetaliesForm.get('representativeNationalId')?.errors &&
             (repersentativeDetaliesForm.get('representativeNationalId')?.touched ||
             repersentativeDetaliesForm.get('representativeNationalId')?.dirty) ){
@@ -455,11 +429,8 @@
 
             </div>
             }
-          </mat-error>
         </div>
-      </mat-form-field>
 
-      <mat-form-field class="w-full">
         <div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
               <label for="representativeNationality" class="block text-sm font-medium text-zinc-300"> 
                     {{"facilityDetalies.RepresentativeNationality" | translate}}
@@ -470,8 +441,7 @@
                 'is-invalid':repersentativeDetaliesForm.get('representativeNationality')?.errors && (repersentativeDetaliesForm.get('representativeNationality')?.touched || repersentativeDetaliesForm.get('representativeNationality')?.dirty),
               }" id="representativeNationality" formControlName="representativeNationality" type="text"
                   placeholder='{{"facilityDetalies.RepresentativeNationality" | translate}}'
-                  class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
-          <mat-error>
+                  class="bg-zinc-800 border border-zinc-700 p-3 mt-1 block w-full rounded-md shadow-sm focus:border-amber-200 outline-none text-zinc-400" />
            
             @if(repersentativeDetaliesForm.get('representativeNationality')?.errors &&
             (repersentativeDetaliesForm.get('representativeNationality')?.touched ||
@@ -483,11 +453,8 @@
 
             </div>
             }
-          </mat-error>
         </div>
-      </mat-form-field>
-
-      <mat-form-field class="w-full">
+   
         <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
        <label for="representativeNotes" class="block text-sm font-medium text-zinc-300">{{"facilityDetalies.RepresentativeNotes" | translate}}
 
@@ -498,8 +465,7 @@
                 'is-invalid':repersentativeDetaliesForm.get('representativeNotes')?.errors && (repersentativeDetaliesForm.get('representativeNotes')?.touched || repersentativeDetaliesForm.get('representativeNotes')?.dirty),
               }" id="representativeNotes" formControlName="representativeNotes" type="text"
                       placeholder='{{"facilityDetalies.RepresentativeNotes" | translate}}'
-                      class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
-          <mat-error>
+                      class="bg-zinc-800 border border-zinc-700 p-3 mt-1 block w-full rounded-md shadow-sm focus:border-amber-200 outline-none text-zinc-400"/>
             @if(repersentativeDetaliesForm.get('representativeNotes')?.errors &&
             (repersentativeDetaliesForm.get('representativeNotes')?.touched ||
             repersentativeDetaliesForm.get('representativeNotes')?.dirty) ){
@@ -513,9 +479,7 @@
 
             </div>
             }
-          </mat-error>
         </div>
-      </mat-form-field>
     
       <div class="flex justify-between items-center space-x-6 p-4 ">
         <button mat-button matStepperPrevious style="background-color: #10b981; color: white;"
@@ -529,10 +493,7 @@
       {{"facilityDetalies.Next" | translate}}
   </button>
 
-        <!-- <button type="button" mat-button matStepperNext [disabled]="!repersentativeDetaliesForm.valid"
-            class=" bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 disabled:bg-zinc-950 aos-init aos-animate my-4 animate__animated animate__backInUp animate__delay-0.4s">
-            {{"facilityDetalies.Next" | translate}}
-        </button> -->
+       
 
 
     </div>
@@ -549,7 +510,9 @@
     
     <mat-step [stepControl]="commissionerDetaliesForm" [completed]="commissionerDetaliesForm.valid">
       <form [formGroup]="commissionerDetaliesForm">
-                 <mat-form-field class="w-full">
+        <ng-template matStepLabel>
+        Commissioner Detalies
+       </ng-template>
                     <div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
                         <label for="commissionerName" class="block text-sm font-medium text-zinc-300">{{"facilityDetalies.CommissionerName" | translate}}</label>
 
@@ -558,8 +521,8 @@
                             'is-Valid':!commissionerDetaliesForm.get('commissionerName')?.errors && (commissionerDetaliesForm.get('commissionerName')?.touched ||commissionerDetaliesForm.get('commissionerName')?.dirty),
                             'is-invalid':commissionerDetaliesForm.get('commissionerName')?.errors && (commissionerDetaliesForm.get('commissionerName')?.touched || commissionerDetaliesForm.get('commissionerName')?.dirty),
                           }" id="commissionerName" formControlName="commissionerName" type="text" placeholder='{{"facilityDetalies.CommissionerName" | translate}}'
-                                      class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
-                      <mat-error>
+                                        class="bg-zinc-800 border border-zinc-700 p-3 mt-1 block w-full rounded-md shadow-sm focus:border-amber-200 outline-none text-zinc-400" />
+                    
                         @if(commissionerDetaliesForm.get('commissionerName')?.errors &&
                         (commissionerDetaliesForm.get('commissionerName')?.touched ||
                         commissionerDetaliesForm.get('commissionerName')?.dirty) ){
@@ -570,11 +533,9 @@
         
                         </div>
                         }
-                      </mat-error>
+                    
                     </div>
-                  </mat-form-field>
     
-          <mat-form-field class="w-full">
             <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
                 <label for="commissionerEmail" class="block text-sm font-medium text-zinc-300">
                     {{"facilityDetalies.CommissionerEmail" | translate}}</label>
@@ -583,8 +544,8 @@
                     'is-Valid':!commissionerDetaliesForm.get('commissionerEmail')?.errors && (commissionerDetaliesForm.get('commissionerEmail')?.touched ||commissionerDetaliesForm.get('commissionerEmail')?.dirty),
                     'is-invalid':commissionerDetaliesForm.get('commissionerEmail')?.errors && (commissionerDetaliesForm.get('commissionerEmail')?.touched || commissionerDetaliesForm.get('commissionerEmail')?.dirty),
                   }" id="commissionerEmail" formControlName="commissionerEmail" type="email" placeholder='{{"facilityDetalies.CommissionerEmail" | translate}}'
-                              class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
-              <mat-error>
+                             class="bg-zinc-800 border border-zinc-700 p-3 mt-1 block w-full rounded-md shadow-sm focus:border-amber-200 outline-none text-zinc-400"/>
+          
                 @if(commissionerDetaliesForm.get('commissionerEmail')?.errors &&
                 (commissionerDetaliesForm.get('commissionerEmail')?.touched ||
                 commissionerDetaliesForm.get('commissionerEmail')?.dirty) ){
@@ -597,10 +558,9 @@
                     }
                 </div>
                 }
-              </mat-error>
+           
             </div>
-          </mat-form-field>
-          <mat-form-field class="w-full">
+         
             <div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
                 <label for="commissionerPhone" class="block text-sm font-medium text-zinc-300"> 
                     {{"facilityDetalies.CommissionerPhone" | translate}}</label>
@@ -609,8 +569,8 @@
                     'is-Valid':!commissionerDetaliesForm.get('commissionerPhone')?.errors && (commissionerDetaliesForm.get('commissionerPhone')?.touched ||commissionerDetaliesForm.get('commissionerPhone')?.dirty),
                     'is-invalid':commissionerDetaliesForm.get('commissionerPhone')?.errors && (commissionerDetaliesForm.get('commissionerPhone')?.touched || commissionerDetaliesForm.get('commissionerPhone')?.dirty),
                   }" id="commissionerPhone" formControlName="commissionerPhone" type="phone" placeholder='{{"facilityDetalies.CommissionerPhone" | translate}}'
-                                  class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
-              <mat-error>
+                                    class="bg-zinc-800 border border-zinc-700 p-3 mt-1 block w-full rounded-md shadow-sm focus:border-amber-200 outline-none text-zinc-400"/>
+          
               
              
                 @if(commissionerDetaliesForm.get('commissionerPhone')?.errors &&
@@ -625,11 +585,8 @@
                     }
                 </div>
                 }
-              </mat-error>
             </div>
-          </mat-form-field>
-    
-          <mat-form-field class="w-full">
+       
             <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
                 <label for="commissionerNationalId" class="block text-sm font-medium text-zinc-300">
                     {{"facilityDetalies.CommissionerId" | translate}}</label>
@@ -639,8 +596,8 @@
                     'is-invalid':commissionerDetaliesForm.get('commissionerNationalId')?.errors && (commissionerDetaliesForm.get('commissionerNationalId')?.touched || commissionerDetaliesForm.get('commissionerNationalId')?.dirty),
                   }" id="commissionerNationalId" formControlName="commissionerNationalId" type="text"
                           placeholder='{{"facilityDetalies.CommissionerId" | translate}}'
-                          class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
-              <mat-error>
+                          class="bg-zinc-800 border border-zinc-700 p-3 mt-1 block w-full rounded-md shadow-sm focus:border-amber-200 outline-none text-zinc-400" />
+          
                 @if(commissionerDetaliesForm.get('commissionerNationalId')?.errors &&
                 (commissionerDetaliesForm.get('commissionerNationalId')?.touched ||
                 commissionerDetaliesForm.get('commissionerNationalId')?.dirty) ){
@@ -651,11 +608,9 @@
 
                 </div>
                 }
-              </mat-error>
+           
             </div>
-          </mat-form-field>
-    
-          <mat-form-field class="w-full">
+       
             <div class="aos-init aos-animate my-4 animate__animated animate__backInRight animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
                 <label for="commissionerNationality" class="block text-sm font-medium text-zinc-300"> 
                     {{"facilityDetalies.CommissionerNationality" | translate}}                </label>
@@ -665,8 +620,8 @@
                     'is-invalid':commissionerDetaliesForm.get('commissionerNationality')?.errors && (commissionerDetaliesForm.get('commissionerNationality')?.touched || commissionerDetaliesForm.get('commissionerNationality')?.dirty),
                   }" id="commissionerNationality" formControlName="commissionerNationality" type="text"
                           placeholder='{{"facilityDetalies.CommissionerNationality" | translate}}'
-                          class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
-              <mat-error>
+                          class="bg-zinc-800 border border-zinc-700 p-3 mt-1 block w-full rounded-md shadow-sm focus:border-amber-200 outline-none text-zinc-400" />
+           
                
                 @if(commissionerDetaliesForm.get('commissionerNationality')?.errors &&
                 (commissionerDetaliesForm.get('commissionerNationality')?.touched ||
@@ -678,11 +633,8 @@
 
                 </div>
                 }
-              </mat-error>
             </div>
-          </mat-form-field>
-    
-          <mat-form-field class="w-full">
+       
             <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
                 <label for="commissionerNotes" class="block text-sm font-medium text-zinc-300"> {{"facilityDetalies.CommissionerNotes" | translate}}
                 </label>
@@ -691,8 +643,8 @@
                     'is-Valid':!commissionerDetaliesForm.get('commissionerNotes')?.errors && (commissionerDetaliesForm.get('commissionerNotes')?.touched ||commissionerDetaliesForm.get('commissionerNotes')?.dirty),
                     'is-invalid':commissionerDetaliesForm.get('commissionerNotes')?.errors && (commissionerDetaliesForm.get('commissionerNotes')?.touched || commissionerDetaliesForm.get('commissionerNotes')?.dirty),
                   }" id="commissionerNotes" formControlName="commissionerNotes" type="text" placeholder='{{"facilityDetalies.CommissionerNotes" | translate}}'
-                              class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
-              <mat-error>
+                              class="bg-zinc-800 border border-zinc-700 p-3 mt-1 block w-full rounded-md shadow-sm focus:border-amber-200 outline-none text-zinc-400" />
+            
                 @if(commissionerDetaliesForm.get('commissionerNotes')?.errors &&
                 (commissionerDetaliesForm.get('commissionerNotes')?.touched ||
                 commissionerDetaliesForm.get('commissionerNotes')?.dirty) ){
@@ -703,10 +655,8 @@
 
                 </div>
                 }
-              </mat-error>
             </div>
-          </mat-form-field>
-          <mat-form-field class="w-full">
+      
             <div class="aos-init aos-animate my-4 animate__animated animate__backInLeft animate__delay-0.4s" data-aos="fade-up-sm" data-aos-delay="200">
                 <label for="priceRequestId" class="block text-sm font-medium text-zinc-300">{{"facilityDetalies.PriceRequestId" | translate}}</label>
 
@@ -715,8 +665,8 @@
                     'is-Valid':!commissionerDetaliesForm.get('priceRequestId')?.errors && (commissionerDetaliesForm.get('priceRequestId')?.touched ||commissionerDetaliesForm.get('priceRequestId')?.dirty),
                     'is-invalid':commissionerDetaliesForm.get('priceRequestId')?.errors && (commissionerDetaliesForm.get('priceRequestId')?.touched || commissionerDetaliesForm.get('priceRequestId')?.dirty),
                   }" id="priceRequestId" formControlName="priceRequestId" type="text" placeholder='{{"facilityDetalies.PriceRequestId" | translate}}'
-                                  class="bg-zinc-800 border-zinc-200 p-2 mt-1 block w-full rounded-md  shadow-sm focus:border-amber-200 outline-zinc-800 text-zinc-400" />
-              <mat-error>
+                                   class="bg-zinc-800 border border-zinc-700 p-3 mt-1 block w-full rounded-md shadow-sm focus:border-amber-200 outline-none text-zinc-400" />
+          
                 @if(commissionerDetaliesForm.get('priceRequestId')?.errors &&
                 (commissionerDetaliesForm.get('priceRequestId')?.touched ||
                 commissionerDetaliesForm.get('priceRequestId')?.dirty) ){
@@ -729,9 +679,7 @@
 
                 </div>
                 }
-              </mat-error>
             </div>
-          </mat-form-field>
           <div class="flex justify-between items-center space-x-6 p-4 ">
             <button mat-button matStepperPrevious style="background-color: #10b981; color: white;"
             class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 my-4 

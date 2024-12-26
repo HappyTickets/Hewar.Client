@@ -1,22 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
 @import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
-
-
-
-    // padding-top: 80px; /* حجم الـ navbar (يمكنك تعديله حسب الحجم الفعلي للـ navbar) */
-    body{
-      // background-color: var(--main-color) !important ;
-      padding-top: 80px;
-  }
-
-  
- 
-  //////////////////////////////////////////////////////////////////////
-  /* You can add global styles to this file, and also import other style files */
-@import url("https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&display=swap");
-
-// @import 'ngx-toastr/toastr';
+// @import url("https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&display=swap");
+// @import url("https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&display=swap");
 
 
 
@@ -46,26 +32,11 @@ body {
 html {
     scroll-behavior: smooth;
   }
-  
-// @import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
-// @import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
- 
-  //////////////////////////////////////////////////////////////////////
-  /* You can add global styles to this file, and also import other style files */
-@import url("https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&display=swap");
-
-// @import 'ngx-toastr/toastr';
 
 
-
-:root {
-  --main-color: #000000;
-  --light-color: #f0f3f2;
-  --shadow: rgba(145, 158, 171, 0.2) 0px 2px 4px -1px,
-    rgba(145, 158, 171, 0.14) 0px 4px 5px 0px,
-    rgba(145, 158, 171, 0.12) 0px 1px 10px 0px;
-  --font-family: "Encode Sans Expanded", sans-serif;
-  --rating-color: #ffc908;
+/* Hide the entire subscript wrapper in angular material phone input don't remove it */
+.mat-mdc-form-field-subscript-wrapper {
+  display: none !important;
 }
 
 body {

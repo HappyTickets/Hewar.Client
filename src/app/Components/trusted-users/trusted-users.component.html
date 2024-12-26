@@ -1,0 +1,27 @@
+<div class="bg-black">
+    <div FadeInView class="text-center lg:col-6 mx-auto mb-32 "> 
+        <div class="px-3 py-0.5 rounded-full border-border/80 border inline-block"> 
+            <span class="text-sm font-medium bg-gradient-to-r from-orange-300 to-tertiary bg-clip-text text-transparent" 
+                style="background-size: 120%; background-position: center;"> VERIFIED REVIEWS
+             </span> 
+        </div> 
+        <h2 class="text-zinc-300  my-7 text-5xl">Trusted by 12,500+ happy users</h2> 
+        <p class=" text-zinc-300 text-lg text-text/80">Use and re-use tons of responsive sections too a main create the perfect</p> 
+        <p class=" text-zinc-300  text-lg text-text/80">layout. Sections are firmly of organised into the perfect start.</p> 
+    </div>
+    <div class="container mx-auto p-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <div FadeInView *ngFor="let card of cards" class="border border-zinc-800 group bg-black shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 " >
+            <div class="flex items-center p-5 ">
+                <img [src]="card.image" [alt]="card.title" class="ml-4 mt-3 rounded-full w-14 h-14 object-cover group-hover:scale-105 transition-transform duration-300" />
+                <div class="ml-5">
+                    <h3 class="text-lg font-bold text-zinc-300  transition-colors duration-300">{{ card.title }}</h3>
+                    <p class="text-zinc-500 mt-2">{{ card.description }}</p>
+                </div>
+            </div>
+            <p class="pl-10 pb-10 text-zinc-300">{{card.para}}</p>
+          </div>
+        </div>
+      </div>
+      
+</div>
