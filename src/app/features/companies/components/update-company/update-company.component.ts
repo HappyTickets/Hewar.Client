@@ -11,6 +11,8 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { CommonModule } from '@angular/common';
 import { ICompany } from '../../models/ICompany';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
+import { FloatLabelModule } from 'primeng/floatlabel';
 
 @Component({
   selector: 'app-update-company',
@@ -22,7 +24,10 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
     InputGroupAddonModule,
     InputTextModule,
     NgxDropzoneModule,
-    RouterLink
+    RouterLink,
+    TranslateModule,
+    FloatLabelModule,
+    InputTextModule,
   ],
   templateUrl: './update-company.component.html',
   styleUrl: './update-company.component.scss'
@@ -39,15 +44,23 @@ export class UpdateCompanyComponent implements OnInit {
     this.createUpdateForm()
   }
   ngOnInit(): void {
-    this.currentCompanyID = this._route.snapshot.paramMap.get('id'); // Get the ID from URL
+    this.currentCompanyID = this._route.snapshot.paramMap.get('id');
     this._companiesService.getCompanyById(this.currentCompanyID!).subscribe({
       next: (res) => {
         this.currentCompany = res.data;
         this.updateCompForm.patchValue({
+          contactEmail: this.currentCompany?.contactEmail,
+          phoneNumber: this.currentCompany?.phoneNumber,
+          registrationNumber: this.currentCompany?.registrationNumber,
+          taxId: this.currentCompany?.taxId,
           name: this.currentCompany?.name,
-          phone: this.currentCompany?.phone,
-          email: this.currentCompany?.email,
-          address: this.currentCompany?.address,
+          address: {
+            street: this.currentCompany?.address?.street,
+            city: this.currentCompany?.address?.city,
+            state: this.currentCompany?.address?.state,
+            country: this.currentCompany?.address?.country,
+            postalCode: this.currentCompany?.address?.postalCode,
+          }
         });
       },
       error: (err) => {
@@ -60,30 +73,22 @@ export class UpdateCompanyComponent implements OnInit {
   }
   createUpdateForm(){
     this.updateCompForm = this.fb.group({
+      contactEmail: ['', [Validators.required, Validators.email]],
+      phoneNumber: ['', [Validators.required]],
+      registrationNumber: ['', [Validators.required]],
+      taxId: ['', [Validators.required]],
       name: ['', [Validators.required]],
-      phone: ['', [Validators.required]],
-      email: ['', [Validators.required]],
-      password: [null, [Validators.required]],
-      address: ['', [Validators.required]],
+      address: this.fb.group({
+        street: ['', [Validators.required]],
+        city: ['', [Validators.required]],
+        state: ['', [Validators.required]],
+        country: ['', [Validators.required]],
+        postalCode: ['', [Validators.required]]
+      })
     });
-  }
-  onSelect(event: { addedFiles: File[] }) {
-    this.files.push(...event.addedFiles);
-    this.imageUrl = URL.createObjectURL(this.files[0]);
-  }
-  onRemove(event: File) {
-    this.files.splice(this.files.indexOf(event), 1);
   }
   onSubmit(){
-    const companyData = new FormData()
-    Object.keys(this.updateCompForm.controls).forEach((key) => {
-      const value = this.updateCompForm.get(key)?.value
-      if(value){
-        companyData.append(key, value)
-      }
-    });
-    companyData.append('imageUrl', this.imageUrl)
-    this._companiesService.updateCompany(companyData).subscribe({
+    this._companiesService.updateCompany(this.updateCompForm.value).subscribe({
       next: (res:IResponse<ICreateCompany>) => {
         console.log(res)
         this.toastr.success("The company is added successfully", 'Successfully')

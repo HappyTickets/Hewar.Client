@@ -27,4 +27,7 @@ export class CompaniesService {
   deleteCompany(id:number){
     return this._httpClient.delete(`${this.apiUrl}/softDelete?id=` + id)
   }
+  uploadFile(file:FormData){
+    return this._httpClient.post(`/files/upload`, file)
+  }
 }
