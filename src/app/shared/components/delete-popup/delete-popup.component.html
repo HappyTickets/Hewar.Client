@@ -1,4 +1,5 @@
 <p-dialog [modal]="true" [(visible)]="visible" [style]="{ width: '40rem' }">
+<<<<<<< HEAD
   <p class="head">
     {{ "app.delete-item.question" | translate }} {{ itemName }}
     {{ "app.delete-item.question-2" | translate }}
@@ -19,5 +20,12 @@
       severity="secondary"
       (click)="onCancel()"
     />
+=======
+  <p class="head"> {{'app.delete-item.question' | translate}}  {{ itemName }} {{'app.delete-item.question-2' | translate}}</p>
+  <p class="desc"> {{'app.delete-item.complete' | translate}}  {{ itemName }} {{'app.delete-item.click' | translate}}</p>
+  <div class="flex justify-between gap-2">
+    <p-button label="{{'app.delete-item.delete' | translate}}" class="delete-comp" (click)="onDelete()" />
+    <p-button label="{{'app.delete-item.cancel' | translate}}" class="cancel" severity="secondary" (click)="onCancel()" />
+>>>>>>> 4ef0f7b (edit companies after clone)
   </div>
 </p-dialog>

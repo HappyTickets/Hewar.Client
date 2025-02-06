@@ -1,4 +1,8 @@
 ::ng-deep .p-overlay-mask {
+<<<<<<< HEAD
+=======
+  background: rgba(0, 0, 0, 0.1) !important;
+>>>>>>> 4ef0f7b (edit companies after clone)
   ::ng-deep .p-dialog {
     text-align: center;
 
@@ -7,10 +11,17 @@
     }
     .head {
       font-size: 26px;
+<<<<<<< HEAD
       color: #1e6091 !important;
     }
     .desc {
       color: #7e8598;
+=======
+      color: #1E6091 !important;
+    }
+    .desc {
+      color: #7E8598;
+>>>>>>> 4ef0f7b (edit companies after clone)
       line-height: 40px;
     }
     button {
@@ -28,14 +39,22 @@
       }
     }
     .delete-comp button {
+<<<<<<< HEAD
       background-color: #a50f26 !important;
+=======
+      background-color: #A50F26 !important;
+>>>>>>> 4ef0f7b (edit companies after clone)
       margin-left: 25px;
       &:hover {
         background-color: #b83549 !important;
       }
     }
     .cancel button {
+<<<<<<< HEAD
       background-color: #7e8598 !important;
+=======
+      background-color: #7E8598 !important;
+>>>>>>> 4ef0f7b (edit companies after clone)
       &:hover {
         background-color: #8e99b6 !important;
       }

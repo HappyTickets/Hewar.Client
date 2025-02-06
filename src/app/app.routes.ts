@@ -15,8 +15,6 @@ import { CompanyOffersComponent } from './features/my-offers/components/company-
 import { FacilityOffersComponent } from './features/my-offers/components/facility-offers/facility-offers.component';
 import { UpdateCompanyComponent } from './features/companies/components/update-company/update-company.component';
 import { CompanyDetailsComponent } from './features/companies/components/company-details/company-details.component';
-import { UpdateCompanyComponent } from './features/companies/components/update-company/update-company.component';
-import { CompanyDetailsComponent } from './features/companies/components/company-details/company-details.component';
 
 export const routes: Route[] = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
