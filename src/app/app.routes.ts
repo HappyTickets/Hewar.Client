@@ -13,6 +13,9 @@ import { ResetPasswordComponent } from './features/auth/components/reset-passwor
 import { CreateResetPasswordComponent } from './features/auth/components/create-reset-password/create-reset-password.component';
 import { CompanyOffersComponent } from './features/my-offers/components/company-offers/company-offers.component';
 import { FacilityOffersComponent } from './features/my-offers/components/facility-offers/facility-offers.component';
+import { ListFacilityComponent } from './features/facilities/list-facility/list-facility.component';
+import { CreateFacilityComponent } from './features/facilities/create-facility/create-facility.component';
+import { UpdateFacilityComponent } from './features/facilities/update-facility/update-facility.component';
 
 export const routes: Route[] = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -27,14 +30,28 @@ export const routes: Route[] = [
 
   { path: 'companies', component: CompaniesComponent },
   { path: 'companies/createCompany', component: CreateCompanyComponent },
-  {path: 'companies/create-price-request/:id', component: CreatePriceRequestComponent },
+  {
+    path: 'companies/create-price-request/:id',
+    component: CreatePriceRequestComponent,
+  },
   { path: 'companies/offers', component: CompanyOffersComponent },
-
 
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'create-reset-password', component: CreateResetPasswordComponent },
   { path: 'reset-password', component: ResetPasswordComponent },
+  {
+    path: 'allfacilities',
+    component: ListFacilityComponent,
+  },
+  {
+    path: 'createFacilities',
+    component: CreateFacilityComponent,
+  },
+  {
+    path: 'update-facility/:id',
+    component: UpdateFacilityComponent, // Use the same component
+  },
 
   { path: '**', component: NotFoundComponent }, // wild card path
 ];

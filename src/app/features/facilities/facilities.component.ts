@@ -5,12 +5,13 @@ import { IResponseFacilities } from './models/iresponse-facilities';
 import { IUpdateFacilities } from './models/iupdate-facilities';
 import { CommonModule } from '@angular/common';
 import { IResponseData } from './models/iresponse-data';
+import { ListFacilityComponent } from './list-facility/list-facility.component';
 
 @Component({
   selector: 'app-facilities',
   templateUrl: './facilities.component.html',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ListFacilityComponent],
   styleUrls: ['./facilities.component.scss'],
 })
 export class FacilitiesComponent implements OnInit {
@@ -19,20 +20,5 @@ export class FacilitiesComponent implements OnInit {
 
   ngOnInit(): void {
     // Test: Get all facilities
-
-    let facilities: ICreateFacilities = {
-      email: 'test@testT12.com',
-      phone: '01010001010',
-      password: '123123abcdA$',
-      type: 'ee',
-      name: 'ALI',
-      imageUrl: 'stringddd',
-      commercialRegistration: 'ddstring',
-      activityType: 'string',
-      address: 'TSTdd',
-      city: 'TSTS',
-      responsibleName: '1231231231233',
-      responsiblePhone: '1231231233455544',
-    };
   }
 }

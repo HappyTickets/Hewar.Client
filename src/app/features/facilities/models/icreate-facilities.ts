@@ -1,14 +1,25 @@
 export interface ICreateFacilities {
-  email: string;
-  phone: string;
-  password: string;
   type: string;
   name: string;
-  imageUrl: string;
   commercialRegistration: string;
   activityType: string;
-  address: string;
-  city: string;
   responsibleName: string;
   responsiblePhone: string;
+  address: {
+    street: string;
+    city: string;
+    state: string;
+    country: string;
+    postalCode: string;
+  };
+  adminInfo: {
+    email: string;
+    password: string;
+    firstName: string;
+    lastName: string;
+    phone: string;
+    imageUrl: string;
+  };
 }
+
+export interface ICreateFacilityResponse {}

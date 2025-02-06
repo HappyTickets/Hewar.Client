@@ -1,31 +1,23 @@
 export interface IResponseData {
   id: number;
-  email: string;
-  phone: string;
-  password: string;
   type: string;
   name: string;
-  imageUrl: string;
   commercialRegistration: string;
   activityType: string;
-  address: string;
-  city: string;
   responsibleName: string;
   responsiblePhone: string;
+  address: {
+    street: string;
+    city: string;
+    state: string;
+    country: string;
+    postalCode: string;
+  };
 }
 
-// export interface IResponseFacilitiesData {
-//   id: number;
-//   email: string;
-//   phone: string;
-//   password: string;
-//   type: string;
-//   name: string;
-//   imageUrl: string;
-//   commercialRegistration: string;
-//   activityType: string;
-//   address: string;
-//   city: string;
-//   responsibleName: string;
-//   responsiblePhone: string;
-// }
+export interface IGetFacilityResponse {
+  status: number; // Example: 200
+  isSuccess: boolean;
+  successCode: number; // Example: 802
+  data: IResponseData[]; // The actual facility data
+}
