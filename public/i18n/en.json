@@ -307,6 +307,78 @@
         "formValues": "Form Values",
         "site": "Site"
       }
+    },
+    "companies": {
+      "companies-list": {
+        "add-comp": "Add a company",
+        "classification": "classification",
+        "industrial-security": "industrial security",
+        "facilities-security": "facilities security",
+        "delete": "delete",
+        "search-here": "Search here",
+        "search": "Search",
+        "location": "location",
+        "actions": {
+          "edit": "Edit company",
+          "request-quote": "Request quote",
+          "delete": "Delete company"
+        }
+      },
+      "companies-details": {
+        "name": "Name",
+        "phone": "Phone",
+        "email": "Email",
+        "address": "Address",
+        "company-services": "Our company services",
+        "company-services-desc": "Facility Security We help you protect your facility"
+      },
+      "create-update-company": {
+        "create-title": "Create Company",
+        "update-title": "Update Company",
+        "company-data-title": "Company data",
+        "admin-data-title": "Admin data",
+        "address-data-title": "Address details",
+        "contactEmail": "Company email",
+        "contactEmail-error": "Company email is required",
+        "phoneNumber": "Phone Company",
+        "phoneNumber-error": "Phone Company is required",
+        "registrationNumber": "Registration number",
+        "registrationNumber-error": "Registration number is required",
+        "taxId": "tax Id",
+        "taxId-error": "tax Id is required",
+        "name": "Company name",
+        "name-error": "Company name is required",
+        "email": "Email",
+        "email-error": "Email is required",
+        "password": "Password",
+        "password-error": "Password is required",
+        "firstName": "First name",
+        "firstName-error": "First name is required",
+        "lastName": "Last name",
+        "lastName-error": "Last name is required",
+        "phone": "Phone",
+        "phone-error": "Phone is required",
+        "street": "Street",
+        "street-error": "Street is required",
+        "city": "City",
+        "city-error": "City is required",
+        "state": "State",
+        "state-error": "State is required",
+        "country": "Country",
+        "country-error": "Country is required",
+        "postalCode": "Postal code",
+        "postalCode-error": "Postal code is required",
+        "save": "Save",
+        "cancel": "Cancel"
+      }
+    },
+    "delete-item": {
+      "question": "Are you sure to delete ",
+      "question-2": "?",
+      "complete": "to complete deletion",
+      "click": "Click on \"Delete\" to complete the process.",
+      "delete": "Delete",
+      "cancel": "Cancel"
     }
   },
   "enums": {
