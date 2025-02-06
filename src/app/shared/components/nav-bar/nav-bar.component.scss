@@ -1,0 +1,13 @@
+::ng-deep p-menubar * {
+  z-index: 99;
+}
+
+.login-button {
+  padding-right: 0.57vw;
+  padding-left: 0.57vw;
+  width: max-content;
+  min-width: 7vw;
+  background: linear-gradient(267.93deg, #00223C -5.69%, #1A759F 103.34%) !important;
+  border: none !important;
+  font-size: 0.75rem;
+}

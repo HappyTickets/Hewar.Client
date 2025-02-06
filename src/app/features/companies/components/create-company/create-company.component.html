@@ -1,0 +1,87 @@
+
+<div class="container">
+  <form [formGroup]="createCompForm" (ngSubmit)="onSubmit()">
+    <div class="card">
+      <!-- name -->
+      <div class="input-group">
+        <label for="name">الأسم كامل</label>
+        <p-inputgroup>
+          <p-inputgroup-addon>
+            <i class="pi pi-user"></i>
+          </p-inputgroup-addon>
+          <input pInputText id="name" formControlName="name" placeholder="أحمد حسن محمد" />
+        </p-inputgroup>
+        @if((createCompForm.get('name')?.dirty || createCompForm.get('name')?.touched) && createCompForm.get('name')?.errors?.['required']) {
+          <p class="text-error">الأسم مطلوب</p>
+        }
+      </div>
+      <!-- phone -->
+      <div class="input-group">
+        <label for="phone">الهاتف المحمول</label>
+        <p-inputgroup>
+          <p-inputgroup-addon>
+            <i class="pi pi-phone"></i>
+          </p-inputgroup-addon>
+          <input pInputText id="phone" formControlName="phone" placeholder="010 459 456" />
+        </p-inputgroup>
+        @if((createCompForm.get('phone')?.dirty || createCompForm.get('phone')?.touched) && createCompForm.get('phone')?.errors?.['required']) {
+          <p class="text-error">الهاتف المحمول مطلوب</p>
+        }
+      </div>
+      <!-- email -->
+      <div class="input-group">
+        <label for="email">البريد اللإلكتروني</label>
+        <p-inputgroup>
+          <p-inputgroup-addon>
+            <i class="pi pi-envelope"></i>
+          </p-inputgroup-addon>
+          <input pInputText type="email" id="email" formControlName="email" placeholder="ahmedmohamed@gmail.com" />
+        </p-inputgroup>
+        @if((createCompForm.get('email')?.dirty || createCompForm.get('email')?.touched) && createCompForm.get('email')?.errors?.['required']) {
+          <p class="text-error">البريد اللإلكتروني مطلوب</p>
+        }
+      </div>
+      <!-- password -->
+      <div class="input-group">
+        <label for="password">كلمه السر</label>
+        <p-inputgroup>
+          <p-inputgroup-addon>
+            <i class="pi pi-lock"></i>
+          </p-inputgroup-addon>
+          <input pInputText type="password" id="password" formControlName="password" placeholder="asa123123" />
+        </p-inputgroup>
+        @if((createCompForm.get('password')?.dirty || createCompForm.get('password')?.touched) && createCompForm.get('password')?.errors?.['required']) {
+          <p class="text-error">كلمه السر مطلوب</p>
+        }
+      </div>
+      <!-- address -->
+      <div class="input-group">
+        <label for="address">العنوان</label>
+        <p-inputgroup>
+          <p-inputgroup-addon>
+            <i class="pi pi-map-marker"></i>
+          </p-inputgroup-addon>
+          <input pInputText id="address" formControlName="address" placeholder="الممكله العربيه السعوديه , الرياض , حي النورس" />
+        </p-inputgroup>
+        @if((createCompForm.get('address')?.dirty || createCompForm.get('address')?.touched) && createCompForm.get('address')?.errors?.['required']) {
+          <p class="text-error">العنوان مطلوب</p>
+        }
+      </div>
+      <!-- image -->
+      <div class="upload d-flex justify-content-center ">
+        <ngx-dropzone class="rounded-circle text-center overflow-hidden" (change)="onSelect($event)">
+          <ngx-dropzone-label>Upload Photo <i class="fa-solid fa-cloud-arrow-up"></i></ngx-dropzone-label>
+          <ngx-dropzone-image-preview class="rounded-circle" ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
+            <ngx-dropzone-label class="rounded-circle"></ngx-dropzone-label>
+          </ngx-dropzone-image-preview>
+        </ngx-dropzone>
+      </div>
+    </div>
+    <!-- <input type="file" formControlName="imgUrl"> -->
+    <!-- actions -->
+    <div class="actions">
+      <button type="submit" class="save" [disabled]="createCompForm.invalid">Save</button>
+      <a class="cancel" routerLink="/companies">Cancel</a>
+    </div>
+  </form>
+</div>

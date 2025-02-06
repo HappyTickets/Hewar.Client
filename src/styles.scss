@@ -1,79 +1,57 @@
 /* You can add global styles to this file, and also import other style files */
-@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
-@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
-
-
-
-    // padding-top: 80px; /* حجم الـ navbar (يمكنك تعديله حسب الحجم الفعلي للـ navbar) */
-    body{
-      // background-color: var(--main-color) !important ;
-      padding-top: 80px;
-  }
-
-  
- 
-  //////////////////////////////////////////////////////////////////////
-  /* You can add global styles to this file, and also import other style files */
-@import url("https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&display=swap");
-
-// @import 'ngx-toastr/toastr';
-
-
-
-:root {
-  --main-color: #000000;
-  --light-color: #f0f3f2;
-  --shadow: rgba(145, 158, 171, 0.2) 0px 2px 4px -1px,
-    rgba(145, 158, 171, 0.14) 0px 4px 5px 0px,
-    rgba(145, 158, 171, 0.12) 0px 1px 10px 0px;
-  --font-family: "Encode Sans Expanded", sans-serif;
-  --rating-color: #ffc908;
-}
-
+@import 'primeflex/primeflex.css';
+@import "primeicons/primeicons.css";
+@import 'ngx-toastr/toastr';
 body {
-  font-family: var(--font-family) !important;
+  margin: 0px;
 }
 
+* {
+  font-family: 'Alexandria', Roboto, "Helvetica Neue", sans-serif;
+}
 
+@font-face {
+  font-family: 'Alexandria';
+  src: url('/fonts/Alexandria-VariableFont_wght.ttf');
+}
 
-///////////////////////////////////
-/// 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@font-face {
+  font-family: 'tajawal-bold';
+  src: url('/fonts/Tajawal-Bold.ttf');
+}
 
-@import "aos/dist/aos.css";
-html {
-    scroll-behavior: smooth;
+@font-face {
+  font-family: 'tajawal-medium';
+  src: url('/fonts/Tajawal-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'tajawal-regular';
+  src: url('/fonts/Tajawal-Regular.ttf');
+}
+
+html, body { height: 100%; }
+
+// container
+/* Basic container class */
+.container {
+  width: 100%;
+  height: 100%;
+  max-width: 1140px; /* Adjust to your desired max-width */
+  margin: 0 auto; /* Centers the container */
+  padding: 0 15px; /* Adds some padding on the sides */
+}
+
+/* Responsive behavior */
+@media (max-width: 1200px) {
+  .container {
+    max-width: 1000px;
   }
-  
-// @import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
-// @import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
- 
-  //////////////////////////////////////////////////////////////////////
-  /* You can add global styles to this file, and also import other style files */
-@import url("https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&display=swap");
-
-// @import 'ngx-toastr/toastr';
-
-
-
-:root {
-  --main-color: #000000;
-  --light-color: #f0f3f2;
-  --shadow: rgba(145, 158, 171, 0.2) 0px 2px 4px -1px,
-    rgba(145, 158, 171, 0.14) 0px 4px 5px 0px,
-    rgba(145, 158, 171, 0.12) 0px 1px 10px 0px;
-  --font-family: "Encode Sans Expanded", sans-serif;
-  --rating-color: #ffc908;
 }
 
-body {
-  font-family: var(--font-family) !important;
-}
-
-
-@import "aos/dist/aos.css";
-html {
-    scroll-behavior: smooth;
+@media (max-width: 992px) {
+  .container {
+    max-width: 100%;
   }
+}
+

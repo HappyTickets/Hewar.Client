@@ -1,0 +1,120 @@
+// ::ng-deep p-stepper {
+//   width: 90 !important;
+//   margin: 25px auto;
+//   direction: rtl;
+//   .p-step:has(~ .p-step-active) .p-stepper-separator {
+//     background: #0387e9 !important;
+//   }
+//   ::ng-deep .p-step-header {
+//     display: block !important;
+//     .step {
+//       color: #1E6091;
+//     }
+//     .desc {
+//       color: #263238;
+//     }
+
+//   }
+//   .p-step-number {
+//     width: 0;
+//     margin: auto;
+//     background-color: #1E6091;
+//     color: #fff !important;
+//     border: none;
+//     border-radius: 6px ;
+//     -webkit-border-radius: 6px ;
+//     -moz-border-radius: 6px ;
+//     -ms-border-radius: 6px ;
+//     -o-border-radius: 6px ;
+//   }
+//   .p-steppanel-content {
+//     direction: ltr;
+//     text-align: center;
+//     .next button {
+//       margin-left: 25px;
+//       color: #fff;
+//       border: none;
+//       background: linear-gradient(90.79deg, #00223C 5.28%, #347AAE 89.85%) !important;
+//       &:hover {
+//         color: #1E6091;
+//         border: 1px solid #1E6091;
+//         background: none !important;
+//       }
+//     }
+//     .back button {
+//       color: #1E6091;
+//       border: 1px solid #1E6091;
+//       background: none !important;
+//       &:hover {
+//         border: 1px solid #1E6091;
+//         background: linear-gradient(90.79deg, #00223C 5.28%, #347AAE 89.85%) !important;
+//       }
+//     }
+//   }
+// }
+
+// start content stepper
+form {
+  direction: rtl;
+  width: 50%;
+  margin: 25px auto;
+  padding-bottom: 10px;
+  .input-group {
+    margin-bottom: 35px;
+  }
+  label {
+    color: #999;
+  }
+  ::ng-deep .p-inputgroup {
+    margin-top: 15px;
+  input {
+    padding: 10px;
+    width: 100%;
+  }
+  }
+  .text-error {
+    color: #d63031;
+  }
+  .actions {
+    margin: 35px 0;
+    display: flex;
+    justify-content: space-between;
+    button, a {
+      text-decoration: none;
+      cursor: pointer;
+      padding: 8px 35px;
+      color: #fff;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      border-radius: 6px;
+      -webkit-border-radius: 6px;
+      -moz-border-radius: 6px;
+      -ms-border-radius: 6px;
+      -o-border-radius: 6px;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -ms-transition: 0.3s;
+      -o-transition: 0.3s;
+    }
+    .save {
+      background-color: #168AAD;
+      &:hover {
+        background-color: #00223C;
+      }
+    }
+    .cancel {
+      background-color: #01355c;
+      &:hover {
+        background-color: #000000;
+      }
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  form {
+    width: 100%;
+  }
+}

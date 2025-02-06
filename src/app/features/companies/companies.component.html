@@ -1,0 +1,85 @@
+<div class="companies">
+  <div class="container">
+    <div class="grid mt-4 mb-4 align-items-center">
+      <div class="col-2">
+        <div class="add-company">
+          <a routerLink="createCompany" >اضافة شركة</a>
+        </div>
+      </div>
+      <div class="col-6 p-0">
+        <div class="filter">
+          <ul class="flex justify-content-center">
+            <li>تصنيف</li>
+            <label for="l01">
+            <li>
+              <input type="radio" id="l01" name="type" value="type-1" (click)="showSec01()" checked>
+              الامن الصناعي
+            </li>
+          </label>
+          <label for="l02">
+            <li class="active">
+              <input type="radio" id="l02" name="type" value="type-2" (click)="showSec02()">
+              امن المنشأت
+            </li>
+          </label>
+          <li class="delete">مسح</li>
+        </ul>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="search">
+          <form class="flex">
+            <i class="pi pi-search"></i>
+            <input type="text" placeholder="ابحث هنا ..." [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}">
+            <i class="pi pi-sliders-h"></i>
+            <button>ابحث</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="grid"> -->
+      @for (company of filteredCards().slice(first, first + rows); track $index) {
+        <!-- <div class="col-12"> -->
+          <div class="card">
+            <div class="grid mx-4">
+              <div class="col-3">
+                <div class="card-image">
+                  <img [src]="company.imageUrl" alt="">
+                </div>
+              </div>
+              <div class="col">
+                <div class="card-text">
+                  <h2>{{company.name}}</h2>
+                  <p class="type">{{company.contactEmail}}</p>
+                  <p class="location"><img src="images/location-icon.svg" alt=""><span>الموقع:</span> {{company.address}}</p>
+                </div>
+              </div>
+              <div class="col-2">
+                <div class="card-actions">
+                  <i class="pi pi-share-alt"></i>
+                  <button [routerLink]="'/companies/updateCompany/' + company.id" class="edit">تعديل الشركه</button>
+                  <a routerLink="create-price-request/{{company.id}}" class="details">طلب عرض سعر</a>
+                  <button class="delete" role="button" (click)="showDialog(company)">
+                  حذف الشركه
+                  </button>
+                <div class="card flex justify-center">
+                  <p-dialog [modal]="true" [(visible)]="visibleDeletePopup" [style]="{ width: '40rem' }">
+                    <p class="head">هل انت متأكد من حذف شركه {{companyName}}</p>
+                    <p class="desc">لاستكمال حذف شركه {{companyName}} من الشركات الأمنيه  <br> اضغط علي زر “حذف واستكمال خطوات الحذف</p>
+                    <div class="flex justify-between gap-2">
+                      <p-button class="delete-comp" label="حذف الشركه" (click)="deleteCompany()" />
+                      <p-button class="cancel" label="الغاء" severity="secondary" (click)="visibleDeletePopup = false" />
+                    </div>
+                  </p-dialog>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <!-- </div> -->
+      }
+    <!-- </div> -->
+    <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="totalRecords"  [rowsPerPageOptions]="[10, 20]"/>
+  </div>
+</div>
+

@@ -1,0 +1,210 @@
+<div style="
+    display: flex; 
+    align-items: center; 
+    flex-direction: column; 
+    background-image: url(/photos/9c83c96b693b4c2b9ab608b40712c423.png); 
+    background-size: 100vw; 
+    background-repeat: no-repeat; 
+    width: 100%; 
+    height: 49.3vw;">
+    <div style="margin: auto;">
+        <div style="
+            display: flex; 
+            align-items: center; 
+            flex-direction: column; 
+            gap: 1.9vw;">
+            <div class="header-text-container">
+                <div class="header-title fade-in-left-text">
+                    {{'app.home-page.header-text' | translate}}
+                </div>
+                <div class="header-subtitle fade-in-up-text">
+                    {{'app.home-page.header-text-2' | translate}}
+                </div>
+            </div>
+            <p-button id="join-now" label="{{'app.home-page.join-now' | translate}}"/>
+        </div>
+    </div>
+</div>
+<div style="
+    display: flex; 
+    flex-direction: row; 
+    width: 100%;
+    justify-content: space-around;
+    min-height: 5.79vw;
+    height: fit-content;
+    font-size: 1.5rem;
+    padding: 1.79vw;
+    background-color: #00223C;
+    color: #fff;
+    gap: 1vw;">
+    <div class="stats-counter">
+        <div>
+            {{ 'app.home-page.employees-count' | translate }} {{counts.employeesCount}}
+        </div>
+        <div>
+            {{ 'app.home-page.companies-count' | translate }} {{counts.companiesCount}}
+        </div>
+        <div>
+            {{ 'app.home-page.parteners-count' | translate }} {{counts.partenersCount}}
+        </div>
+    </div>
+</div>
+
+<div style="padding: 4.63vw; background-color: #F2FBFF; display: flex; flex-direction: column; align-items: center;">
+    <h3 class="section-title">{{'app.home-page.services.title' | translate}}</h3>
+    <mat-tab-group [dir]="language === 'ar' ? 'rtl' : 'ltr'">
+        @for (tab of servicesTabs; track tab.label; let tabIndex = $index) {
+            <mat-tab [label]="tab.label | translate">
+                <p-carousel 
+                    [value]="tab.cards" 
+                    [numVisible]="getVisibleItems(tab.cards.length < 3 ? tab.cards.length : 3)" 
+                    [numScroll]="getVisibleItems(tab.cards.length < 3 ? tab.cards.length : 3)"
+                    [style]="{'padding-top': '1.16vw', 'padding-bottom': '1.16vw'}">
+                    <ng-template let-card pTemplate="item">
+                        <p-card class="service-card" [style]="{ width: '100%', 'max-width': 'fit-content', height: 'fit-content'}">
+                            <ng-template #header>
+                                <img style="width: 100%;" [alt]="card.image.alt | translate" [src]="card.image.url" />
+                            </ng-template>
+                            <ng-template #title>{{card.title | translate}}</ng-template>
+                            <ng-template #subtitle>
+                                <span style="color: #1A759F;">
+                                    {{card.subtitle | translate}}
+                                </span>
+                            </ng-template>
+                            <div style="height: fit-content; display: flex; flex-direction: row; justify-content: space-between;">
+                                <div style="display: flex; flex-direction: row; width: fit-content; height: fit-content;">
+                                    <svg style="height: 17px;" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 19.9C13.6167 19.4 14.9667 18.4127 16.05 16.938C17.1333 15.4633 17.7667 13.8173 17.95 12H12V4.14399L6.404 6.22099C6.27533 6.27232 6.176 6.34932 6.106 6.45199C6.03533 6.55466 6 6.66999 6 6.79799V11.531C6 11.6603 6.01667 11.8167 6.05 12H12V19.9ZM12 20.842C11.9093 20.842 11.8137 20.8337 11.713 20.817C11.6123 20.8003 11.519 20.7753 11.433 20.742C9.46433 19.992 7.9 18.72 6.74 16.926C5.58 15.132 5 13.19 5 11.1V6.81699C5 6.47699 5.09833 6.16932 5.295 5.89399C5.49167 5.61865 5.74333 5.41866 6.05 5.29399L11.435 3.29399C11.6297 3.22332 11.818 3.18799 12 3.18799C12.182 3.18799 12.3707 3.22332 12.566 3.29399L17.95 5.29399C18.2567 5.41866 18.5083 5.61865 18.705 5.89399C18.9017 6.16932 19 6.47699 19 6.81699V11.1C19 13.19 18.42 15.132 17.26 16.926C16.1 18.72 14.5357 19.992 12.567 20.742C12.4803 20.7753 12.387 20.8003 12.287 20.817C12.187 20.8337 12.0913 20.842 12 20.842Z" fill="#374957"/>
+                                    </svg>
+                                    <div style="position: relative; top: 3px; min-width: fit-content;">
+                                        {{card.content | translate}}
+                                    </div>
+                                </div>
+                                <p-button icon="pi pi-map-marker" styleClass="map-marker-button"/>
+                            </div>
+                            <ng-template #footer>
+                                <div style="display: flex; flex-direction: column; gap: 1.5vw;">
+                                    <!-- linear-gradient(45deg, #7ABCDB, #31A4A4) -->
+                                        <div style="display: flex; flex-direction: row; gap: 1vw; width: 100%;">
+                                        <p-button [label]="card.actionButtonLabel | translate" [style]="{'background-color': '#00223C', 'color': 'white', 'width': 'fit-content'}"/>
+                                        <p-button icon="pi pi-share-alt" [style]="{'background-color': 'transparent', 'color': '#036666'}"/>
+                                        </div>
+                                </div>
+                            </ng-template>
+                        </p-card>
+                    </ng-template>
+                </p-carousel>
+            </mat-tab>
+        }
+    </mat-tab-group>
+    <p-button label="{{'app.home-page.services.show-all' | translate}}" id="show-all-services-button"/>
+</div>
+<div style="padding: 6.88vw 6.69vw; display: flex; flex-direction: row; justify-content: space-between; gap: 1vw;">
+    <div class="why-us-container">
+        <div style="font-family: 'tajawal-bold'; font-size: max(1.74vw, 1.5rem); font-weight: bold;">
+            {{'app.home-page.why-us.title' | translate}}
+        </div>
+        <hr style="border: 0.17vw solid #3D98DB; width: max(15.4vw, 10rem); margin: 0px;">
+        <div style="font-family: 'tajawal-medium'; font-size: max(1.16vw, 1rem); font-weight: medium; color: #646575;">
+            {{'app.home-page.why-us.content' | translate}}
+        </div>
+        <p-button label="{{'app.home-page.why-us.action' | translate}}" [style]="{ 'width': 'max(13.95vw, 10rem)', 'height': 'max(3.59vw, 2rem)', 'font-family': 'tajawal-regular', '--p-button-primary-background': '#3D98DB', '--p-button-primary-hover-background': '#2071AC', 'font-size': 'max(1.39vw, 1rem)'}"/>
+    </div> 
+    <div>
+        <img style="border-radius: 20px; width: 39.81vw;" src="/photos/9b83c96b693b4c2b9ab608b40712c423.png" alt="Company services illustration">
+    </div>
+</div>
+<div style="padding: 9.2vw; background-color: #F2FBFF;">
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 2.65vw;">
+        <h3 class="section-title">
+            {{'app.home-page.achievements.title' | translate}}
+        </h3>
+        <div style="display: flex; flex-direction: row; gap: 1.33vw; flex-wrap: wrap; justify-content: center;">
+            @for (achievement of achievements; track $index) {
+                <div style="box-shadow: 0px 15px 15px rgba(0, 0, 0, 0.04); height: fit-content;">
+                    <p-card class="achievement-card" [style]="{'display': 'flex', 'flex-direction': 'column', 'align-items': 'center', 'width': 'fit-content', 'height': 'fit-content', 'padding': '1.33vw'}">
+                    <ng-template #header>
+                        <svg width="60" height="60" fill="#F2FBFF" stroke="#6F7481" stroke-width="0.2" viewBox="0 0 95.26 95.26" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="47.63" cy="47.63" r="47.63" />
+                            <g transform="translate(27.63, 27.63)">
+                                <path d="M19.9967 3.33325C14.9834 3.33325 11.7334 6.69825 7.89003 7.92492C6.3267 8.42492 5.54503 8.67325 5.22837 9.02492C4.9117 9.37492 4.82003 9.88992 4.63503 10.9166C2.6517 21.9099 6.98503 32.0733 17.3184 36.0299C18.4267 36.4549 18.9817 36.6666 20.0017 36.6666C21.0217 36.6666 21.5784 36.4533 22.6884 36.0283C33.02 32.0733 37.3484 21.9099 35.365 10.9166C35.18 9.88992 35.0867 9.37492 34.77 9.02325C34.4534 8.67159 33.6734 8.42325 32.11 7.92492C28.265 6.69825 25.01 3.33325 19.9967 3.33325Z" stroke="#00223C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M17.0834 16.5983C17.0834 16.4983 17.0967 15.9216 17.1001 15.1983C17.1001 14.535 17.0434 13.8983 17.3601 13.315C18.5434 10.9583 21.9434 11.1983 22.7834 13.5983C22.9284 13.9933 22.9384 14.6183 22.9334 15.1983C22.9284 15.9366 22.9434 16.5983 22.9434 16.5983M17.2284 17.3C15.4284 17.3 14.5284 18.6 14.3284 19.4C14.1284 20.2 14.1284 23.1 14.2484 24.3C14.6484 25.8 15.6484 26.42 16.6284 26.62C17.5284 26.7 21.3284 26.67 22.4284 26.67C24.0284 26.7 25.2284 26.1 25.7284 24.3C25.8284 23.7 25.9284 20.4 25.6784 19.4C25.1484 17.8 23.8284 17.3 22.8284 17.3H17.2284Z" stroke="#00223C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </g>
+                        </svg>                  
+                    </ng-template>
+                    <ng-template #title> 
+                        {{achievement.title | translate}} 
+                    </ng-template>
+                    {{achievement.count}} {{achievement.subtitle | translate}}
+                    </p-card>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<div style="background-color: #AEDDFF; min-height: 34.72vw; height: fit-content; padding: 4vw;">
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 2.65vw;">
+        <h3 class="section-title">
+            {{'app.home-page.partners.title' | translate}}
+        </h3>
+        <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 1.33vw; width: 100%;">
+            @for (partner of partners; track $index) {
+                <div class="partner-logo">
+                    <div style="height: 100%; display: flex; align-items: center;">
+                        <img [src]="partner.logo" [alt]="partner.alt | translate">
+                    </div>
+                    <p>{{partner.name | translate}}</p>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div style="padding: 4vw; display: flex; flex-direction: column; align-items: center; gap: 2.65vw;">
+    <h3 class="section-title">
+        {{'app.home-page.news.title' | translate}}
+    </h3>
+    <p-carousel 
+        [value]="news" 
+        [numVisible]="getVisibleItems(5)" 
+        [numScroll]="getVisibleItems(5)" 
+        [showNavigators]="true" 
+        [showIndicators]="false" 
+        [style]="{'width': '90vw', 'margin': '0 auto', 'height': 'fit-content'}">
+        <ng-template let-newsItem pTemplate="item">
+            <div style="margin: 0.5vw;">
+                <p-card [style]="{'min-height': '25vw', 'height': 'fit-content', 'border-radius': '10px', 'overflow': 'hidden'}">
+                    <ng-template pTemplate="header">
+                        <img [src]="newsItem.image.url" [alt]="newsItem.image.alt" style="width: 100%; object-fit: cover;">
+                    </ng-template>
+                    <div style="text-align: start; padding: 1vw;">
+                        <div style="font-size: max(1.2vw, 1.25rem); color: #424755; margin-bottom: max(0.5vw, 0.625rem);">
+                            {{language === 'ar' ? newsItem.arTitle : newsItem.enTitle}}
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <p-button icon="pi pi-share-alt" styleClass="p-button-text"></p-button>
+                            <div style="display: flex; flex-direction: column; gap: 0.5vw; font-size: max(0.9vw, 1rem);">
+                                <div style="display: flex; gap: 1vw; align-items: center; color: #6F7481;">
+                                    <span>{{newsItem.commentsCount}} {{'app.home-page.news.comments' | translate}}</span>
+                                    <span>{{newsItem.viewsCount}} {{'app.home-page.news.views' | translate}}</span>
+                                </div>
+                                <div style="color: #6F7481;">
+                                    <span>{{newsItem.date}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </p-card>
+            </div>
+        </ng-template>
+    </p-carousel>
+</div>
+
+@if (showScrollButton) {
+    <p-button 
+        icon="pi pi-arrow-up" 
+        (onClick)="scrollToTop()" 
+        [style]="scrollTopButtonStyle"
+        styleClass="scroll-top-button" 
+        />
+}
