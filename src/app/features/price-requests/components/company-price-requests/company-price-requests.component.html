@@ -26,8 +26,8 @@
         <td>{{ 'enums.contract-types.'+ service.contractType | translate }}</td>
         <td>{{ 'enums.request-status.'+ service.requestStatus | translate }}</td>
         <td>
-          <p-button (click)="openChat()" label="Chat"/>
-          <p-button (click)="hide(service.id)" label="Hide"/>
+          <p-button class="mx-1" (click)="openChat()" label="Chat"/>
+          <p-button class="mx-1" (click)="hide(service.id)" label="Hide"/>
         </td>
       </tr>
     </ng-template>

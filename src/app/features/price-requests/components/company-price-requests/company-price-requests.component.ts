@@ -12,10 +12,10 @@ import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { PriceRequestsService } from '../../services/price-requests.service';
 import { ICompanyPriceRequest } from '../../models/icompany-price-request';
-import { RequestStatus } from '../../../../shared/enums/request-status';
 import { TranslatePipe } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 import { PriceOffersService } from '../../../my-offers/services/price-offers.service';
+import { IPriceOffer } from '../../../my-offers/models/iprice-offer';
 
 @Component({
   selector: 'app-company-price-requests',
@@ -29,49 +29,41 @@ export class CompanyPriceRequestsComponent implements OnInit {
   private priceOffersService = inject(PriceOffersService);
   private toastr = inject(ToastrService);
   priceRequests: ICompanyPriceRequest[] = [];
+  priceOffers: IPriceOffer[] = [];
   searchTerm = '';
 
   ngOnInit(): void {
-    this.getPriceRequests();
+    this.getPrices();
   }
 
-  getPriceRequests(): void {
+  getPrices(): void {
     this.priceRequestsService.getMyCompanyRequests().subscribe(res => {
       if (res.data) {
-        this.priceRequests = res.data
-        console.log(res);
-      }
+        this.priceRequests = res.data;
+      };
     })
   }
-  getRequestStatusLabel(status: RequestStatus): string {
-    const statusLabels: Record<RequestStatus, string> = {
-      [RequestStatus.Pending]: 'Pending',
-      [RequestStatus.accepted]: 'Accepted',
-      [RequestStatus.Rejected]: 'Rejected',
-      [RequestStatus.Cancelled]: 'Cancelled',
-      [RequestStatus.Completed]: 'Completed',
-    };
-    return statusLabels[status] || 'Unknown';
-  }
+
+
   openChat(): void {
     this.toastr.info('Chat feature is coming soon!', 'Coming Soon');
   }
   hide(id: number) {
     this.priceRequestsService.hide(id).subscribe(res => {
       console.log(res);
-      this.getPriceRequests();
+      this.getPrices();
     })
   }
   reject(id: number) {
     this.priceOffersService.reject(id).subscribe(res => {
       console.log(res);
-      this.getPriceRequests();
+      this.getPrices();
     })
   }
   accept(id: number) {
     this.priceOffersService.accept(id).subscribe(res => {
       console.log(res);
-      this.getPriceRequests();
+      this.getPrices();
     })
   }
 }

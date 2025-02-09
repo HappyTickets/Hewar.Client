@@ -36,7 +36,6 @@ export const routes: Route[] = [
 
   { path: 'companies', component: CompaniesComponent },
   { path: 'companies/createCompany', component: CreateCompanyComponent },
-
   { path: 'companies/updateCompany/:id', component: UpdateCompanyComponent },
   { path: 'companies/companyDetails/:id', component: CompanyDetailsComponent },
 
@@ -54,5 +53,11 @@ export const routes: Route[] = [
   { path: 'register', component: RegisterComponent },
   { path: 'create-reset-password', component: CreateResetPasswordComponent },
   { path: 'reset-password', component: ResetPasswordComponent },
+
+  { path: 'facilities', component: ListFacilityComponent },
+  { path: 'createFacilities', component: CreateFacilityComponent },
+  { path: 'update-facility/:id', component: UpdateFacilityComponent },
+  { path: 'facilities/:id', component: DetialsFacilityComponent },
+
   { path: '**', component: NotFoundComponent }, // wild card path
 ];

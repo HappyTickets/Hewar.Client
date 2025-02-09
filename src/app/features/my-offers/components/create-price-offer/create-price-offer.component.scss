@@ -67,6 +67,7 @@
     width: 100%;
     gap: 0.5rem;
     justify-content: space-evenly;
+    flex-direction: column;
 
     .p-inputtext,
     .p-select,
@@ -75,6 +76,20 @@
     }
     @media (max-width: 768px) {
       flex-direction: column;
+    }
+    div {
+      display: flex;
+      justify-content: space-around;
+      flex-direction: row;
+      gap: 5px;
+      .p-inputtext,
+      .p-select,
+      p-inputNumber {
+        width: 100% !important;
+      }
+      @media (max-width: 768px) {
+        flex-direction: column;
+      }
     }
   }
   textarea {

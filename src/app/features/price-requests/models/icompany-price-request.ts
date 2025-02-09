@@ -1,6 +1,7 @@
 import { ContractType } from '../../../shared/enums/contract-type';
 import { RequestStatus } from '../../../shared/enums/request-status';
 import { ShiftType } from '../../../shared/enums/shift-type';
+import { IPriceOffer } from '../../my-offers/models/iprice-offer';
 
 export interface ICompanyPriceRequest {
   id: number;
@@ -10,6 +11,7 @@ export interface ICompanyPriceRequest {
   endDate: string;
   notes: string;
   requestStatus: RequestStatus;
+  hasOffers: boolean;
   services: {
     serviceId: number;
     quantity: number;
@@ -23,7 +25,6 @@ export interface ICompanyPriceRequest {
     monthlyCost?: number;
     dailyCost?: number;
   }[];
-  hasOffers: boolean;
   facility: {
     id: number;
     name: string;
@@ -32,5 +33,5 @@ export interface ICompanyPriceRequest {
     responsiblePhone: string;
     logo: string;
   };
-  isEditMode?: boolean;
+  offers: IPriceOffer[];
 }

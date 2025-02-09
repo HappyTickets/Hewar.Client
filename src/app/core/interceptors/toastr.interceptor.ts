@@ -22,7 +22,7 @@ export const toastrInterceptor: HttpInterceptorFn = (req, next) => {
      if(error && !error.isSuccess) {
       const message = localizationService.translateErrorCode(error.errorCode);
       toastrService.error(message);
-      if(error.errors.length > 0) {
+      if(error.errors &&error.errors.length > 0) {
         for (err of error.errors) {
           toastrService.error(err);
         }

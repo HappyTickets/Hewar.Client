@@ -36,8 +36,7 @@ export class FacilityPriceRequestsComponent implements OnInit {
   getPriceRequests(): void {
     this.priceRequestsService.getMyFacilityRequests().subscribe(res => {
       if (res.data) {
-        this.priceRequests = res.data.map((request) => ({ ...request, servicesNames: request.otherServices.map((s) => s.name).join(', '), status: this.getRequestStatusLabel(request.requestStatus), isEditMode: false }));
-        console.log(res.data);
+        this.priceRequests = res.data;
       }
     })
   }
