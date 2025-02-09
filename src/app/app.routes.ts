@@ -16,6 +16,7 @@ import { FacilityOffersComponent } from './features/my-offers/components/facilit
 import { ListFacilityComponent } from './features/facilities/list-facility/list-facility.component';
 import { CreateFacilityComponent } from './features/facilities/create-facility/create-facility.component';
 import { UpdateFacilityComponent } from './features/facilities/update-facility/update-facility.component';
+import { DetialsFacilityComponent } from './features/facilities/detials-facility/detials-facility.component';
 
 export const routes: Route[] = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -51,6 +52,10 @@ export const routes: Route[] = [
   {
     path: 'update-facility/:id',
     component: UpdateFacilityComponent, // Use the same component
+  },
+  {
+    path: 'facilities/:id',
+    component: DetialsFacilityComponent,
   },
 
   { path: '**', component: NotFoundComponent }, // wild card path
