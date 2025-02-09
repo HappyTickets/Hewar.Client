@@ -444,3 +444,7 @@ button {
     font-size: 16px; // Optimized for mobile readability
   }
 }
+
+.popUp {
+  z-index: 1000000;
+}
