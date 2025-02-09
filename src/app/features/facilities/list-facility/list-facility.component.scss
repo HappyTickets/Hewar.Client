@@ -158,12 +158,12 @@
       box-shadow: 2px 10px 20px 2px #00000008;
       margin-bottom: 20px;
       &:hover {
-        transform: scale(1.01);
-        -webkit-transform: scale(1.01);
-        -moz-transform: scale(1.01);
-        -ms-transform: scale(1.01);
-        -o-transform: scale(1.01);
-        transition: 0.4s;
+        // transform: scale(1.01);
+        // -webkit-transform: scale(1.01);
+        // -moz-transform: scale(1.01);
+        // -ms-transform: scale(1.01);
+        // -o-transform: scale(1.01);
+        // transition: 0.4s;
       }
       .card-image {
         img {
@@ -419,10 +419,10 @@ button {
       }
     }
   }
-  .p-dialog {
-    /* max-height: 38%; */
-    transform: scale(0.8) !important;
-  }
+  // .p-dialog {
+  //   /* max-height: 38%; */
+  //   transform: scale(0.8) !important;
+  // }
   .p-dialog .cancel button {
     margin: 10px;
   }
@@ -450,13 +450,15 @@ button {
   z-index: 1000000;
 }
 
-.card-scale {
-  &:hover {
-    transform: scale(1.01);
-    -webkit-transform: scale(1.01);
-    -moz-transform: scale(1.01);
-    -ms-transform: scale(1.01);
-    -o-transform: scale(1.01);
-    transition: 0.3s;
+.sacle {
+  .card {
+    &:hover {
+      transform: scale(1.01);
+      -webkit-transform: scale(1.01);
+      -moz-transform: scale(1.01);
+      -ms-transform: scale(1.01);
+      -o-transform: scale(1.01);
+      transition: 0.3s;
+    }
   }
 }

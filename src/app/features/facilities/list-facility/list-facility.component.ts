@@ -90,6 +90,7 @@ export class ListFacilityComponent implements OnInit, OnDestroy {
 
   deletFacility(id: number) {
     this.visibleDeletePopup = false;
+    this.showDeletePopup = false;
     this.facilityService.softDeleteFacility(this.currentCard.id).subscribe({
       next: (res) => {
         console.log(res);

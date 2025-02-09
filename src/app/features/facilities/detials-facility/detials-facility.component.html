@@ -49,7 +49,7 @@
           <button
             class="delete"
             role="button"
-            (click)="deleteFacility(facility!)"
+            (click)="openDeletePopup(facility!)"
           >
             {{ "app.facilities.delete-facility" | translate }}
           </button>
@@ -60,6 +60,15 @@
             (confirmDelete)="confirmDelete()"
             (closePopup)="showDeletePopup = false">
           </app-delete-popup> -->
+            @if(facility){
+            <app-delete-popup
+              [visible]="showDeletePopup"
+              [itemName]="facility.name"
+              (confirmDelete)="deleteFacility(facility.id)"
+              (closePopup)="showDeletePopup = false"
+            >
+            </app-delete-popup>
+            }
           </div>
         </div>
       </div>
