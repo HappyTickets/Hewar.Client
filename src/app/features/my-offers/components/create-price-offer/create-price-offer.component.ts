@@ -13,29 +13,30 @@ import { ICompanyService } from '../../../companies/models/i-company-service';
 import { CompanyUtilitiesService } from '../../../companies/services/company-utilities.service';
 import { ICreatePriceOffer } from '../../models/icreate-price-offer';
 import { PriceRequestsService } from '../../../price-requests/services/price-requests.service';
-import { FacilitiesService } from '../../../facilities/services/facilities.service';
 import { IPriceRequest } from '../../../price-requests/models/iprice-request';
 import { IFacility } from '../../../price-requests/models/ifacility';
-import { DatePicker } from 'primeng/datepicker';
+import { LocalizationService } from '../../../../core/services/localization/localization.service';
+import { ShiftType } from '../../../../shared/enums/shift-type';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-create-price-offer',
   standalone: true,
-  imports: [ SelectModule, InputNumberModule, TextareaModule, ButtonModule, ReactiveFormsModule, InputTextModule, TranslatePipe, DatePicker ],
+  imports: [ SelectModule, InputNumberModule, TextareaModule, ButtonModule, ReactiveFormsModule, InputTextModule, TranslatePipe, CommonModule ],
   templateUrl: './create-price-offer.component.html',
   styleUrl: './create-price-offer.component.scss',
 })
 export class CreatePriceOfferComponent implements OnInit {
   private companyUtilities = inject(CompanyUtilitiesService);
-  private companiesService = inject(FacilitiesService);
+  private localizationService = inject(LocalizationService);
   private priceOffersService = inject(PriceOffersService);
   private priceRequestsService = inject(PriceRequestsService);
-
-  private router = inject(Router);
-
   private route = inject(ActivatedRoute);
   private fb = inject(FormBuilder);
+  private router = inject(Router);
+
   companyServices: ICompanyService[] = [];
+  shiftType = this.localizationService.createDropdown(ShiftType);
 
   priceRequestData: IPriceRequest = {} as IPriceRequest;
   facilityData: IFacility = {} as IFacility;
@@ -50,18 +51,15 @@ export class CreatePriceOfferComponent implements OnInit {
       if (id) {
         this.priceRequestsService.getById(+id).subscribe((res) => {
           if (res.data) {
-            console.log(res.data);
             this.companyData = res.data.company;
             this.facilityData = res.data.facility;
-
-            // this.priceRequestData = res.data;
-            // this.getCompanyServices(this.companyData.id);
-            // this.assignValues();
-            // console.log(res.data);
-
+            this.priceRequestData = res.data;
+            this.getCompanyServices(this.companyData.id);
+            this.assignValues();
           }
         });
       }
+
     });
   }
 
@@ -79,7 +77,7 @@ export class CreatePriceOfferComponent implements OnInit {
   onSubmit(): void {
     if (this.createPriceOfferForm.valid) {
       const priceOffer: ICreatePriceOffer = {
-        priceRequestId: this.companyData.id,
+        priceRequestId: this.priceRequestData.id,
         services: this.createPriceOfferForm.value.services,
         otherServices: this.createPriceOfferForm.value.otherServices,
       };
@@ -94,6 +92,7 @@ export class CreatePriceOfferComponent implements OnInit {
       quantity: [null, [Validators.required]],
       dailyCostPerUnit: [null, [Validators.required]],
       monthlyCostPerUnit: [null, [Validators.required]],
+      shiftType: [null, [Validators.required]],
     });
   }
   createOtherServiceGroup(): FormGroup {
@@ -102,6 +101,7 @@ export class CreatePriceOfferComponent implements OnInit {
       quantity: [null, [Validators.required]],
       dailyCostPerUnit: [null, [Validators.required]],
       monthlyCostPerUnit: [null, [Validators.required]],
+      shiftType: [null, [Validators.required]],
     });
   }
   get services() {
@@ -130,13 +130,6 @@ export class CreatePriceOfferComponent implements OnInit {
     this.createPriceOfferForm.reset();
   }
   assignValues() {
-    this.createPriceOfferForm.patchValue({
-      contractType: this.priceRequestData.contractType,
-      startDate: new Date(this.priceRequestData.startDate),
-      endDate: new Date(this.priceRequestData.endDate),
-      notes: this.priceRequestData.notes,
-    });
-
     if (this.priceRequestData.services) {
       this.services.clear();
       this.priceRequestData.services.forEach((service) => {
@@ -145,6 +138,8 @@ export class CreatePriceOfferComponent implements OnInit {
             serviceId: [service.serviceId, [Validators.required]],
             quantity: [service.quantity, [Validators.required]],
             shiftType: [service.shiftType, [Validators.required]],
+            dailyCostPerUnit: [null, [Validators.required]],
+            monthlyCostPerUnit: [null, [Validators.required]],
           })
         );
       });
@@ -158,6 +153,8 @@ export class CreatePriceOfferComponent implements OnInit {
             name: [otherService.name, [Validators.required]],
             quantity: [otherService.quantity, [Validators.required]],
             shiftType: [otherService.shiftType, [Validators.required]],
+            dailyCostPerUnit: [null, [Validators.required]],
+            monthlyCostPerUnit: [null, [Validators.required]],
           })
         );
       });

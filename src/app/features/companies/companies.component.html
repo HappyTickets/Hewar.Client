@@ -72,33 +72,24 @@
     @for (company of filteredCards().slice(first, first + rows); track $index) {
     <div class="card">
       <div class="grid mx-4">
-        <div
-          class="col"
-          [routerLink]="'/companies/companyDetails/' + company.id"
-        >
+        <div class="xl:col-3 col-3 col-12" [routerLink]="'/companies/companyDetails/' + company.id">
           <div class="card-image">
-            <!-- <img [src]="company.imageUrl" alt="" > -->
-            <img src="images/card-image.svg" alt="" />
+            <img [src]="company.logo" alt="" />
           </div>
         </div>
-        <div
-          class="col"
+        <div class="xl:col-6 col-3 col-12"
           [routerLink]="'/companies/companyDetails/' + company.id"
         >
-          <div class="card-text">
-            <h2>{{ company.name }}</h2>
-            <p class="type">{{ company.contactEmail }}</p>
-            <p class="location">
-              <img src="images/location-icon.svg" alt="" /><span
-                >{{
-                  "app.companies.companies-list.location" | translate
-                }}:</span
-              >
-              {{ company.address.city }}, {{ company.address.country }}
-            </p>
-          </div>
+          <h2>{{ company.name }}</h2>
+          <p class="type">{{ company.contactEmail }}</p>
+          <p class="location">
+            <img src="images/location-icon.svg" alt="" /><span
+              >{{ "app.companies.companies-list.location" | translate }}:</span
+            >
+            {{ company.address.city }}, {{ company.address.country }}
+          </p>
         </div>
-        <div class="col-2">
+        <div class="xl:col-3 col-3 col-12">
           <div class="card-actions">
             <i class="pi pi-share-alt"></i>
             <button
@@ -107,7 +98,7 @@
             >
               {{ "app.companies.companies-list.actions.edit" | translate }}
             </button>
-            <a routerLink="" class="details">{{
+            <a routerLink="/create-price-request/{{company.id}}" class="details">{{
               "app.companies.companies-list.actions.request-quote" | translate
             }}</a>
             <button
@@ -118,13 +109,15 @@
               {{ "app.companies.companies-list.actions.delete" | translate }}
             </button>
             <div class="card flex justify-center">
+              @if (companyToDelete.name) {
               <app-delete-popup
                 [visible]="showDeletePopup"
-                [itemName]="companyToDelete?.name"
+                [itemName]="companyToDelete.name"
                 (confirmDelete)="confirmDelete()"
                 (closePopup)="showDeletePopup = false"
               >
               </app-delete-popup>
+              }
             </div>
           </div>
         </div>

@@ -2,6 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { ICreatePriceOffer } from '../models/icreate-price-offer';
 import { IUpdatePriceOffer } from '../models/iupdate-price-offer';
+import { Observable } from 'rxjs';
+import { IApiResponse } from '../../../shared/models/IApiResponse';
+import { IGetPriceOffersByRequest, IPriceOffer } from '../models/iprice-offer';
 
 @Injectable({
   providedIn: 'root',
@@ -28,11 +31,11 @@ export class PriceOffersService {
   cancel(offerId: number) {
     return this.http.patch(`${this.baseEndPoint}cancel`, {} , {params: { offerId }});
   }
-  getMyCompanyOffers() {
-    return this.http.get(`${this.baseEndPoint}getMyCompanyOffers`);
+  getMyCompanyOffers(): Observable <IApiResponse<IPriceOffer[]>> {
+    return this.http.get<IApiResponse<IPriceOffer[]>>(`${this.baseEndPoint}getMyCompanyOffers`);
   }
-  getMyCompanyOffersByRequestId(requestId: number) {
-    return this.http.get(`${this.baseEndPoint}getMyCompanyOffersByRequestId`, {params: {requestId}});
+  getMyCompanyOffersByRequestId(requestId: number):Observable<IApiResponse<IGetPriceOffersByRequest>> {
+    return this.http.get<IApiResponse<IGetPriceOffersByRequest>>(`${this.baseEndPoint}getMyCompanyOffersByRequestId`, {params: {requestId}});
   }
   getMyFacilityOffers() {
     return this.http.get(`${this.baseEndPoint}getMyFacilityOffers`);

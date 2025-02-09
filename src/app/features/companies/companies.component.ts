@@ -25,7 +25,7 @@ export class CompaniesComponent implements OnInit {
   rows = 10;
   totalRecords = 20
   showDeletePopup = false;
-  companyToDelete!: ICompany;
+  companyToDelete: ICompany = {} as ICompany;
 
   constructor(private _companiesService:CompaniesService, private _router: Router){}
   ngOnInit(): void {

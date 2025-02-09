@@ -38,9 +38,9 @@ export const routes: Route[] = [
 
   { path: 'companies', component: CompaniesComponent },
   { path: 'companies/createCompany', component: CreateCompanyComponent },
-
   { path: 'companies/updateCompany/:id', component: UpdateCompanyComponent },
   { path: 'companies/companyDetails/:id', component: CompanyDetailsComponent },
+
 
   { path: 'companies/price-request', component: CompanyPriceRequestsComponent },
   { path: 'facilities/price-request', component: FacilityPriceRequestsComponent },
@@ -55,22 +55,10 @@ export const routes: Route[] = [
   { path: 'create-reset-password', component: CreateResetPasswordComponent },
   { path: 'reset-password', component: ResetPasswordComponent },
 
-  {
-    path: 'allfacilities',
-    component: ListFacilityComponent,
-  },
-  {
-    path: 'createFacilities',
-    component: CreateFacilityComponent,
-  },
-  {
-    path: 'update-facility/:id',
-    component: UpdateFacilityComponent, // Use the same component
-  },
-  {
-    path: 'facilities/:id',
-    component: DetialsFacilityComponent,
-  },
+  { path: 'facilities', component: ListFacilityComponent },
+  { path: 'createFacilities', component: CreateFacilityComponent },
+  { path: 'update-facility/:id', component: UpdateFacilityComponent },
+  { path: 'facilities/:id', component: DetialsFacilityComponent },
 
 
   { path: '**', component: NotFoundComponent }, // wild card path

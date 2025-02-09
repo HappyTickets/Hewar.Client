@@ -37,8 +37,6 @@ export class AuthService {
       tap((res) => {
         if (res.data) {
           this.storeResponse(res.data);
-          console.log(res.data);
-
           this.router.navigate(['/home']);
         } else throw new Error('Response data is null');
       })
@@ -51,8 +49,6 @@ export class AuthService {
 
   refreshToken(): Observable<IApiResponse<ILoginResponse>> {
     const accessToken = this.getAccessToken();
-    console.log(accessToken);
-
     if (!accessToken) {
       this.logout();
       throw new Error('Refresh token is missing');
