@@ -156,22 +156,11 @@
     .card {
       justify-content: space-between;
       border-radius: 5px;
+      border-radius: 5px;
       box-shadow: 2px 10px 20px 2px #00000008;
       margin-bottom: 20px;
       &:hover {
-        transform: scale(1.01);
-        -webkit-transform: scale(1.01);
-        -moz-transform: scale(1.01);
-        -ms-transform: scale(1.01);
-        -o-transform: scale(1.01);
-        transition: 0.4s;
         background-color: #eee;
-        // transform: scale(1.01);
-        // -webkit-transform: scale(1.01);
-        // -moz-transform: scale(1.01);
-        // -ms-transform: scale(1.01);
-        // -o-transform: scale(1.01);
-        // transition: 0.4s;
         // transform: scale(1.01);
         // -webkit-transform: scale(1.01);
         // -moz-transform: scale(1.01);
@@ -181,14 +170,20 @@
       }
       .card-image {
         text-align: center;
+        text-align: center;
         img {
+          width: 73%;
+
           width: 73%;
 
           border-radius: 10px;
           padding-top: 1px;
           margin-top: 11px;
+          padding-top: 1px;
+          margin-top: 11px;
         }
       }
+      .card-textt {
       .card-textt {
         width: 53%;
         padding-left: 10px;
@@ -414,6 +409,7 @@ button {
       margin-bottom: 6px;
     }
   }
+  .card-textt {
   .card-textt {
     width: 100% !important;
   }
