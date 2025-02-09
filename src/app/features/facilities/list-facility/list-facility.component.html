@@ -24,44 +24,42 @@
       </div>
     </div>
     @for (card of filteredCards().slice(first, first + rows); track $index) {
-    <div class="sacle">
-      <div class="card d-flex" *ngIf="card.type">
-        <div class="card-image">
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEfH9O71AqLC5OqNlOVBTVSZjTRQSUr9gmmg&s"
-            alt=""
-            (click)="goToFacilityDetails(card.id)"
-          />
-        </div>
-        <div class="card-text">
-          <h2 (click)="goToFacilityDetails(card.id)">{{ card.name }}</h2>
-          <p class="type">{{ card.type }}</p>
-          <p class="location">
-            <img src="images/location-icon.svg" alt="" />
-            <span>{{ "app.facilities.location" | translate }}:</span>
-            {{ card.address.country }} ,{{ card.address.city }}
-          </p>
-        </div>
-        <div class="card-actions">
-          <div class="share-i"><i class="pi pi-share-alt"></i></div>
-          <button class="edit" (click)="updateFacility(card.id)">
-            {{ "app.facilities.edit-facility" | translate }}
-          </button>
+    <div class="card d-flex" *ngIf="card.type">
+      <div class="card-image">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEfH9O71AqLC5OqNlOVBTVSZjTRQSUr9gmmg&s"
+          alt=""
+          (click)="goToFacilityDetails(card.id)"
+        />
+      </div>
+      <div class="card-textt">
+        <h2 (click)="goToFacilityDetails(card.id)">{{ card.name }}</h2>
+        <p class="type">{{ card.type }}</p>
+        <p class="location">
+          <img src="images/location-icon.svg" alt="" />
+          <span>{{ "app.facilities.location" | translate }}:</span>
+          {{ card.address.country }} ,{{ card.address.city }}
+        </p>
+      </div>
+      <div class="card-actions">
+        <div class="share-i"><i class="pi pi-share-alt"></i></div>
+        <button class="edit" (click)="updateFacility(card.id)">
+          {{ "app.facilities.edit-facility" | translate }}
+        </button>
 
-          <button class="delete" (click)="openDeletePopup(card)">
-            {{ "app.facilities.delete-facility" | translate }}
-          </button>
-          <div class="card flex justify-center popUp">
-            @if(currentCard){
-            <app-delete-popup
-              [visible]="showDeletePopup"
-              [itemName]="currentCard.name"
-              (confirmDelete)="deletFacility(currentCard.id)"
-              (closePopup)="showDeletePopup = false"
-            >
-            </app-delete-popup>
-            }
-          </div>
+        <button class="delete" (click)="openDeletePopup(card)">
+          {{ "app.facilities.delete-facility" | translate }}
+        </button>
+        <div class="card flex justify-center popUp">
+          @if(currentCard){
+          <app-delete-popup
+            [visible]="showDeletePopup"
+            [itemName]="currentCard.name"
+            (confirmDelete)="deletFacility(currentCard.id)"
+            (closePopup)="showDeletePopup = false"
+          >
+          </app-delete-popup>
+          }
         </div>
       </div>
     </div>
