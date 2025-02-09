@@ -1,11 +1,11 @@
 <div class="container">
   <div class="grid mt-7">
-    <div class="col-4">
+    <div class="col-12 md:col-6 lg:col-3">
       <div class="image-details">
         <img src="images/card-image.svg" alt="" >
       </div>
     </div>
-    <div class="col-7 mx-5">
+    <div class="col-12 md:col-5 lg:col-8 mx-4">
       <h3 class="details-title">{{currentCompany?.name}}</h3>
       <p class="details-desc">{{currentCompany?.contactEmail}}</p>
       <p><img src="images/location-icon.svg" class="location-img " alt=""><span>{{'app.companies.companies-list.location' | translate}}:</span> {{currentCompany?.address?.city}}, {{currentCompany?.address?.country}}</p>
@@ -24,7 +24,6 @@
             <h3>{{'app.companies.companies-list.industrial-security' | translate}}</h3>
             <p>{{'app.companies.companies-details.company-services-desc' | translate}}</p>
           </div>
-
         </div>
       </div>
 

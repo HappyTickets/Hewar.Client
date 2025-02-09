@@ -57,17 +57,19 @@
               <div class="card-actions">
                 <i class="pi pi-share-alt"></i>
                 <button [routerLink]="'/companies/updateCompany/' + company.id" class="edit">{{'app.companies.companies-list.actions.edit' | translate}}</button>
-                <a routerLink="" class="details">{{'app.companies.companies-list.actions.request-quote' | translate}}</a>
+                <a [routerLink]="'/companies/create-price-request/' + company.id" class="details">{{'app.companies.companies-list.actions.request-quote' | translate}}</a>
                 <button class="delete" role="button" (click)="openDeletePopup(company)">
                   {{'app.companies.companies-list.actions.delete' | translate}}
                 </button>
-                <div class="card flex justify-center">
-                  <app-delete-popup
+                <div class="card delete-container flex justify-center">
+                  @if (companyToDelete) {
+                    <app-delete-popup
                     [visible]="showDeletePopup"
                     [itemName]="companyToDelete?.name"
                     (confirmDelete)="confirmDelete()"
                     (closePopup)="showDeletePopup = false">
                   </app-delete-popup>
+                  }
                 </div>
               </div>
             </div>
