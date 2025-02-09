@@ -105,6 +105,7 @@
     &:hover {
       background: #12689e;
     }
+<<<<<<< HEAD
   }
 }
 
@@ -116,6 +117,48 @@
       @media (max-width: 768px) {
         .add-company {
           width: 100% !important;
+=======
+    .search {
+      position: relative;
+      i {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+      }
+      .pi-search {
+        right: 18px;
+      }
+      .pi-sliders-h {
+        left: 160px;
+        color: $main-color;
+      }
+      input {
+        width: 350px;
+        background: #fff;
+        color: #333;
+        border: 1px solid #168AAD;
+        padding: 7px 45px;
+        border-radius: 7px;
+      }
+      button {
+        cursor: pointer;
+        border: none;
+        outline: none;
+        background: linear-gradient(316.48deg, $main-color-2 26.1%, #5C98F8 80.7%);
+        padding: 10px 17px;
+        margin: 0 20px;
+        border-radius: 12px;
+        -webkit-border-radius: 12px;
+        -moz-border-radius: 12px;
+        -ms-border-radius: 12px;
+        -o-border-radius: 12px;
+        &:hover {
+          background:  $main-color-2 80.7%;
+>>>>>>> 54f435a ([feat]: edit icons and width card companies list)
         }
 <<<<<<< HEAD
         .form-facility {
@@ -134,6 +177,7 @@
       box-shadow: 2px 10px 20px 2px #00000008;
       margin-bottom: 45px;
       transition: 0.3s;
+      border-radius: 15px;
       &:hover {
         background-color: #eee;
       }
@@ -150,20 +194,87 @@
           width: 100%;
           width: 100%;
           border-radius: 28px;
+<<<<<<< HEAD
           -webkit-border-radius: 28px;
           -moz-border-radius: 28px;
           -ms-border-radius: 28px;
           -o-border-radius: 28px;
 >>>>>>> ec35418 ([feat]: edit delete popup)
+=======
+>>>>>>> 54f435a ([feat]: edit icons and width card companies list)
           }
           i {
             display: none;
             position: static;
             font-size: 24px;
           }
+<<<<<<< HEAD
           button {
             width: auto;
             padding: 10px 15px;
+=======
+          img {
+            width: 14px;
+            margin: 0 9px;
+            transform: translateY(5px);
+          }
+        }
+      }
+      .card-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        justify-content: space-evenly;
+        .pi-share-alt {
+          text-align: end;
+          color: $main-color;
+          margin-bottom: 10px;
+        }
+        button {
+          width: 9rem;
+          text-align: center;
+          margin-bottom: 10px;
+          border: none;
+          outline: none;
+          cursor: pointer;
+          padding: 9px 18px;
+          border-radius: 6px;
+          -webkit-border-radius: 6px;
+          -moz-border-radius: 6px;
+          -ms-border-radius: 6px;
+          -o-border-radius: 6px;
+          transition: 0.3s;
+          -webkit-transition: 0.3s;
+          -moz-transition: 0.3s;
+          -ms-transition: 0.3s;
+          -o-transition: 0.3s;
+        }
+        .edit {
+          border: 1px solid $main-color;
+          color: $main-color;
+          &:hover {
+            background-color: $main-color;
+            color: #fff;
+          }
+        }
+        .details {
+          border: 1px solid $main-color;
+          background-color: $main-color;
+          color: #fff;
+          &:hover {
+            border: 1px solid $main-color;
+            background-color: #fff;
+            color: $main-color;
+          }
+        }
+        .delete {
+          border: 1px solid #D74352;
+          color: #D74352;
+          &:hover {
+            border: 1px solid #D74352;
+            background-color: #D74352;
+            color: #fff;
+>>>>>>> 54f435a ([feat]: edit icons and width card companies list)
           }
         }
       }
