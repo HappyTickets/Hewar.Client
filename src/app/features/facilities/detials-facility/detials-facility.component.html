@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="grid mt-7">
+    <div class="col-5">
+      <div class="image-details">
+        <img src="images/card-image.svg" alt="" />
+      </div>
+    </div>
+    <div class="col-7">
+      <h3 class="details-title">{{ facility?.name }}</h3>
+      <p class="details-desc">{{ facility?.contactEmail }}</p>
+      <p>
+        <img src="images/location-icon.svg" class="location-img" alt="" />
+        <span>{{ "app.facilities.location" | translate }}:</span>
+        {{ facility?.address?.city }}, {{ facility?.address?.country }}
+      </p>
+      <p class="facility-services">
+        {{ "app.facilities.facility-data" | translate }}
+      </p>
+      <div class="grid">
+        <div class="col">
+          <div class="box text-center">
+            <img src="images/ser-01.svg" alt="" />
+            <h3>{{ "this loream" | translate }}</h3>
+            <p>{{ "app.facilities.facility-description" | translate }}</p>
+          </div>
+        </div>
+        <div class="col">
+          <div class="box text-center">
+            <img src="images/ser-02.svg" alt="" />
+            <h3>{{ "industrial-security" | translate }}</h3>
+            <p>{{ "app.facilities.facility-description" | translate }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-actions mt-4 w-100">
+      <div class="grid">
+        <div class="col">
+          <a routerLink="/createFacility" class="p-my-button">
+            {{ "app.facilities.add-facility" | translate }}
+          </a>
+        </div>
+        <div class="col">
+          <button class="edit" (click)="updateFacility(facility.id)">
+            {{ "app.facilities.edit-facility" | translate }}
+          </button>
+        </div>
+        <div class="col">
+          <button
+            class="delete"
+            role="button"
+            (click)="deleteFacility(facility!)"
+          >
+            {{ "app.facilities.delete-facility" | translate }}
+          </button>
+          <div class="card flex justify-center">
+            <!-- <app-delete-popup
+            [visible]="showDeletePopup"
+            [itemName]="facilityToDelete?.name"
+            (confirmDelete)="confirmDelete()"
+            (closePopup)="showDeletePopup = false">
+          </app-delete-popup> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
