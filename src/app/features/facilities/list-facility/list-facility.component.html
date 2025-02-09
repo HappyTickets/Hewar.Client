@@ -54,8 +54,8 @@
           @if(currentCard){
           <app-delete-popup
             [visible]="showDeletePopup"
-            [itemName]="card.name"
-            (confirmDelete)="deletFacility(card.id)"
+            [itemName]="currentCard.name"
+            (confirmDelete)="deletFacility(currentCard.id)"
             (closePopup)="showDeletePopup = false"
           >
           </app-delete-popup>
