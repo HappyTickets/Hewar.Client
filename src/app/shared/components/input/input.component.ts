@@ -27,6 +27,7 @@ export class InputComponent {
   @Input() icon!: string;
   @Input() options: { name: string, code: number }[] = [];
 
+
   get formControl(): FormControl {
     return this.formGroup.get(this.controlName) as FormControl;
   }

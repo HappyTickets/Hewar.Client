@@ -1,0 +1,67 @@
+<form class="container" [formGroup]="createPriceOfferForm">
+  <div class="header">
+    <img class="logo" [src]="facilityData.logo" alt="Security Logo"/>
+    @if (facilityData.id) {
+      <div>
+        <h2>{{ facilityData.name }}</h2>
+        <p>{{ facilityData.responsibleName }}</p>
+      </div>
+    }
+  </div>
+
+  <div class="content">
+    <!-- Service Details Section -->
+    <h2>{{ 'app.price-offer.create-price-offer.services' | translate }}</h2>
+    <div formArrayName="services">
+      @for (service of services.controls; track service; let i = $index) {
+      <div [formGroupName]="i" class="service-item">
+        @if (i === createPriceOfferForm.value.services.length - 1) {
+          <p-button icon="pi pi-plus" (click)="addService()"></p-button>
+        }
+        <div class="input-row">
+          <div>
+            <p-inputNumber [showButtons]="true" formControlName="quantity" [placeholder]="'app.price-offer.create-price-offer.quantity' | translate" ></p-inputNumber>
+            <p-inputNumber [showButtons]="true" formControlName="dailyCostPerUnit" [placeholder]="'app.price-offer.create-price-offer.dailyCostPerUnit' | translate" ></p-inputNumber>
+            <p-inputNumber [showButtons]="true" formControlName="monthlyCostPerUnit" [placeholder]="'app.price-offer.create-price-offer.monthlyCostPerUnit' | translate" ></p-inputNumber>
+          </div>
+          <div>
+            <p-select [options]="companyServices" formControlName="serviceId" [placeholder]="'app.price-offer.create-price-offer.securityRoles' | translate" optionLabel="name" optionValue="id"></p-select>
+            <p-select [options]="shiftType" formControlName="shiftType" [placeholder]="'app.price-request.create-price-request.shiftType' | translate" optionLabel="name" optionValue="code"></p-select>
+          </div>
+        </div>
+        <p-button icon="pi pi-trash" (click)="removeService(i)" [disabled]="i === 0 && createPriceOfferForm.value.services.length <= 1"></p-button>
+      </div>
+      }
+    </div>
+
+    <!-- Other Services Section -->
+    <h2>{{ 'app.price-offer.create-price-offer.otherDetails' | translate }}</h2>
+    <div formArrayName="otherServices">
+      @for (service of otherServices.controls; track service; let i = $index) {
+      <div [formGroupName]="i" class="service-item ">
+        @if (i === createPriceOfferForm.value.otherServices.length - 1) {
+        <p-button icon="pi pi-plus" (click)="addOtherService()"></p-button>
+        }
+        <div class="input-row">
+          <div>
+            <p-inputNumber [showButtons]="true" formControlName="quantity" [min]="1" [placeholder]="'app.price-offer.create-price-offer.quantity' | translate"></p-inputNumber>
+            <p-inputNumber [showButtons]="true" formControlName="dailyCostPerUnit" [placeholder]="'app.price-offer.create-price-offer.dailyCostPerUnit' | translate" ></p-inputNumber>
+            <p-inputNumber [showButtons]="true" formControlName="monthlyCostPerUnit" [placeholder]="'app.price-offer.create-price-offer.monthlyCostPerUnit' | translate" ></p-inputNumber>
+          </div>
+          <div>
+            <input pInputText formControlName="name" [placeholder]="'app.price-offer.create-price-offer.serviceName' | translate"/>
+            <p-select [options]="shiftType" formControlName="shiftType" [placeholder]="'app.price-request.create-price-request.shiftType' | translate" optionLabel="name" optionValue="code"></p-select>
+          </div>
+        </div>
+        <p-button icon="pi pi-trash" (click)="removeOtherService(i)" [disabled]="i === 0 && createPriceOfferForm.value.otherServices.length <= 1"></p-button>
+      </div>
+      }
+    </div>
+
+    <!-- Buttons -->
+    <div class="button-group">
+      <p-button [label]="'app.price-offer.create-price-offer.cancel' | translate" (click)="onCancel()" fluid="true" ></p-button>
+      <p-button [label]="'app.price-offer.create-price-offer.submit' | translate" (click)="onSubmit()" fluid="true" [disabled]="createPriceOfferForm.invalid" [loading]="loading"></p-button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,79 @@
+
+@if (priceRequestData && companyData) {
+<form class="container" [formGroup]="createPriceRequestForm">
+  <div class="header">
+    <img class="logo" [src]="companyData.logo" alt="Security Logo"/>
+    @if (companyData.id) {
+      <div>
+        <h2>{{ companyData.name }}</h2>
+        <p>{{ companyData.contactEmail }}</p>
+    </div>
+    }
+  </div>
+
+  <div class="content">
+    <!-- Price Request Section -->
+    <h2>{{ 'app.price-request.create-price-request.header' | translate }}</h2>
+    <div class="grid">
+      <div class="input-group col-12 md:col-6">
+        <label for="startDate">{{ 'app.price-request.create-price-request.contractDate' | translate }}</label>
+        <p-datepicker formControlName="startDate" [placeholder]="'app.price-request.create-price-request.startContract' | translate" showIcon iconDisplay="input" [minDate]="date" [maxDate]="createPriceRequestForm.get('endDate')?.value"></p-datepicker>
+      </div>
+      <div class="input-group col-12 md:col-6">
+        <label for="endDate">{{ 'app.price-request.create-price-request.endContract' | translate }}</label>
+        <p-datepicker formControlName="endDate" [placeholder]="'app.price-request.create-price-request.endContract' | translate" showIcon iconDisplay="input" [minDate]="createPriceRequestForm.get('startDate')?.value || date" [disabled]="!createPriceRequestForm.get('startDate')?.value"></p-datepicker>
+      </div>
+      <div class="input-group col-12">
+        <label for="contractType">{{ 'app.price-request.create-price-request.contractType' | translate }}</label>
+        <app-input placeholder="price-request.create-price-request.chooseContractType" [formGroup]="createPriceRequestForm" [options]="contractTypes" errorKey="price-request.create-price-request.invaliContractType" controlName="contractType" icon="pi-map" type="dropdown"></app-input>
+      </div>
+    </div>
+
+    <!-- Service Details Section -->
+    <h2>{{ 'app.price-request.create-price-request.services' | translate }}</h2>
+    <div formArrayName="services">
+      @for (service of services.controls; track service; let i = $index) {
+      <div [formGroupName]="i" class="service-item">
+        @if (i === createPriceRequestForm.value.services.length - 1) {
+          <p-button icon="pi pi-plus" (click)="addService()"></p-button>
+        }
+        <div class="input-row">
+          <p-select [options]="companyServices" formControlName="serviceId" [placeholder]="'app.price-request.create-price-request.securityRoles' | translate" optionLabel="name" optionValue="id"></p-select>
+          <p-inputNumber [showButtons]="true" formControlName="quantity" [placeholder]="'app.price-request.create-price-request.quantity' | translate" ></p-inputNumber>
+          <p-select [options]="shiftType" formControlName="shiftType" [placeholder]="'app.price-request.create-price-request.shiftType' | translate" optionLabel="name" optionValue="code"></p-select>
+        </div>
+        <p-button icon="pi pi-trash" (click)="removeService(i)" [disabled]="i === 0 && createPriceRequestForm.value.services.length <= 1"></p-button>
+      </div>
+      }
+    </div>
+
+    <!-- Other Services Section -->
+    <h2>{{ 'app.price-request.create-price-request.otherDetails' | translate }}</h2>
+    <div formArrayName="otherServices">
+      @for (service of otherServices.controls; track service; let i = $index) {
+      <div [formGroupName]="i" class="service-item ">
+        @if (i === createPriceRequestForm.value.otherServices.length - 1) {
+        <p-button icon="pi pi-plus" (click)="addOtherService()"></p-button>
+        }
+        <div class="input-row">
+          <input pInputText formControlName="name" [placeholder]="'app.price-request.create-price-request.serviceName' | translate"/>
+          <p-inputNumber [showButtons]="true" formControlName="quantity" [min]="1" [placeholder]="'app.price-request.create-price-request.quantity' | translate"></p-inputNumber>
+          <p-select [options]="shiftType" formControlName="shiftType" [placeholder]="'app.price-request.create-price-request.shiftType' | translate" optionLabel="name" optionValue="code"></p-select>
+        </div>
+        <p-button icon="pi pi-trash" (click)="removeOtherService(i)" [disabled]="i === 0 && createPriceRequestForm.value.otherServices.length <= 1"></p-button>
+      </div>
+      }
+    </div>
+
+    <!-- Notes Section -->
+    <h2>{{ 'app.price-request.create-price-request.addNotes' | translate }}</h2>
+    <textarea pTextarea formControlName="notes" rows="5" [placeholder]="'app.price-request.create-price-request.enterDetails' | translate" [autoResize]="true" ></textarea>
+
+    <!-- Buttons -->
+    <div class="button-group">
+      <p-button [label]="'app.price-request.create-price-request.cancel' | translate" (click)="onCancel()" fluid="true" ></p-button>
+      <p-button [label]="'app.price-request.create-price-request.submit' | translate" (click)="onSubmit()" fluid="true" [disabled]="createPriceRequestForm.invalid" [loading]="loading"></p-button>
+    </div>
+  </div>
+</form>
+}

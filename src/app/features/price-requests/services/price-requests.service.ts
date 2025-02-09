@@ -1,30 +1,41 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { ICreatePriceReq } from '../models/ICreatePriceReq';
-import { IResponse } from '../../../core/models/IResponse';
-import { IFacilityRequest } from '../models/IFacilityRequest';
-import { ICompanyRequest } from '../models/ICompanyRequest';
+import { IApiResponse } from '../../../shared/models/IApiResponse';
+import { Observable } from 'rxjs';
+import { IFacilityPriceRequest } from '../models/ifacility-price-request';
+import { ICompanyPriceRequest } from '../models/icompany-price-request';
+import { IPriceRequest } from '../models/iprice-request';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PriceRequestsService {
   private http = inject(HttpClient)
-  baseEndPoint = '/api/priceRequests/'
+  baseEndPoint = '/api/PriceRequests/'
 
-  createPriceRequest(data: ICreatePriceReq) {
-    return this.http.post<IResponse<number>>(`${this.baseEndPoint}createRequest`, data);
+  create(data: ICreatePriceReq): Observable <IApiResponse<number>> {
+    return this.http.post<IApiResponse<number>>(`${this.baseEndPoint}create`, data);
   }
-  updatePriceRequest(data: ICreatePriceReq) {
-    return this.http.put<IResponse<unknown>>(`${this.baseEndPoint}update-request`, data);
+  update(data: ICreatePriceReq): Observable <IApiResponse<number>> {
+    return this.http.put<IApiResponse<number>>(`${this.baseEndPoint}update`, data);
   }
-  cancelPriceRequest(priceRequestId: number) {
-    return this.http.patch<IResponse<unknown>>(`${this.baseEndPoint}/requests/${priceRequestId}/cancel`, {});
+  getById(priceRequestId: number): Observable <IApiResponse<IPriceRequest>> {
+    return this.http.get<IApiResponse<IPriceRequest>>(`${this.baseEndPoint}getById`, {params: { priceRequestId }});
   }
-  getMyPriceRequestsAsFacility() {
-    return this.http.get<IResponse<IFacilityRequest[]>>(`${this.baseEndPoint}/requests/facility`);
+  cancel(priceRequestId: number):Observable<IApiResponse<unknown>> {
+    return this.http.patch<IApiResponse<unknown>>(`${this.baseEndPoint}cancel`,{},{params: { priceRequestId }});
   }
-  getMyPriceRequestsAsCompany() {
-    return this.http.get<IResponse<ICompanyRequest[]>>(`${this.baseEndPoint}/requests/company`);
+  hide(priceRequestId: number):Observable<IApiResponse<unknown>> {
+    return this.http.patch<IApiResponse<unknown>>(`${this.baseEndPoint}hide`,{},{params: { priceRequestId }});
+  }
+  show(priceRequestId: number):Observable<IApiResponse<unknown>> {
+    return this.http.patch<IApiResponse<unknown>>(`${this.baseEndPoint}show`,{},{params: { priceRequestId }});
+  }
+  getMyFacilityRequests() : Observable <IApiResponse<IFacilityPriceRequest[]>> {
+    return this.http.get<IApiResponse<IFacilityPriceRequest[]>>(`${this.baseEndPoint}getMyFacilityRequests`);
+  }
+  getMyCompanyRequests(): Observable <IApiResponse<ICompanyPriceRequest[]>> {
+    return this.http.get<IApiResponse<ICompanyPriceRequest[]>>(`${this.baseEndPoint}getMyCompanyRequests`);
   }
 }
