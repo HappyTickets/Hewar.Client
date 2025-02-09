@@ -4,15 +4,16 @@ import { ICompany } from './models/ICompany';
 import { FormsModule } from '@angular/forms';
 import { PaginatorModule, PaginatorState } from 'primeng/paginator';
 import { CommonModule } from '@angular/common';
-import { Dialog } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext'
-import { RouterModule } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { DeletePopupComponent } from "../../shared/components/delete-popup/delete-popup.component";
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-companies',
   standalone: true,
-  imports: [FormsModule, PaginatorModule, CommonModule, Dialog, ButtonModule, InputTextModule, RouterModule],
+  imports: [FormsModule, PaginatorModule, CommonModule, ButtonModule, InputTextModule, RouterLink, DeletePopupComponent, TranslateModule],
   templateUrl: './companies.component.html',
   styleUrl: './companies.component.scss'
 })
@@ -20,14 +21,13 @@ export class CompaniesComponent implements OnInit {
   companies: ICompany[] = [];
   showSec = 'الامن الصناعي'
   searchValue = '';
-  visibleDeletePopup = false
-  currentCompany!:ICompany
-  companyName = ''
   first = 0;
   rows = 10;
   totalRecords = 20
+  showDeletePopup = false;
+  companyToDelete!: ICompany;
 
-  constructor(private _companiesService:CompaniesService){}
+  constructor(private _companiesService:CompaniesService, private _router: Router){}
   ngOnInit(): void {
     this.getAllCompanies()
   }
@@ -40,7 +40,7 @@ export class CompaniesComponent implements OnInit {
         console.log(err)
       },
       complete: () => {
-        console.log(this.companies)
+        console.log("companies: " + this.companies)
       }
     })
   }
@@ -67,14 +67,15 @@ export class CompaniesComponent implements OnInit {
     this.rows = event.rows ?? 5;
   }
 
-  showDialog(company:ICompany) {
-    this.visibleDeletePopup = true;
-    this.currentCompany = company
-    this.companyName = company.name
+  openDeletePopup(company: ICompany) {
+    this.companyToDelete = company;
+    this.showDeletePopup = true;
+    // console.log(this.companyToDelete)
   }
-  deleteCompany(){
-    this.visibleDeletePopup = false;
-    this._companiesService.deleteCompany(this.currentCompany.id).subscribe({
+
+  confirmDelete() {
+    console.log(`Deleting company: ${this.companyToDelete.name}`);
+    this._companiesService.deleteCompany(this.companyToDelete.id).subscribe({
       next: (res) => {
         console.log(res)
       },
@@ -85,5 +86,26 @@ export class CompaniesComponent implements OnInit {
         this.getAllCompanies()
       }
     })
+    this.showDeletePopup = false;
   }
+
+  // showDialog(company:ICompany) {
+  //   this.visibleDeletePopup = true;
+  //   this.currentCompany = company
+  //   this.companyName = company.name
+  // }
+  // deleteCompany(){
+  //   this.visibleDeletePopup = false;
+  //   this._companiesService.deleteCompany(this.currentCompany.id).subscribe({
+  //     next: (res) => {
+  //       console.log(res)
+  //     },
+  //     error: (err) => {
+  //       console.log(err)
+  //     },
+  //     complete: () => {
+  //       this.getAllCompanies()
+  //     }
+  //   })
+  // }
 }
