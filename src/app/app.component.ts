@@ -1,48 +1,44 @@
-import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { NavbarComponent } from "./component/navbar/navbar.component";
-import { FooterComponent } from './component/footer/footer.component';
-import { isPlatformBrowser } from '@angular/common';
-import AOS from 'aos';
-import { WOW } from 'wowjs';
-
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { LocalizationService } from './core/services/localization/localization.service';
+import { PrimeNG } from 'primeng/config';
+import { NavBarComponent } from './shared/components/nav-bar/nav-bar.component';
+import Aura from '@primeng/themes/aura';
+import { RolesComponent } from './features/roles/roles.component';
+import translationsEN from '../../public/i18n/en.json';
+import translationsAR from '../../public/i18n/ar.json';
+import { FooterComponent } from "./shared/components/footer/footer.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,
-    NavbarComponent,
-    FooterComponent,
-  ],
+  imports: [RouterOutlet, NavBarComponent, RolesComponent, TranslatePipe, TranslateDirective, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(
+    private translate: TranslateService,
+    private localizationService: LocalizationService,
+    private primeng: PrimeNG
+  ) {
+    this.translate.addLangs(['ar', 'en']);
+    this.translate.setTranslation('ar', translationsAR);
+    this.translate.setTranslation('en', translationsEN);
+    const currentLang = this.localizationService.getLanguage();
+    this.translate.use(currentLang);
 
-  ngOnInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      import('wowjs').then((module) => {
-        const WOW = module.WOW;
-        const wow = new WOW({
-          boxClass: 'wow',
-          animateClass: 'animated',
-          offset: 100,
-          mobile: true,
-          live: true,
-        });
-        wow.init();
-      });
-    }
+    // Set document direction based on language
+    document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+    document.documentElement.lang = currentLang;
 
-    if (typeof window !== 'undefined') {
-      console.log("Initializing AOS");
-      AOS.init({
-        duration: 1000,
-        easing: 'ease-in-out',
-        once: true,
-      });
-    }
+    this.primeng.theme.set({
+      preset: Aura,
+      options: {
+        darkModeSelector: 'dark'
+      },
+    })
   }
-
+  title = 'HEWAR.CLIENT';
 }

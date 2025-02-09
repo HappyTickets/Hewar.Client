@@ -1,37 +1,66 @@
-import { Routes } from '@angular/router';
-import { HomeComponent } from './component/home/home.component';
-import { ContactusComponent } from './component/contactus/contactus.component';
-import { NotfoundComponent } from './component/notfound/notfound.component';
-import { AboutComponent } from './component/about/about.component';
-import { RegisterComponent } from './component/register/register.component';
-import { LoginComponent } from './component/login/login.component';
-import { TeamComponent } from './component/team/team.component';
-import { ServicesComponent } from './component/services/services.component';
-import { CompanyComponent } from './componet/company/company.component';
-import { CreateAccountComponent } from './Components/create-account/create-account.component';
-import { FacilityAccountComponent } from './Components/AccountsForms/facility-account/facility-account.component';
-import { IndividualAccountComponent } from './Components/AccountsForms/individual-account/individual-account.component';
-import { CompanyAccountComponent } from './Components/AccountsForms/company-account/company-account.component';
+import { Route } from '@angular/router';
+import { GuardsComponent } from './features/guards/guards.component';
+import { InsuranceAdsComponent } from './features/insurance-ads/insurance-ads.component';
+import { FacilitiesComponent } from './features/facilities/facilities.component';
+import { CompaniesComponent } from './features/companies/companies.component';
+import { CreateCompanyComponent } from './features/companies/components/create-company/create-company.component';
+import { HomePageComponent } from './features/home-page/home-page.component';
+import { LoginComponent } from './features/auth/components/login/login.component';
+import { NotFoundComponent } from './shared/components/not-found/not-found.component';
+import { RegisterComponent } from './features/auth/components/register/register.component';
+import { CreatePriceRequestComponent } from './features/price-requests/components/price-request/create-price-request.component';
+import { ResetPasswordComponent } from './features/auth/components/reset-password/reset-password.component';
+import { CreateResetPasswordComponent } from './features/auth/components/create-reset-password/create-reset-password.component';
+import { CompanyOffersComponent } from './features/my-offers/components/company-offers/company-offers.component';
+import { FacilityOffersComponent } from './features/my-offers/components/facility-offers/facility-offers.component';
 
-export const routes: Routes = [
+import { ListFacilityComponent } from './features/facilities/list-facility/list-facility.component';
+import { CreateFacilityComponent } from './features/facilities/create-facility/create-facility.component';
+import { UpdateFacilityComponent } from './features/facilities/update-facility/update-facility.component';
 
-
-    {path:'',redirectTo:'home' , pathMatch:'full'},
-    {path:'home',component:HomeComponent , title:'home'},
-    {path:'about',component:AboutComponent ,title:'about'},
-    {path:'contact',component:ContactusComponent, title:'contact'},
-    {path:'register',component:RegisterComponent, title:'register'},
-    {path:'login',component:LoginComponent, title:'login'},
-    {path:'team',component:TeamComponent, title:'team'},
-    {path:'services',component:ServicesComponent, title:'services'},
-    {path:'company',component:CompanyComponent, title:'company'},
-    {path: "createAccount",  children: [
-        {path: "", component: CreateAccountComponent, title: "CreateAccount"},
-        {path: "companyAcc", component: CompanyAccountComponent, title: "CompanyAccount"},
-        {path: "individualAcc", component: IndividualAccountComponent, title: "IndividualAccount"},
-        {path: "facilityAcc", component: FacilityAccountComponent, title: "FacilityAccount"},
-    ]},
+import { UpdateCompanyComponent } from './features/companies/components/update-company/update-company.component';
+import { CompanyDetailsComponent } from './features/companies/components/company-details/company-details.component';
 
 
-    {path:'**',component:NotfoundComponent ,title:'notFound'}
+export const routes: Route[] = [
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomePageComponent },
+  { path: 'guards', component: GuardsComponent },
+  { path: 'insurance-ads', component: InsuranceAdsComponent },
+  { path: 'facilities', component: FacilitiesComponent },
+  { path: 'facilities/offers', component: FacilityOffersComponent },
+  { path: 'companies', component: CompaniesComponent },
+  { path: 'companies/createCompany', component: CreateCompanyComponent },
+
+  {
+    path: 'companies/create-price-request/:id',
+    component: CreatePriceRequestComponent,
+  },
+  { path: 'companies/offers', component: CompanyOffersComponent },
+
+
+  { path: 'companies/updateCompany/:id', component: UpdateCompanyComponent },
+  { path: 'companies/companyDetails/:id', component: CompanyDetailsComponent },
+  { path: 'companies/create-price-request/:id', component: CreatePriceRequestComponent },
+  { path: 'companies/offers', component: CompanyOffersComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'create-reset-password', component: CreateResetPasswordComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
+
+  {
+    path: 'allfacilities',
+    component: ListFacilityComponent,
+  },
+  {
+    path: 'createFacilities',
+    component: CreateFacilityComponent,
+  },
+  {
+    path: 'update-facility/:id',
+    component: UpdateFacilityComponent, // Use the same component
+  },
+
+
+  { path: '**', component: NotFoundComponent }, // wild card path
 ];

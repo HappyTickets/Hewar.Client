@@ -1,0 +1,310 @@
+<p-toast></p-toast>
+
+<div class="facility-form">
+  <h2>{{ "app.facilities.add-facility" | translate }}</h2>
+
+  <form
+    [formGroup]="facilityForm"
+    (ngSubmit)="onSubmit()"
+    class="form-create-facility"
+  >
+    <p class="p-group">{{ "app.facilities.facility-data" | translate }}</p>
+    <div class="group">
+      <p-floatlabel>
+        <p-iconfield>
+          <p-inputicon class="pi pi-user" />
+          <input
+            pInputText
+            id="name"
+            autocomplete="off"
+            formControlName="name"
+          />
+        </p-iconfield>
+        <label for="name">{{
+          "app.facilities.facility-name" | translate
+        }}</label>
+      </p-floatlabel>
+
+      <div class="p-input">
+        <p-floatlabel>
+          <p-iconfield>
+            <p-inputicon class="pi pi-user" />
+            <input
+              pInputText
+              id="type"
+              autocomplete="off"
+              formControlName="type"
+            />
+          </p-iconfield>
+          <label for="type">{{
+            "app.facilities.facility-type" | translate
+          }}</label>
+        </p-floatlabel>
+      </div>
+      <div class="p-input">
+        <p-floatlabel>
+          <p-iconfield>
+            <p-inputicon class="pi pi-barcode" />
+            <input
+              pInputText
+              id="commercialRegistration"
+              autocomplete="off"
+              formControlName="commercialRegistration"
+            />
+          </p-iconfield>
+          <label for="commercialRegistration">{{
+            "app.facilities.Commercial-Registration" | translate
+          }}</label>
+        </p-floatlabel>
+      </div>
+      <div class="p-input">
+        <p-floatlabel>
+          <p-iconfield>
+            <p-inputicon class="pi pi-barcode" />
+            <input
+              pInputText
+              id="activityType"
+              autocomplete="off"
+              formControlName="activityType"
+            />
+          </p-iconfield>
+          <label for="activityType">{{
+            "app.facilities.activity-type" | translate
+          }}</label>
+        </p-floatlabel>
+      </div>
+    </div>
+    <p class="p-group">
+      {{ "app.facilities.facility-det-address" | translate }}
+    </p>
+    <div class="group">
+      <div class="address" formGroupName="address">
+        <div class="p-input">
+          <p-floatlabel>
+            <p-iconfield>
+              <p-inputicon class="pi pi-building-columns" />
+              <input
+                pInputText
+                id="street"
+                autocomplete="off"
+                formControlName="street"
+              />
+            </p-iconfield>
+            <label for="activityType">{{
+              "app.facilities.street" | translate
+            }}</label>
+          </p-floatlabel>
+        </div>
+        <div class="p-input">
+          <p-floatlabel>
+            <p-iconfield>
+              <p-inputicon class="pi pi-map" />
+              <input
+                pInputText
+                id="city"
+                autocomplete="off"
+                formControlName="city"
+              />
+            </p-iconfield>
+            <label for="city">{{ "app.facilities.city" | translate }}</label>
+          </p-floatlabel>
+        </div>
+        <div class="p-input">
+          <p-floatlabel>
+            <p-iconfield>
+              <p-inputicon class="pi pi-map-marker" />
+              <input
+                pInputText
+                id="state"
+                autocomplete="off"
+                formControlName="state"
+              />
+            </p-iconfield>
+            <label for="state">{{ "app.facilities.state" | translate }}</label>
+          </p-floatlabel>
+        </div>
+        <div class="p-input">
+          <p-floatlabel>
+            <p-iconfield>
+              <p-inputicon class="pi pi-flag" />
+              <input
+                pInputText
+                id="country"
+                autocomplete="off"
+                formControlName="country"
+              />
+            </p-iconfield>
+            <label for="country">{{
+              "app.facilities.country" | translate
+            }}</label>
+          </p-floatlabel>
+        </div>
+      </div>
+    </div>
+    <p class="p-group">
+      {{ "app.facilities.facility-Responsible" | translate }}
+    </p>
+    <div class="group">
+      <div class="responsibleData">
+        <div class="p-input">
+          <p-floatlabel>
+            <p-iconfield>
+              <p-inputicon class="pi pi-user-edit" />
+              <input
+                pInputText
+                id="responsibleName"
+                autocomplete="off"
+                formControlName="responsibleName"
+              />
+            </p-iconfield>
+            <label for="responsibleName">{{
+              "app.facilities.responsipoleNam" | translate
+            }}</label>
+          </p-floatlabel>
+        </div>
+        <div class="p-input">
+          <p-floatlabel>
+            <p-iconfield>
+              <p-inputicon class="pi pi-phone" />
+              <input
+                pInputText
+                id="responsiblePhone"
+                type="tel"
+                formControlName="responsiblePhone"
+                autocomplete="off"
+                (keypress)="validateNumberInput($event)"
+              />
+            </p-iconfield>
+            <label for="responsiblePhone">{{
+              "app.facilities.phone" | translate
+            }}</label>
+          </p-floatlabel>
+        </div>
+      </div>
+    </div>
+    <p class="p-group">
+      {{ "app.facilities.facility-admin" | translate }}
+    </p>
+    <div class="group">
+      <div class="admin-info" formGroupName="adminInfo">
+        <div class="p-input">
+          <p-floatlabel>
+            <p-iconfield>
+              <p-inputicon class="pi pi-at" />
+              <input
+                pInputText
+                id="email"
+                autocomplete="off"
+                formControlName="email"
+              />
+            </p-iconfield>
+            <label for="email">{{ "app.facilities.email" | translate }}</label>
+          </p-floatlabel>
+        </div>
+        <div class="p-input">
+          <p-floatlabel>
+            <p-iconfield>
+              <p-inputicon class="pi pi-key" />
+              <input
+                pInputText
+                type="password"
+                id="password"
+                autocomplete="off"
+                formControlName="password"
+              />
+            </p-iconfield>
+            <label for="password">{{
+              "app.facilities.password" | translate
+            }}</label>
+          </p-floatlabel>
+        </div>
+        <div class="p-input">
+          <p-floatlabel>
+            <p-iconfield>
+              <p-inputicon class="pi pi-user" />
+              <input
+                pInputText
+                id="firstName"
+                autocomplete="off"
+                formControlName="firstName"
+              />
+            </p-iconfield>
+            <label for="firstName">{{
+              "app.facilities.firstName" | translate
+            }}</label>
+          </p-floatlabel>
+        </div>
+        <div class="p-input">
+          <p-floatlabel>
+            <p-iconfield>
+              <p-inputicon class="pi pi-user" />
+              <input
+                pInputText
+                id="lastName"
+                autocomplete="off"
+                formControlName="lastName"
+              />
+            </p-iconfield>
+            <label for="lastName">{{
+              "app.facilities.lastName" | translate
+            }}</label>
+          </p-floatlabel>
+        </div>
+        <div class="p-input">
+          <p-floatlabel>
+            <p-iconfield>
+              <p-inputicon class="pi pi-phone" />
+              <input
+                pInputText
+                id="phone"
+                type="tel"
+                formControlName="phone"
+                autocomplete="off"
+                (keypress)="validateNumberInput($event)"
+              />
+            </p-iconfield>
+            <label for="phone">{{ "app.facilities.phone" | translate }}</label>
+          </p-floatlabel>
+        </div>
+      </div>
+    </div>
+    <p class="p-group">
+      {{ "app.facilities.facility-image" | translate }}
+    </p>
+    <div class="group">
+      <div class="imag-uplod">
+        <label for="">{{ "app.facilities.upload-image" | translate }}</label>
+        <i class="pi pi-cloud-upload"></i>
+
+        <app-image-uploader
+          (fileSizeError)="handleFileSizeError($event)"
+          (imageName)="handelimagenam($event)"
+        ></app-image-uploader>
+        <div *ngIf="fileUploadError" class="error-message">
+          {{ fileUploadError }}
+        </div>
+      </div>
+    </div>
+    <div class="buttons">
+      <div class="form-buttons">
+        <div>
+          <button
+            pButton
+            type="submit"
+            label="Create "
+            class="p-my-button"
+          ></button>
+        </div>
+        <div>
+          <button
+            pButton
+            type="button"
+            label="Cancel"
+            class="p-button-secondary"
+            (click)="cancel()"
+          ></button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

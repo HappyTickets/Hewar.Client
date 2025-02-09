@@ -1,0 +1,488 @@
+// @import "../../../../../public/assets/variables.scss";
+// .facility-details {
+//   padding: 20px;
+//   background-color: #f8f9fa;
+
+//   .header {
+//     text-align: center;
+//     margin-bottom: 20px;
+
+//     h1 {
+//       font-size: 32px;
+//       margin-bottom: 10px;
+//     }
+
+//     .sub-heading {
+//       font-size: 18px;
+//       color: #777;
+//     }
+//   }
+
+//   .facility-info {
+//     display: flex;
+//     flex-wrap: wrap;
+//     justify-content: center;
+
+//     .image {
+//       width: 30%;
+//       min-width: 200px;
+//       margin-right: 20px;
+//       margin-bottom: 20px;
+//       margin-left: 20px;
+
+//       img {
+//         width: 100%;
+//         border-radius: 10px;
+//         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+//       }
+
+//       .no-image {
+//         background-color: #ccc;
+//         height: 200px;
+//         text-align: center;
+//         display: flex;
+//         align-items: center;
+//         justify-content: center;
+//         color: #fff;
+//         font-size: 16px;
+//         border-radius: 10px;
+//       }
+//     }
+
+//     .info {
+//       display: flex;
+//       justify-content: space-around;
+//       flex-direction: column;
+//       flex: 1;
+//       max-width: 95%;
+//       margin-left: 20px;
+//       .action-buttons {
+//         display: flex;
+//         flex-direction: column;
+//       }
+
+//       .info-item {
+//         margin-bottom: 10px;
+//         font-size: 16px;
+
+//         strong {
+//           font-weight: bold;
+//         }
+
+//         a {
+//           color: #007bff;
+//           text-decoration: none;
+
+//           &:hover {
+//             text-decoration: underline;
+//           }
+//         }
+//       }
+//     }
+//   }
+
+//   .action-buttons {
+//     margin-top: 20px;
+//     display: flex;
+//     justify-content: center;
+//     gap: 15px;
+
+//     .btn {
+//       padding: 10px 20px;
+//       font-size: 16px;
+//       cursor: pointer;
+//       border-radius: 5px;
+//       border: none;
+//       display: inline-block;
+//       transition: background-color 0.3s ease, color 0.3s ease;
+//     }
+
+//     .edit-btn {
+//       background: linear-gradient(267.93deg, #00223c -5.69%, #1a759f 103.34%);
+//       color: white;
+
+//       &:hover {
+//         background-color: #45a049;
+//       }
+//     }
+
+//     .delete-btn {
+//       background-color: #f44336;
+//       color: white;
+
+//       &:hover {
+//         background-color: #e53935;
+//       }
+//     }
+
+//     .back-btn {
+//       background-color: #2196f3;
+//       color: white;
+
+//       &:hover {
+//         background-color: #1976d2;
+//       }
+//     }
+//   }
+// }
+
+// @media (max-width: 768px) {
+//   .facility-details {
+//     padding: 15px;
+//   }
+
+//   .facility-info {
+//     flex-direction: column;
+//     align-items: center;
+
+//     .image {
+//       width: 60% !important;
+//       margin-right: 0;
+//       margin-bottom: 20px;
+//       margin-left: 20px;
+
+//       img {
+//         max-height: 250px;
+//         object-fit: cover;
+//       }
+//     }
+
+//     .info {
+//       width: 100%;
+//       max-width: none;
+//       margin-left: 0;
+
+//       .info-item {
+//         font-size: 14px;
+//         display: flex;
+//         justify-content: space-between;
+//         div {
+//           padding-top: 10px;
+//         }
+//       }
+//     }
+//   }
+
+//   .action-buttons {
+//     flex-direction: column;
+//     align-items: center;
+//   }
+// }
+
+// @media (max-width: 480px) {
+//   .p-dialog {
+//     max-height: 90%;
+//     transform: scale(0.8) !important;
+//     border-radius: var(--p-dialog-border-radius);
+//     box-shadow: var(--p-dialog-shadow);
+//     background: var(--p-dialog-background);
+//     border: 1px solid var(--p-dialog-border-color);
+//     color: var(--p-dialog-color);
+//     display: flex;
+//     flex-direction: column;
+//     pointer-events: auto;
+//   }
+//   div.ng-trigger {
+//     transform: scale(0.5) !important;
+//   }
+
+//   .facility-details {
+//     padding: 10px;
+//   }
+
+//   .header h1 {
+//     font-size: 26px;
+//   }
+
+//   .sub-heading {
+//     font-size: 14px;
+//   }
+
+//   .facility-info {
+//     flex-direction: row !important;
+//     .image {
+//       width: 100% !important;
+//       margin-bottom: 15px;
+//     }
+
+//     .info {
+//       flex-direction: column !important;
+
+//       width: 100% !important;
+//       max-width: 100% !important;
+//       .info-in {
+//         width: 100% !important;
+//       }
+
+//       .info-item {
+//         font-size: 13px;
+//         display: flex;
+//         flex-direction: column;
+//         strong {
+//           font-size: 12.8px;
+//         }
+//         div {
+//           font-size: 12px;
+//           color: #6f7481 !important;
+//         }
+//       }
+//       .action-buttons {
+//         flex-direction: row !important;
+//         align-items: center !important;
+//         gap: 5px !important;
+//       }
+//     }
+//   }
+// }
+
+// .delete {
+//   border: 1px solid #d74352 !important;
+//   color: #d74352;
+//   &:hover {
+//     border: 1px solid #d74352 !important  ;
+//     background-color: #d74352 !important;
+//     color: #fff;
+//   }
+// }
+// ::ng-deep .p-dialog {
+//   text-align: center;
+//   background-color: #fff !important;
+//   .p-button-text.p-button-secondary {
+//     background-color: #333;
+//     color: #fff;
+//   }
+//   .head {
+//     font-size: 26px;
+//     color: #1e6091 !important;
+//   }
+//   .desc {
+//     color: #7e8598;
+//     line-height: 40px;
+//   }
+//   .flex {
+//     button {
+//       border: none;
+//       color: #fff;
+//       width: 135px;
+//       transition: 0.3s;
+//       -webkit-transition: 0.3s;
+//       -moz-transition: 0.3s;
+//       -ms-transition: 0.3s;
+//       -o-transition: 0.3s;
+//       &:hover {
+//         border: none !important;
+//         color: #fff !important;
+//       }
+//     }
+//   }
+//   .delete-comp button {
+//     background-color: #a50f26 !important;
+//     margin-left: 25px;
+//     margin-right: 10px;
+//     width: 140px;
+//     &:hover {
+//       background-color: #b83549 !important;
+//     }
+//   }
+//   .cancel button {
+//     background-color: #7e8598 !important;
+//     &:hover {
+//       background-color: #8e99b6 !important;
+//     }
+//   }
+// }
+
+@import "../../../../../public/assets/variables.scss";
+
+.image-details {
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 26px;
+  -webkit-border-radius: 26px;
+  -moz-border-radius: 26px;
+  -ms-border-radius: 26px;
+  -o-border-radius: 26px;
+  img {
+    padding: 55px;
+    width: 90%;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+  }
+}
+
+.details-title {
+  color: #1e6091;
+}
+
+.details-desc {
+  color: #7e8598;
+}
+
+.box {
+  border: 1px solid #ddd;
+  padding: 17px;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  a,
+  button {
+    width: 200px;
+    text-align: center;
+    margin-bottom: 10px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 9px 27px;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+  }
+  .edit {
+    border: 1px solid $main-color;
+    color: $main-color;
+    &:hover {
+      background-color: $main-color;
+      color: #fff;
+    }
+  }
+  .details {
+    border: 1px solid $main-color;
+    background-color: $main-color;
+    color: #fff;
+    &:hover {
+      border: 1px solid $main-color;
+      background-color: #fff;
+      color: $main-color;
+    }
+  }
+  .delete {
+    border: 1px solid #d74352;
+    color: #d74352;
+    &:hover {
+      border: 1px solid #d74352;
+      background-color: #d74352;
+      color: #fff;
+    }
+  }
+}
+
+.location-img {
+  width: 14px;
+  margin: 0 9px;
+  transform: translateY(3px);
+  -webkit-transform: translateY(3px);
+  -moz-transform: translateY(3px);
+  -ms-transform: translateY(3px);
+  -o-transform: translateY(3px);
+}
+
+.company-services {
+  color: #1e6091;
+}
+@media (max-width: 768px) {
+  .image-details img {
+    padding: 20px;
+    max-width: 100%;
+    border-radius: 15px;
+  }
+  .col-5 {
+    width: 100% !important;
+  }
+  .col-7 {
+    width: 100% !important;
+  }
+  .grid {
+    display: flex !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    flex-direction: column;
+  }
+
+  .details-title {
+    font-size: 1.5rem;
+  }
+
+  .details-desc {
+    font-size: 1rem;
+  }
+
+  .card-actions {
+    flex-direction: column; // جعل الأزرار عمودية عند التصغير
+    align-items: center;
+
+    a,
+    button {
+      width: 100%;
+      max-width: 250px;
+    }
+  }
+
+  .box {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .image-details {
+    border-radius: 15px;
+  }
+
+  .details-title {
+    font-size: 1.3rem;
+  }
+
+  .details-desc {
+    font-size: 0.9rem;
+  }
+
+  .card-actions {
+    gap: 5px;
+  }
+
+  .box {
+    padding: 8px;
+    border-radius: 10px;
+  }
+}
+
+.p-my-button {
+  display: inline-flex;
+  cursor: pointer;
+  user-select: none;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  color: var(--p-button-primary-color);
+  background: linear-gradient(316.48deg, #168aad 26.1%, #5c98f8 80.7%);
+
+  font-size: 1rem;
+  font-family: inherit;
+  font-feature-settings: inherit;
+  transition: background var(--p-button-transition-duration),
+    color var(--p-button-transition-duration),
+    border-color var(--p-button-transition-duration),
+    outline-color var(--p-button-transition-duration),
+    box-shadow var(--p-button-transition-duration);
+  border-radius: var(--p-button-border-radius);
+  outline-color: transparent;
+  gap: var(--p-button-gap);
+}

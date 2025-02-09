@@ -1,0 +1,55 @@
+<form [formGroup]="registerForm" (ngSubmit)="register()">
+  <div class="register-grid">
+    <div class="register-card">
+      <p-card [style]="{'box-shadow': 'none'}" >
+        <ng-template pTemplate="title">
+          <div class="flex justify-content-center">{{ 'app.auth.register_facility.facilityData' | translate }}</div>
+        </ng-template>
+        <ng-template pTemplate="content">
+          <app-input placeholder="register_facility.namePlaceholder" [formGroup]="registerForm" errorKey="register_facility.invalidName" controlName="name" icon="pi-building" type="text" label="register_facility.nameLabel"></app-input>
+          <app-input placeholder="register_facility.typePlaceholder" [formGroup]="registerForm" errorKey="register_facility.invalidType" controlName="type" icon="pi-briefcase" type="text" label="register_facility.typeLabel"></app-input>
+          <app-input placeholder="register_facility.commercialRegistrationPlaceholder" [formGroup]="registerForm" errorKey="register_facility.invalidCommercialRegistration" controlName="commercialRegistration" icon="pi-id-card" type="text" label="register_facility.commercialRegistrationLabel"></app-input>
+          <app-input placeholder="register_facility.activityTypePlaceholder" [formGroup]="registerForm" errorKey="register_facility.invalidActivityType" controlName="activityType" icon="pi-chart-bar" type="text" label="register_facility.activityTypeLabel"></app-input>
+          <app-input placeholder="register_facility.responsibleNamePlaceholder" [formGroup]="registerForm" errorKey="register_facility.invalidResponsibleName" controlName="responsibleName" icon="pi-user" type="text" label="register_facility.responsibleNameLabel"></app-input>
+          <app-input placeholder="register_facility.responsiblePhonePlaceholder" [formGroup]="registerForm" errorKey="register_facility.invalidResponsiblePhone" controlName="responsiblePhone" icon="pi-phone" type="text" label="register_facility.responsiblePhoneLabel"></app-input>
+          <app-input placeholder="logoPlaceholder" [formGroup]="registerForm" errorKey="invalidLogo" controlName="logo" icon="pi-image" type="text" label="logoLabel"></app-input>
+        </ng-template>
+      </p-card>
+    </div>
+    <div class="register-card">
+      <p-card [style]="{'box-shadow': 'none'}">
+        <ng-template pTemplate="title">
+          <div class="flex justify-content-center">{{ 'app.auth.userData' | translate }}</div>
+        </ng-template>
+        <ng-template pTemplate="content">
+          <app-input placeholder="firstNamePlaceholder" [formGroup]="registerForm" errorKey="invalidFirstName" controlName="firstName" icon="pi-building" type="text" label="firstNameLabel"></app-input>
+          <app-input placeholder="lastNamePlaceholder" [formGroup]="registerForm" errorKey="invalidLastName" controlName="lastName" icon="pi-building" type="text" label="lastNameLabel"></app-input>
+          <app-input placeholder="phonePlaceholder" [formGroup]="registerForm" errorKey="invalidPhone" controlName="phone" icon="pi-phone" type="text" label="phoneLabel"></app-input>
+          <app-input placeholder="imageUrlPlaceholder" [formGroup]="registerForm" errorKey="invalidImageUrl" controlName="imageUrl" icon="pi-image" type="text" label="imageUrlLabel"></app-input>
+          <app-input placeholder="emailPlaceholder" [formGroup]="registerForm" errorKey="invalidEmail" controlName="email" icon="pi-envelope" type="email" label="emailLabel"></app-input>
+          <app-input placeholder="passwordPlaceholder" [formGroup]="registerForm" errorKey="invalidPassword" controlName="password" icon="pi-lock" type="password" label="passwordLabel"></app-input>
+          <app-input placeholder="confirmPasswordPlaceholder" [formGroup]="registerForm" errorKey="invalidConfirmPassword" controlName="confirmPassword" icon="pi-lock" type="password" label="confirmPasswordLabel"></app-input>
+        </ng-template>
+      </p-card>
+    </div>
+    <div class="register-card">
+      <p-card [style]="{'box-shadow': 'none'}">
+        <ng-template pTemplate="title"><div class="flex justify-content-center">{{ 'app.auth.address' | translate }}</div></ng-template>
+        <ng-template pTemplate="content">
+          <app-input placeholder="streetPlaceholder" [formGroup]="registerForm" errorKey="invalidStreet" controlName="street" icon="pi-map-marker" type="text" label="streetLabel"></app-input>
+          <app-input placeholder="cityPlaceholder" [formGroup]="registerForm" errorKey="invalidCity" controlName="city" icon="pi-map" type="dropdown"[options]="cities"label="cityLabel"></app-input>
+          <app-input placeholder="statePlaceholder" [formGroup]="registerForm" errorKey="invalidState" controlName="state" icon="pi-map-marker" type="text" label="stateLabel"></app-input>
+          <app-input placeholder="countryPlaceholder" [formGroup]="registerForm" errorKey="invalidCountry" controlName="country" icon="pi-map-marker" type="text" label="countryLabel"></app-input>
+          <app-input placeholder="postalCodePlaceholder" [formGroup]="registerForm" errorKey="invalidPostalCode" controlName="postalCode" icon="pi-map-marker" type="text" label="postalCodeLabel"></app-input>
+        </ng-template>
+      </p-card>
+    </div>
+  </div>
+
+  <div class="checkbox-container mb-3">
+    <p-checkbox inputId="checked" formControlName="acceptTerms" [binary]="true" ></p-checkbox>
+    <label for="checked">{{ 'app.auth.acceptOn' | translate }}<a href="#">{{ 'app.auth.terms' | translate }}</a></label>
+  </div>
+  <button fluid="true" type="submit" class="custom-button" [disabled]="registerForm.invalid" >{{ 'app.auth.registerButton' | translate }}</button>
+</form>
+<app-confirm-email [showDialog]="showDialog" [email]="email" [password]="password" (closeDialog)="onCloseDialog()"></app-confirm-email>

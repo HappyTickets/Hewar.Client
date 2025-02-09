@@ -1,79 +1,112 @@
 /* You can add global styles to this file, and also import other style files */
-@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
-@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+@import "primeicons/primeicons.css";
+@import 'primeflex/primeflex.scss';
 
-
-
-    // padding-top: 80px; /* حجم الـ navbar (يمكنك تعديله حسب الحجم الفعلي للـ navbar) */
-    body{
-      // background-color: var(--main-color) !important ;
-      padding-top: 80px;
-  }
-
-  
- 
-  //////////////////////////////////////////////////////////////////////
-  /* You can add global styles to this file, and also import other style files */
-@import url("https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&display=swap");
-
-// @import 'ngx-toastr/toastr';
-
-
-
-:root {
-  --main-color: #000000;
-  --light-color: #f0f3f2;
-  --shadow: rgba(145, 158, 171, 0.2) 0px 2px 4px -1px,
-    rgba(145, 158, 171, 0.14) 0px 4px 5px 0px,
-    rgba(145, 158, 171, 0.12) 0px 1px 10px 0px;
-  --font-family: "Encode Sans Expanded", sans-serif;
-  --rating-color: #ffc908;
-}
 
 body {
-  font-family: var(--font-family) !important;
+  margin: 0px;
+}
+
+* {
+  font-family: 'Alexandria', Roboto, "Helvetica Neue", sans-serif;
+}
+
+@font-face {
+  font-family: 'Alexandria';
+  src: url('/fonts/Alexandria-VariableFont_wght.ttf');
+}
+
+@font-face {
+  font-family: 'tajawal-bold';
+  src: url('/fonts/Tajawal-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'tajawal-medium';
+  src: url('/fonts/Tajawal-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'tajawal-regular';
+  src: url('/fonts/Tajawal-Regular.ttf');
 }
 
 
+html, body { height: 100%; }
 
-///////////////////////////////////
-/// 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+// container
+/* Basic container class */
+.container {
+  width: 100%;
+  max-width: 1525px; /* Adjust to your desired max-width */
+  margin: 0 auto; /* Centers the container */
+  padding: 0 15px; /* Adds some padding on the sides */
+}
 
-@import "aos/dist/aos.css";
-html {
-    scroll-behavior: smooth;
+/* Responsive behavior */
+@media (max-width: 1200px) {
+  .container {
+    max-width: 1080px;
   }
-  
-// @import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
-// @import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
- 
-  //////////////////////////////////////////////////////////////////////
-  /* You can add global styles to this file, and also import other style files */
-@import url("https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&display=swap");
-
-// @import 'ngx-toastr/toastr';
-
-
-
-:root {
-  --main-color: #000000;
-  --light-color: #f0f3f2;
-  --shadow: rgba(145, 158, 171, 0.2) 0px 2px 4px -1px,
-    rgba(145, 158, 171, 0.14) 0px 4px 5px 0px,
-    rgba(145, 158, 171, 0.12) 0px 1px 10px 0px;
-  --font-family: "Encode Sans Expanded", sans-serif;
-  --rating-color: #ffc908;
 }
 
-body {
-  font-family: var(--font-family) !important;
-}
-
-
-@import "aos/dist/aos.css";
-html {
-    scroll-behavior: smooth;
+@media (max-width: 992px) {
+  .container {
+    max-width: 840px;
   }
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 660px;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    max-width: 100%; /* For very small screens, fill the screen */
+  }
+}
+
+
+
+html[dir="ltr"] {
+  .search {
+    .pi-search {
+      right: 455px !important;
+    }
+    .pi-sliders-h {
+      left: 305px !important;
+    }
+  }
+  .filter ul {
+    padding: 13px 0;
+    li {
+      font-size: 15px;
+      margin-left: 0 !important;
+      margin-right: 20px !important;
+      &:not(.classification)::after {
+        content: "";
+        width: 3px;
+        height: 100%;
+        background-color: #fff;
+        position: absolute;
+        left: -16px;
+        top: 0;
+        border-radius: 15px;
+      }
+      &.classification::after {
+        display: none;
+      }
+    }
+  }
+  @media (min-width: 768px) {
+    .card-text {
+      transform: translateX(-130px);
+      -webkit-transform: translateX(-130px);
+      -moz-transform: translateX(-130px);
+      -ms-transform: translateX(-130px);
+      -o-transform: translateX(-130px);
+}
+  }
+}
