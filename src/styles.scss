@@ -38,7 +38,7 @@ html, body { height: 100%; }
 /* Basic container class */
 .container {
   width: 100%;
-  max-width: 1440px; /* Adjust to your desired max-width */
+  max-width: 1525px; /* Adjust to your desired max-width */
   margin: 0 auto; /* Centers the container */
   padding: 0 15px; /* Adds some padding on the sides */
 }
@@ -46,19 +46,19 @@ html, body { height: 100%; }
 /* Responsive behavior */
 @media (max-width: 1200px) {
   .container {
-    max-width: 960px;
+    max-width: 1080px;
   }
 }
 
 @media (max-width: 992px) {
   .container {
-    max-width: 720px;
+    max-width: 840px;
   }
 }
 
 @media (max-width: 768px) {
   .container {
-    max-width: 540px;
+    max-width: 660px;
   }
 }
 
@@ -73,7 +73,7 @@ html, body { height: 100%; }
 html[dir="ltr"] {
   .search {
     .pi-search {
-      right: 425px !important;
+      right: 455px !important;
     }
     .pi-sliders-h {
       left: 305px !important;

@@ -1,4 +1,4 @@
-<p-dialog [modal]="true" [(visible)]="visible" [style]="{ width: '40rem' }">
+<p-dialog [modal]="true" [(visible)]="visible" [hidden]="!visible" [style]="{ width: '40rem' }">
   <p class="head"> {{'app.delete-item.question' | translate}}  {{ itemName }} {{'app.delete-item.question-2' | translate}}</p>
   <p class="desc"> {{'app.delete-item.complete' | translate}}  {{ itemName }} {{'app.delete-item.click' | translate}}</p>
   <div class="flex justify-between gap-2">
