@@ -1,0 +1,104 @@
+@import '../../../../../../public/assets/variables.scss';
+
+.image-details {
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 26px;
+  -webkit-border-radius: 26px;
+  -moz-border-radius: 26px;
+  -ms-border-radius: 26px;
+  -o-border-radius: 26px;
+  img {
+    padding: 75px;
+    width: 100%;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+  }
+}
+
+.details-title {
+  color:#1E6091 ;
+}
+
+.details-desc {
+  color: #7E8598;
+}
+
+.box {
+  border: 1px solid #ddd;
+  padding: 17px;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  width: 90%;
+  a, button {
+    width: 224px;
+    text-align: center;
+    margin-bottom: 10px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 9px 27px;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+  }
+  .edit {
+    border: 1px solid $main-color;
+    color: $main-color;
+    &:hover {
+      background-color: $main-color;
+      color: #fff;
+    }
+  }
+  .details {
+    border: 1px solid $main-color;
+    background-color: $main-color;
+    color: #fff;
+    &:hover {
+      border: 1px solid $main-color;
+      background-color: #fff;
+      color: $main-color;
+    }
+  }
+  .delete {
+    border: 1px solid #D74352;
+    color: #D74352;
+    &:hover {
+      border: 1px solid #D74352;
+      background-color: #D74352;
+      color: #fff;
+    }
+  }
+}
+
+.location-img {
+  width: 14px;
+  margin: 0 9px;
+  transform: translateY(3px);
+  -webkit-transform: translateY(3px);
+  -moz-transform: translateY(3px);
+  -ms-transform: translateY(3px);
+  -o-transform: translateY(3px);
+}
+
+.company-services {
+  color:#1E6091 ;
+}

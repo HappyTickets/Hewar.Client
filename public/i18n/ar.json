@@ -401,6 +401,80 @@
         "formValues": "قيم النموذج",
         "site": "الموقع"
       }
+    },
+    "companies": {
+      "companies-list": {
+        "add-comp": "اضافة شركة",
+        "classification": "تصنيف",
+        "industrial-security": "الامن الصناعي",
+        "facilities-security": " امن المنشأت",
+        "delete": "مسح",
+        "search-here": "ابحث هنا",
+        "search": "ابحث",
+        "location": "الموقع",
+        "actions": {
+          "edit": "تعديل الشركه",
+          "request-quote": "طلب عرض سعر",
+          "delete": " حذف الشركه "
+        }
+      },
+      "companies-details": {
+        "name": "الاسم",
+        "phone": "الهاتف",
+        "email": "البريد الإلكتروني",
+        "address": "العنوان",
+        "company-services": "خدمات شركتنا",
+        "company-services-desc": "امن المنشأت نساعدك علي حمايه منشأتك"
+
+      },
+      "create-update-company": {
+        "create-title": "إنشاء شركة",
+        "update-title": "تعديل شركة",
+        "company-data-title": "بيانات الشركة",
+        "admin-data-title": "بيانات الادمن",
+        "address-data-title": "العنوان بالتفصيل",
+        "contactEmail": "البريد اللإلكتروني للشركة",
+        "contactEmail-error": " البريد اللإلكتروني للشركة مطلوب",
+        "phoneNumber": "الهاتف المحمول للشركة",
+        "phoneNumber-error": "الهاتف المحمول للشركة مطلوب",
+        "registrationNumber": "رقم التسجيل",
+        "registrationNumber-error": "رقم التسجيل مطلوب",
+        "taxId": "الرقم الضريبي",
+        "taxId-error": "الرقم الضريبي مطلوب",
+        "name": "اسم الشركة",
+        "name-error": "اسم الشركة مطلوب",
+        "email": "البريد اللإلكتروني",
+        "email-error": " البريد اللإلكتروني مطلوب",
+        "password": "كلمه السر",
+        "password-error": "كلمه السر مطلوب",
+        "firstName": "الاسم الاول",
+        "firstName-error": "الاسم الاول مطلوب",
+        "lastName": "الاسم الاخير",
+        "lastName-error": " الاسم الاخير مطلوب",
+        "phone": "الهاتف المحمول",
+        "phone-error": "الهاتف المحمول مطلوب",
+        "street": "الشارع",
+        "street-error": "الشارع مطلوب",
+        "city": "المدينة",
+        "city-error": "المدينة مطلوبة",
+        "state": "الولاية",
+        "state-error": "الولاية مطلوبة",
+        "country": "الدولة",
+        "country-error": "الدولة مطلوبة",
+        "postalCode": "الرمز البريدي",
+        "postalCode-error": "الرمز البريدي مطلوبة",
+
+        "save": "حفظ",
+        "cancel": "الغاء"
+      }
+    },
+    "delete-item": {
+      "question": " هل انت متأكد من حذف ",
+      "question-2": "؟",
+      "complete": "لاستكمال حذف ",
+      "click": "ضغط على \"حذف\" لإتمام العملية. ",
+      "delete": "حذف",
+      "cancel": "الغاء"
     }
   },
   "enums": {
