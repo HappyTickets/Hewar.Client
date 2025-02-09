@@ -20,7 +20,7 @@ import { DeletePopupComponent } from '../../../shared/components/delete-popup/de
     FormsModule,
     PaginatorModule,
     CommonModule,
-    Dialog,
+
     ButtonModule,
     InputTextModule,
     RouterLink,
@@ -106,6 +106,8 @@ export class ListFacilityComponent implements OnInit, OnDestroy {
     });
   }
   openDeletePopup(facility: IResponseData) {
+    document.body.classList.remove('card-scale');
+    this.currentCard = facility;
     this.showDeletePopup = true;
   }
   // private setDirection(lang: 'ar' | 'en') {
