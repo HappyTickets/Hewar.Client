@@ -1,12 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ICreateFacilities } from '../models/icreate-facilities';
+import {
+  ICreateFacilities,
+  ICreateFacilityResponse,
+} from '../models/icreate-facilities';
 import { Observable } from 'rxjs/internal/Observable';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { IResponseFacilities } from '../models/iresponse-facilities';
-import { IUpdateFacilities } from '../models/iupdate-facilities';
+import {
+  IUpdateFacilities,
+  IUpdateResponseFacilities,
+} from '../models/iupdate-facilities';
 import { throwError } from 'rxjs/internal/observable/throwError';
-import { IResponseData } from '../models/iresponse-data';
+import { IGetFacilityResponse, IResponseData } from '../models/iresponse-data';
+import { IgetByIdResponse } from '../models/iget-by-id-response';
 
 @Injectable({
   providedIn: 'root',
@@ -16,34 +23,32 @@ export class FacilitiesService {
   constructor(private _httpClient: HttpClient) {}
   createFacility(
     facility: ICreateFacilities
-  ): Observable<IResponseFacilities<IResponseData>> {
+  ): Observable<ICreateFacilityResponse> {
     return this._httpClient
-      .post<IResponseFacilities<IResponseData>>(
-        `${this.apiUrl}/create`,
-        facility
-      )
+      .post<ICreateFacilityResponse>(`${this.apiUrl}/create`, facility)
       .pipe(catchError((error) => this.handleError(error)));
   }
   updateFacility(
     facility: IUpdateFacilities
-  ): Observable<IResponseFacilities<IResponseData>> {
+  ): Observable<IUpdateResponseFacilities> {
     return this._httpClient
-      .put<IResponseFacilities<IResponseData>>(
-        `${this.apiUrl}/update`,
-        facility
-      )
+      .put<IUpdateFacilities>(`${this.apiUrl}/update`, facility)
       .pipe(catchError((error) => this.handleError(error)));
   }
-  getFacilityById(id: number): Observable<IResponseFacilities<IResponseData>> {
+
+  getFacilityById(
+    id: number
+  ): Observable<IResponseFacilities<IgetByIdResponse>> {
     return this._httpClient
-      .get<IResponseFacilities<IResponseData>>(`${this.apiUrl}/getById`, {
+      .get<IResponseFacilities<IgetByIdResponse>>(`${this.apiUrl}/getById`, {
         params: { id: id.toString() },
       })
       .pipe(catchError((error) => this.handleError(error)));
   }
-  getAllFacilities(): Observable<IResponseFacilities<IResponseData>> {
+
+  getAllFacilities(): Observable<IGetFacilityResponse> {
     return this._httpClient
-      .get<IResponseFacilities<IResponseData>>(`${this.apiUrl}/getAll`)
+      .get<IGetFacilityResponse>(`${this.apiUrl}/getAll`)
       .pipe(catchError((error) => this.handleError(error)));
   }
   softDeleteFacility(

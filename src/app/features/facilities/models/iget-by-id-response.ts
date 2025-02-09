@@ -1,11 +1,12 @@
-export interface IUpdateFacilities {
-  id: number; // Facility ID to update
+export interface IgetByIdResponse {
+  id: number;
   type: string;
   name: string;
   commercialRegistration: string;
   activityType: string;
   responsibleName: string;
   responsiblePhone: string;
+  logo: string;
   address: {
     street: string;
     city: string;
@@ -14,4 +15,3 @@ export interface IUpdateFacilities {
     postalCode: string;
   };
 }
-export interface IUpdateResponseFacilities {}
