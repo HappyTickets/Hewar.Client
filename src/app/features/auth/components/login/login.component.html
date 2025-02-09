@@ -4,8 +4,8 @@
       <h2 class="text-center text-2xl font-semibold text-gray-800">{{ 'app.auth.login.login' | translate }}</h2>
     </ng-template>
     <form [formGroup]="loginForm" (ngSubmit)="login()">
-      <app-input placeholder="emailPlaceholder" [formGroup]="loginForm" errorKey="invalidEmail" controlName="email" icon="pi-envelope" type="email" label="emailLabel"></app-input>
-      <app-input placeholder="passwordPlaceholder" [formGroup]="loginForm" errorKey="invalidPassword" controlName="password" icon="pi-lock" type="password" label="passwordLabel"></app-input>
+      <app-input placeholder="auth.emailPlaceholder" [formGroup]="loginForm" errorKey="auth.invalidEmail" controlName="email" icon="pi-envelope" type="email" label="auth.emailLabel"></app-input>
+      <app-input placeholder="auth.passwordPlaceholder" [formGroup]="loginForm" errorKey="auth.invalidPassword" controlName="password" icon="pi-lock" type="password" label="auth.passwordLabel"></app-input>
       <p-button class="block w-full" type="submit" [label]="'app.auth.login.login' | translate" [disabled]="loginForm.invalid" fluid="true" [loading]="loading"></p-button>
     </form>
     <a class="text-blue-600 text-sm block text-center mt-2 hover:underline" routerLink="/create-reset-password">{{'app.auth.login.forgotPassword' | translate }}</a>

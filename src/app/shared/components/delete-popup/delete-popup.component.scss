@@ -1,5 +1,4 @@
 ::ng-deep .p-overlay-mask {
-  background: rgba(0, 0, 0, 0.1) !important;
   ::ng-deep .p-dialog {
     text-align: center;
     .p-dialog-header {
@@ -7,10 +6,10 @@
     }
     .head {
       font-size: 26px;
-      color: #1E6091 !important;
+      color: #1e6091 !important;
     }
     .desc {
-      color: #7E8598;
+      color: #7e8598;
       line-height: 40px;
     }
     button {
@@ -28,14 +27,14 @@
       }
     }
     .delete-comp button {
-      background-color: #A50F26 !important;
+      background-color: #a50f26 !important;
       margin-left: 25px;
       &:hover {
         background-color: #b83549 !important;
       }
     }
     .cancel button {
-      background-color: #7E8598 !important;
+      background-color: #7e8598 !important;
       &:hover {
         background-color: #8e99b6 !important;
       }

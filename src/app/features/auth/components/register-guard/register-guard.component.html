@@ -7,13 +7,13 @@
           <div class="flex justify-content-center">{{ 'app.auth.userData' | translate }}</div>
         </ng-template>
         <ng-template pTemplate="content">
-          <app-input placeholder="firstNamePlaceholder" [formGroup]="registerForm" errorKey="invalidFirstName" controlName="firstName" icon="pi-user" type="text" label="firstNameLabel"></app-input>
-          <app-input placeholder="lastNamePlaceholder" [formGroup]="registerForm" errorKey="invalidLastName" controlName="lastName" icon="pi-user" type="text" label="lastNameLabel"></app-input>
-          <app-input placeholder="phonePlaceholder" [formGroup]="registerForm" errorKey="invalidPhone" controlName="phone" icon="pi-phone" type="text" label="phoneLabel"></app-input>
-          <app-input placeholder="imageUrlPlaceholder" [formGroup]="registerForm" errorKey="invalidImageUrl" controlName="imageUrl" icon="pi-image" type="text" label="imageUrlLabel"></app-input>
-          <app-input placeholder="emailPlaceholder" [formGroup]="registerForm" errorKey="invalidEmail" controlName="email" icon="pi-envelope" type="email" label="emailLabel"></app-input>
-          <app-input placeholder="passwordPlaceholder" [formGroup]="registerForm" errorKey="invalidPassword" controlName="password" icon="pi-lock" type="password" label="passwordLabel"></app-input>
-          <app-input placeholder="confirmPasswordPlaceholder" [formGroup]="registerForm" errorKey="invalidConfirmPassword" controlName="confirmPassword" icon="pi-lock" type="password" label="confirmPasswordLabel"></app-input>
+          <app-input placeholder="auth.firstNamePlaceholder" [formGroup]="registerForm" errorKey="auth.invalidFirstName" controlName="firstName" icon="pi-user" type="text" label="auth.userNameLabel"></app-input>
+          <app-input placeholder="auth.lastNamePlaceholder" [formGroup]="registerForm" errorKey="auth.invalidLastName" controlName="lastName" icon="pi-user" type="text" label="auth.lastNameLabel"></app-input>
+          <app-input placeholder="auth.phonePlaceholder" [formGroup]="registerForm" errorKey="auth.invalidPhone" controlName="phone" icon="pi-phone" type="text" label="auth.phoneLabel"></app-input>
+          <app-input placeholder="auth.imageUrlPlaceholder" [formGroup]="registerForm" errorKey="auth.invalidImageUrl" controlName="imageUrl" icon="pi-image" type="text" label="auth.imageUrlLabel"></app-input>
+          <app-input placeholder="auth.emailPlaceholder" [formGroup]="registerForm" errorKey="auth.invalidEmail" controlName="email" icon="pi-envelope" type="email" label="auth.emailLabel"></app-input>
+          <app-input placeholder="auth.passwordPlaceholder" [formGroup]="registerForm" errorKey="auth.invalidPassword" controlName="password" icon="pi-lock" type="password" label="auth.passwordLabel"></app-input>
+          <app-input placeholder="auth.confirmPasswordPlaceholder" [formGroup]="registerForm" errorKey="auth.invalidConfirmPassword" controlName="confirmPassword" icon="pi-lock" type="password" label="auth.confirmPasswordLabel"></app-input>
         </ng-template>
       </p-card>
     </div>
@@ -23,15 +23,15 @@
           <div class="flex justify-content-center">{{ 'app.auth.register_guard.specificUserData' | translate }}</div>
         </ng-template>
         <ng-template pTemplate="content">
-          <app-input placeholder="register_guard.userNamePlaceholder" [formGroup]="registerForm" errorKey="invalidUserName" controlName="userName" icon="pi-user" type="text" label="register_guard.userNameLabel"></app-input>
-          <app-input placeholder="register_guard.bloodTypePlaceholder" [formGroup]="registerForm" errorKey="register_guard.invalidBloodType" controlName="bloodType" icon="pi-heart" type="dropdown" [options]="bloodType" label="register_guard.bloodTypeLabel"></app-input>
-          <app-input placeholder="register_guard.nationalIdPlaceholder" [formGroup]="registerForm" errorKey="register_guard.invalidNationalId" controlName="nationalId" icon="pi-id-card" type="text" label="register_guard.nationalIdLabel"></app-input>
-          <app-input placeholder="register_guard.dateOfBirthPlaceholder" [formGroup]="registerForm" errorKey="register_guard.invalidDateOfBirth" controlName="dateOfBirth" icon="pi-calendar" type="date" label="register_guard.dateOfBirthLabel"></app-input>
-          <app-input placeholder="register_guard.heightPlaceholder" [formGroup]="registerForm" errorKey="register_guard.invalidHeight" controlName="height" icon="pi-arrow-up" type="number" label="register_guard.heightLabel"></app-input>
-          <app-input placeholder="register_guard.weightPlaceholder" [formGroup]="registerForm" errorKey="register_guard.invalidWeight" controlName="weight" icon="pi-arrow-down" type="number" label="register_guard.weightLabel"></app-input>
-          <app-input placeholder="register_guard.qualificationPlaceholder" [formGroup]="registerForm" errorKey="register_guard.invalidQualification" controlName="qualification" icon="pi-map" type="dropdown" [options]="qualifications"label="register_guard.qualificationLabel"></app-input>
-          <app-input placeholder="register_guard.skillsPlaceholder" [formGroup]="registerForm" errorKey="register_guard.invalidSkills" controlName="skills" icon="pi-list" type="text" label="register_guard.skillsLabel"></app-input>
-          <app-input placeholder="register_guard.prevCompaniesPlaceholder" [formGroup]="registerForm" errorKey="register_guard.invalidPrevCompanies" controlName="prevCompanies" icon="pi-briefcase" type="text" label="register_guard.prevCompaniesLabel"></app-input>
+          <app-input placeholder="auth.register_guard.userNamePlaceholder" [formGroup]="registerForm" errorKey="auth.invalidUserName" controlName="userName" icon="pi-user" type="text" label="auth.register_guard.userNameLabel"></app-input>
+          <app-input placeholder="auth.register_guard.bloodTypePlaceholder" [formGroup]="registerForm" errorKey="auth.register_guard.invalidBloodType" controlName="bloodType" icon="pi-heart" type="dropdown" [options]="bloodType" label="auth.register_guard.bloodTypeLabel"></app-input>
+          <app-input placeholder="auth.register_guard.nationalIdPlaceholder" [formGroup]="registerForm" errorKey="auth.register_guard.invalidNationalId" controlName="nationalId" icon="pi-id-card" type="text" label="auth.register_guard.nationalIdLabel"></app-input>
+          <app-input placeholder="auth.register_guard.dateOfBirthPlaceholder" [formGroup]="registerForm" errorKey="auth.register_guard.invalidDateOfBirth" controlName="dateOfBirth" icon="pi-calendar" type="date" label="auth.register_guard.dateOfBirthLabel"></app-input>
+          <app-input placeholder="auth.register_guard.heightPlaceholder" [formGroup]="registerForm" errorKey="auth.register_guard.invalidHeight" controlName="height" icon="pi-arrow-up" type="number" label="auth.register_guard.heightLabel"></app-input>
+          <app-input placeholder="auth.register_guard.weightPlaceholder" [formGroup]="registerForm" errorKey="auth.register_guard.invalidWeight" controlName="weight" icon="pi-arrow-down" type="number" label="auth.register_guard.weightLabel"></app-input>
+          <app-input placeholder="auth.register_guard.qualificationPlaceholder" [formGroup]="registerForm" errorKey="auth.register_guard.invalidQualification" controlName="qualification" icon="pi-map" type="dropdown" [options]="qualifications"label="auth.register_guard.qualificationLabel"></app-input>
+          <app-input placeholder="auth.register_guard.skillsPlaceholder" [formGroup]="registerForm" errorKey="auth.register_guard.invalidSkills" controlName="skills" icon="pi-list" type="text" label="auth.register_guard.skillsLabel"></app-input>
+          <app-input placeholder="auth.register_guard.prevCompaniesPlaceholder" [formGroup]="registerForm" errorKey="auth.register_guard.invalidPrevCompanies" controlName="prevCompanies" icon="pi-briefcase" type="text" label="auth.register_guard.prevCompaniesLabel"></app-input>
         </ng-template>
       </p-card>
     </div>
@@ -41,11 +41,11 @@
           <div class="flex justify-content-center">{{ 'app.auth.address' | translate }}</div>
         </ng-template>
         <ng-template pTemplate="content">
-          <app-input placeholder="streetPlaceholder" [formGroup]="registerForm" errorKey="invalidStreet" controlName="street" icon="pi-map-marker" type="text" label="streetLabel"></app-input>
-          <app-input placeholder="cityPlaceholder" [formGroup]="registerForm" errorKey="invalidCity" controlName="city" icon="pi-map" type="dropdown" [options]="cities"label="cityLabel"></app-input>
-          <app-input placeholder="statePlaceholder" [formGroup]="registerForm" errorKey="invalidState" controlName="state" icon="pi-map-marker" type="text" label="stateLabel"></app-input>
-          <app-input placeholder="countryPlaceholder" [formGroup]="registerForm" errorKey="invalidCountry" controlName="country" icon="pi-map-marker" type="text" label="countryLabel"></app-input>
-          <app-input placeholder="postalCodePlaceholder" [formGroup]="registerForm" errorKey="invalidPostalCode" controlName="postalCode" icon="pi-map-marker" type="text" label="postalCodeLabel"></app-input>
+          <app-input placeholder="auth.streetPlaceholder" [formGroup]="registerForm" errorKey="auth.invalidStreet" controlName="street" icon="pi-map-marker" type="text" label="auth.streetLabel"></app-input>
+          <app-input placeholder="auth.cityPlaceholder" [formGroup]="registerForm" errorKey="auth.invalidCity" controlName="city" icon="pi-map" type="dropdown" [options]="cities"label="auth.cityLabel"></app-input>
+          <app-input placeholder="auth.statePlaceholder" [formGroup]="registerForm" errorKey="auth.invalidState" controlName="state" icon="pi-map-marker" type="text" label="auth.stateLabel"></app-input>
+          <app-input placeholder="auth.countryPlaceholder" [formGroup]="registerForm" errorKey="auth.invalidCountry" controlName="country" icon="pi-map-marker" type="text" label="auth.countryLabel"></app-input>
+          <app-input placeholder="auth.postalCodePlaceholder" [formGroup]="registerForm" errorKey="auth.invalidPostalCode" controlName="postalCode" icon="pi-map-marker" type="text" label="auth.postalCodeLabel"></app-input>
         </ng-template>
       </p-card>
     </div>
