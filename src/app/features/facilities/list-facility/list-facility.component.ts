@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { LocalizationService } from '../../../core/services/localization/localization.service';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { TranslateModule } from '@ngx-translate/core';
+import { DeletePopupComponent } from '../../../shared/components/delete-popup/delete-popup.component';
 
 @Component({
   selector: 'app-list-facility',
@@ -19,12 +20,13 @@ import { TranslateModule } from '@ngx-translate/core';
     FormsModule,
     PaginatorModule,
     CommonModule,
-    Dialog,
+
     ButtonModule,
     InputTextModule,
     RouterLink,
     TranslateModule,
     RouterModule,
+    DeletePopupComponent,
   ],
   templateUrl: './list-facility.component.html',
   styleUrl: './list-facility.component.scss',
@@ -38,6 +40,8 @@ export class ListFacilityComponent implements OnInit, OnDestroy {
   facilities: IResponseData[] = [];
   searchValue = '';
   visibleDeletePopup = false;
+  showDeletePopup = false;
+
   currentCard!: IResponseData;
   constructor(
     private facilityService: FacilitiesService,
@@ -76,15 +80,17 @@ export class ListFacilityComponent implements OnInit, OnDestroy {
       card.name.toLowerCase().includes(search)
     );
   }
-  showDialog(card: IResponseData) {
-    this.visibleDeletePopup = true;
-    this.currentCard = card;
-  }
+  // showDialog(card: IResponseData) {
+  //   this.visibleDeletePopup = true;
+  //   this.currentCard = card;
+  // }
   updateFacility(facilityId: number) {
     this.router.navigate(['/update-facility', facilityId]);
   }
-  deletFacility() {
+
+  deletFacility(id: number) {
     this.visibleDeletePopup = false;
+    this.showDeletePopup = false;
     this.facilityService.softDeleteFacility(this.currentCard.id).subscribe({
       next: (res) => {
         console.log(res);
@@ -99,6 +105,11 @@ export class ListFacilityComponent implements OnInit, OnDestroy {
         // this.getAllCompanies()
       },
     });
+  }
+  openDeletePopup(facility: IResponseData) {
+    document.body.classList.remove('card-scale');
+    this.currentCard = facility;
+    this.showDeletePopup = true;
   }
   // private setDirection(lang: 'ar' | 'en') {
   //   const section = document.getElementById('facilities-section');

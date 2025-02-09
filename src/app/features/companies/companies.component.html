@@ -3,78 +3,140 @@
     <div class="grid align-items-center">
       <div class="col-2">
         <div class="add-company">
-          <a routerLink="createCompany">{{'app.companies.companies-list.add-comp' | translate}}</a>
+          <a routerLink="createCompany">{{
+            "app.companies.companies-list.add-comp" | translate
+          }}</a>
         </div>
       </div>
       <div class="col-6 p-0">
         <div class="filter">
           <ul class="flex justify-content-center">
-            <li class="classification">{{'app.companies.companies-list.classification' | translate}}</li>
+            <li class="classification">
+              {{ "app.companies.companies-list.classification" | translate }}
+            </li>
             <label for="l01">
-            <li>
-              <input type="radio" id="l01" name="type" value="type-1" (click)="showSec01()" checked>
-              {{'app.companies.companies-list.industrial-security' | translate}}
+              <li>
+                <input
+                  type="radio"
+                  id="l01"
+                  name="type"
+                  value="type-1"
+                  (click)="showSec01()"
+                  checked
+                />
+                {{
+                  "app.companies.companies-list.industrial-security" | translate
+                }}
+              </li>
+            </label>
+            <label for="l02">
+              <li class="active">
+                <input
+                  type="radio"
+                  id="l02"
+                  name="type"
+                  value="type-2"
+                  (click)="showSec02()"
+                />
+                {{
+                  "app.companies.companies-list.facilities-security" | translate
+                }}
+              </li>
+            </label>
+            <li class="delete">
+              {{ "app.companies.companies-list.delete" | translate }}
             </li>
-          </label>
-          <label for="l02">
-            <li class="active">
-              <input type="radio" id="l02" name="type" value="type-2" (click)="showSec02()">
-              {{'app.companies.companies-list.facilities-security' | translate}}
-            </li>
-          </label>
-          <li class="delete">{{'app.companies.companies-list.delete' | translate}}</li>
-        </ul>
+          </ul>
         </div>
       </div>
       <div class="col-4">
         <div class="search">
           <form class="flex">
             <i class="pi pi-search"></i>
-            <input type="text" placeholder="{{'app.companies.companies-list.search-here' | translate}}" [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}">
+            <input
+              type="text"
+              placeholder="{{
+                'app.companies.companies-list.search-here' | translate
+              }}"
+              [(ngModel)]="searchValue"
+              [ngModelOptions]="{ standalone: true }"
+            />
             <i class="pi pi-sliders-h"></i>
-            <button>{{'app.companies.companies-list.search' | translate}}</button>
+            <button>
+              {{ "app.companies.companies-list.search" | translate }}
+            </button>
           </form>
         </div>
       </div>
     </div>
-      @for (company of filteredCards().slice(first, first + rows); track $index) {
-        <div class="card">
-          <div class="grid mx-4">
-            <div class="col" [routerLink]="'/companies/companyDetails/' + company.id">
-              <div class="card-image" >
-                <!-- <img [src]="company.imageUrl" alt="" > -->
-                <img src="images/card-image.svg" alt="" >
-              </div>
-            </div>
-            <div class="col" [routerLink]="'/companies/companyDetails/' + company.id">
-              <div class="card-text">
-                <h2>{{company.name}}</h2>
-                <p class="type">{{company.contactEmail}}</p>
-                <p class="location"><img src="images/location-icon.svg" alt=""><span>{{'app.companies.companies-list.location' | translate}}:</span> {{company.address.city}}, {{company.address.country}}</p>
-              </div>
-            </div>
-            <div class="col-2">
-              <div class="card-actions">
-                <i class="pi pi-share-alt"></i>
-                <button [routerLink]="'/companies/updateCompany/' + company.id" class="edit">{{'app.companies.companies-list.actions.edit' | translate}}</button>
-                <a routerLink="" class="details">{{'app.companies.companies-list.actions.request-quote' | translate}}</a>
-                <button class="delete" role="button" (click)="openDeletePopup(company)">
-                  {{'app.companies.companies-list.actions.delete' | translate}}
-                </button>
-                <div class="card flex justify-center">
-                  <app-delete-popup
-                    [visible]="showDeletePopup"
-                    [itemName]="companyToDelete?.name"
-                    (confirmDelete)="confirmDelete()"
-                    (closePopup)="showDeletePopup = false">
-                  </app-delete-popup>
-                </div>
-              </div>
+    @for (company of filteredCards().slice(first, first + rows); track $index) {
+    <div class="card">
+      <div class="grid mx-4">
+        <div
+          class="col"
+          [routerLink]="'/companies/companyDetails/' + company.id"
+        >
+          <div class="card-image">
+            <!-- <img [src]="company.imageUrl" alt="" > -->
+            <img src="images/card-image.svg" alt="" />
+          </div>
+        </div>
+        <div
+          class="col"
+          [routerLink]="'/companies/companyDetails/' + company.id"
+        >
+          <div class="card-text">
+            <h2>{{ company.name }}</h2>
+            <p class="type">{{ company.contactEmail }}</p>
+            <p class="location">
+              <img src="images/location-icon.svg" alt="" /><span
+                >{{
+                  "app.companies.companies-list.location" | translate
+                }}:</span
+              >
+              {{ company.address.city }}, {{ company.address.country }}
+            </p>
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="card-actions">
+            <i class="pi pi-share-alt"></i>
+            <button
+              [routerLink]="'/companies/updateCompany/' + company.id"
+              class="edit"
+            >
+              {{ "app.companies.companies-list.actions.edit" | translate }}
+            </button>
+            <a routerLink="" class="details">{{
+              "app.companies.companies-list.actions.request-quote" | translate
+            }}</a>
+            <button
+              class="delete"
+              role="button"
+              (click)="openDeletePopup(company)"
+            >
+              {{ "app.companies.companies-list.actions.delete" | translate }}
+            </button>
+            <div class="card flex justify-center">
+              <app-delete-popup
+                [visible]="showDeletePopup"
+                [itemName]="companyToDelete?.name"
+                (confirmDelete)="confirmDelete()"
+                (closePopup)="showDeletePopup = false"
+              >
+              </app-delete-popup>
             </div>
           </div>
         </div>
-      }
-    <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="totalRecords"  [rowsPerPageOptions]="[10, 20]"/>
+      </div>
+    </div>
+    }
+    <p-paginator
+      (onPageChange)="onPageChange($event)"
+      [first]="first"
+      [rows]="rows"
+      [totalRecords]="totalRecords"
+      [rowsPerPageOptions]="[10, 20]"
+    />
   </div>
 </div>
-

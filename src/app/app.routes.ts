@@ -17,6 +17,7 @@ import { FacilityOffersComponent } from './features/my-offers/components/facilit
 import { ListFacilityComponent } from './features/facilities/list-facility/list-facility.component';
 import { CreateFacilityComponent } from './features/facilities/create-facility/create-facility.component';
 import { UpdateFacilityComponent } from './features/facilities/update-facility/update-facility.component';
+import { DetialsFacilityComponent } from './features/facilities/detials-facility/detials-facility.component';
 
 import { UpdateCompanyComponent } from './features/companies/components/update-company/update-company.component';
 import { CompanyDetailsComponent } from './features/companies/components/company-details/company-details.component';
@@ -59,6 +60,10 @@ export const routes: Route[] = [
   {
     path: 'update-facility/:id',
     component: UpdateFacilityComponent, // Use the same component
+  },
+  {
+    path: 'facilities/:id',
+    component: DetialsFacilityComponent,
   },
 
 

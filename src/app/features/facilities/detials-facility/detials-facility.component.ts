@@ -8,11 +8,19 @@ import { TranslateModule } from '@ngx-translate/core';
 import { Dialog } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { IResponseData } from '../models/iresponse-data';
+import { DeletePopupComponent } from '../../../shared/components/delete-popup/delete-popup.component';
 
 @Component({
   selector: 'app-detials-facility',
   standalone: true,
-  imports: [CommonModule, TranslateModule, Dialog, ButtonModule, RouterLink],
+  imports: [
+    CommonModule,
+    TranslateModule,
+    Dialog,
+    ButtonModule,
+    RouterLink,
+    DeletePopupComponent,
+  ],
   templateUrl: './detials-facility.component.html',
   styleUrl: './detials-facility.component.scss',
 })
@@ -21,6 +29,8 @@ export class DetialsFacilityComponent implements OnInit {
   facility: any;
   language!: 'ar' | 'en';
   visibleDeletePopup = false;
+  showDeletePopup = false;
+  currentCard!: IResponseData;
   private languageSubscription: Subscription;
 
   constructor(
@@ -58,9 +68,15 @@ export class DetialsFacilityComponent implements OnInit {
     // Navigate to the edit page, passing the facilityId as a parameter
     this.router.navigate(['/facility/edit', facilityId]);
   }
+  openDeletePopup(facility: IResponseData) {
+    document.body.classList.remove('card-scale');
+    this.currentCard = facility;
+    this.showDeletePopup = true;
+  }
 
   deleteFacility(facilityId: number): void {
     this.visibleDeletePopup = false;
+    this.showDeletePopup = false;
 
     if (facilityId != null) {
       this.visibleDeletePopup = false;
