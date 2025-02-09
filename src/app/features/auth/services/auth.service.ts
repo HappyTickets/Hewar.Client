@@ -50,22 +50,14 @@ export class AuthService {
   }
 
   refreshToken(): Observable<IApiResponse<ILoginResponse>> {
-    if (!this.checkAccessTokenExpiry()) {
-      this.logout();
-      throw new Error('Access token has expired. Please log in again.');
-    }
     const accessToken = this.getAccessToken();
+    console.log(accessToken);
+
     if (!accessToken) {
       this.logout();
       throw new Error('Refresh token is missing');
     }
-
-    return this.http.post<IApiResponse<ILoginResponse>>(authRoutes.refreshToken, { accessToken } ).pipe(
-      tap((res) => {
-        if (res.data) this.storeResponse(res.data);
-        else throw new Error('Response data is null');
-      })
-    )
+    return this.http.post<IApiResponse<ILoginResponse>>(authRoutes.refreshToken, { accessToken } );
   }
 
   // <== == == == == == == == Email == == == == == == == ==>
@@ -95,11 +87,11 @@ export class AuthService {
   }
 
   checkAccessTokenExpiry(): boolean {
-    const accessTokenExpDate = this.getUserInfo()?.accessTokenExpDate;
+  const accessTokenExpDate = this.getUserInfo()?.accessTokenExpDate;
 
-    if (!accessTokenExpDate) throw new Error('Access token expiration date is missing');
+  if (!accessTokenExpDate) throw new Error('Access token expiration date is missing');
 
-    const expirationDate = new Date(accessTokenExpDate).getTime();
+  const expirationDate = new Date(accessTokenExpDate).getTime();
     return expirationDate > Date.now();
   }
 
@@ -107,6 +99,7 @@ export class AuthService {
     localStorage.setItem('userInfo', JSON.stringify({
       firstName: data.firstName,
       permissions: data.permissions,
+      accessTokenExpDate: data.accessTokenExpDate,
     }));
     localStorage.setItem('accessToken',data.accessToken)
   }

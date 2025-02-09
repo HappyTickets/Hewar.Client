@@ -5,8 +5,6 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputTextModule } from 'primeng/inputtext';
 import { CompaniesService } from '../../services/companies.service';
 import { ToastrService } from 'ngx-toastr';
-import { IResponse } from '../../../../core/models/IResponse';
-import { ICreateCompany } from '../../models/ICreateCompany';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { CommonModule } from '@angular/common';
 import { ICompany } from '../../models/ICompany';
@@ -47,7 +45,9 @@ export class UpdateCompanyComponent implements OnInit {
     this.currentCompanyID = this._route.snapshot.paramMap.get('id');
     this._companiesService.getCompanyById(this.currentCompanyID!).subscribe({
       next: (res) => {
-        this.currentCompany = res.data;
+        if (res.data) {
+          this.currentCompany = res.data;
+        }
         this.updateCompForm.patchValue({
           contactEmail: this.currentCompany?.contactEmail,
           phoneNumber: this.currentCompany?.phoneNumber,
@@ -89,8 +89,7 @@ export class UpdateCompanyComponent implements OnInit {
   }
   onSubmit(){
     this._companiesService.updateCompany(this.updateCompForm.value).subscribe({
-      next: (res:IResponse<ICreateCompany>) => {
-        console.log(res)
+      next: () => {
         this.toastr.success("The company is added successfully", 'Successfully')
       },
       error: (err) =>{

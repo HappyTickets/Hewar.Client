@@ -460,7 +460,9 @@
         "startContract": "بداية التعاقد",
         "endContract": "نهاية التعاقد",
         "contractType": "نوع التعاقد",
+        "securityRoles": "الخدمة",
         "chooseContractType": "اختر نوع التعاقد",
+        "invaliContractType": "نوع التعاقد مطلوب",
         "services": "الخدمات",
         "serviceType": "نوع الخدمة",
         "quantity": "الكمية",
@@ -547,6 +549,28 @@
       "click": "ضغط على \"حذف\" لإتمام العملية. ",
       "delete": "حذف",
       "cancel": "الغاء"
+    },
+    "price-offer": {
+      "create-price-offer": {
+        "header": "إنشاء عرض سعر",
+        "contractDate": "تاريخ العقد",
+        "startContract": "تاريخ البدء",
+        "endContract": "تاريخ الانتهاء",
+        "services": "الخدمات",
+        "otherDetails": "خدمات أخرى",
+        "securityRoles": "اختر دور الأمن",
+        "quantity": "الكمية",
+        "dailyCostPerUnit": "التكلفة اليومية للوحدة",
+        "monthlyCostPerUnit": "التكلفة الشهرية للوحدة",
+        "serviceName": "اسم الخدمة",
+        "addNotes": "إضافة ملاحظات",
+        "enterDetails": "أدخل التفاصيل هنا...",
+        "cancel": "إلغاء",
+        "submit": "إرسال",
+        "invalidService": "اختيار خدمة غير صالح",
+        "invalidQuantity": "كمية غير صالحة",
+        "invalidCost": "تكلفة غير صالحة"
+      }
     }
   },
   "enums": {
