@@ -5,13 +5,13 @@ import { IUpdateAd } from '../model/IUpdateAd';
 import { ICreateOffer } from '../model/ICreateOffer';
 import { ICreateOfferMessage } from '../model/ICreateOfferMessage';
 import { Observable } from 'rxjs';
-import { IResponse } from '../model/IResponsive';
 import { IGetAdById } from '../model/IGetAdById';
 import { IGetOpenedAds } from '../model/IGetOpenedAds';
 import { IGetMyOffersAsFacility } from '../model/IGetMyOffersAsFacility';
 import { IGetMyOffersAsCompany } from '../model/IGetMyOffersAsCompany';
 import { IGetOfferMessages } from '../model/IGetOfferMessages';
 import { IGetMyAds } from '../model/IGetMyAds';
+import { IApiResponse } from '../../../shared/models/IApiResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -20,50 +20,50 @@ export class InsuranceAdsService {
   baseEndPoint = '/api/insuranceAds/'
   constructor(private _httpClient:HttpClient) { }
 
-  createAd(data:ICreateAd):Observable<IResponse<ICreateAd>>{
-    return this._httpClient.post<IResponse<ICreateAd>>(`${this.baseEndPoint}createAd`, data)
+  createAd(data:ICreateAd):Observable<IApiResponse<ICreateAd>>{
+    return this._httpClient.post<IApiResponse<ICreateAd>>(`${this.baseEndPoint}createAd`, data)
   }
-  updateAd(data:IUpdateAd):Observable<IResponse<IUpdateAd>>{
-    return this._httpClient.put<IResponse<IUpdateAd>>(`${this.baseEndPoint}updateAd`, data)
+  updateAd(data:IUpdateAd):Observable<IApiResponse<IUpdateAd>>{
+    return this._httpClient.put<IApiResponse<IUpdateAd>>(`${this.baseEndPoint}updateAd`, data)
   }
-  getAdById(id:number):Observable<IResponse<IGetAdById>>{
-    return this._httpClient.get<IResponse<IGetAdById>>(`${this.baseEndPoint}getAdById?id=`+ id)
+  getAdById(id:number):Observable<IApiResponse<IGetAdById>>{
+    return this._httpClient.get<IApiResponse<IGetAdById>>(`${this.baseEndPoint}getAdById?id=`+ id)
   }
-  getMyAds():Observable<IResponse<IGetMyAds[]>>{
-    return this._httpClient.get<IResponse<IGetMyAds[]>>(`${this.baseEndPoint}getMyAds`)
+  getMyAds():Observable<IApiResponse<IGetMyAds[]>>{
+    return this._httpClient.get<IApiResponse<IGetMyAds[]>>(`${this.baseEndPoint}getMyAds`)
   }
-  getOpenedAds():Observable<IResponse<IGetOpenedAds[]>>{
-    return this._httpClient.get<IResponse<IGetOpenedAds[]>>(`${this.baseEndPoint}getOpenedAds`)
+  getOpenedAds():Observable<IApiResponse<IGetOpenedAds[]>>{
+    return this._httpClient.get<IApiResponse<IGetOpenedAds[]>>(`${this.baseEndPoint}getOpenedAds`)
   }
-  createOffer(data:ICreateOffer):Observable<IResponse<ICreateOffer>>{
-    return this._httpClient.post<IResponse<ICreateOffer>>(`${this.baseEndPoint}createOffer`, data)
+  createOffer(data:ICreateOffer):Observable<IApiResponse<ICreateOffer>>{
+    return this._httpClient.post<IApiResponse<ICreateOffer>>(`${this.baseEndPoint}createOffer`, data)
   }
-  acceptOffer(id:number, data:any):Observable<IResponse<any>>{
-    return this._httpClient.patch<IResponse<any>>(`${this.baseEndPoint}acceptOffer?offerId=` + id, data)
+  acceptOffer(id:number, data:any):Observable<IApiResponse<any>>{
+    return this._httpClient.patch<IApiResponse<any>>(`${this.baseEndPoint}acceptOffer?offerId=` + id, data)
   }
-  rejectOffer(id:number, data:any):Observable<IResponse<any>>{
-    return this._httpClient.patch<IResponse<any>>(`${this.baseEndPoint}rejectOffer?offerId=` + id, data)
+  rejectOffer(id:number, data:any):Observable<IApiResponse<any>>{
+    return this._httpClient.patch<IApiResponse<any>>(`${this.baseEndPoint}rejectOffer?offerId=` + id, data)
   }
-  cancelOffer(id:number, data:any):Observable<IResponse<any>>{
-    return this._httpClient.patch<IResponse<any>>(`${this.baseEndPoint}cancelOffer?offerId=` + id, data)
+  cancelOffer(id:number, data:any):Observable<IApiResponse<any>>{
+    return this._httpClient.patch<IApiResponse<any>>(`${this.baseEndPoint}cancelOffer?offerId=` + id, data)
   }
-  getMyOffersByAdIdAsFacility(id:number):Observable<IResponse<any>>{
-    return this._httpClient.get<IResponse<any>>(`${this.baseEndPoint}getMyOffersByAdIdAsFacility?id=` + id)
+  getMyOffersByAdIdAsFacility(id:number):Observable<IApiResponse<any>>{
+    return this._httpClient.get<IApiResponse<any>>(`${this.baseEndPoint}getMyOffersByAdIdAsFacility?id=` + id)
   }
-  getMyOffersAsFacility():Observable<IResponse<IGetMyOffersAsFacility[]>>{
-    return this._httpClient.get<IResponse<IGetMyOffersAsFacility[]>>(`${this.baseEndPoint}getMyOffersAsFacility`)
+  getMyOffersAsFacility():Observable<IApiResponse<IGetMyOffersAsFacility[]>>{
+    return this._httpClient.get<IApiResponse<IGetMyOffersAsFacility[]>>(`${this.baseEndPoint}getMyOffersAsFacility`)
   }
-  getMyOffersByAdIdAsCompany(id:number):Observable<IResponse<any>>{
-    return this._httpClient.get<IResponse<any>>(`${this.baseEndPoint}getMyOffersByAdIdAsCompany?id=` + id)
+  getMyOffersByAdIdAsCompany(id:number):Observable<IApiResponse<any>>{
+    return this._httpClient.get<IApiResponse<any>>(`${this.baseEndPoint}getMyOffersByAdIdAsCompany?id=` + id)
   }
-  getMyOffersAsCompany():Observable<IResponse<IGetMyOffersAsCompany[]>>{
-    return this._httpClient.get<IResponse<IGetMyOffersAsCompany[]>>(`${this.baseEndPoint}getMyOffersAsCompany`)
+  getMyOffersAsCompany():Observable<IApiResponse<IGetMyOffersAsCompany[]>>{
+    return this._httpClient.get<IApiResponse<IGetMyOffersAsCompany[]>>(`${this.baseEndPoint}getMyOffersAsCompany`)
   }
-  createOfferMessage(data:ICreateOfferMessage):Observable<IResponse<any>>{
-    return this._httpClient.post<IResponse<any>>(`${this.baseEndPoint}createOfferMessage`, data)
+  createOfferMessage(data:ICreateOfferMessage):Observable<IApiResponse<any>>{
+    return this._httpClient.post<IApiResponse<any>>(`${this.baseEndPoint}createOfferMessage`, data)
   }
-  getOfferMessages(id:number):Observable<IResponse<IGetOfferMessages[]>>{
-    return this._httpClient.get<IResponse<IGetOfferMessages[]>>(`${this.baseEndPoint}getOfferMessages?id=` + id)
+  getOfferMessages(id:number):Observable<IApiResponse<IGetOfferMessages[]>>{
+    return this._httpClient.get<IApiResponse<IGetOfferMessages[]>>(`${this.baseEndPoint}getOfferMessages?id=` + id)
   }
 }
 

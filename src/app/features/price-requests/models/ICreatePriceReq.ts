@@ -2,12 +2,12 @@ import { ContractType } from '../../../shared/enums/contract-type';
 import { ShiftType } from '../../../shared/enums/shift-type';
 
 export interface ICreatePriceReq {
-  companyId: number;
+  priceRequestId?: number;
+  companyId?: number;
   contractType: ContractType;
   startDate: string;
   endDate: string;
   notes: string;
-
   services: [
     {
       serviceId: number;

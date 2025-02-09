@@ -28,7 +28,9 @@ export class CompanyDetailsComponent implements OnInit {
     this.currentCompanyID = this._route.snapshot.paramMap.get('id');
     this._companiesService.getCompanyById(this.currentCompanyID!).subscribe({
       next: (res) => {
-        this.currentCompany = res.data
+        if (res.data) {
+          this.currentCompany = res.data
+        }
         console.log(this.currentCompany )
       },
       error: (err) => {

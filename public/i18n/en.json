@@ -346,7 +346,9 @@
         "startContract": "Start of Contracting",
         "endContract": "End of Contracting",
         "contractType": "Contract Type",
+        "securityRoles": "Security Roles",
         "chooseContractType": "Choose contract type",
+        "invaliContractType": "Contract Type required",
         "services": "Services",
         "serviceType": "Service Type",
         "quantity": "Quantity",
@@ -432,42 +434,64 @@
       "click": "Click on \"Delete\" to complete the process.",
       "delete": "Delete",
       "cancel": "Cancel"
+    },
+    "price-offer": {
+      "create-price-offer": {
+        "header": "Create Price Offer",
+        "contractDate": "Contract Date",
+        "startContract": "Start Date",
+        "endContract": "End Date",
+        "services": "Services",
+        "otherDetails": "Other Services",
+        "securityRoles": "Select Security Role",
+        "quantity": "Quantity",
+        "dailyCostPerUnit": "Daily Cost Per Unit",
+        "monthlyCostPerUnit": "Monthly Cost Per Unit",
+        "serviceName": "Service Name",
+        "addNotes": "Add Notes",
+        "enterDetails": "Enter details here...",
+        "cancel": "Cancel",
+        "submit": "Submit",
+        "invalidService": "Invalid service selection",
+        "invalidQuantity": "Invalid quantity",
+        "invalidCost": "Invalid cost"
+      }
     }
   },
   "enums": {
-    "shiftType": {
+    "shift-type": {
       "0": "Morning",
       "1": "Evening",
       "2": "Night"
     },
-    "bloodType": {
+    "blood-type": {
       "0": "A",
       "1": "B",
       "2": "AB",
       "3": "O"
     },
-    "accountTypes": {
+    "account-types": {
       "1": "Company",
       "2": "Facility",
       "3": "Guard",
       "4": "Admin"
     },
-    "adStatus": {
+    "ad-status": {
       "1": "Open",
       "2": "Closed"
     },
-    "chatEntityType": {
+    "chat-entity-type": {
       "0": "None",
       "1": "Price Request",
       "2": "Price Offer",
       "3": "Ad Offer"
     },
-    "chatStatus": {
+    "chat-status": {
       "1": "Open",
       "2": "Closed",
       "3": "Archived"
     },
-    "validationMessages": {
+    "validation-msgs": {
       "0": "Field is required",
       "1": "Username must not contain spaces",
       "2": "Email is required",
@@ -482,22 +506,22 @@
       "11": "Maximum length exceeded",
       "12": "Admin account is required"
     },
-    "ticketStatus": {
+    "ticket-status": {
       "1": "Open",
       "2": "Closed"
     },
-    "securityRoles": {
+    "security-roles": {
       "1": "Guard",
       "2": "Supervisor"
     },
-    "requestStatus": {
+    "request-status": {
       "1": "Pending",
       "2": "Approved",
       "3": "Rejected",
       "4": "Cancelled",
       "5": "Completed"
     },
-    "referenceTypes": {
+    "reference-types": {
       "1": "Price Request",
       "2": "Ticket",
       "3": "Ad",
@@ -558,7 +582,7 @@
       "24": "Al Madinah Al Munawwarah",
       "25": "Al Jouf"
     },
-    "notificationEvents": {
+    "notification-events": {
       "1": "Price Request Created",
       "2": "Price Request Accepted",
       "3": "Price Request Rejected",
@@ -573,11 +597,11 @@
       "103": "Insurance Ad Offer Cancelled",
       "104": "Insurance Ad Offer Message Created"
     },
-    "entityTypes": {
+    "entity-types": {
       "1": "Company",
       "2": "Facility"
     },
-    "contractTypes": {
+    "contract-types": {
       "0": "Temporary",
       "1": "Part-Time",
       "2": "Full-Time"

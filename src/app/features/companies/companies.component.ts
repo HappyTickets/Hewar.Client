@@ -34,7 +34,9 @@ export class CompaniesComponent implements OnInit {
   getAllCompanies(){
     this._companiesService.getAllCompanies().subscribe({
       next: (res) => {
-        this.companies = res.data
+        if (res.data) {
+          this.companies = res.data
+        }
       },
       error: (err) => {
         console.log(err)

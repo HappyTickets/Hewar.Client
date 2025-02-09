@@ -1,12 +1,14 @@
 <div class="input-container mb-3">
-  <label [for]="formControl" class="input-label">{{ 'app.auth.'+ label | translate }}</label>
+  @if (label) {
+  <label [for]="formControl" class="input-label">{{ 'app.'+ label | translate }}</label>
+  }
   @if (type === 'dropdown') {
-  <p-select [options]="options" [placeholder]="'app.auth.' + placeholder | translate" [formControl]="formControl" inputId="{{ controlName }}" optionLabel="name" optionValue="code"></p-select>
+  <p-select [options]="options" [placeholder]="placeholder ? ('app.' + placeholder | translate): ''" [formControl]="formControl" inputId="{{ controlName }}" optionLabel="name" optionValue="code"></p-select>
   } @else {
   <p-iconfield>
     <p-inputicon class="pi" [ngClass]="icon" />
-    <input pInputText [type]="type" [placeholder]="'app.auth.' + placeholder | translate" [formControl]="formControl"/>
+    <input pInputText [type]="type" [placeholder]="'app.' + placeholder | translate" [formControl]="formControl"/>
   </p-iconfield>
   }
-  @if (hasError) {<p-message severity="error" [text]="'app.auth.' + errorKey | translate"></p-message>}
+  @if (hasError) {<p-message severity="error" [text]="'app.' + errorKey | translate"></p-message>}
 </div>

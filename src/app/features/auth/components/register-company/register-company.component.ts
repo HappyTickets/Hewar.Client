@@ -26,6 +26,7 @@ export class RegisterCompanyComponent {
   private fb = inject(FormBuilder);
   cities = this.localizationService.createDropdown(Cities);
   registerForm: FormGroup;
+  loading = false;
   checked = false;
   showDialog = false;
   email = '';
@@ -55,10 +56,10 @@ export class RegisterCompanyComponent {
       postalCode: ['', [Validators.required]],
       acceptTerms: [false, Validators.requiredTrue],
     });
-    console.log(this.cities);
 
   }
   register(): void {
+    this.loading = true;
     if (this.registerForm.valid) {
       const companyData: IRegisterCompany = {
         name: this.registerForm.value.name,
@@ -78,7 +79,7 @@ export class RegisterCompanyComponent {
         },
         address: {
           street: this.registerForm.value.street,
-          city: this.registerForm.value.city,
+          city: ""+this.registerForm.value.city,
           state: this.registerForm.value.state,
           country: this.registerForm.value.country,
           postalCode: this.registerForm.value.postalCode,
@@ -88,8 +89,11 @@ export class RegisterCompanyComponent {
         this.email = companyData.adminInfo.email;
         this.password = companyData.adminInfo.password;
         this.showDialog = true;
+        this.loading = false;
       });
     }
+    this.loading = false;
+
   }
   onCloseDialog(): void {
     this.showDialog = false;

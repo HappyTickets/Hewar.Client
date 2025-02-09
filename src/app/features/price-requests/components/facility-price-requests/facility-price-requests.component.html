@@ -1,0 +1,118 @@
+<div class="container">
+  <p-table [value]="priceRequests" dataKey="id" stripedRows [paginator]="true" [rows]="10" [globalFilterFields]="['company.name']" selectionMode="single" #dt [tableStyle]="{'height': '50rem' }">
+    <ng-template #caption>
+      <p-iconfield iconPosition="left">
+        <p-inputicon><i class="pi pi-search"></i></p-inputicon>
+        <input pInputText type="text" [(ngModel)]="searchTerm" (input)="dt.filterGlobal(searchTerm, 'contains')" placeholder="Global Search"/>
+      </p-iconfield>
+    </ng-template>
+
+    <ng-template pTemplate="header">
+      <tr>
+        <th></th>
+        <th pSortableColumn="company.name">Client Name <p-sortIcon field="company.name"></p-sortIcon></th>
+        <th pSortableColumn="company.contractType">Contract Type <p-sortIcon field="company.contractType"></p-sortIcon></th>
+        <th pSortableColumn="company.requestStatus">Request Status <p-sortIcon field="company.requestStatus"></p-sortIcon></th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-service let-expanded="expanded">
+      <tr>
+        <td>
+          <p-button type="button" [pRowToggler]="service" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"/>
+        </td>
+        <td>{{ service.company.name }}</td>
+        <td>{{ 'enums.contract-types.'+ service.contractType | translate }}</td>
+        <td>{{ 'enums.request-status.'+ service.requestStatus | translate }}</td>
+        <td>
+          <p-button class="mx-1" (click)="openChat()" label="Chat"/>
+          <p-button class="mx-1" [routerLink]="['/update-price-request/' + service.id ]" label="Edit" [disabled]="service.requestStatus === 4"/>
+          <p-button class="mx-1" (click)="cancelPriceRequest(service.id)" label="Cancel" [disabled]="service.requestStatus === 4"/>
+        </td>
+      </tr>
+    </ng-template>
+
+    <!-- Expanded Row Content -->
+    <ng-template pTemplate="rowexpansion" let-service>
+      <tr>
+        <td colspan="5">
+          <div class="flex justify-content-between mt-1">
+            <div>Start Date: <strong>{{ service.startDate | date }}</strong></div>
+            <div>End Date: <strong>{{ service.endDate | date }}</strong></div>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="5">
+          <h2>Services</h2>
+          <p-table [value]="service.services" dataKey="id">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>Service Id</th>
+                <th>Quantity</th>
+                <th>Shift Type</th>
+                <th>Monthly Cost</th>
+                <th>Daily Cost</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-service>
+              <tr>
+                <td>{{ service.serviceId }}</td>
+                <td>{{ service.quantity }}</td>
+                <td>{{ 'enums.shift-type.' + service.shiftType | translate }}</td>
+                <td>
+                  <ng-container *ngIf="service.isEditMode; else viewMode">
+                    <p-inputNumber [(ngModel)]="service.monthlyCost" [min]="0" [minFractionDigits]="0" [maxFractionDigits]="0" placeholder="Enter Monthly Cost" class="w-full"/>                  </ng-container>
+                  <ng-template #viewMode>{{ service.monthlyCost }}</ng-template>
+                </td>
+                <td>
+                  <ng-container *ngIf="service.isEditMode; else viewMode2">
+                    <p-inputNumber [(ngModel)]="service.dailyCost"
+                                   [min]="0" [minFractionDigits]="0" [maxFractionDigits]="0"
+                                   placeholder="Enter Daily Cost" class="w-full"/>
+                  </ng-container>
+                  <ng-template #viewMode2>{{ service.dailyCost }}</ng-template>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+          <h2>Other Services</h2>
+          <p-table [value]="service.otherServices" dataKey="id">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>Service Type</th>
+                <th>Quantity</th>
+                <th>Shift Type</th>
+                <th>Monthly Cost</th>
+                <th>Daily Cost</th>
+              </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-service>
+              <tr>
+                <td>{{ service.name }}</td>
+                <td>{{ service.quantity }}</td>
+                <td>{{ 'enums.shift-type.' + service.shiftType | translate }}</td>
+                <td>
+                  <ng-container *ngIf="service.isEditMode; else viewMode">
+                    <p-inputNumber [(ngModel)]="service.monthlyCost" [min]="0" [minFractionDigits]="0" [maxFractionDigits]="0" placeholder="Enter Monthly Cost" class="w-full"/>                  </ng-container>
+                  <ng-template #viewMode>{{ service.monthlyCost }}</ng-template>
+                </td>
+                <td>
+                  <ng-container *ngIf="service.isEditMode; else viewMode2">
+                    <p-inputNumber [(ngModel)]="service.dailyCost"
+                                   [min]="0" [minFractionDigits]="0" [maxFractionDigits]="0"
+                                   placeholder="Enter Daily Cost" class="w-full"/>
+                  </ng-container>
+                  <ng-template #viewMode2>{{ service.dailyCost }}</ng-template>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
