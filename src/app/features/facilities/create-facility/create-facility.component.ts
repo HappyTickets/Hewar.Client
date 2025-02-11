@@ -70,6 +70,7 @@ interface UploadEvent {
     IconFieldModule,
     FloatLabelModule,
     InputIconModule,
+    MessageModule,
   ],
   providers: [MessageService],
   templateUrl: './create-facility.component.html',
@@ -87,6 +88,9 @@ export class CreateFacilityComponent implements OnInit {
   totalSize: number = 0;
   totalSizePercent: number = 0;
   facilityForm!: FormGroup;
+  addressGroup!: FormGroup;
+  createCompForm!: FormGroup;
+  adminInfoGroup!: FormGroup;
 
   imagePreview: string | ArrayBuffer | null = null;
   constructor(
@@ -105,20 +109,143 @@ export class CreateFacilityComponent implements OnInit {
         }
       }
     );
-    // this.facilityForm = this.fb.group({
-    //   name: ['', Validators.required],
-    //   type: [null, Validators.required],
-    //   activityType: [null, Validators.required],
-    //   address: ['', Validators.required],
-    //   city: ['', Validators.required],
-    //   phone: ['', Validators.required],
-    //   email: ['', [Validators.required, Validators.email]],
-    //   responsibleName: ['', Validators.required],
-    //   responsiblePhone: ['', Validators.required],
-    //   commercialRegistration: ['', Validators.required],
-    //   imageUrl: [''],
-    // });
   }
+  fcilityDataInputs = [
+    {
+      placeholder: 'facilities.create-update-company.contactEmailPlaceholder',
+      errorKey: 'facilities.create-update-company.contactEmailError',
+      controlName: 'contactEmail',
+      icon: 'pi-envelope',
+      type: 'email',
+      label: 'facilities.create-update-company.contactEmail',
+    },
+    {
+      placeholder: 'facilities.create-update-company.phoneNumberPlaceholder',
+      errorKey: 'facilities.create-update-company.phoneNumberError',
+      controlName: 'phoneNumber',
+      icon: 'pi-phone',
+      type: 'text',
+      label: 'facilities.create-update-company.phoneNumber',
+    },
+    {
+      placeholder:
+        'facilities.create-update-company.registrationNumberPlaceholder',
+      errorKey: 'facilities.create-update-company.registrationNumberError',
+      controlName: 'registrationNumber',
+      icon: 'pi-pen-to-square',
+      type: 'text',
+      label: 'facilities.create-update-company.registrationNumber',
+    },
+    {
+      placeholder: 'facilities.create-update-company.taxIdPlaceholder',
+      errorKey: 'facilities.create-update-company.taxIdError',
+      controlName: 'taxId',
+      icon: 'pi-pen-to-square',
+      type: 'text',
+      label: 'facilities.create-update-company.taxId',
+    },
+    {
+      placeholder: 'facilities.create-update-company.namePlaceholder',
+      errorKey: 'facilities.create-update-company.nameError',
+      controlName: 'name',
+      icon: 'pi-user',
+      type: 'text',
+      label: 'facilities.create-update-company.name',
+    },
+  ];
+  adminDataInputs = [
+    {
+      placeholder: 'facilities.create-update-company.emailPlaceholder',
+      errorKey: 'facilities.create-update-company.emailError',
+      controlName: 'email',
+      icon: 'pi-envelope',
+      type: 'email',
+      label: 'facilities.create-update-company.email',
+    },
+    {
+      placeholder: 'facilities.create-update-company.passwordPlaceholder',
+      errorKey: 'facilities.create-update-company.passwordError',
+      controlName: 'password',
+      icon: 'pi-lock',
+      type: 'password',
+      label: 'facilities.create-update-company.password',
+    },
+    {
+      placeholder:
+        'facilities.create-update-company.confirmPasswordPlaceholder',
+      errorKey: 'facilities.create-update-company.confirmPasswordError',
+      controlName: 'confirmPassword',
+      icon: 'pi-lock',
+      type: 'password',
+      label: 'facilities.create-update-company.confirmPassword',
+    },
+    {
+      placeholder: 'facilities.create-update-company.firstNamePlaceholder',
+      errorKey: 'facilities.create-update-company.firstNameError',
+      controlName: 'firstName',
+      icon: 'pi-user',
+      type: 'text',
+      label: 'facilities.create-update-company.firstName',
+    },
+    {
+      placeholder: 'facilities.create-update-company.lastNamePlaceholder',
+      errorKey: 'facilities.create-update-company.lastNameError',
+      controlName: 'lastName',
+      icon: 'pi-user',
+      type: 'text',
+      label: 'facilities.create-update-company.lastName',
+    },
+    {
+      placeholder: 'facilities.create-update-company.phonePlaceholder',
+      errorKey: 'facilities.create-update-company.phoneError',
+      controlName: 'phone',
+      icon: 'pi-phone',
+      type: 'text',
+      label: 'facilities.create-update-company.phone',
+    },
+  ];
+  addressDataInputs = [
+    {
+      placeholder: 'facilities.title',
+      errorKey: 'facilities.create-update-company.streetError',
+      controlName: 'street',
+      icon: 'pi-map-marker',
+      type: 'text',
+      label: 'facilities.create-update-company.street',
+    },
+    {
+      placeholder: 'facilities.create-update-company.cityPlaceholder',
+      errorKey: 'facilities.create-update-company.cityError',
+      controlName: 'city',
+      icon: 'pi-map-marker',
+      type: 'text',
+      label: 'facilities.create-update-company.city',
+    },
+    {
+      placeholder: 'facilities.create-update-company.statePlaceholder',
+      errorKey: 'facilities.create-update-company.stateError',
+      controlName: 'state',
+      icon: 'pi-map-marker',
+      type: 'text',
+      label: 'facilities.create-update-company.state',
+    },
+    {
+      placeholder: 'facilities.create-update-company.countryPlaceholder',
+      errorKey: 'facilities.create-update-company.countryError',
+      controlName: 'country',
+      icon: 'pi-map-marker',
+      type: 'text',
+      label: 'facilities.create-update-company.country',
+    },
+    {
+      placeholder: 'facilities.create-update-company.postalCodePlaceholder',
+      errorKey: 'facilities.create-update-company.postalCodeError',
+      controlName: 'postalCode',
+      icon: 'pi-map-marker',
+      type: 'text',
+      label: 'facilities.create-update-company.postalCode',
+    },
+  ];
   ngOnInit() {
     this.facilityForm = this.fb.group({
       type: ['', Validators.required],

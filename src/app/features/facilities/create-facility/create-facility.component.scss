@@ -324,3 +324,131 @@
   outline-color: transparent;
   gap: var(--p-button-gap);
 }
+
+// .container {
+//   background-color: #f2fbff;
+//   padding: 20px;
+//   form {
+//     padding-bottom: 10px;
+//     .p-group {
+//       font-size: 1.1rem;
+//       font-weight: bold;
+//       background: linear-gradient(316.48deg, #168aad 26.1%, #5c98f8 80.7%);
+//       background-clip: text;
+//       -webkit-text-fill-color: transparent;
+//     }
+//     .card {
+//       width: 100%;
+//       margin-bottom: 25px;
+//       // display: flex;
+//       // flex-wrap: wrap;
+//       // justify-content: space-between;
+//       padding: 12px 20px;
+//       background-color: #fff;
+//       align-items: center;
+//       border-radius: 5px;
+//       box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+//     }
+//     label {
+//       color: #999;
+//     }
+//     input {
+//       padding: 10px;
+//       width: 100%;
+//     }
+//     .upload {
+//       width: 100%;
+//     }
+//     .text-error {
+//       color: #d63031;
+//     }
+//     .actions {
+//       margin: 35px auto;
+//       text-align: center;
+//       button {
+//         text-align: center;
+//         margin: 0 15px;
+//         text-decoration: none;
+//         cursor: pointer;
+//         padding: 8px 35px;
+//         color: #fff;
+//         border: none;
+//         outline: none;
+//         font-size: 16px;
+//         border-radius: 6px;
+//         -webkit-border-radius: 6px;
+//         -moz-border-radius: 6px;
+//         -ms-border-radius: 6px;
+//         -o-border-radius: 6px;
+//         transition: 0.3s;
+//         -webkit-transition: 0.3s;
+//         -moz-transition: 0.3s;
+//         -ms-transition: 0.3s;
+//         -o-transition: 0.3s;
+//       }
+//       .save {
+//         background-color: #168aad;
+//         &:hover {
+//           background-color: #00223c;
+//         }
+//       }
+//       .cancel {
+//         background-color: #01355c;
+//         &:hover {
+//           background-color: #000000;
+//         }
+//       }
+//     }
+//   }
+// }
+
+// ::ng-deep app-image-uploader mat-form-field {
+//   position: absolute;
+//   top: 100%;
+//   left: 50%;
+//   width: 30px;
+//   height: 50px;
+//   opacity: 0.1;
+// }
+// ::ng-deep app-image-uploader div {
+//   text-align: center;
+// }
+// ::ng-deep .p-button-success {
+//   background-color: linear-gradient(
+//     316.48deg,
+//     #168aad 26.1%,
+//     #5c98f8 80.7%
+//   ) !important;
+// }
+
+// .image-upload {
+//   margin-right: auto;
+//   margin-left: auto;
+//   width: 80%;
+//   text-align: center;
+//   position: relative;
+//   i {
+//     position: absolute;
+//     top: 100%;
+//     left: 50%;
+
+//     font-size: 15px !important;
+//   }
+// }
+// .group {
+//   width: 100%;
+//   display: flex;
+//   flex-wrap: wrap;
+//   justify-content: space-between;
+//   padding: 20px;
+//   background-color: #fff;
+//   align-items: center;
+//   border-radius: 5px;
+//   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+// }
+
+// @media (max-width: 992px) {
+//   form {
+//     width: 100%;
+//   }
+// }

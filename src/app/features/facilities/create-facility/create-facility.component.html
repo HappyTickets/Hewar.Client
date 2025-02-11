@@ -246,3 +246,119 @@
     </div>
   </form>
 </div>
+
+<!-- <div class="create-component">
+  <div class="container">
+    <h2 class="text-center mb-4">
+      {{ "app.companies.create-update-company.create-title" | translate }}
+    </h2>
+    <form [formGroup]="facilityForm" (ngSubmit)="onSubmit()">
+      <div class="card">
+        <p class="p-group">
+          {{
+            "app.companies.create-update-company.company-data-title" | translate
+          }}
+        </p>
+        <div class="grid">
+          @for (input of fcilityDataInputs; track $index) {
+          <div class="col-12 md:col-6 lg:col-3">
+            <app-input
+              [formGroup]="facilityForm"
+              [placeholder]="input.placeholder"
+              [errorKey]="input.errorKey"
+              [controlName]="input.controlName"
+              [icon]="input.icon"
+              [type]="input.type"
+              [label]="input.label"
+            >
+            </app-input>
+          </div>
+          }
+        </div>
+      </div>
+
+      <div class="card">
+        <p class="p-group">
+          {{
+            "app.companies.create-update-company.admin-data-title" | translate
+          }}
+        </p>
+        <div class="grid">
+          <ng-container formGroupName="adminInfo">
+            @for (input of adminDataInputs; track $index) {
+            <div class="col-12 md:col-6 lg:col-3">
+              <app-input
+                [formGroup]="adminInfoGroup"
+                [placeholder]="input.placeholder"
+                [errorKey]="input.errorKey"
+                [controlName]="input.controlName"
+                [icon]="input.icon"
+                [type]="input.type"
+                [label]="input.label"
+              >
+              </app-input>
+              @if(input.controlName === 'confirmPassword' &&
+              createCompForm.get('adminInfo')?.hasError('mismatch')){
+              <p-message
+                severity="error"
+                [text]="'app.' + input.errorKey + '-2' | translate"
+              ></p-message>
+              }
+            </div>
+            }
+            <div class="group">
+              <div class="image-upload">
+                <label for="">{{
+                  "app.facilities.upload-image" | translate
+                }}</label>
+                <i class="pi pi-cloud-upload"></i>
+                <app-image-uploader
+                  (fileSizeError)="handleFileSizeError($event)"
+                  (imageName)="handelimagenam($event)"
+                ></app-image-uploader>
+                <div *ngIf="fileUploadError" class="error-message">
+                  {{ fileUploadError }}
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="card">
+        <p class="p-group">
+          {{
+            "app.companies.create-update-company.address-data-title" | translate
+          }}
+        </p>
+        <div class="grid">
+          <ng-container formGroupName="address">
+            @for (input of addressDataInputs; track $index) {
+            <div class="col-12 md:col-6 lg:col-4">
+              <app-input
+                [formGroup]="addressGroup"
+                [placeholder]="input.placeholder"
+                [errorKey]="input.errorKey"
+                [controlName]="input.controlName"
+                [icon]="input.icon"
+                [type]="input.type"
+                [label]="input.label"
+              >
+              </app-input>
+            </div>
+            }
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button type="submit" class="save">
+          {{ "app.companies.create-update-company.save" | translate }}
+        </button>
+        <button class="cancel" routerLink="/companies">
+          {{ "app.companies.create-update-company.cancel" | translate }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div> -->
