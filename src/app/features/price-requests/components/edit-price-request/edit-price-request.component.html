@@ -23,7 +23,7 @@
       </div>
       <div class="input-group col-12 md:col-4">
         <label for="contractType">{{ 'app.price-request.edit-price-request.contractType' | translate }}</label>
-        <app-input placeholder="price-request.create-price-request.chooseContractType" [formGroup]="createPriceRequestForm" [options]="contractTypes" errorKey="price-request.create-price-request.invaliContractType" controlName="contractType" icon="pi-map" type="dropdown"></app-input>
+        <app-input placeholder="price-request.edit-price-request.chooseContractType" [formGroup]="createPriceRequestForm" [options]="contractTypes" errorKey="price-request.edit-price-request.invaliContractType" controlName="contractType" icon="pi-map" type="dropdown"></app-input>
       </div>
     </div>
 
@@ -34,7 +34,7 @@
       <div [formGroupName]="i" class="service-item">
         <div class="input-row">
           <p-button icon="pi pi-trash" (click)="removeService(i)" [disabled]="i === 0 && createPriceRequestForm.value.services.length <= 1"></p-button>
-          <p-select [options]="companyServices" formControlName="serviceId" [placeholder]="'app.price-request.edit-price-request.securityRoles' | translate" optionLabel="name" optionValue="id"></p-select>
+          <p-select [options]="companyServices" formControlName="serviceId" [placeholder]="'app.price-request.edit-price-request.chooseService' | translate" optionLabel="name" optionValue="id"></p-select>
           <p-select [options]="shiftType" formControlName="shiftType" [placeholder]="'app.price-request.edit-price-request.shiftType' | translate" optionLabel="name" optionValue="code"></p-select>
           <p-inputNumber fluid="true" [showButtons]="true" [min]="0" formControlName="quantity" [placeholder]="'app.price-request.edit-price-request.quantity' | translate" ></p-inputNumber>
         </div>

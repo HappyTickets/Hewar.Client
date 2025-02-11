@@ -22,14 +22,17 @@ export class PriceOffersService {
   getById(offerId: number) {
     return this.http.get(`${this.baseEndPoint}getById`,{params: { offerId }});
   }
-  accept(offerId: number) {
-    return this.http.patch(`${this.baseEndPoint}accept`, {} ,{params: { offerId }});
+  accept(offerId: number):Observable <IApiResponse<null>> {
+    return this.http.patch<IApiResponse<null>>(`${this.baseEndPoint}accept`, {} ,{params: { offerId }});
   }
-  reject(offerId: number) {
-    return this.http.patch(`${this.baseEndPoint}reject`, {} , {params: { offerId }});
+  reject(offerId: number):Observable <IApiResponse<null>> {
+    return this.http.patch<IApiResponse<null>>(`${this.baseEndPoint}reject`, {} , {params: { offerId }});
   }
-  cancel(offerId: number) {
-    return this.http.patch(`${this.baseEndPoint}cancel`, {} , {params: { offerId }});
+  hide(offerId: number):Observable <IApiResponse<null>> {
+    return this.http.patch<IApiResponse<null>>(`${this.baseEndPoint}hide`, {} , {params: { offerId }});
+  }
+  cancel(offerId: number):Observable <IApiResponse<null>> {
+    return this.http.patch<IApiResponse<null>>(`${this.baseEndPoint}cancel`, {} , {params: { offerId }});
   }
   getMyCompanyOffers(): Observable <IApiResponse<IPriceOffer[]>> {
     return this.http.get<IApiResponse<IPriceOffer[]>>(`${this.baseEndPoint}getMyCompanyOffers`);
@@ -37,8 +40,8 @@ export class PriceOffersService {
   getMyCompanyOffersByRequestId(requestId: number):Observable<IApiResponse<IGetPriceOffersByRequest>> {
     return this.http.get<IApiResponse<IGetPriceOffersByRequest>>(`${this.baseEndPoint}getMyCompanyOffersByRequestId`, {params: {requestId}});
   }
-  getMyFacilityOffers() {
-    return this.http.get(`${this.baseEndPoint}getMyFacilityOffers`);
+  getMyFacilityOffers():Observable<IApiResponse<IGetPriceOffersByRequest[]>> {
+    return this.http.get<IApiResponse<IGetPriceOffersByRequest[]>>(`${this.baseEndPoint}getMyFacilityOffers`);
   }
   getMyFacilityOffersByRequestId(requestId: number) {
     return this.http.get(`${this.baseEndPoint}getMyFacilityOffersByRequestId`,{params: {requestId}});

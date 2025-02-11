@@ -69,7 +69,6 @@
         "corporate-protection": "حماية الشركات"
       }
     },
-
     "validation": {
       "required": "هذا الحقل مطلوب",
       "email": "يرجى إدخال بريد إلكتروني صحيح",
@@ -381,45 +380,52 @@
       }
     },
     "price-request": {
-      "create-price-request": {
+      "edit-price-request": {
         "header": "طلب عرض سعر",
         "contractDate": "تاريخ التعاقد",
         "startContract": "بداية التعاقد",
         "endContract": "نهاية التعاقد",
         "contractType": "نوع التعاقد",
-        "securityRoles": "الخدمة",
+        "chooseService": "الخدمة",
         "chooseContractType": "اختر نوع التعاقد",
         "invaliContractType": "نوع التعاقد مطلوب",
         "services": "الخدمات",
         "serviceType": "نوع الخدمة",
         "quantity": "الكمية",
         "shiftType": "نوع الوردية",
-        "otherDetails": "تفاصيل أخرى",
+        "otherDetails": "خدمات أخرى",
         "serviceName": "اسم الخدمة",
         "addNotes": "ملاحظات",
-        "enterDetails": "أدخل تفاصيل إضافية",
+        "enterDetails": "أدخل خدمات إضافية",
         "cancel": "إلغاء",
-        "submit": "طلب عرض",
-        "formValues": "قيم النموذج",
-        "site": "الموقع"
+        "create": "طلب عرض",
+        "update": "تعديل الطلب"
+      }
+    },
+    "price-offer": {
+      "create-price-offer": {
+        "header": "إنشاء عرض سعر",
+        "contractDate": "تاريخ العقد",
+        "startContract": "تاريخ البدء",
+        "endContract": "تاريخ الانتهاء",
+        "services": "الخدمات",
+        "otherDetails": "خدمات أخرى",
+        "securityRoles": "اختر دور الأمن",
+        "quantity": "الكمية",
+        "dailyCostPerUnit": "التكلفة اليومية للوحدة",
+        "monthlyCostPerUnit": "التكلفة الشهرية للوحدة",
+        "serviceName": "اسم الخدمة",
+        "addNotes": "إضافة ملاحظات",
+        "enterDetails": "أدخل التفاصيل هنا...",
+        "cancel": "إلغاء",
+        "submit": "إرسال",
+        "invalidService": "اختيار خدمة غير صالح",
+        "invalidQuantity": "كمية غير صالحة",
+        "invalidCost": "تكلفة غير صالحة"
       }
     },
     "companies": {
-      "companies-list": {
-        "add-comp": "اضافة شركة",
-        "classification": "تصنيف",
-        "industrial-security": "الامن الصناعي",
-        "facilities-security": " امن المنشأت",
-        "delete": "مسح",
-        "search-here": "ابحث هنا",
-        "search": "ابحث",
-        "location": "الموقع",
-        "actions": {
-          "edit": "تعديل الشركه",
-          "request-quote": "طلب عرض سعر",
-          "delete": " حذف الشركه "
-        }
-      },
+      "companies-list": {},
       "companies-details": {
         "name": "الاسم",
         "phone": "الهاتف",
@@ -476,28 +482,6 @@
       "click": "ضغط على \"حذف\" لإتمام العملية. ",
       "delete": "حذف",
       "cancel": "الغاء"
-    },
-    "price-offer": {
-      "create-price-offer": {
-        "header": "إنشاء عرض سعر",
-        "contractDate": "تاريخ العقد",
-        "startContract": "تاريخ البدء",
-        "endContract": "تاريخ الانتهاء",
-        "services": "الخدمات",
-        "otherDetails": "خدمات أخرى",
-        "securityRoles": "اختر دور الأمن",
-        "quantity": "الكمية",
-        "dailyCostPerUnit": "التكلفة اليومية للوحدة",
-        "monthlyCostPerUnit": "التكلفة الشهرية للوحدة",
-        "serviceName": "اسم الخدمة",
-        "addNotes": "إضافة ملاحظات",
-        "enterDetails": "أدخل التفاصيل هنا...",
-        "cancel": "إلغاء",
-        "submit": "إرسال",
-        "invalidService": "اختيار خدمة غير صالح",
-        "invalidQuantity": "كمية غير صالحة",
-        "invalidCost": "تكلفة غير صالحة"
-      }
     }
   },
   "enums": {
@@ -645,8 +629,8 @@
     },
     "contract-types": {
       "0": "مؤقت",
-      "1": "دوام جزئي",
-      "2": "دوام كامل"
+      "1": "شهري",
+      "2": "سنوي"
     }
   }
 }

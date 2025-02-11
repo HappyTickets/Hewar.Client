@@ -62,7 +62,6 @@ export class CreatePriceOfferComponent implements OnInit {
 
     });
   }
-
   getCompanyServices(id: number) {
     this.companyUtilities.getServicesByCompanyId(id).subscribe((res) => {
       if (res.data) this.companyServices = res.data;
@@ -82,8 +81,8 @@ export class CreatePriceOfferComponent implements OnInit {
         otherServices: this.createPriceOfferForm.value.otherServices,
       };
       this.priceOffersService.create(priceOffer).subscribe(() => {
-          this.router.navigate(['/facilities/price-offer']);
-        });
+        this.router.navigate(['/facility-price-offer']);
+      });
     }
   }
   createServiceGroup(): FormGroup {
