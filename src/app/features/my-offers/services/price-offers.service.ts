@@ -4,7 +4,8 @@ import { ICreatePriceOffer } from '../models/icreate-price-offer';
 import { IUpdatePriceOffer } from '../models/iupdate-price-offer';
 import { Observable } from 'rxjs';
 import { IApiResponse } from '../../../shared/models/IApiResponse';
-import { IGetPriceOffersByRequest, IPriceOffer } from '../models/iprice-offer';
+import { IGetPriceOffersByRequest } from '../models/iprice-offer';
+import { IGetPriceOfferById } from '../models/iget-price-offer-by-id';
 
 @Injectable({
   providedIn: 'root',
@@ -13,14 +14,11 @@ export class PriceOffersService {
   private http = inject(HttpClient);
   baseEndPoint = '/api/PriceOffers/';
 
-  create(data: ICreatePriceOffer) {
-    return this.http.post(`${this.baseEndPoint}create`, data);
+  create(data: ICreatePriceOffer):Observable<IApiResponse<null>> {
+    return this.http.post<IApiResponse<null>>(`${this.baseEndPoint}create`, data);
   }
-  update(data: IUpdatePriceOffer) {
-    return this.http.put(`${this.baseEndPoint}update`, data);
-  }
-  getById(offerId: number) {
-    return this.http.get(`${this.baseEndPoint}getById`,{params: { offerId }});
+  update(data: IUpdatePriceOffer):Observable <IApiResponse<null>> {
+    return this.http.put<IApiResponse<null>>(`${this.baseEndPoint}update`, data);
   }
   accept(offerId: number):Observable <IApiResponse<null>> {
     return this.http.patch<IApiResponse<null>>(`${this.baseEndPoint}accept`, {} ,{params: { offerId }});
@@ -31,17 +29,23 @@ export class PriceOffersService {
   hide(offerId: number):Observable <IApiResponse<null>> {
     return this.http.patch<IApiResponse<null>>(`${this.baseEndPoint}hide`, {} , {params: { offerId }});
   }
+  show(offerId: number):Observable <IApiResponse<null>> {
+    return this.http.patch<IApiResponse<null>>(`${this.baseEndPoint}show`, {} , {params: { offerId }});
+  }
   cancel(offerId: number):Observable <IApiResponse<null>> {
     return this.http.patch<IApiResponse<null>>(`${this.baseEndPoint}cancel`, {} , {params: { offerId }});
   }
-  getMyCompanyOffers(): Observable <IApiResponse<IPriceOffer[]>> {
-    return this.http.get<IApiResponse<IPriceOffer[]>>(`${this.baseEndPoint}getMyCompanyOffers`);
+  getById(offerId: number):Observable <IApiResponse<IGetPriceOfferById>> {
+    return this.http.get<IApiResponse<IGetPriceOfferById>>(`${this.baseEndPoint}getById`,{params: { offerId }});
+  }
+  getMyCompanyOffers(): Observable <IApiResponse<IGetPriceOfferById[]>> {
+    return this.http.get<IApiResponse<IGetPriceOfferById[]>>(`${this.baseEndPoint}getMyCompanyOffers`);
+  }
+  getMyFacilityOffers():Observable<IApiResponse<IGetPriceOfferById[]>> {
+    return this.http.get<IApiResponse<IGetPriceOfferById[]>>(`${this.baseEndPoint}getMyFacilityOffers`);
   }
   getMyCompanyOffersByRequestId(requestId: number):Observable<IApiResponse<IGetPriceOffersByRequest>> {
     return this.http.get<IApiResponse<IGetPriceOffersByRequest>>(`${this.baseEndPoint}getMyCompanyOffersByRequestId`, {params: {requestId}});
-  }
-  getMyFacilityOffers():Observable<IApiResponse<IGetPriceOffersByRequest[]>> {
-    return this.http.get<IApiResponse<IGetPriceOffersByRequest[]>>(`${this.baseEndPoint}getMyFacilityOffers`);
   }
   getMyFacilityOffersByRequestId(requestId: number) {
     return this.http.get(`${this.baseEndPoint}getMyFacilityOffersByRequestId`,{params: {requestId}});

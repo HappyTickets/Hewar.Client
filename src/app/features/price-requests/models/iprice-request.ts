@@ -9,13 +9,11 @@ export interface IPriceRequest {
   company: ICompany;
   facility: IFacility;
   chatId: null | number;
-  companyName: string;
   contractType: ContractType;
+  status: RequestStatus;
   startDate: string;
   endDate: string;
-  hasOffers: boolean;
   notes?: string;
-  status: RequestStatus;
   otherServices: {
     id: number;
     name: string;

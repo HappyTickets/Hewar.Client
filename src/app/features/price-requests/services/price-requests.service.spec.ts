@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 // import { HttpTestingController } from '@angular/common/http/testing';
 import { PriceRequestsService } from './price-requests.service';
-import { ICreatePriceReq } from '../models/ICreatePriceReq';
+import { ICreatePriceReq } from '../models/icreate-price-request';
 import { IAcceptPriceReq } from '../models/IAcceptPriceReq';
 import { IResponse } from '../../../core/models/IResponse';
 import { ICreatePriceReqFacilityDetails } from '../models/ICreatePriceReqFacilityDetails';

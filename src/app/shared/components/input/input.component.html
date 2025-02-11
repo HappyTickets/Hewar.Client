@@ -5,6 +5,7 @@
   }}</label>
   } @if (type === 'dropdown') {
   <p-select
+    [readonly]="readonly"
     [options]="options"
     [placeholder]="placeholder ? ('app.' + placeholder | translate) : ''"
     [formControl]="formControl"

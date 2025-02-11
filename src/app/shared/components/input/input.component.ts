@@ -35,8 +35,8 @@ export class InputComponent {
   @Input() errorKey!: string;
   @Input() type = 'text';
   @Input() icon!: string;
+  @Input() readonly = false;
   @Input() options: { name: string; code: number }[] = [];
-
 
   get formControl(): FormControl {
     return this.formGroup.get(this.controlName) as FormControl;

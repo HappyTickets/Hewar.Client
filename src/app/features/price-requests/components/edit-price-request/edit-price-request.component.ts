@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -17,16 +16,16 @@ import { ICompanyService } from '../../../companies/models/i-company-service';
 import { ICompany } from '../../../companies/models/ICompany';
 import { CompaniesService } from '../../../companies/services/companies.service';
 import { CompanyUtilitiesService } from '../../../companies/services/company-utilities.service';
-import { ICreatePriceReq } from '../../models/ICreatePriceReq';
 import { IPriceRequest } from '../../models/iprice-request';
 import { PriceRequestsService } from '../../services/price-requests.service';
+import { ICreatePriceRequest } from '../../models/icreate-price-request';
 
 @Component({
   selector: 'app-edit-price-request',
   standalone: true,
-  imports: [ CommonModule, SelectModule, InputNumberModule, TextareaModule, ButtonModule, DatePickerModule, ReactiveFormsModule, InputTextModule, TranslatePipe, InputComponent ],
+  imports: [ SelectModule, InputNumberModule, TextareaModule, ButtonModule, DatePickerModule, ReactiveFormsModule, InputTextModule, TranslatePipe, InputComponent ],
   templateUrl: './edit-price-request.component.html',
-  styleUrl: './edit-price-request.component.scss'
+  styleUrl: './edit-price-request.component.scss',
 })
 export class EditPriceRequestComponent implements OnInit {
   private companyUtilities = inject(CompanyUtilitiesService);
@@ -43,10 +42,10 @@ export class EditPriceRequestComponent implements OnInit {
   priceRequestData: IPriceRequest = {} as IPriceRequest;
 
   companyData: ICompany = {} as ICompany;
-  createPriceRequestForm: FormGroup;
+  editPriceRequestForm: FormGroup;
   date = new Date();
   loading = false;
-  mode: "create" | "update" = 'create'
+  mode: 'create' | 'update' = 'create';
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
@@ -54,7 +53,7 @@ export class EditPriceRequestComponent implements OnInit {
       const priceRequestId = params.get('priceRequestId');
 
       if (companyId) {
-        this.mode = 'create'
+        this.mode = 'create';
         this.companiesService.getCompanyById(companyId).subscribe((res) => {
           if (res.data) {
             this.companyData = res.data;
@@ -62,7 +61,7 @@ export class EditPriceRequestComponent implements OnInit {
           }
         });
       } else if (priceRequestId) {
-        this.mode = 'update'
+        this.mode = 'update';
         this.priceRequestsService.getById(+priceRequestId).subscribe((res) => {
           if (res.data) {
             this.priceRequestData = res.data;
@@ -75,14 +74,13 @@ export class EditPriceRequestComponent implements OnInit {
     });
   }
 
-
   getCompanyServices(id: number) {
     this.companyUtilities.getServicesByCompanyId(id).subscribe((res) => {
       if (res.data) this.companyServices = res.data;
     });
   }
   constructor() {
-    this.createPriceRequestForm = this.fb.group({
+    this.editPriceRequestForm = this.fb.group({
       contractType: ['', [Validators.required]],
       startDate: ['', [Validators.required]],
       endDate: ['', [Validators.required]],
@@ -92,29 +90,29 @@ export class EditPriceRequestComponent implements OnInit {
     });
   }
   onSubmit(): void {
-    if (this.createPriceRequestForm.valid) {
+    if (this.editPriceRequestForm.valid) {
       if (this.mode === 'create') {
-        const priceRequest: ICreatePriceReq = {
+        const priceRequest: ICreatePriceRequest = {
           companyId: this.companyData.id,
-          contractType: this.createPriceRequestForm.value.contractType,
-          startDate: this.createPriceRequestForm.value.startDate,
-          endDate: this.createPriceRequestForm.value.endDate,
-          notes: this.createPriceRequestForm.value.notes,
-          services: this.createPriceRequestForm.value.services,
-          otherServices: this.createPriceRequestForm.value.otherServices,
+          contractType: this.editPriceRequestForm.value.contractType,
+          startDate: this.editPriceRequestForm.value.startDate,
+          endDate: this.editPriceRequestForm.value.endDate,
+          notes: this.editPriceRequestForm.value.notes,
+          services: this.editPriceRequestForm.value.services,
+          otherServices: this.editPriceRequestForm.value.otherServices,
         };
         this.priceRequestsService.create(priceRequest).subscribe(() => {
-            this.router.navigate(['/facility-price-request']);
+          this.router.navigate(['/facility-price-request']);
         });
       } else if (this.mode === 'update') {
-        const priceRequest: ICreatePriceReq = {
+        const priceRequest: ICreatePriceRequest = {
           priceRequestId: this.priceRequestData.id,
-          contractType: this.createPriceRequestForm.value.contractType,
-          startDate: this.createPriceRequestForm.value.startDate,
-          endDate: this.createPriceRequestForm.value.endDate,
-          notes: this.createPriceRequestForm.value.notes,
-          services: this.createPriceRequestForm.value.services,
-          otherServices: this.createPriceRequestForm.value.otherServices,
+          contractType: this.editPriceRequestForm.value.contractType,
+          startDate: this.editPriceRequestForm.value.startDate,
+          endDate: this.editPriceRequestForm.value.endDate,
+          notes: this.editPriceRequestForm.value.notes,
+          services: this.editPriceRequestForm.value.services,
+          otherServices: this.editPriceRequestForm.value.otherServices,
         };
         this.priceRequestsService.update(priceRequest).subscribe(() => {
           this.router.navigate(['/facility-price-request']);
@@ -137,10 +135,10 @@ export class EditPriceRequestComponent implements OnInit {
     });
   }
   get services() {
-    return this.createPriceRequestForm.get('services') as FormArray;
+    return this.editPriceRequestForm.get('services') as FormArray;
   }
   get otherServices() {
-    return this.createPriceRequestForm.get('otherServices') as FormArray;
+    return this.editPriceRequestForm.get('otherServices') as FormArray;
   }
   addService(): void {
     this.services.push(this.createServiceGroup());
@@ -159,10 +157,10 @@ export class EditPriceRequestComponent implements OnInit {
     }
   }
   onCancel(): void {
-    this.createPriceRequestForm.reset();
+    this.editPriceRequestForm.reset();
   }
   assignValues() {
-    this.createPriceRequestForm.patchValue({
+    this.editPriceRequestForm.patchValue({
       contractType: this.priceRequestData.contractType,
       startDate: new Date(this.priceRequestData.startDate),
       endDate: new Date(this.priceRequestData.endDate),

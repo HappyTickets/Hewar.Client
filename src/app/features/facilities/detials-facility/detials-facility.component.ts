@@ -5,7 +5,6 @@ import { CommonModule } from '@angular/common';
 import { LocalizationService } from '../../../core/services/localization/localization.service';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { TranslateModule } from '@ngx-translate/core';
-import { Dialog } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { IResponseData } from '../models/iresponse-data';
 import { DeletePopupComponent } from '../../../shared/components/delete-popup/delete-popup.component';
@@ -16,7 +15,6 @@ import { DeletePopupComponent } from '../../../shared/components/delete-popup/de
   imports: [
     CommonModule,
     TranslateModule,
-    Dialog,
     ButtonModule,
     RouterLink,
     DeletePopupComponent,

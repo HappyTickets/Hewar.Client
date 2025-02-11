@@ -12,8 +12,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
-import { IGetPriceOffersByRequest } from '../../models/iprice-offer';
 import { PriceOffersService } from '../../services/price-offers.service';
+import { IGetPriceOfferById } from '../../models/iget-price-offer-by-id';
 
 @Component({
   selector: 'app-facility-offers',
@@ -25,7 +25,7 @@ import { PriceOffersService } from '../../services/price-offers.service';
 export class FacilityOffersComponent implements OnInit {
   private priceOffersService = inject(PriceOffersService);
   private toastr = inject(ToastrService);
-  priceOffers: IGetPriceOffersByRequest[] = [];
+  priceOffers: IGetPriceOfferById[] = [];
   searchTerm = '';
 
   ngOnInit(): void {
