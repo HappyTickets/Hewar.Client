@@ -1,4 +1,4 @@
-<p-toast></p-toast>
+<!-- <p-toast></p-toast>
 
 <div class="facility-form">
   <h2>{{ "app.facilities.add-facility" | translate }}</h2>
@@ -245,23 +245,21 @@
       </div>
     </div>
   </form>
-</div>
+</div> -->
 
-<!-- <div class="create-component">
+<div class="create-component">
   <div class="container">
     <h2 class="text-center mb-4">
-      {{ "app.companies.create-update-company.create-title" | translate }}
+      {{ "app.create-update-facility.create-title" | translate }}
     </h2>
     <form [formGroup]="facilityForm" (ngSubmit)="onSubmit()">
       <div class="card">
         <p class="p-group">
-          {{
-            "app.companies.create-update-company.company-data-title" | translate
-          }}
+          {{ "app.create-update-facility.facility-data-title" | translate }}
         </p>
         <div class="grid">
           @for (input of fcilityDataInputs; track $index) {
-          <div class="col-12 md:col-6 lg:col-3">
+          <div class="col-12 md:col-6 lg:col-4">
             <app-input
               [formGroup]="facilityForm"
               [placeholder]="input.placeholder"
@@ -275,20 +273,41 @@
           </div>
           }
         </div>
+
+        <p class="p-group">
+          {{ "app.create-update-facility.address-data-title" | translate }}
+        </p>
+
+        <div class="grid">
+          <ng-container formGroupName="addressFormGroup">
+            @for (input of addressDataInputs; track $index) {
+            <div class="col-12 md:col-6 lg:col-4">
+              <app-input
+                [formGroup]="addressFormGroup"
+                [placeholder]="input.placeholder"
+                [errorKey]="input.errorKey"
+                [controlName]="input.controlName"
+                [icon]="input.icon"
+                [type]="input.type"
+                [label]="input.label"
+              >
+              </app-input>
+            </div>
+            }
+          </ng-container>
+        </div>
       </div>
 
       <div class="card">
         <p class="p-group">
-          {{
-            "app.companies.create-update-company.admin-data-title" | translate
-          }}
+          {{ "app.create-update-facility.admin-data-title" | translate }}
         </p>
         <div class="grid">
           <ng-container formGroupName="adminInfo">
             @for (input of adminDataInputs; track $index) {
-            <div class="col-12 md:col-6 lg:col-3">
+            <div class="col-12 md:col-6 lg:col-4">
               <app-input
-                [formGroup]="adminInfoGroup"
+                [formGroup]="adminInfo"
                 [placeholder]="input.placeholder"
                 [errorKey]="input.errorKey"
                 [controlName]="input.controlName"
@@ -298,7 +317,7 @@
               >
               </app-input>
               @if(input.controlName === 'confirmPassword' &&
-              createCompForm.get('adminInfo')?.hasError('mismatch')){
+              facilityForm.get('adminInfo')?.hasError('mismatch')){
               <p-message
                 severity="error"
                 [text]="'app.' + input.errorKey + '-2' | translate"
@@ -325,40 +344,14 @@
         </div>
       </div>
 
-      <div class="card">
-        <p class="p-group">
-          {{
-            "app.companies.create-update-company.address-data-title" | translate
-          }}
-        </p>
-        <div class="grid">
-          <ng-container formGroupName="address">
-            @for (input of addressDataInputs; track $index) {
-            <div class="col-12 md:col-6 lg:col-4">
-              <app-input
-                [formGroup]="addressGroup"
-                [placeholder]="input.placeholder"
-                [errorKey]="input.errorKey"
-                [controlName]="input.controlName"
-                [icon]="input.icon"
-                [type]="input.type"
-                [label]="input.label"
-              >
-              </app-input>
-            </div>
-            }
-          </ng-container>
-        </div>
-      </div>
-
       <div class="actions">
         <button type="submit" class="save">
-          {{ "app.companies.create-update-company.save" | translate }}
+          {{ "app.create-update-facility.save" | translate }}
         </button>
-        <button class="cancel" routerLink="/companies">
-          {{ "app.companies.create-update-company.cancel" | translate }}
+        <button class="cancel" routerLink="/facilities">
+          {{ "app.create-update-facility.cancel" | translate }}
         </button>
       </div>
     </form>
   </div>
-</div> -->
+</div>

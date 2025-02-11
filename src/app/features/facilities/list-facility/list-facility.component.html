@@ -67,6 +67,7 @@
   </section>
 </div>
 <p-paginator
+  [hidden]="totalRecords < 10"
   (onPageChange)="onPageChange($event)"
   [first]="first"
   [rows]="rows"

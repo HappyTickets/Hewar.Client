@@ -13,6 +13,11 @@ import { ResetPasswordComponent } from './features/auth/components/reset-passwor
 import { CreateResetPasswordComponent } from './features/auth/components/create-reset-password/create-reset-password.component';
 import { CompanyOffersComponent } from './features/my-offers/components/company-offers/company-offers.component';
 import { FacilityOffersComponent } from './features/my-offers/components/facility-offers/facility-offers.component';
+
+import { ListFacilityComponent } from './features/facilities/list-facility/list-facility.component';
+import { CreateFacilityComponent } from './features/facilities/create-facility/create-facility.component';
+import { UpdateFacilityComponent } from './features/facilities/update-facility/update-facility.component';
+import { DetialsFacilityComponent } from './features/facilities/detials-facility/detials-facility.component';
 import { UpdateCompanyComponent } from './features/companies/components/update-company/update-company.component';
 import { CompanyDetailsComponent } from './features/companies/components/company-details/company-details.component';
 

@@ -1,4 +1,10 @@
-import { Attribute, Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  Attribute,
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { FacilitiesService } from '../services/facilities.service';
 import { CommonModule } from '@angular/common';
 import { IResponseData } from '../models/iresponse-data';
@@ -36,7 +42,8 @@ export class ListFacilityComponent implements OnInit, OnDestroy {
   private languageSubscription: Subscription;
   first = 0;
   rows = 10;
-  totalRecords = 30;
+  totalRecords = 0;
+  paginatorIndex: boolean = false;
   facilities: IResponseData[] = [];
   searchValue = '';
   visibleDeletePopup = false;
@@ -46,7 +53,8 @@ export class ListFacilityComponent implements OnInit, OnDestroy {
   constructor(
     private facilityService: FacilitiesService,
     private localizationService: LocalizationService,
-    private router: Router
+    private router: Router,
+    private cdr: ChangeDetectorRef
   ) {
     this.language = this.localizationService.getLanguage();
     this.languageSubscription = this.localizationService.language$.subscribe(
@@ -56,11 +64,18 @@ export class ListFacilityComponent implements OnInit, OnDestroy {
         }
       }
     );
+    this.ngOnInit();
   }
   ngOnInit(): void {
     this.facilityService.getAllFacilities().subscribe((res) => {
       this.facilities = res.data;
       this.totalRecords = res.data.length;
+      if (this.facilities.length > 10) {
+        this.paginatorIndex = true;
+      } else {
+        this.paginatorIndex = false;
+      }
+
       console.log(this.facilities);
     });
   }
@@ -122,5 +137,9 @@ export class ListFacilityComponent implements OnInit, OnDestroy {
 
   goToFacilityDetails(facilityId: number) {
     this.router.navigate(['/facilities', facilityId]); // Example: /facilities/1
+  }
+  updateTotalRecords(newTotal: number) {
+    this.totalRecords = newTotal;
+    this.cdr.detectChanges(); // Force UI update
   }
 }

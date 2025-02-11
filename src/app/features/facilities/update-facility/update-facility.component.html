@@ -49,11 +49,9 @@
         type="text"
         label="facilities.activity-type"
       ></app-input>
-    </div>
-    <p class="p-group">
-      {{ "app.facilities.facility-det-address" | translate }}
-    </p>
-    <div class="group">
+      <p class="p-group">
+        {{ "app.facilities.facility-det-address" | translate }}
+      </p>
       <div class="address" formGroupName="address">
         <div class="p-input">
           <app-input
@@ -99,8 +97,20 @@
             label="facilities.country"
           ></app-input>
         </div>
+        <div class="p-input">
+          <app-input
+            placeholder="facilities.postalCode"
+            [formGroup]="addressFormGroup"
+            errorKey="facilities.postalCode"
+            controlName="postalCode"
+            icon="pi-flag"
+            type="text"
+            label="facilities.postalCode"
+          ></app-input>
+        </div>
       </div>
     </div>
+
     <p class="p-group">
       {{ "app.facilities.facility-Responsible" | translate }}
     </p>
