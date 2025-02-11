@@ -1,23 +1,12 @@
-import { ShiftType } from '../../../shared/enums/shift-type';
+import { ContractType } from '../../../shared/enums/contract-type';
+import { IPriceOfferOtherService } from './iprice-offer-other-service';
+import { IPriceOfferService } from './iprice-offer-service';
 
 export interface IUpdatePriceOffer {
   priceOfferId: number;
-  services: [
-    {
-      serviceId: number;
-      quantity: number;
-      dailyCostPerUnit: number;
-      monthlyCostPerUnit: number;
-      shiftType: ShiftType;
-    }
-  ];
-  otherServices: [
-    {
-      name: string;
-      quantity: number;
-      shiftType: ShiftType;
-      dailyCostPerUnit: number;
-      monthlyCostPerUnit: number;
-    }
-  ];
+  contractType: ContractType;
+  startDate: string;
+  endDate: string;
+  services: IPriceOfferService[];
+  otherServices: IPriceOfferOtherService[];
 }

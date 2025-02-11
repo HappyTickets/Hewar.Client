@@ -340,13 +340,13 @@
       }
     },
     "price-request": {
-      "create-price-request": {
+      "edit-price-request": {
         "header": "Order Price Request",
         "contractDate": "Contract Date",
         "startContract": "Start of Contracting",
         "endContract": "End of Contracting",
         "contractType": "Contract Type",
-        "securityRoles": "Security Roles",
+        "chooseService": "Service",
         "chooseContractType": "Choose contract type",
         "invaliContractType": "Contract Type required",
         "services": "Services",
@@ -358,9 +358,32 @@
         "addNotes": "Notes",
         "enterDetails": "Enter additional details",
         "cancel": "Cancel",
-        "submit": "Order Price Request",
+        "update": "Update Price Request",
+        "create": "Order Price Request",
         "formValues": "Form Values",
         "site": "Site"
+      },
+      "price-request-page": {
+        "global-search": "Global Search",
+        "company-name": "Company Name",
+        "contract-type": "Contract Type",
+        "status": "Status",
+        "actions": "Actions",
+        "update": "Update",
+        "cancel": "Cancel",
+        "hide": "Hide",
+        "chat": "Chat",
+        "make-offer": "Make Offer",
+        "details": "Details",
+        "start-date": "Start Date",
+        "end-date": "End Date",
+        "services": "Services",
+        "facility-name": "Facility Name",
+        "service-id": "ID",
+        "quantity": "Quantity",
+        "shift": "Shift",
+        "other-services": "Other Services",
+        "service": "Service"
       }
     },
     "companies": {
@@ -455,6 +478,29 @@
         "invalidService": "Invalid service selection",
         "invalidQuantity": "Invalid quantity",
         "invalidCost": "Invalid cost"
+      },
+      "price-offers-page": {
+        "global-search": "Global Search",
+        "company-name": "Comapny Name",
+        "status": "Status",
+        "contract-type": "Contract Type",
+        "actions": "Actions",
+        "accept": "Accept",
+        "reject": "Reject",
+        "update": "Update",
+        "hide": "Hide",
+        "cancel": "Cancel",
+        "details": "Details",
+        "chat": "Chat",
+        "services": "Services",
+        "service": "Service",
+        "shift": "Shift",
+        "quantity": "Quantity",
+        "daily-cost": "Daily Cost",
+        "monthly-cost": "Monthly Cost",
+        "total-daily-cost": "Total Daily Cost",
+        "total-monthly-cost": "Total Monthly Cost",
+        "other-services": "Other Services"
       }
     }
   },
@@ -603,8 +649,8 @@
     },
     "contract-types": {
       "0": "Temporary",
-      "1": "Part-Time",
-      "2": "Full-Time"
+      "1": "Monthly",
+      "2": "Yearly"
     }
   }
 }

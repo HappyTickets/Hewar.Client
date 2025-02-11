@@ -69,7 +69,6 @@
         "corporate-protection": "حماية الشركات"
       }
     },
-
     "validation": {
       "required": "هذا الحقل مطلوب",
       "email": "يرجى إدخال بريد إلكتروني صحيح",
@@ -381,45 +380,98 @@
       }
     },
     "price-request": {
-      "create-price-request": {
+      "edit-price-request": {
         "header": "طلب عرض سعر",
         "contractDate": "تاريخ التعاقد",
         "startContract": "بداية التعاقد",
         "endContract": "نهاية التعاقد",
         "contractType": "نوع التعاقد",
-        "securityRoles": "الخدمة",
+        "chooseService": "الخدمة",
         "chooseContractType": "اختر نوع التعاقد",
         "invaliContractType": "نوع التعاقد مطلوب",
         "services": "الخدمات",
         "serviceType": "نوع الخدمة",
         "quantity": "الكمية",
         "shiftType": "نوع الوردية",
-        "otherDetails": "تفاصيل أخرى",
+        "otherDetails": "خدمات أخرى",
         "serviceName": "اسم الخدمة",
         "addNotes": "ملاحظات",
-        "enterDetails": "أدخل تفاصيل إضافية",
+        "enterDetails": "أدخل خدمات إضافية",
         "cancel": "إلغاء",
-        "submit": "طلب عرض",
-        "formValues": "قيم النموذج",
-        "site": "الموقع"
+        "create": "طلب عرض",
+        "update": "تعديل الطلب"
+      },
+      "price-request-page": {
+        "global-search": "بحث عام",
+        "company-name": "اسم الشركة",
+        "contract-type": "نوع العقد",
+        "status": "الحالة",
+        "actions": "الإجراءات",
+        "update": "تحديث",
+        "facility-name": "اسم المنشأة",
+        "cancel": "إلغاء",
+        "hide": "إخفاء",
+        "chat": "الدردشة",
+        "details": "التفاصيل",
+        "make-offer": "تقديم عرض",
+        "start-date": "تاريخ البدء",
+        "end-date": "تاريخ الانتهاء",
+        "services": "الخدمات",
+        "service-id": "الخدمة",
+        "quantity": "الكمية",
+        "shift": "الوردية",
+        "other-services": "خدمات أخرى",
+        "service": "الخدمة"
+      }
+    },
+    "price-offer": {
+      "create-price-offer": {
+        "header": "إنشاء عرض سعر",
+        "contractDate": "تاريخ العقد",
+        "startContract": "تاريخ البدء",
+        "endContract": "تاريخ الانتهاء",
+        "services": "الخدمات",
+        "otherDetails": "خدمات أخرى",
+        "securityRoles": "اختر دور الأمن",
+        "quantity": "الكمية",
+        "dailyCostPerUnit": "التكلفة اليومية للوحدة",
+        "monthlyCostPerUnit": "التكلفة الشهرية للوحدة",
+        "serviceName": "اسم الخدمة",
+        "addNotes": "إضافة ملاحظات",
+        "enterDetails": "أدخل التفاصيل هنا...",
+        "cancel": "إلغاء",
+        "submit": "إرسال",
+        "invalidService": "اختيار خدمة غير صالح",
+        "invalidQuantity": "كمية غير صالحة",
+        "invalidCost": "تكلفة غير صالحة"
+      },
+      "price-offers-page": {
+        "global-search": "بحث عام",
+        "facility-name": "اسم المنشأة",
+        "company-name": "اسم الشركة",
+        "status": "الحالة",
+        "contract-type": "نوع العقد",
+        "actions": "الإجراءات",
+        "update": "تحديث",
+        "hide": "إخفاء",
+        "cancel": "إلغاء",
+        "details": "التفاصيل",
+        "accept": "قبول",
+        "reject": "رفض",
+        "chat": "المحادثة",
+        "services": "الخدمات",
+        "service": "الخدمة",
+        "shift": "الفترة",
+        "quantity": "الكمية",
+        "daily-cost": "التكلفة اليومية",
+        "monthly-cost": "التكلفة الشهرية",
+        "total-daily-cost": "إجمالي التكلفة اليومية",
+        "total-monthly-cost": "إجمالي التكلفة الشهرية",
+        "other-services": "خدمات أخرى"
       }
     },
     "companies": {
-      "companies-list": {
-        "add-comp": "اضافة شركة",
-        "classification": "تصنيف",
-        "industrial-security": "الامن الصناعي",
-        "facilities-security": " امن المنشأت",
-        "delete": "مسح",
-        "search-here": "ابحث هنا",
-        "search": "ابحث",
-        "location": "الموقع",
-        "actions": {
-          "edit": "تعديل الشركه",
-          "request-quote": "طلب عرض سعر",
-          "delete": " حذف الشركه "
-        }
-      },
+      "companies-list": {},
       "companies-details": {
         "name": "الاسم",
         "phone": "الهاتف",
@@ -476,28 +528,6 @@
       "click": "ضغط على \"حذف\" لإتمام العملية. ",
       "delete": "حذف",
       "cancel": "الغاء"
-    },
-    "price-offer": {
-      "create-price-offer": {
-        "header": "إنشاء عرض سعر",
-        "contractDate": "تاريخ العقد",
-        "startContract": "تاريخ البدء",
-        "endContract": "تاريخ الانتهاء",
-        "services": "الخدمات",
-        "otherDetails": "خدمات أخرى",
-        "securityRoles": "اختر دور الأمن",
-        "quantity": "الكمية",
-        "dailyCostPerUnit": "التكلفة اليومية للوحدة",
-        "monthlyCostPerUnit": "التكلفة الشهرية للوحدة",
-        "serviceName": "اسم الخدمة",
-        "addNotes": "إضافة ملاحظات",
-        "enterDetails": "أدخل التفاصيل هنا...",
-        "cancel": "إلغاء",
-        "submit": "إرسال",
-        "invalidService": "اختيار خدمة غير صالح",
-        "invalidQuantity": "كمية غير صالحة",
-        "invalidCost": "تكلفة غير صالحة"
-      }
     }
   },
   "enums": {
@@ -645,8 +675,8 @@
     },
     "contract-types": {
       "0": "مؤقت",
-      "1": "دوام جزئي",
-      "2": "دوام كامل"
+      "1": "شهري",
+      "2": "سنوي"
     }
   }
 }

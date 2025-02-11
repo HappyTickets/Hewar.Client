@@ -3,7 +3,7 @@
   <label [for]="formControl" class="input-label">{{ 'app.'+ label | translate }}</label>
   }
   @if (type === 'dropdown') {
-  <p-select [options]="options" [placeholder]="placeholder ? ('app.' + placeholder | translate): ''" [formControl]="formControl" inputId="{{ controlName }}" optionLabel="name" optionValue="code"></p-select>
+  <p-select [readonly]="readonly" [options]="options" [placeholder]="placeholder ? ('app.' + placeholder | translate): ''" [formControl]="formControl" inputId="{{ controlName }}" optionLabel="name" optionValue="code"></p-select>
   } @else {
   <p-iconfield>
     <p-inputicon class="pi" [ngClass]="icon" />

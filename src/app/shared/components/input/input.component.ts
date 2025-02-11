@@ -25,6 +25,7 @@ export class InputComponent {
   @Input() errorKey!: string;
   @Input() type = 'text';
   @Input() icon!: string;
+  @Input() readonly = false;
   @Input() options: { name: string, code: number }[] = [];
 
 
