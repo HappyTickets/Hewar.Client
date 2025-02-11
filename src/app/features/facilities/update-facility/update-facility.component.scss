@@ -177,7 +177,9 @@
   }
   app-input {
     height: 50px !important;
-    width: 100%;
+    width: 23%;
+    margin-bottom: 20px;
+    margin-top: 20px;
 
     input {
       background-color: red;
@@ -274,6 +276,20 @@
   display: flex;
   justify-content: center;
 }
+@media (max-width: 1056px) {
+  app-input {
+    height: 50px !important;
+    width: 45% !important;
+    margin-bottom: 20px;
+    margin-top: 20px;
+
+    input {
+      background-color: red;
+      min-height: 50px;
+      height: 50px !important;
+    }
+  }
+}
 @media (max-width: 768px) {
   .facility-form {
     padding: 10px;
@@ -306,6 +322,18 @@
       width: 100%;
     }
   }
+  app-input {
+    height: 50px !important;
+    width: 98% !important;
+    margin-bottom: 20px;
+    margin-top: 20px;
+
+    input {
+      background-color: red;
+      min-height: 50px;
+      height: 50px !important;
+    }
+  }
 }
 
 @media (max-width: 580px) {
@@ -333,6 +361,18 @@
     .p-input {
       width: 100%;
       margin-right: 10px !important;
+    }
+  }
+  app-input {
+    height: 50px !important;
+    width: 98% !important;
+    margin-bottom: 20px;
+    margin-top: 20px;
+
+    input {
+      background-color: red;
+      min-height: 50px;
+      height: 50px !important;
     }
   }
 }

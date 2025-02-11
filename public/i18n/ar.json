@@ -60,6 +60,7 @@
       "facility-image": "صورة المنشأة",
       "upload-image": "تحميل",
       "postalCode": "الرمز البريدى",
+      "Confirmpassword": "تأكيد كلمة السر",
 
       "tabs": {
         "security": "الأمن",
@@ -425,7 +426,6 @@
         "address": "العنوان",
         "company-services": "خدمات شركتنا",
         "company-services-desc": "امن المنشأت نساعدك علي حمايه منشأتك"
-
       },
       "create-update-company": {
         "create-title": "إنشاء شركة",
