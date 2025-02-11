@@ -48,4 +48,5 @@ export class InputComponent {
   togglePassword() {
     this.showPassword = !this.showPassword;
   }
+
 }
