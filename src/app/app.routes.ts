@@ -18,9 +18,6 @@ import { ListFacilityComponent } from './features/facilities/list-facility/list-
 import { CreateFacilityComponent } from './features/facilities/create-facility/create-facility.component';
 import { UpdateFacilityComponent } from './features/facilities/update-facility/update-facility.component';
 import { DetialsFacilityComponent } from './features/facilities/detials-facility/detials-facility.component';
-
-import { UpdateCompanyComponent } from './features/companies/components/update-company/update-company.component';
-import { CompanyDetailsComponent } from './features/companies/components/company-details/company-details.component';
 import { UpdateCompanyComponent } from './features/companies/components/update-company/update-company.component';
 import { CompanyDetailsComponent } from './features/companies/components/company-details/company-details.component';
 
