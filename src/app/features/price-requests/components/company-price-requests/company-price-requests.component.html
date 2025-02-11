@@ -1,19 +1,28 @@
 <div class="container">
-  <p-table [value]="priceRequests" dataKey="id" stripedRows [paginator]="true" [rows]="10" [globalFilterFields]="['company.name']" selectionMode="single" #dt [rowsPerPageOptions]="[5, 10, 20]" [tableStyle]="{ 'min-width': '50rem'}">
+  <p-table [value]="priceRequests" dataKey="id" stripedRows [paginator]="true" [rows]="10" [globalFilterFields]="['facility.name']" selectionMode="single" #dt [rowsPerPageOptions]="[5, 10, 20]" [tableStyle]="{ 'min-width': '50rem'}">
     <ng-template #caption>
       <p-iconfield iconPosition="left">
         <p-inputicon><i class="pi pi-search"></i></p-inputicon>
-        <input pInputText type="text" [(ngModel)]="searchTerm" (input)="dt.filterGlobal(searchTerm, 'contains')" placeholder="Global Search"/>
+        <input pInputText type="text" [(ngModel)]="searchTerm" (input)="dt.filterGlobal(searchTerm, 'contains')" placeholder="{{ 'app.price-request.price-request-page.global-search' | translate }}"/>
       </p-iconfield>
     </ng-template>
 
     <ng-template pTemplate="header">
       <tr>
         <th></th>
-        <th pSortableColumn="facility.name" style="width:20%">Client Name <p-sortIcon field="facility.name"></p-sortIcon></th>
-        <th pSortableColumn="facility.contractType" style="width:20%">Contract Type <p-sortIcon field="facility.contractType"></p-sortIcon></th>
-        <th pSortableColumn="facility.requestStatus" style="width:20%"> Status <p-sortIcon field="facility.requestStatus"></p-sortIcon></th>
-        <th style="width:30%">Actions</th>
+        <th pSortableColumn="facility.name" style="width:20%">
+          {{ 'app.price-request.price-request-page.facility-name' | translate }}
+          <p-sortIcon field="facility.name"></p-sortIcon>
+        </th>
+        <th pSortableColumn="contractType" style="width:20%">
+          {{ 'app.price-request.price-request-page.contract-type' | translate }}
+          <p-sortIcon field="contractType"></p-sortIcon>
+        </th>
+        <th pSortableColumn="requestStatus" style="width:20%">
+          {{ 'app.price-request.price-request-page.status' | translate }}
+          <p-sortIcon field="requestStatus"></p-sortIcon>
+        </th>
+        <th style="width:30%">{{ 'app.price-request.price-request-page.actions' | translate }}</th>
       </tr>
     </ng-template>
 
@@ -26,10 +35,10 @@
         <td>{{ 'enums.contract-types.'+ service.contractType | translate }}</td>
         <td>{{ 'enums.request-status.'+ service.requestStatus | translate }}</td>
         <td>
-          <p-button class="mx-1" (click)="hide(service.id)" label="Hide"/>
-          <p-button class="mx-1" routerLink="/create-price-offer/{{service.id}}" label="Make Offer"/>
-          <p-button class="mx-1" label="Details"/>
-          <p-button class="mx-1" (click)="openChat()" label="Chat"/>
+          <p-button class="m-1" (click)="hide(service.id)" label="{{ 'app.price-request.price-request-page.hide' | translate }}"/>
+          <p-button class="m-1" routerLink="/create-price-offer/{{service.id}}" label="{{ 'app.price-request.price-request-page.make-offer' | translate }}" [disabled]="service.requestStatus!==1"/>
+          <p-button class="m-1" routerLink="/price-request-details/{{service.id}}" label="{{ 'app.price-request.price-request-page.details' | translate }}"/>
+          <p-button class="m-1" (click)="openChat()" label="{{ 'app.price-request.price-request-page.chat' | translate }}"/>
         </td>
       </tr>
     </ng-template>
@@ -39,33 +48,33 @@
       <tr>
         <td colspan="5">
           <div class="flex justify-content-between">
-            <div>Start Date: <strong>{{ service.startDate | date }}</strong></div>
-            <div>End Date: <strong>{{ service.endDate | date }}</strong></div>
+            <div>{{ 'app.price-request.price-request-page.start-date' | translate }}: <strong>{{ service.startDate | date }}</strong></div>
+            <div>{{ 'app.price-request.price-request-page.end-date' | translate }}: <strong>{{ service.endDate | date }}</strong></div>
           </div>
-          <h2>Services</h2>
+          <h2>{{ 'app.price-request.price-request-page.services' | translate }}</h2>
           <p-table [value]="service.services" dataKey="id">
             <ng-template pTemplate="header">
               <tr>
-                <th style="width:30%">ID</th>
-                <th style="width:30%">Quantity</th>
-                <th style="width:30%">Shift</th>
+                <th style="width:30%">{{ 'app.price-request.price-request-page.service' | translate }}</th>
+                <th style="width:30%">{{ 'app.price-request.price-request-page.quantity' | translate }}</th>
+                <th style="width:30%">{{ 'app.price-request.price-request-page.shift' | translate }}</th>
               </tr>
             </ng-template>
             <ng-template pTemplate="body" let-service>
               <tr>
-                <td>{{ service.serviceId }}</td>
+                <td>{{ service.serviceName }}</td>
                 <td>{{ service.quantity }}</td>
                 <td>{{ 'enums.shift-type.' + service.shiftType | translate }}</td>
               </tr>
             </ng-template>
           </p-table>
-          <h2>Other Services</h2>
+          <h2>{{ 'app.price-request.price-request-page.other-services' | translate }}</h2>
           <p-table [value]="service.otherServices" dataKey="id">
             <ng-template pTemplate="header">
               <tr>
-                <th style="width:30%">Service</th>
-                <th style="width:30%">Quantity</th>
-                <th style="width:30%">Shift</th>
+                <th style="width:30%">{{ 'app.price-request.price-request-page.service' | translate }}</th>
+                <th style="width:30%">{{ 'app.price-request.price-request-page.quantity' | translate }}</th>
+                <th style="width:30%">{{ 'app.price-request.price-request-page.shift' | translate }}</th>
               </tr>
             </ng-template>
 

@@ -42,8 +42,6 @@ export class FacilityPriceRequestsComponent implements OnInit {
   openChat(): void {
     this.toastr.info('Chat feature is coming soon!', 'Coming Soon');
   }
-
-
   cancelPriceRequest(id :number) {
     this.priceRequestsService.cancel(id).subscribe(res => {
       this.getPriceRequests();

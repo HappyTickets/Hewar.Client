@@ -25,31 +25,35 @@
     flex-direction: column;
     gap: 0.5rem;
   }
+  .services {
+    border: 1px solid #ddd;
+    background: #f9f9f9;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+  }
   .service-item {
     display: flex;
     align-items: center;
-    flex-direction: column;
-    @media (max-width: 768px) {
+    justify-content: center;
+  }
+  .service-inputs {
+    width: 100%;
+    margin: 0 0 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    gap: 0.5rem;
+    @media (max-width: 998px) {
       flex-direction: column;
     }
   }
   .input-row {
-    border: 1px solid #ddd;
-    background: #f9f9f9;
-    padding: 0.5rem;
     width: 100%;
-    margin: 0 0 10px;
-    border-radius: 0.5rem;
-    gap: 0.3rem;
-    display: flex;
-    align-items: center;
     .p-inputtext,
     .p-select,
     .p-inputNumber {
       width: 100%;
-    }
-    @media (max-width: 768px) {
-      flex-direction: column;
     }
   }
   .button-group {
@@ -66,8 +70,7 @@
   .p-dropdown {
     width: 100%;
   }
-  .plus {
-    display: flex;
-    justify-content: center;
+  label {
+    font-size: 14px;
   }
 }

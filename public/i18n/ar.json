@@ -400,6 +400,28 @@
         "cancel": "إلغاء",
         "create": "طلب عرض",
         "update": "تعديل الطلب"
+      },
+      "price-request-page": {
+        "global-search": "بحث عام",
+        "company-name": "اسم الشركة",
+        "contract-type": "نوع العقد",
+        "status": "الحالة",
+        "actions": "الإجراءات",
+        "update": "تحديث",
+        "facility-name": "اسم المنشأة",
+        "cancel": "إلغاء",
+        "hide": "إخفاء",
+        "chat": "الدردشة",
+        "details": "التفاصيل",
+        "make-offer": "تقديم عرض",
+        "start-date": "تاريخ البدء",
+        "end-date": "تاريخ الانتهاء",
+        "services": "الخدمات",
+        "service-id": "الخدمة",
+        "quantity": "الكمية",
+        "shift": "الوردية",
+        "other-services": "خدمات أخرى",
+        "service": "الخدمة"
       }
     },
     "price-offer": {
@@ -422,6 +444,30 @@
         "invalidService": "اختيار خدمة غير صالح",
         "invalidQuantity": "كمية غير صالحة",
         "invalidCost": "تكلفة غير صالحة"
+      },
+      "price-offers-page": {
+        "global-search": "بحث عام",
+        "facility-name": "اسم المنشأة",
+        "company-name": "اسم الشركة",
+        "status": "الحالة",
+        "contract-type": "نوع العقد",
+        "actions": "الإجراءات",
+        "update": "تحديث",
+        "hide": "إخفاء",
+        "cancel": "إلغاء",
+        "details": "التفاصيل",
+        "accept": "قبول",
+        "reject": "رفض",
+        "chat": "المحادثة",
+        "services": "الخدمات",
+        "service": "الخدمة",
+        "shift": "الفترة",
+        "quantity": "الكمية",
+        "daily-cost": "التكلفة اليومية",
+        "monthly-cost": "التكلفة الشهرية",
+        "total-daily-cost": "إجمالي التكلفة اليومية",
+        "total-monthly-cost": "إجمالي التكلفة الشهرية",
+        "other-services": "خدمات أخرى"
       }
     },
     "companies": {

@@ -15,15 +15,15 @@
     <div class="grid">
       <div class="input-group col-12 md:col-4">
         <label for="startDate">{{ 'app.price-request.edit-price-request.contractDate' | translate }}</label>
-        <p-datepicker readonly formControlName="startDate" showIcon iconDisplay="input" [minDate]="date" [maxDate]="createPriceOfferForm.get('endDate')?.value"></p-datepicker>
+        <p-datepicker formControlName="startDate" [placeholder]="'app.price-request.edit-price-request.startContract' | translate" showIcon iconDisplay="input" [minDate]="date" [maxDate]="createPriceOfferForm.get('endDate')?.value"></p-datepicker>
       </div>
       <div class="input-group col-12 md:col-4">
         <label for="endDate">{{ 'app.price-request.edit-price-request.endContract' | translate }}</label>
-        <p-datepicker readonly formControlName="endDate" showIcon iconDisplay="input" [minDate]="createPriceOfferForm.get('startDate')?.value || date" [disabled]="!createPriceOfferForm.get('startDate')?.value"></p-datepicker>
+        <p-datepicker formControlName="endDate" [placeholder]="'app.price-request.edit-price-request.endContract' | translate" showIcon iconDisplay="input" [minDate]="createPriceOfferForm.get('startDate')?.value || date" [disabled]="!createPriceOfferForm.get('startDate')?.value"></p-datepicker>
       </div>
       <div class="input-group col-12 md:col-4">
         <label for="contractType">{{ 'app.price-request.edit-price-request.contractType' | translate }}</label>
-        <app-input [readonly]="true" [formGroup]="createPriceOfferForm" [options]="contractTypes" errorKey="price-request.edit-price-request.invaliContractType" controlName="contractType" icon="pi-map" type="dropdown"></app-input>
+        <app-input placeholder="price-request.edit-price-request.chooseContractType" [formGroup]="createPriceOfferForm" [options]="contractTypes" errorKey="price-request.edit-price-request.invaliContractType" controlName="contractType" icon="pi-map" type="dropdown"></app-input>
       </div>
     </div>
 
@@ -33,40 +33,46 @@
       @for (service of services.controls; track service; let i = $index) {
       <div [formGroupName]="i" class="service-item">
         <div class="service-inputs">
+          <p-button icon="pi pi-trash" (click)="removeService(i)" [disabled]="i === 0 && createPriceOfferForm.value.services.length <= 1"></p-button>
           <div class="input-row grid">
             <div class="flex flex-column gap-1 lg:col-2 col-12">
               @if (i===0) {
                 <label for="serviceId-{{i}}">{{ 'app.price-offer.create-price-offer.securityRoles' | translate }}</label>
               }
-              <p-select [options]="companyServices" formControlName="serviceId" optionLabel="name" optionValue="id" readonly></p-select>
+              <p-select [options]="companyServices" formControlName="serviceId" [placeholder]="'app.price-offer.create-price-offer.securityRoles' | translate" optionLabel="name" optionValue="id"></p-select>
             </div>
             <div class="flex flex-column gap-1 lg:col-2 col-12">
               @if (i===0) {
                 <label for="shiftType-{{i}}">{{ 'app.price-request.edit-price-request.shiftType' | translate }}</label>
               }
-              <p-select [options]="shiftType" formControlName="shiftType" optionLabel="name" optionValue="code" readonly></p-select>
+              <p-select [options]="shiftType" formControlName="shiftType" [placeholder]="'app.price-request.edit-price-request.shiftType' | translate" optionLabel="name" optionValue="code"></p-select>
             </div>
             <div class="flex flex-column gap-1 lg:col-2 col-12">
               @if (i===0) {
                 <label for="quantity-{{i}}">{{ 'app.price-offer.create-price-offer.quantity' | translate }}</label>
               }
-              <p-inputNumber readonly fluid="true" [showButtons]="true" formControlName="quantity"></p-inputNumber>
+              <p-inputNumber [min]="0" fluid="true" [showButtons]="true" formControlName="quantity" [placeholder]="'app.price-offer.create-price-offer.quantity' | translate" ></p-inputNumber>
             </div>
             <div class="flex flex-column gap-1 lg:col-3 col-12">
               @if (i===0) {
                 <label for="dailyCostPerUnit-{{i}}">{{ 'app.price-offer.create-price-offer.dailyCostPerUnit' | translate }}</label>
               }
-              <p-inputNumber readonly fluid="true" [showButtons]="true" formControlName="dailyCostPerUnit"></p-inputNumber>
+              <p-inputNumber [min]="0" fluid="true" [showButtons]="true" formControlName="dailyCostPerUnit" [placeholder]="'app.price-offer.create-price-offer.dailyCostPerUnit' | translate" ></p-inputNumber>
             </div>
             <div class="flex flex-column gap-1 lg:col-3 col-12">
               @if (i===0) {
                 <label for="monthlyCostPerUnit-{{i}}">{{ 'app.price-offer.create-price-offer.monthlyCostPerUnit' | translate }}</label>
               }
-              <p-inputNumber readonly fluid="true" [showButtons]="true" formControlName="monthlyCostPerUnit"></p-inputNumber>
+              <p-inputNumber [min]="0" fluid="true" [showButtons]="true" formControlName="monthlyCostPerUnit" [placeholder]="'app.price-offer.create-price-offer.monthlyCostPerUnit' | translate" ></p-inputNumber>
             </div>
           </div>
         </div>
       </div>
+      @if (i === createPriceOfferForm.value.services.length - 1) {
+        <div class="flex justify-content-center">
+          <p-button icon="pi pi-plus" (click)="addService()"></p-button>
+        </div>
+      }
       }
     </div>
 
@@ -76,41 +82,51 @@
       @for (service of otherServices.controls; track service; let i = $index) {
       <div [formGroupName]="i" class="service-item ">
         <div class="service-inputs">
+          <p-button icon="pi pi-trash" (click)="removeOtherService(i)" [disabled]="i === 0 && createPriceOfferForm.value.otherServices.length <= 1"></p-button>
           <div class="input-row grid">
             <div class="flex flex-column gap-1 lg:col-2 col-12">
               @if (i===0) {
                 <label for="otherServiceName-{{i}}">{{ 'app.price-offer.create-price-offer.serviceName' | translate }}</label>
               }
-              <input pInputText formControlName="name" readonly/>
+              <input pInputText formControlName="name" [placeholder]="'app.price-offer.create-price-offer.serviceName' | translate"/>
             </div>
             <div class="flex flex-column gap-1 lg:col-2 col-12">
               @if (i===0) {
                 <label for="otherShiftType-{{i}}">{{ 'app.price-request.edit-price-request.shiftType' | translate }}</label>
               }
-              <p-select readonly [options]="shiftType" formControlName="shiftType" optionLabel="name" optionValue="code" readonly></p-select>
+              <p-select [options]="shiftType" formControlName="shiftType" [placeholder]="'app.price-request.create-price-request.shiftType' | translate" optionLabel="name" optionValue="code"></p-select>
             </div>
             <div class="flex flex-column gap-1 lg:col-2 col-12">
               @if (i===0) {
                 <label for="otherQuantity-{{i}}">{{ 'app.price-offer.create-price-offer.quantity' | translate }}</label>
               }
-              <p-inputNumber readonly fluid="true" [showButtons]="true" formControlName="quantity"></p-inputNumber>
+              <p-inputNumber [min]="0" fluid="true" [showButtons]="true" formControlName="quantity" [placeholder]="'app.price-offer.create-price-offer.quantity' | translate"></p-inputNumber>
             </div>
             <div class="flex flex-column gap-1 lg:col-3 col-12">
               @if (i===0) {
                 <label for="otherDailyCostPerUnit-{{i}}">{{ 'app.price-offer.create-price-offer.dailyCostPerUnit' | translate }}</label>
               }
-              <p-inputNumber readonly fluid="true" [showButtons]="true" formControlName="dailyCostPerUnit"></p-inputNumber>
+              <p-inputNumber [min]="0" fluid="true" [showButtons]="true" formControlName="dailyCostPerUnit" [placeholder]="'app.price-offer.create-price-offer.dailyCostPerUnit' | translate" ></p-inputNumber>
             </div>
             <div class="flex flex-column gap-1 lg:col-3 col-12">
               @if (i===0) {
                 <label for="otherMonthlyCostPerUnit-{{i}}">{{ 'app.price-offer.create-price-offer.monthlyCostPerUnit' | translate }}</label>
               }
-              <p-inputNumber readonly fluid="true" [showButtons]="true" formControlName="monthlyCostPerUnit"></p-inputNumber>
+              <p-inputNumber [min]="0" fluid="true" [showButtons]="true" formControlName="monthlyCostPerUnit" [placeholder]="'app.price-offer.create-price-offer.monthlyCostPerUnit' | translate" ></p-inputNumber>
             </div>
           </div>
         </div>
+        @if (i === createPriceOfferForm.value.otherServices.length - 1) {
+        <p-button icon="pi pi-plus" (click)="addOtherService()"></p-button>
+        }
       </div>
       }
+    </div>
+
+    <!-- Buttons -->
+    <div class="button-group">
+      <p-button [label]="'app.price-offer.create-price-offer.cancel' | translate" (click)="onCancel()" fluid="true" ></p-button>
+      <p-button [label]="'app.price-offer.create-price-offer.submit' | translate" (click)="onSubmit()" fluid="true" [disabled]="createPriceOfferForm.invalid" [loading]="loading"></p-button>
     </div>
   </div>
 </form>
