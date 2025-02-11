@@ -327,7 +327,6 @@ export class CreateFacilityComponent implements OnInit {
         (imageNames) => {
           console.log('Uploaded images:', imageNames);
           this.facilityForm.get('adminInfo.imageUrl')!.setValue(imageNames); // Store image names in form
-
           // Now submit the form
           this.facilityService
             .createFacility(this.facilityForm.value)
