@@ -36,7 +36,7 @@ export class ListFacilityComponent implements OnInit, OnDestroy {
   private languageSubscription: Subscription;
   first = 0;
   rows = 10;
-  totalRecords = 20;
+  totalRecords = 30;
   facilities: IResponseData[] = [];
   searchValue = '';
   visibleDeletePopup = false;
@@ -60,6 +60,7 @@ export class ListFacilityComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.facilityService.getAllFacilities().subscribe((res) => {
       this.facilities = res.data;
+      this.totalRecords = res.data.length;
       console.log(this.facilities);
     });
   }
