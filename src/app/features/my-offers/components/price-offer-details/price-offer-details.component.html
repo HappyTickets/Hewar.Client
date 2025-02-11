@@ -1,0 +1,116 @@
+<form class="container" [formGroup]="createPriceOfferForm">
+  <div class="header">
+    <img class="logo" [src]="facilityData.logo" alt="Security Logo"/>
+    @if (facilityData.id) {
+      <div>
+        <h2>{{ facilityData.name }}</h2>
+        <p>{{ facilityData.responsibleName }}</p>
+      </div>
+    }
+  </div>
+
+  <div class="content">
+    <!-- Price Request Section -->
+    <h2>{{ 'app.price-request.edit-price-request.header' | translate }}</h2>
+    <div class="grid">
+      <div class="input-group col-12 md:col-4">
+        <label for="startDate">{{ 'app.price-request.edit-price-request.contractDate' | translate }}</label>
+        <p-datepicker readonly formControlName="startDate" showIcon iconDisplay="input" [minDate]="date" [maxDate]="createPriceOfferForm.get('endDate')?.value"></p-datepicker>
+      </div>
+      <div class="input-group col-12 md:col-4">
+        <label for="endDate">{{ 'app.price-request.edit-price-request.endContract' | translate }}</label>
+        <p-datepicker readonly formControlName="endDate" showIcon iconDisplay="input" [minDate]="createPriceOfferForm.get('startDate')?.value || date" [disabled]="!createPriceOfferForm.get('startDate')?.value"></p-datepicker>
+      </div>
+      <div class="input-group col-12 md:col-4">
+        <label for="contractType">{{ 'app.price-request.edit-price-request.contractType' | translate }}</label>
+        <app-input [readonly]="true" [formGroup]="createPriceOfferForm" [options]="contractTypes" errorKey="price-request.edit-price-request.invaliContractType" controlName="contractType" icon="pi-map" type="dropdown"></app-input>
+      </div>
+    </div>
+
+    <!-- Service Details Section -->
+    <h2>{{ 'app.price-offer.create-price-offer.services' | translate }}</h2>
+    <div formArrayName="services" class="services">
+      @for (service of services.controls; track service; let i = $index) {
+      <div [formGroupName]="i" class="service-item">
+        <div class="service-inputs">
+          <div class="input-row grid">
+            <div class="flex flex-column gap-1 lg:col-2 col-12">
+              @if (i===0) {
+                <label for="serviceId-{{i}}">{{ 'app.price-offer.create-price-offer.securityRoles' | translate }}</label>
+              }
+              <p-select [options]="companyServices" formControlName="serviceId" optionLabel="name" optionValue="id" readonly></p-select>
+            </div>
+            <div class="flex flex-column gap-1 lg:col-2 col-12">
+              @if (i===0) {
+                <label for="shiftType-{{i}}">{{ 'app.price-request.edit-price-request.shiftType' | translate }}</label>
+              }
+              <p-select [options]="shiftType" formControlName="shiftType" optionLabel="name" optionValue="code" readonly></p-select>
+            </div>
+            <div class="flex flex-column gap-1 lg:col-2 col-12">
+              @if (i===0) {
+                <label for="quantity-{{i}}">{{ 'app.price-offer.create-price-offer.quantity' | translate }}</label>
+              }
+              <p-inputNumber readonly fluid="true" [showButtons]="true" formControlName="quantity"></p-inputNumber>
+            </div>
+            <div class="flex flex-column gap-1 lg:col-3 col-12">
+              @if (i===0) {
+                <label for="dailyCostPerUnit-{{i}}">{{ 'app.price-offer.create-price-offer.dailyCostPerUnit' | translate }}</label>
+              }
+              <p-inputNumber readonly fluid="true" [showButtons]="true" formControlName="dailyCostPerUnit"></p-inputNumber>
+            </div>
+            <div class="flex flex-column gap-1 lg:col-3 col-12">
+              @if (i===0) {
+                <label for="monthlyCostPerUnit-{{i}}">{{ 'app.price-offer.create-price-offer.monthlyCostPerUnit' | translate }}</label>
+              }
+              <p-inputNumber readonly fluid="true" [showButtons]="true" formControlName="monthlyCostPerUnit"></p-inputNumber>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+
+    <!-- Other Services Section -->
+    <h2>{{ 'app.price-offer.create-price-offer.otherDetails' | translate }}</h2>
+    <div formArrayName="otherServices" class="services">
+      @for (service of otherServices.controls; track service; let i = $index) {
+      <div [formGroupName]="i" class="service-item ">
+        <div class="service-inputs">
+          <div class="input-row grid">
+            <div class="flex flex-column gap-1 lg:col-2 col-12">
+              @if (i===0) {
+                <label for="otherServiceName-{{i}}">{{ 'app.price-offer.create-price-offer.serviceName' | translate }}</label>
+              }
+              <input pInputText formControlName="name" readonly/>
+            </div>
+            <div class="flex flex-column gap-1 lg:col-2 col-12">
+              @if (i===0) {
+                <label for="otherShiftType-{{i}}">{{ 'app.price-request.edit-price-request.shiftType' | translate }}</label>
+              }
+              <p-select readonly [options]="shiftType" formControlName="shiftType" optionLabel="name" optionValue="code" readonly></p-select>
+            </div>
+            <div class="flex flex-column gap-1 lg:col-2 col-12">
+              @if (i===0) {
+                <label for="otherQuantity-{{i}}">{{ 'app.price-offer.create-price-offer.quantity' | translate }}</label>
+              }
+              <p-inputNumber readonly fluid="true" [showButtons]="true" formControlName="quantity"></p-inputNumber>
+            </div>
+            <div class="flex flex-column gap-1 lg:col-3 col-12">
+              @if (i===0) {
+                <label for="otherDailyCostPerUnit-{{i}}">{{ 'app.price-offer.create-price-offer.dailyCostPerUnit' | translate }}</label>
+              }
+              <p-inputNumber readonly fluid="true" [showButtons]="true" formControlName="dailyCostPerUnit"></p-inputNumber>
+            </div>
+            <div class="flex flex-column gap-1 lg:col-3 col-12">
+              @if (i===0) {
+                <label for="otherMonthlyCostPerUnit-{{i}}">{{ 'app.price-offer.create-price-offer.monthlyCostPerUnit' | translate }}</label>
+              }
+              <p-inputNumber readonly fluid="true" [showButtons]="true" formControlName="monthlyCostPerUnit"></p-inputNumber>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</form>

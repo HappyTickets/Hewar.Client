@@ -1,89 +1,108 @@
 <div class="container">
-  <p-table [value]="companyOffers" dataKey="id" stripedRows [paginator]="true" [rows]="7" [globalFilterFields]="['name']" selectionMode="single" #id [tableStyle]="{'min-height': '40rem' }">
+  <p-table [value]="priceOffers" dataKey="id" stripedRows [paginator]="true" [rows]="10" [globalFilterFields]="['company.name']" selectionMode="single" #dt [rowsPerPageOptions]="[5, 10, 20]" [tableStyle]="{ 'min-width': '50rem'}">
     <ng-template #caption>
       <p-iconfield iconPosition="left">
-          <p-inputicon><i class="pi pi-search"></i></p-inputicon>
-          <input pInputText type="text" [(ngModel)]="searchTerm" (input)="id.filterGlobal(searchTerm, 'contains')" placeholder="Global Search"/>
+        <p-inputicon><i class="pi pi-search"></i></p-inputicon>
+        <input pInputText type="text" [(ngModel)]="searchTerm" (input)="dt.filterGlobal(searchTerm, 'contains')" [placeholder]="'global-search' | translate"/>
       </p-iconfield>
     </ng-template>
 
     <ng-template pTemplate="header">
       <tr>
-        <th style="width: 5rem"></th>
-        <th pSortableColumn="name">Facility Name <p-sortIcon field="name"></p-sortIcon></th>
-        <th pSortableColumn="servicesNames">Services <p-sortIcon field="servicesNames"></p-sortIcon></th>
-        <th pSortableColumn="status">Offer Status <p-sortIcon field="status"></p-sortIcon></th>
-        <th>Actions</th>
+        <th></th>
+        <th pSortableColumn="facility.name" style="width:20%">
+          {{ 'app.price-offer.price-offers-page.facility-name' | translate }}
+          <p-sortIcon field="facility.name"></p-sortIcon>
+        </th>
+        <th pSortableColumn="facility.requestStatus" style="width:20%">
+          {{ 'app.price-offer.price-offers-page.status' | translate }}
+          <p-sortIcon field="facility.requestStatus"></p-sortIcon>
+        </th>
+        <th pSortableColumn="priceRequest.contractType" style="width:20%">
+          {{ 'app.price-offer.price-offers-page.contract-type' | translate }}
+          <p-sortIcon field="priceRequest.contractType"></p-sortIcon>
+        </th>
+        <th style="width:60%">{{ 'app.price-offer.price-offers-page.actions' | translate }}</th>
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="body" let-offer let-expanded="expanded">
+    <ng-template pTemplate="body" let-service let-expanded="expanded">
       <tr>
         <td>
-          <p-button type="button" [pRowToggler]="offer" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></p-button>
+          <p-button type="button" [pRowToggler]="service" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"/>
         </td>
-        <td>{{ offer.name }}</td>
-        <td>{{ offer.servicesNames }}</td>
-        <td>{{ offer.status }}</td>
+        <td>{{ service.facility.name }}</td>
+        <td>{{ 'enums.request-status.' + service.offerStatus | translate }}</td>
+        <td>{{ 'enums.contract-types.' + service.priceRequest.contractType | translate }}</td>
         <td>
-          <p-button (click)="openChat()" label="Chat"></p-button>
+          <p-button class="m-1" routerLink="/update-price-offer/{{service.id}}" [label]="'update' | translate" [disabled]="service.offerStatus !== 1"/>
+          <p-button class="m-1" [label]="'hide' | translate" (click)="hideOffer(service.id)"/>
+          <p-button class="m-1" [label]="'cancel' | translate" (click)="cancelOffer(service.id)" [disabled]="service.offerStatus !== 1"/>
+          <p-button class="m-1" routerLink="/price-offer-details/{{service.id}}" [label]="'details' | translate"/>
+          <p-button class="m-1" (click)="openChat()" [label]="'chat' | translate"/>
         </td>
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="rowexpansion" let-offer class="p-2">
+    <!-- Expanded Row Content -->
+    <ng-template pTemplate="rowexpansion" let-service>
       <tr>
         <td colspan="5">
-          <p-table [value]="offer.services" dataKey="id">
+          <h2>{{ 'app.price-offer.price-offers-page.services' | translate }}</h2>
+          <p-table [value]="service.services" dataKey="id">
             <ng-template pTemplate="header">
               <tr>
-                <th>Service Type</th>
-                <th>Quantity</th>
-                <th>Shift Type</th>
-                <th>Monthly Cost</th>
-                <th>Daily Cost</th>
+                <th style="width:20%">{{ 'app.price-offer.price-offers-page.service' | translate }}</th>
+                <th style="width:20%">{{ 'app.price-offer.price-offers-page.shift' | translate }}</th>
+                <th style="width:20%">{{ 'app.price-offer.price-offers-page.quantity' | translate }}</th>
+                <th style="width:20%">{{ 'app.price-offer.price-offers-page.daily-cost' | translate }}</th>
+                <th style="width:20%">{{ 'app.price-offer.price-offers-page.monthly-cost' | translate }}</th>
               </tr>
             </ng-template>
             <ng-template pTemplate="body" let-service>
               <tr>
-                <td>{{ service.name }}</td>
+                <td>{{ service.serviceName }}</td>
+                <td>{{ 'enums.shift-type.' + service.shiftType | translate }}</td>
                 <td>{{ service.quantity }}</td>
-                <td>{{ service.shiftType }}</td>
-                <td>
-                  @if (offer.isEditMode) {
-                    <p-inputNumber [(ngModel)]="service.monthlyCost" [min]="0" [minFractionDigits]="0" [maxFractionDigits]="0" placeholder="Enter Monthly Cost" class="w-full"/>
-                  } @else {
-                    {{ service.monthlyCost | currency }}
-                  }
-                </td>
-                <td>
-                  @if (offer.isEditMode) {
-                    <p-inputNumber [(ngModel)]="service.dailyCost" [min]="0" [minFractionDigits]="0" [maxFractionDigits]="0" placeholder="Enter Daily Cost" class="w-full"/>
-                  } @else {
-                    {{ service.dailyCost | currency }}
-                  }
-                </td>
+                <td>{{ service.dailyCostPerUnit }}</td>
+                <td>{{ service.monthlyCostPerUnit }}</td>
               </tr>
             </ng-template>
           </p-table>
-          <div class="flex justify-content-between mt-4">
-            <div class="flex gap-2">
-              @if (!offer.isEditMode) {
-                <p-button label="Edit Offer" (click)="editOffer(offer)" />
-                <p-button label="Delete" (click)="deleteOffer(offer)" ></p-button>
-              } @else {
-                <div class="flex gap-4">
-                  <p-button label="Submit" (click)="submitOffer(offer)" [disabled]="isSubmitDisabled(offer)" />
-                  <p-button label="Cancel" (click)="cancelEdit(offer)" />
-                </div>
-              }  
-            </div>
-            <div>
-              @if (!offer.isEditMode) {
-                <p-button label="Close" (click)="offer.expanded = false" />
-              }
-            </div>
+          <div class="flex justify-content-between">
+            <div>{{ 'app.price-offer.price-offers-page.total-daily-cost' | translate }}: <strong>{{ getTotalDailyCost(service.services) }}</strong></div>
+            <div>{{ 'app.price-offer.price-offers-page.total-monthly-cost' | translate }}: <strong>{{ getTotalMonthlyCost(service.services) }}</strong></div>
           </div>
+          @if(service.otherServices.length > 0) {
+            <ng-container>
+              <h2>{{ 'app.price-offer.price-offers-page.other-services' | translate }}</h2>
+              <p-table [value]="service.otherServices" dataKey="id">
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th style="width:20%">{{ 'app.price-offer.price-offers-page.service' | translate }}</th>
+                    <th style="width:20%">{{ 'app.price-offer.price-offers-page.shift' | translate }}</th>
+                    <th style="width:20%">{{ 'app.price-offer.price-offers-page.quantity' | translate }}</th>
+                    <th style="width:20%">{{ 'app.price-offer.price-offers-page.daily-cost' | translate }}</th>
+                    <th style="width:20%">{{ 'app.price-offer.price-offers-page.monthly-cost' | translate }}</th>
+                  </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-service>
+                  <tr>
+                    <td>{{ service.name }}</td>
+                    <td>{{ 'enums.shift-type.' + service.shiftType | translate }}</td>
+                    <td>{{ service.quantity }}</td>
+                    <td>{{ service.dailyCostPerUnit }}</td>
+                    <td>{{ service.monthlyCostPerUnit }}</td>
+                  </tr>
+                </ng-template>
+              </p-table>
+              <div class="flex justify-content-between">
+                <div>{{ 'app.price-offer.price-offers-page.total-daily-cost' | translate }}: <strong>{{ getTotalDailyCost(service.otherServices) }}</strong></div>
+                <div>{{ 'app.price-offer.price-offers-page.total-monthly-cost' | translate }}: <strong>{{ getTotalMonthlyCost(service.otherServices) }}</strong></div>
+              </div>
+            </ng-container>
+          }
         </td>
       </tr>
     </ng-template>

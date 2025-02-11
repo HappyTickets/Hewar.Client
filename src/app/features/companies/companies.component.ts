@@ -25,7 +25,7 @@ export class CompaniesComponent implements OnInit {
   rows = 10;
   totalRecords = 20
   showDeletePopup = false;
-  companyToDelete!: ICompany;
+  companyToDelete: ICompany = {} as ICompany;
 
   constructor(private _companiesService:CompaniesService, private _router: Router){}
   ngOnInit(): void {
@@ -34,7 +34,9 @@ export class CompaniesComponent implements OnInit {
   getAllCompanies(){
     this._companiesService.getAllCompanies().subscribe({
       next: (res) => {
-        this.companies = res.data
+        if (res.data) {
+          this.companies = res.data
+        }
       },
       error: (err) => {
         console.log(err)
