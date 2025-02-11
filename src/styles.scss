@@ -72,10 +72,7 @@ html, body { height: 100%; }
 html[dir="ltr"] {
   .search {
     .pi-search {
-      right: 455px !important;
-    }
-    .pi-sliders-h {
-      left: 305px !important;
+      right: 355px !important;
     }
   }
   .filter ul {
@@ -100,12 +97,12 @@ html[dir="ltr"] {
     }
   }
   @media (min-width: 768px) {
-    .card-text {
-      transform: translateX(-130px);
-      -webkit-transform: translateX(-130px);
-      -moz-transform: translateX(-130px);
-      -ms-transform: translateX(-130px);
-      -o-transform: translateX(-130px);
-}
+//     .card-text {
+//       transform: translateX(-130px);
+//       -webkit-transform: translateX(-130px);
+//       -moz-transform: translateX(-130px);
+//       -ms-transform: translateX(-130px);
+//       -o-transform: translateX(-130px);
+// }
   }
 }

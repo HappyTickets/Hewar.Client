@@ -2,7 +2,7 @@
   <div class="grid mt-7">
     <div class="col-12 md:col-6 lg:col-3">
       <div class="image-details">
-        <img src="images/card-image.svg" alt="" >
+        <img [src]="currentCompany?.logo" alt="" >
       </div>
     </div>
     <div class="col-12 md:col-5 lg:col-8 mx-4">
@@ -11,14 +11,14 @@
       <p><img src="images/location-icon.svg" class="location-img " alt=""><span>{{'app.companies.companies-list.location' | translate}}:</span> {{currentCompany?.address?.city}}, {{currentCompany?.address?.country}}</p>
       <p class="company-services">{{'app.companies.companies-details.company-services' | translate}}</p>
       <div class="grid">
-        <div class="col">
+        <div class="col-12 md:col-6">
           <div class="box text-center">
             <img src="images/ser-01.svg" alt="">
             <h3>{{'app.companies.companies-list.facilities-security' | translate}}</h3>
             <p>{{'app.companies.companies-details.company-services-desc' | translate}}</p>
           </div>
         </div>
-        <div class="col">
+        <div class="col-12 md:col-6">
           <div class="box text-center">
             <img src="images/ser-02.svg" alt="">
             <h3>{{'app.companies.companies-list.industrial-security' | translate}}</h3>
@@ -30,13 +30,13 @@
     </div>
     <div class="card-actions mt-4 w-100">
       <div class="grid">
-        <div class="col">
-          <a routerLink="" class="details">{{'app.companies.companies-list.actions.request-quote' | translate}}</a>
+        <div class="col-12 md:col-4">
+          <button routerLink="" class="details">{{'app.companies.companies-list.actions.request-quote' | translate}}</button>
         </div>
-        <div class="col">
+        <div class="col-12 md:col-4">
           <button [routerLink]="'/companies/updateCompany/' + currentCompany?.id" class="edit">{{'app.companies.companies-list.actions.edit' | translate}}</button>
         </div>
-        <div class="col">
+        <div class="col-12 md:col-4">
           <button class="delete" role="button" (click)="openDeletePopup(currentCompany!)">
             {{'app.companies.companies-list.actions.delete' | translate}}
           </button>

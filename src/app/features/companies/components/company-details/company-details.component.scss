@@ -4,18 +4,10 @@
   text-align: center;
   border: 1px solid #ddd;
   border-radius: 26px;
-  -webkit-border-radius: 26px;
-  -moz-border-radius: 26px;
-  -ms-border-radius: 26px;
-  -o-border-radius: 26px;
+  padding: 2rem;
   img {
-    padding: 75px;
-    width: 100%;
-    border-radius: 30px;
-    -webkit-border-radius: 30px;
-    -moz-border-radius: 30px;
-    -ms-border-radius: 30px;
-    -o-border-radius: 30px;
+    width: 80%;
+    border-radius: 26px;
   }
 }
 
@@ -93,12 +85,18 @@
   width: 14px;
   margin: 0 9px;
   transform: translateY(3px);
-  -webkit-transform: translateY(3px);
-  -moz-transform: translateY(3px);
-  -ms-transform: translateY(3px);
-  -o-transform: translateY(3px);
 }
 
 .company-services {
   color:#1E6091 ;
 }
+
+@media (max-width: 768px) {
+  .card-actions {
+    width: 100%;
+    button {
+      width: 100%;
+    }
+  }
+}
+

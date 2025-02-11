@@ -6,8 +6,14 @@
   <p-select [options]="options" [placeholder]="placeholder ? ('app.' + placeholder | translate): ''" [formControl]="formControl" inputId="{{ controlName }}" optionLabel="name" optionValue="code"></p-select>
   } @else {
   <p-iconfield>
-    <p-inputicon class="pi" [ngClass]="icon" />
-    <input pInputText [type]="type" [placeholder]="'app.' + placeholder | translate" [formControl]="formControl"/>
+    @if(type === 'password' || type === 'confirmPassword'){
+      <p-inputicon class="pi" [ngClass]="icon" />
+      <input pInputText [type]="showPassword ? 'text' : 'password'" [placeholder]="'app.' + placeholder | translate" [formControl]="formControl" />
+      <p-inputicon class="pi" [ngClass]="showPassword ? 'pi-eye-slash' : 'pi-eye'" (click)="togglePassword()" />
+    } @else {
+      <p-inputicon class="pi" [ngClass]="icon" />
+      <input pInputText [type]="type" [placeholder]="'app.' + placeholder | translate" [formControl]="formControl"/>
+    }
   </p-iconfield>
   }
   @if (hasError) {<p-message severity="error" [text]="'app.' + errorKey | translate"></p-message>}

@@ -26,12 +26,16 @@ export class InputComponent {
   @Input() type = 'text';
   @Input() icon!: string;
   @Input() options: { name: string, code: number }[] = [];
-
+  showPassword = false; 
 
   get formControl(): FormControl {
     return this.formGroup.get(this.controlName) as FormControl;
   }
   get hasError(): boolean {
     return this.formControl.invalid && this.formControl.touched;
+  }
+
+  togglePassword() {
+    this.showPassword = !this.showPassword;
   }
 }

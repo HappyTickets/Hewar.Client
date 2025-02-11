@@ -1,277 +1,72 @@
-
 <div class="create-component">
   <div class="container">
-    <h2 class="text-center mb-4">{{'app.companies.create-update-company.create-title' | translate}}</h2>
-    <form [formGroup]="createCompForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+    <h2 class="text-center mb-4"> {{ "app.companies.create-update-company.create-title" | translate }} </h2>
+    <form [formGroup]="createCompForm" (ngSubmit)="onSubmit()">
       <!-- company Data -->
       <div class="card">
-        <p class="p-group">{{'app.companies.create-update-company.company-data-title' | translate}}</p>
+        <p class="p-group"> {{ "app.companies.create-update-company.company-data-title" | translate }} </p>
         <div class="grid">
-          <!-- contactEmail -->
-          <div class="col-12 md:col-6 lg:col-4">
-            <div class="input-group">
-              <label for="contactEmail">{{'app.companies.create-update-company.contactEmail' | translate}}</label>
-              <p-inputgroup>
-                <p-inputgroup-addon>
-                  <i class="pi pi-envelope"></i>
-                </p-inputgroup-addon>
-                <input pInputText id="contactEmail" formControlName="contactEmail" />
-              </p-inputgroup>
-              @if((createCompForm.get('contactEmail')?.dirty || createCompForm.get('contactEmail')?.touched) && createCompForm.get('contactEmail')?.errors?.['required']) {
-                <p class="text-error">{{'app.companies.create-update-company.contactEmail-error' | translate}}</p>
-              }
+          @for (input of companyDataInputs; track $index) {
+            <div class="col-12 md:col-6 lg:col-4">
+              <app-input [formGroup]="createCompForm" [placeholder]="input.placeholder" [errorKey]="input.errorKey" [controlName]="input.controlName" [icon]="input.icon" [type]="input.type" [label]="input.label"> </app-input>
             </div>
+            }
           </div>
-          <!-- phoneNumber -->
-          <div class="col-12 md:col-6 lg:col-4">
-            <div class="input-group">
-              <label for="phoneNumber">{{'app.companies.create-update-company.phoneNumber' | translate}}</label>
-              <p-inputgroup>
-                <p-inputgroup-addon>
-                  <i class="pi pi-phone"></i>
-                </p-inputgroup-addon>
-                <input pInputText id="phoneNumber" formControlName="phoneNumber" />
-              </p-inputgroup>
-              @if((createCompForm.get('phoneNumber')?.dirty || createCompForm.get('phoneNumber')?.touched) && createCompForm.get('phoneNumber')?.errors?.['required']) {
-                <p class="text-error">{{'app.companies.create-update-company.phoneNumber-error' | translate}}</p>
-              }
-            </div>
-          </div>
-          <!-- registrationNumber -->
-          <div class="col-12 md:col-6 lg:col-4">
-            <div class="input-group">
-              <label for="registrationNumber">{{'app.companies.create-update-company.registrationNumber' | translate}}</label>
-              <p-inputgroup>
-                <p-inputgroup-addon>
-                  <i class="pi pi-pen-to-square"></i>
-                </p-inputgroup-addon>
-                <input pInputText id="registrationNumber" formControlName="registrationNumber" />
-              </p-inputgroup>
-              @if((createCompForm.get('registrationNumber')?.dirty || createCompForm.get('registrationNumber')?.touched) && createCompForm.get('registrationNumber')?.errors?.['required']) {
-                <p class="text-error">{{'app.companies.create-update-company.registrationNumber-error' | translate}}</p>
-              }
-            </div>
-          </div>
-          <!-- taxId -->
-          <div class="col-12 md:col-6 lg:col-4">
-            <div class="input-group">
-              <label for="taxId">{{'app.companies.create-update-company.taxId' | translate}}</label>
-              <p-inputgroup>
-                <p-inputgroup-addon>
-                  <i class="pi pi-pen-to-square"></i>
-                </p-inputgroup-addon>
-                <input pInputText id="taxId" formControlName="taxId" />
-              </p-inputgroup>
-              @if((createCompForm.get('taxId')?.dirty || createCompForm.get('taxId')?.touched) && createCompForm.get('taxId')?.errors?.['required']) {
-                <p class="text-error">{{'app.companies.create-update-company.taxId-error' | translate}}</p>
-              }
-            </div>
-          </div>
-          <!-- name -->
-          <div class="col-12 md:col-6 lg:col-4">
-            <div class="input-group">
-              <label for="name">{{'app.companies.create-update-company.name' | translate}}</label>
-              <p-inputgroup>
-                <p-inputgroup-addon>
-                  <i class="pi pi-user"></i>
-                </p-inputgroup-addon>
-                <input pInputText id="name" formControlName="name" />
-              </p-inputgroup>
-              @if((createCompForm.get('name')?.dirty || createCompForm.get('name')?.touched) && createCompForm.get('name')?.errors?.['required']) {
-                <p class="text-error">{{'app.companies.create-update-company.name-error' | translate}}</p>
-              }
-            </div>
-          </div>
+            <p class="p-group"> {{ "app.companies.create-update-company.address-data-title" | translate }} </p>
+        <div class="grid">
+          <ng-container formGroupName="address">
+            @for (input of addressDataInputs; track $index) {
+              <div class="col-12 md:col-6 lg:col-4">
+                <app-input [formGroup]="addressGroup" [placeholder]="input.placeholder" [errorKey]="input.errorKey" [controlName]="input.controlName" [icon]="input.icon" [type]="input.type" [label]="input.label"> </app-input>
+              </div>
+            }
+          </ng-container>
         </div>
       </div>
       <!-- admin Data -->
       <div class="card">
-        <p class="p-group">{{'app.companies.create-update-company.admin-data-title' | translate}}</p>
+        <p class="p-group"> {{ "app.companies.create-update-company.admin-data-title" | translate }} </p>
         <div class="grid">
           <ng-container formGroupName="adminInfo">
-            <!-- email -->
-            <div class="col-12 md:col-6 lg:col-4">
-              <div class="input-group">
-                <label for="email">{{'app.companies.create-update-company.email' | translate}}</label>
-                <p-inputgroup>
-                  <p-inputgroup-addon>
-                    <i class="pi pi-envelope"></i>
-                  </p-inputgroup-addon>
-                  <input pInputText id="email" formControlName="email" />
-                </p-inputgroup>
-                @if((createCompForm.get('adminInfo.email')?.dirty || createCompForm.get('adminInfo.email')?.touched) && createCompForm.get('adminInfo.email')?.errors?.['required']) {
-                  <p class="text-error">{{'app.companies.create-update-company.email-error' | translate}}</p>
+            @for (input of adminDataInputs; track $index) {
+              <div class="col-12 md:col-6 lg:col-4">
+                <app-input [formGroup]="adminInfoGroup" [placeholder]="input.placeholder" [errorKey]="input.errorKey" [controlName]="input.controlName" [icon]="input.icon" [type]="input.type" [label]="input.label"> </app-input>
+                @if(input.controlName === 'confirmPassword' && createCompForm.get('adminInfo')?.hasError('mismatch')){
+                    <p-message severity="error" [text]="'app.' + input.errorKey + '-2' | translate"></p-message>
                 }
               </div>
-            </div>
-            <!-- password -->
-            <div class="col-12 md:col-6 lg:col-4">
-              <div class="input-group">
-                <label for="password">{{'app.companies.create-update-company.password' | translate}}</label>
-                <p-inputgroup>
-                  <p-inputgroup-addon>
-                    <i class="pi pi-lock"></i>
-                  </p-inputgroup-addon>
-                  <input pInputText type="password" id="password" formControlName="password" />
-                </p-inputgroup>
-                @if((createCompForm.get('adminInfo.password')?.dirty || createCompForm.get('adminInfo.password')?.touched) && createCompForm.get('adminInfo.password')?.errors?.['required']) {
-                  <p class="text-error">{{'app.companies.create-update-company.password-error' | translate}}</p>
-                }
+              }
+              <div class="group">
+                <div class="image-upload">
+                  <label for="">{{ "app.facilities.upload-image" | translate }}</label>
+                  <i class="pi pi-cloud-upload"></i>
+                  <app-image-uploader
+                    (fileSizeError)="handleFileSizeError($event)"
+                    (imageName)="handelimagenam($event)"></app-image-uploader>
+                  <div *ngIf="fileUploadError" class="error-message"> {{ fileUploadError }} </div>
+                </div>
               </div>
-            </div>
-            <!-- firstName -->
-            <div class="col-12 md:col-6 lg:col-4">
-              <div class="input-group">
-                <label for="firstName">{{'app.companies.create-update-company.firstName' | translate}}</label>
-                <p-inputgroup>
-                  <p-inputgroup-addon>
-                    <i class="pi pi-user"></i>
-                  </p-inputgroup-addon>
-                  <input pInputText id="firstName" formControlName="firstName" />
-                </p-inputgroup>
-                @if((createCompForm.get('adminInfo.firstName')?.dirty || createCompForm.get('adminInfo.firstName')?.touched) && createCompForm.get('adminInfo.firstName')?.errors?.['required']) {
-                  <p class="text-error">{{'app.companies.create-update-company.firstName-error' | translate}}</p>
-                }
-              </div>
-            </div>
-            <!-- lastName -->
-            <div class="col-12 md:col-6 lg:col-4">
-              <div class="input-group">
-                <label for="lastName">{{'app.companies.create-update-company.lastName' | translate}}</label>
-                <p-inputgroup>
-                  <p-inputgroup-addon>
-                    <i class="pi pi-user"></i>
-                  </p-inputgroup-addon>
-                  <input pInputText id="lastName" formControlName="lastName" />
-                </p-inputgroup>
-                @if((createCompForm.get('adminInfo.lastName')?.dirty || createCompForm.get('adminInfo.lastName')?.touched) && createCompForm.get('adminInfo.lastName')?.errors?.['required']) {
-                  <p class="text-error">{{'app.companies.create-update-company.lastName-error' | translate}}</p>
-                }
-              </div>
-            </div>
-            <!-- phone -->
-            <div class="col-12 md:col-6 lg:col-4">
-              <div class="input-group">
-                <label for="phone">{{'app.companies.create-update-company.phone' | translate}}</label>
-                <p-inputgroup>
-                  <p-inputgroup-addon>
-                    <i class="pi pi-phone"></i>
-                  </p-inputgroup-addon>
-                  <input pInputText id="phone" formControlName="phone" />
-                </p-inputgroup>
-                @if((createCompForm.get('adminInfo.phone')?.dirty || createCompForm.get('adminInfo.phone')?.touched) && createCompForm.get('adminInfo.phone')?.errors?.['required']) {
-                  <p class="text-error">{{'app.companies.create-update-company.phone-error' | translate}}</p>
-                }
-              </div>
-            </div>
-            <!-- <div class="col-12 md:col-6 lg:col-4">
-              <input type="file" pInputText (change)="onFileSelected($event)">
-            </div> -->
-          </ng-container>
+            </ng-container>
         </div>
       </div>
       <!-- address Data -->
       <div class="card">
-        <p class="p-group">{{'app.companies.create-update-company.address-data-title' | translate}}</p>
+        <p class="p-group"> {{ "app.companies.create-update-company.address-data-title" | translate }} </p>
         <div class="grid">
           <ng-container formGroupName="address">
-            <!-- street -->
-            <div class="col-12 md:col-6 lg:col-4">
-              <div class="input-group">
-                <label for="street">{{'app.companies.create-update-company.street' | translate}}</label>
-                <p-inputgroup>
-                  <p-inputgroup-addon>
-                    <i class="pi pi-map-marker"></i>
-                  </p-inputgroup-addon>
-                  <input pInputText id="street" formControlName="street" />
-                </p-inputgroup>
-                @if((createCompForm.get('address.street')?.dirty || createCompForm.get('address.street')?.touched) && createCompForm.get('address.street')?.errors?.['required']) {
-                  <p class="text-error">{{'app.companies.create-update-company.street-error' | translate}}</p>
-                }
+            @for (input of addressDataInputs; track $index) {
+              <div class="col-12 md:col-6 lg:col-4">
+                <app-input [formGroup]="addressGroup" [placeholder]="input.placeholder" [errorKey]="input.errorKey" [controlName]="input.controlName" [icon]="input.icon" [type]="input.type" [label]="input.label"> </app-input>
               </div>
-            </div>
-            <!-- city -->
-            <div class="col-12 md:col-6 lg:col-4">
-              <div class="input-group">
-                <label for="city">{{'app.companies.create-update-company.city' | translate}}</label>
-                <p-inputgroup>
-                  <p-inputgroup-addon>
-                    <i class="pi pi-map-marker"></i>
-                  </p-inputgroup-addon>
-                  <input pInputText id="city" formControlName="city" />
-                </p-inputgroup>
-                @if((createCompForm.get('address.city')?.dirty || createCompForm.get('address.city')?.touched) && createCompForm.get('address.city')?.errors?.['required']) {
-                  <p class="text-error">{{'app.companies.create-update-company.city-error' | translate}}</p>
-                }
-              </div>
-            </div>
-            <!-- state -->
-            <div class="col-12 md:col-6 lg:col-4">
-              <div class="input-group">
-                <label for="state">{{'app.companies.create-update-company.state' | translate}}</label>
-                <p-inputgroup>
-                  <p-inputgroup-addon>
-                    <i class="pi pi-map-marker"></i>
-                  </p-inputgroup-addon>
-                  <input pInputText id="state" formControlName="state" />
-                </p-inputgroup>
-                @if((createCompForm.get('address.state')?.dirty || createCompForm.get('address.state')?.touched) && createCompForm.get('address.state')?.errors?.['required']) {
-                  <p class="text-error">{{'app.companies.create-update-company.state-error' | translate}}</p>
-                }
-              </div>
-            </div>
-            <!-- country -->
-            <div class="col-12 md:col-6 lg:col-4">
-              <div class="input-group">
-                <label for="country">{{'app.companies.create-update-company.country' | translate}}</label>
-                <p-inputgroup>
-                  <p-inputgroup-addon>
-                    <i class="pi pi-map-marker"></i>
-                  </p-inputgroup-addon>
-                  <input pInputText id="country" formControlName="country" />
-                </p-inputgroup>
-                @if((createCompForm.get('address.country')?.dirty || createCompForm.get('address.country')?.touched) && createCompForm.get('address.country')?.errors?.['required']) {
-                  <p class="text-error">{{'app.companies.create-update-company.country-error' | translate}}</p>
-                }
-              </div>
-            </div>
-            <!-- postalCode -->
-            <div class="col-12 md:col-6 lg:col-4">
-              <div class="input-group">
-                <label for="postalCode">{{'app.companies.create-update-company.postalCode' | translate}}</label>
-                <p-inputgroup>
-                  <p-inputgroup-addon>
-                    <i class="pi pi-map-marker"></i>
-                  </p-inputgroup-addon>
-                  <input pInputText id="postalCode" formControlName="postalCode" />
-                </p-inputgroup>
-                @if((createCompForm.get('address.postalCode')?.dirty || createCompForm.get('address.postalCode')?.touched) && createCompForm.get('address.postalCode')?.errors?.['required']) {
-                  <p class="text-error">{{'app.companies.create-update-company.postalCode-error' | translate}}</p>
-                }
-              </div>
-            </div>
+              }
           </ng-container>
         </div>
       </div>
-      <!-- image -->
-      <!-- <div class="image-container">
-        <div class="col-8 mx-auto">
-          <div class="upload">
-            <ngx-dropzone class="rounded-circle text-center overflow-hidden" (change)="onSelect($event)">
-              <ngx-dropzone-label>Upload Photo <i class="fa-solid fa-cloud-arrow-up"></i></ngx-dropzone-label>
-              <ngx-dropzone-image-preview class="rounded-circle" ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
-                <ngx-dropzone-label class="rounded-circle"></ngx-dropzone-label>
-              </ngx-dropzone-image-preview>
-            </ngx-dropzone>
-          </div>
-        </div>
-      </div> -->
-
-        <!-- actions -->
-        <div class="actions">
-          <button type="submit" class="save">{{'app.companies.create-update-company.save' | translate}}</button>
-          <button class="cancel" routerLink="/companies">{{'app.companies.create-update-company.cancel' | translate}}</button>
-        </div>
+      <!-- actions -->
+      <div class="actions">
+        <button type="submit" class="save">{{ "app.companies.create-update-company.save" | translate }}</button>
+        <button class="cancel" routerLink="/companies">{{ "app.companies.create-update-company.cancel" | translate }}</button>
+      </div>
     </form>
   </div>
 </div>
