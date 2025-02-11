@@ -56,7 +56,8 @@
       "facility-Responsible": "responsipole data",
       "facility-image": "facility image",
       "upload-image": "upload image",
-      "postalCode": "postal Code"
+      "postalCode": "postal Code",
+      "Confirmpassword": "Confirm password"
     },
     "validation": {
       "required": "This field is required",

@@ -222,4 +222,10 @@ export class CreateFacilityComponent implements OnInit {
   handelimagenam(imageName: string): void {
     this.imageName = imageName; // Set error message
   }
+  get addressFormGroup(): FormGroup {
+    return this.facilityForm.get('address') as FormGroup;
+  }
+  get adminInfo(): FormGroup {
+    return this.facilityForm.get('adminInfo') as FormGroup;
+  }
 }
