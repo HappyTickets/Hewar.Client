@@ -72,7 +72,7 @@ export class UpdatePriceRequestComponent implements OnInit {
       endDate: ['', [Validators.required]],
       notes: [''],
       services: this.fb.array([this.createServiceGroup()]),
-      otherServices: this.fb.array([this.createOtherServiceGroup()]),
+      otherServices: this.fb.array([]),
     });
   }
   onSubmit(): void {
@@ -87,7 +87,7 @@ export class UpdatePriceRequestComponent implements OnInit {
         otherServices: this.createPriceRequestForm.value.otherServices,
       };
       this.priceRequestsService.update(priceRequest).subscribe(() => {
-        this.router.navigate(['/facilities/price-request']);
+        this.router.navigate(['/facility-price-request']);
       });
     }
   }
@@ -100,9 +100,9 @@ export class UpdatePriceRequestComponent implements OnInit {
   }
   createOtherServiceGroup(): FormGroup {
     return this.fb.group({
-      name: ['', [Validators.required]],
-      quantity: [null, [Validators.required]],
-      shiftType: ['', [Validators.required]],
+      name: [''],
+      quantity: [null],
+      shiftType: [''],
     });
   }
   get services() {
@@ -156,9 +156,9 @@ export class UpdatePriceRequestComponent implements OnInit {
       this.priceRequestData.otherServices.forEach((otherService) => {
         this.otherServices.push(
           this.fb.group({
-            name: [otherService.name, [Validators.required]],
-            quantity: [otherService.quantity, [Validators.required]],
-            shiftType: [otherService.shiftType, [Validators.required]],
+            name: [otherService.name],
+            quantity: [otherService.quantity],
+            shiftType: [otherService.shiftType],
           })
         );
       });

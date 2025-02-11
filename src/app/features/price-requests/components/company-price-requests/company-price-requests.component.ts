@@ -14,7 +14,6 @@ import { PriceRequestsService } from '../../services/price-requests.service';
 import { ICompanyPriceRequest } from '../../models/icompany-price-request';
 import { TranslatePipe } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
-import { PriceOffersService } from '../../../my-offers/services/price-offers.service';
 import { IPriceOffer } from '../../../my-offers/models/iprice-offer';
 
 @Component({
@@ -26,7 +25,6 @@ import { IPriceOffer } from '../../../my-offers/models/iprice-offer';
 })
 export class CompanyPriceRequestsComponent implements OnInit {
   private priceRequestsService = inject(PriceRequestsService);
-  private priceOffersService = inject(PriceOffersService);
   private toastr = inject(ToastrService);
   priceRequests: ICompanyPriceRequest[] = [];
   priceOffers: IPriceOffer[] = [];
@@ -38,31 +36,15 @@ export class CompanyPriceRequestsComponent implements OnInit {
 
   getPrices(): void {
     this.priceRequestsService.getMyCompanyRequests().subscribe(res => {
-      if (res.data) {
-        this.priceRequests = res.data;
-      };
+      if (res.data) this.priceRequests = res.data;
     })
   }
-
 
   openChat(): void {
     this.toastr.info('Chat feature is coming soon!', 'Coming Soon');
   }
   hide(id: number) {
-    this.priceRequestsService.hide(id).subscribe(res => {
-      console.log(res);
-      this.getPrices();
-    })
-  }
-  reject(id: number) {
-    this.priceOffersService.reject(id).subscribe(res => {
-      console.log(res);
-      this.getPrices();
-    })
-  }
-  accept(id: number) {
-    this.priceOffersService.accept(id).subscribe(res => {
-      console.log(res);
+    this.priceRequestsService.hide(id).subscribe(() => {
       this.getPrices();
     })
   }

@@ -15,22 +15,18 @@
     <div formArrayName="services">
       @for (service of services.controls; track service; let i = $index) {
       <div [formGroupName]="i" class="service-item">
+        <div class="input-row">
+          <p-button icon="pi pi-trash" (click)="removeService(i)" [disabled]="i === 0 && createPriceOfferForm.value.services.length <= 1"></p-button>
+          <p-select [options]="companyServices" formControlName="serviceId" [placeholder]="'app.price-offer.create-price-offer.securityRoles' | translate" optionLabel="name" optionValue="id"></p-select>
+          <p-select [options]="shiftType" formControlName="shiftType" [placeholder]="'app.price-request.create-price-request.shiftType' | translate" optionLabel="name" optionValue="code"></p-select>
+          <p-inputNumber [min]="0" fluid="true" [showButtons]="true" formControlName="quantity" [placeholder]="'app.price-offer.create-price-offer.quantity' | translate" ></p-inputNumber>
+          <p-inputNumber [min]="0" fluid="true" [showButtons]="true" formControlName="dailyCostPerUnit" [placeholder]="'app.price-offer.create-price-offer.dailyCostPerUnit' | translate" ></p-inputNumber>
+          <p-inputNumber [min]="0" fluid="true" [showButtons]="true" formControlName="monthlyCostPerUnit" [placeholder]="'app.price-offer.create-price-offer.monthlyCostPerUnit' | translate" ></p-inputNumber>
+        </div>
         @if (i === createPriceOfferForm.value.services.length - 1) {
           <p-button icon="pi pi-plus" (click)="addService()"></p-button>
         }
-        <div class="input-row">
-          <div>
-            <p-inputNumber [showButtons]="true" formControlName="quantity" [placeholder]="'app.price-offer.create-price-offer.quantity' | translate" ></p-inputNumber>
-            <p-inputNumber [showButtons]="true" formControlName="dailyCostPerUnit" [placeholder]="'app.price-offer.create-price-offer.dailyCostPerUnit' | translate" ></p-inputNumber>
-            <p-inputNumber [showButtons]="true" formControlName="monthlyCostPerUnit" [placeholder]="'app.price-offer.create-price-offer.monthlyCostPerUnit' | translate" ></p-inputNumber>
-          </div>
-          <div>
-            <p-select [options]="companyServices" formControlName="serviceId" [placeholder]="'app.price-offer.create-price-offer.securityRoles' | translate" optionLabel="name" optionValue="id"></p-select>
-            <p-select [options]="shiftType" formControlName="shiftType" [placeholder]="'app.price-request.create-price-request.shiftType' | translate" optionLabel="name" optionValue="code"></p-select>
-          </div>
-        </div>
-        <p-button icon="pi pi-trash" (click)="removeService(i)" [disabled]="i === 0 && createPriceOfferForm.value.services.length <= 1"></p-button>
-      </div>
+    </div>
       }
     </div>
 
@@ -39,21 +35,17 @@
     <div formArrayName="otherServices">
       @for (service of otherServices.controls; track service; let i = $index) {
       <div [formGroupName]="i" class="service-item ">
+        <div class="input-row">
+          <p-button icon="pi pi-trash" (click)="removeOtherService(i)" [disabled]="i === 0 && createPriceOfferForm.value.otherServices.length <= 1"></p-button>
+          <input pInputText formControlName="name" [placeholder]="'app.price-offer.create-price-offer.serviceName' | translate"/>
+          <p-select [options]="shiftType" formControlName="shiftType" [placeholder]="'app.price-request.create-price-request.shiftType' | translate" optionLabel="name" optionValue="code"></p-select>
+          <p-inputNumber [min]="0" fluid="true" [showButtons]="true" formControlName="quantity" [placeholder]="'app.price-offer.create-price-offer.quantity' | translate"></p-inputNumber>
+          <p-inputNumber [min]="0" fluid="true" [showButtons]="true" formControlName="dailyCostPerUnit" [placeholder]="'app.price-offer.create-price-offer.dailyCostPerUnit' | translate" ></p-inputNumber>
+          <p-inputNumber [min]="0" fluid="true" [showButtons]="true" formControlName="monthlyCostPerUnit" [placeholder]="'app.price-offer.create-price-offer.monthlyCostPerUnit' | translate" ></p-inputNumber>
+        </div>
         @if (i === createPriceOfferForm.value.otherServices.length - 1) {
         <p-button icon="pi pi-plus" (click)="addOtherService()"></p-button>
         }
-        <div class="input-row">
-          <div>
-            <p-inputNumber [showButtons]="true" formControlName="quantity" [min]="1" [placeholder]="'app.price-offer.create-price-offer.quantity' | translate"></p-inputNumber>
-            <p-inputNumber [showButtons]="true" formControlName="dailyCostPerUnit" [placeholder]="'app.price-offer.create-price-offer.dailyCostPerUnit' | translate" ></p-inputNumber>
-            <p-inputNumber [showButtons]="true" formControlName="monthlyCostPerUnit" [placeholder]="'app.price-offer.create-price-offer.monthlyCostPerUnit' | translate" ></p-inputNumber>
-          </div>
-          <div>
-            <input pInputText formControlName="name" [placeholder]="'app.price-offer.create-price-offer.serviceName' | translate"/>
-            <p-select [options]="shiftType" formControlName="shiftType" [placeholder]="'app.price-request.create-price-request.shiftType' | translate" optionLabel="name" optionValue="code"></p-select>
-          </div>
-        </div>
-        <p-button icon="pi pi-trash" (click)="removeOtherService(i)" [disabled]="i === 0 && createPriceOfferForm.value.otherServices.length <= 1"></p-button>
       </div>
       }
     </div>

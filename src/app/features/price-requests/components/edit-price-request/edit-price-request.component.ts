@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
 import { DatePickerModule } from 'primeng/datepicker';
@@ -13,22 +13,22 @@ import { LocalizationService } from '../../../../core/services/localization/loca
 import { InputComponent } from '../../../../shared/components/input/input.component';
 import { ContractType } from '../../../../shared/enums/contract-type';
 import { ShiftType } from '../../../../shared/enums/shift-type';
+import { ICompanyService } from '../../../companies/models/i-company-service';
 import { ICompany } from '../../../companies/models/ICompany';
 import { CompaniesService } from '../../../companies/services/companies.service';
-import { ICreatePriceReq } from '../../models/ICreatePriceReq';
-import { PriceRequestsService } from '../../services/price-requests.service';
-import { ICompanyService } from '../../../companies/models/i-company-service';
 import { CompanyUtilitiesService } from '../../../companies/services/company-utilities.service';
+import { ICreatePriceReq } from '../../models/ICreatePriceReq';
 import { IPriceRequest } from '../../models/iprice-request';
+import { PriceRequestsService } from '../../services/price-requests.service';
 
 @Component({
-  selector: 'app-create-price-request',
+  selector: 'app-edit-price-request',
   standalone: true,
   imports: [ CommonModule, SelectModule, InputNumberModule, TextareaModule, ButtonModule, DatePickerModule, ReactiveFormsModule, InputTextModule, TranslatePipe, InputComponent ],
-  templateUrl: './create-price-request.component.html',
-  styleUrl: './create-price-request.component.scss',
+  templateUrl: './edit-price-request.component.html',
+  styleUrl: './edit-price-request.component.scss'
 })
-export class CreatePriceRequestComponent implements OnInit {
+export class EditPriceRequestComponent implements OnInit {
   private companyUtilities = inject(CompanyUtilitiesService);
   private companiesService = inject(CompaniesService);
   private localizationService = inject(LocalizationService);

@@ -15,7 +15,7 @@ export interface ICreatePriceReq {
       shiftType: ShiftType;
     }
   ];
-  otherServices: [
+  otherServices?: [
     {
       name: string;
       quantity: number;

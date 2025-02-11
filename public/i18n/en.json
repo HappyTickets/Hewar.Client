@@ -421,13 +421,13 @@
       }
     },
     "price-request": {
-      "create-price-request": {
+      "edit-price-request": {
         "header": "Order Price Request",
         "contractDate": "Contract Date",
         "startContract": "Start of Contracting",
         "endContract": "End of Contracting",
         "contractType": "Contract Type",
-        "securityRoles": "Security Roles",
+        "chooseService": "Service",
         "chooseContractType": "Choose contract type",
         "invaliContractType": "Contract Type required",
         "services": "Services",
@@ -439,7 +439,8 @@
         "addNotes": "Notes",
         "enterDetails": "Enter additional details",
         "cancel": "Cancel",
-        "submit": "Order Price Request",
+        "update": "Update Price Request",
+        "create": "Order Price Request",
         "formValues": "Form Values",
         "site": "Site"
       }
@@ -684,8 +685,8 @@
     },
     "contract-types": {
       "0": "Temporary",
-      "1": "Part-Time",
-      "2": "Full-Time"
+      "1": "Monthly",
+      "2":  "Yearly"
     }
   }
 }
