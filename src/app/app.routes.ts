@@ -24,6 +24,7 @@ import { EditPriceOfferComponent } from './features/my-offers/components/edit-pr
 import { PriceRequestDetailsComponent } from './features/price-requests/components/price-request-details/price-request-details.component';
 import { PriceOfferDetailsComponent } from './features/my-offers/components/price-offer-details/price-offer-details.component';
 import { CompanyPriceRequestsComponent } from './features/price-requests/components/company-price-requests/company-price-requests.component';
+import { SecurityCertificateComponent } from './features/security-certificate/components/security-certificate/security-certificate.component';
 
 export const routes: Route[] = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -62,6 +63,9 @@ export const routes: Route[] = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'create-reset-password', component: CreateResetPasswordComponent },
+
+  // Security Certificate
+  { path: 'security-certificate', component: SecurityCertificateComponent },
 
   { path: '**', component: NotFoundComponent }, // wild card path
 ];

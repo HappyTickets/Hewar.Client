@@ -1,0 +1,30 @@
+.smooth-buttons {
+  transform: translateX(5rem);
+  margin: 0 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  transition: 0.3s;
+}
+
+.smooth-buttons.visible {
+  transform: translateX(0);
+  transition: 0.3s;
+}
+.certificate-form {
+  width: 32rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  div {
+    gap: 0.1rem;
+    display: flex;
+    flex-direction: column;
+  }
+  p-datepicker {
+    width: 100%;
+  }
+}

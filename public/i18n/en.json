@@ -600,11 +600,17 @@
     }
   },
   "enums": {
+    "security-certificate-status": {
+      "0": "Pending",
+      "1": "Verified",
+      "2": "Rejected"
+    },
     "shift-type": {
       "0": "Morning",
       "1": "Evening",
       "2": "Night"
     },
+
     "blood-type": {
       "0": "A",
       "1": "B",
