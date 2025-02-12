@@ -12,6 +12,7 @@ import { Dialog } from 'primeng/dialog';
 })
 export class DeletePopupComponent {
   @Input() visible = false;
+  @Input() type?: string;
   @Input() itemName:string | undefined = '';
   @Output() confirmDelete = new EventEmitter<void>();
   @Output() closePopup = new EventEmitter<void>();

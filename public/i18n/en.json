@@ -432,6 +432,7 @@
         "invaliContractType": "Contract Type required",
         "services": "Services",
         "serviceType": "Service Type",
+        "add-service": "Add service",
         "quantity": "Quantity",
         "shiftType": "Shift Type",
         "otherDetails": "Other Services",
@@ -534,9 +535,21 @@
     "delete-item": {
       "question": "Are you sure to delete ",
       "question-2": "?",
+      "hide-request-question": "Are you sure to hide the price request?",
+      "cancel-request-question": "Are you sure to cancel the price request?",
+      "reject-request-question": "Are you sure to reject the price request?",
+      "accept-request-question": "Are you sure to accept the price request?",
       "complete": "to complete deletion",
       "click": "Click on \"Delete\" to complete the process.",
+      "click-hide": "Click on \"Hide\" to complete the process.",
+      "click-cancel": "Click on \"Complete\" to complete the process.",
+      "click-reject": "Click on \"Reject\" to complete the process.",
+      "click-accept": "Click on \"Accept\" to complete the process.",
       "delete": "Delete",
+      "hide": "Hide",
+      "accept": "Accept",
+      "reject": "Reject",
+      "complete-cancelation": "Complete",
       "cancel": "Cancel"
     },
     "price-offer": {
@@ -563,6 +576,7 @@
       "price-offers-page": {
         "global-search": "Global Search",
         "company-name": "Comapny Name",
+        "facility-name": "Facility Name",
         "status": "Status",
         "contract-type": "Contract Type",
         "actions": "Actions",
