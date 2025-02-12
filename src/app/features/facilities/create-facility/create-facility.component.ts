@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {
+  AbstractControl,
   FormBuilder,
   FormGroup,
   FormsModule,
@@ -271,19 +272,22 @@ export class CreateFacilityComponent implements OnInit {
         country: ['', Validators.required],
         postalCode: ['', Validators.required],
       }),
-      adminInfo: this.fb.group({
-        email: ['', [Validators.required, Validators.email]],
-        password: ['', Validators.required],
-        confirmPassword: ['', [Validators.required]],
+      adminInfo: this.fb.group(
+        {
+          email: ['', [Validators.required, Validators.email]],
+          password: ['', Validators.required],
+          confirmPassword: ['', [Validators.required]],
 
-        firstName: ['', Validators.required],
-        lastName: ['', Validators.required],
-        phone: ['', Validators.required],
-        imageUrl: [''],
-      }),
+          firstName: ['', Validators.required],
+          lastName: ['', Validators.required],
+          phone: ['', Validators.required],
+          imageUrl: [''],
+        },
+        { validator: this.checkPasswords }
+      ),
     });
-    this.adminInfoGroup = this.createCompForm.get('adminInfo') as FormGroup;
-    this.addressGroup = this.createCompForm.get('address') as FormGroup;
+    this.adminInfoGroup = this.facilityForm.get('adminInfo') as FormGroup;
+    this.addressGroup = this.facilityForm.get('address') as FormGroup;
 
     // التحقق من أن القيمة التي يتم إرسالها هي النص فقط
     this.facilityForm.get('activityType')?.valueChanges.subscribe((value) => {
@@ -316,6 +320,9 @@ export class CreateFacilityComponent implements OnInit {
     //   });
     // });
     if (true) {
+      this.adminInfo.removeControl('confirmPassword');
+      console.log(this.facilityForm);
+
       this.imageUploader.uploadFiles().subscribe(
         (imageNames) => {
           console.log('Uploaded images:', imageNames);
@@ -346,9 +353,9 @@ export class CreateFacilityComponent implements OnInit {
         summary: 'Success',
         detail: 'Facility Created',
       });
-      setTimeout(() => {
-        this.router.navigate(['/facilities']);
-      }, 1500);
+      // setTimeout(() => {
+      //   this.router.navigate(['/facilities']);
+      // }, 1500);
     }
   }
   cancel(): void {
@@ -360,10 +367,18 @@ export class CreateFacilityComponent implements OnInit {
   handelimagenam(imageName: string): void {
     this.imageName = imageName; // Set error message
   }
-  get addressFormGroup(): FormGroup {
-    return this.facilityForm.get('address') as FormGroup;
-  }
+  // get addressFormGroup(): FormGroup {
+  //   return this.facilityForm.get('address') as FormGroup;
+  // }
   get adminInfo(): FormGroup {
     return this.facilityForm.get('adminInfo') as FormGroup;
+  }
+  hasMismatchError(): boolean {
+    return this.facilityForm.get('password')?.hasError('mismatch') ?? false;
+  }
+  checkPasswords(g: AbstractControl) {
+    const password = g.get('password')?.value;
+    const confirmPassword = g.get('confirmPassword')?.value;
+    return password === confirmPassword ? null : { mismatch: true };
   }
 }
