@@ -25,6 +25,7 @@ import { PriceRequestDetailsComponent } from './features/price-requests/componen
 import { PriceOfferDetailsComponent } from './features/my-offers/components/price-offer-details/price-offer-details.component';
 import { CompanyPriceRequestsComponent } from './features/price-requests/components/company-price-requests/company-price-requests.component';
 import { SecurityCertificateComponent } from './features/security-certificate/components/security-certificate/security-certificate.component';
+import { AdsComponent } from './features/ads/components/ads/ads.component';
 
 export const routes: Route[] = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -34,9 +35,9 @@ export const routes: Route[] = [
 
   // Facilities
   { path: 'allfacilities', component: ListFacilityComponent },
-  { path: 'createFacilities', component: CreateFacilityComponent,},
+  { path: 'createFacilities', component: CreateFacilityComponent },
   { path: 'update-facility/:id', component: UpdateFacilityComponent },
-  { path: 'facilities/:id', component: DetialsFacilityComponent,},
+  { path: 'facilities/:id', component: DetialsFacilityComponent },
   { path: 'facilities', component: FacilitiesComponent },
 
   // Companies
@@ -48,24 +49,43 @@ export const routes: Route[] = [
   // Price Requests
   { path: 'company-price-request', component: CompanyPriceRequestsComponent },
   { path: 'facility-price-request', component: FacilityPriceRequestsComponent },
-  { path: 'price-request-details/:id', component: PriceRequestDetailsComponent },
-  { path: 'create-price-request/:companyId', component: EditPriceRequestComponent },
-  { path: 'update-price-request/:priceRequestId', component: EditPriceRequestComponent },
+  {
+    path: 'price-request-details/:id',
+    component: PriceRequestDetailsComponent,
+  },
+  {
+    path: 'create-price-request/:companyId',
+    component: EditPriceRequestComponent,
+  },
+  {
+    path: 'update-price-request/:priceRequestId',
+    component: EditPriceRequestComponent,
+  },
 
   // Price Offers
   { path: 'price-offer-details/:id', component: PriceOfferDetailsComponent },
   { path: 'company-price-offer', component: CompanyOffersComponent },
   { path: 'facility-price-offer', component: FacilityOffersComponent },
-  { path: 'create-price-offer/:priceRequestId', component: EditPriceOfferComponent },
-  { path: 'update-price-offer/:priceOfferId', component: EditPriceOfferComponent },
+  {
+    path: 'create-price-offer/:priceRequestId',
+    component: EditPriceOfferComponent,
+  },
+  {
+    path: 'update-price-offer/:priceOfferId',
+    component: EditPriceOfferComponent,
+  },
 
   // Registration
+
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'create-reset-password', component: CreateResetPasswordComponent },
 
   // Security Certificate
   { path: 'security-certificate', component: SecurityCertificateComponent },
+
+  // Ads
+  { path: 'createAds', component: AdsComponent },
 
   { path: '**', component: NotFoundComponent }, // wild card path
 ];

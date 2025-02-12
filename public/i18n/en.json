@@ -780,5 +780,28 @@
       "1": "Monthly",
       "2": "Yearly"
     }
+  },
+  "ads": {
+    "crearte-ad":{
+      "header": "Create New Ad",
+      "title": "Title",
+      "description": "Description",
+      "OrderPriceRequest": "Order PriceRe quest",
+      "contractDate": "Contract Date",
+      "startContract": "Start of Contracting",
+      "endContract": "End of Contracting",
+      "contractType": "Contract Type",
+      "services": "Services",
+      "serviceType": "Service Type",
+      "quantity": "Quantity",
+      "shiftType": "Shift Type",
+      "otherDetails": "Other Services",
+      "serviceName": "Service",
+      "addNotes": "Notes",
+      "enterDetails": "Enter additional details",
+      "publish": "Publish",
+      "cancel": "Cancel"
+
+    }
   }
 }
