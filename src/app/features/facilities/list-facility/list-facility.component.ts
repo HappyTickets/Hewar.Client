@@ -1,11 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import {
-  Attribute,
-  ChangeDetectorRef,
-  Component,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { FacilitiesService } from '../services/facilities.service';
 import { CommonModule } from '@angular/common';
 import { IResponseData } from '../models/iresponse-data';
