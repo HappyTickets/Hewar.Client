@@ -21,14 +21,14 @@ export class ImageUploadService {
 
     return this.http.request(req);
   }
-  uploadFile(base64EncodedString: string, fileData: any): Observable<any> {
-    const formData = {
-      base64: base64EncodedString,
-      fileData: fileData,
-    };
+  // uploadFile(base64EncodedString: string, fileData: any): Observable<any> {
+  //   const formData = {
+  //     base64: base64EncodedString,
+  //     fileData: fileData,
+  //   };
 
-    return this.http.post(this.baseUrl, formData);
-  }
+  //   return this.http.post(this.baseUrl, formData);
+  // }
 
   // getFiles(): Observable<any> {
   //   return this.http.get(`${this.baseUrl}/files/upload`);
