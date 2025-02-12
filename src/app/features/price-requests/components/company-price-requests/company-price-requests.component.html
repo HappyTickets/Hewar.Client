@@ -10,27 +10,16 @@
     <ng-template pTemplate="header">
       <tr>
         <th></th>
-        <th pSortableColumn="facility.name" style="width:20%">
-          {{ 'app.price-request.price-request-page.facility-name' | translate }}
-          <p-sortIcon field="facility.name"></p-sortIcon>
-        </th>
-        <th pSortableColumn="contractType" style="width:20%">
-          {{ 'app.price-request.price-request-page.contract-type' | translate }}
-          <p-sortIcon field="contractType"></p-sortIcon>
-        </th>
-        <th pSortableColumn="requestStatus" style="width:20%">
-          {{ 'app.price-request.price-request-page.status' | translate }}
-          <p-sortIcon field="requestStatus"></p-sortIcon>
-        </th>
+        <th pSortableColumn="facility.name" style="width:20%">{{ 'app.price-request.price-request-page.facility-name' | translate }}<p-sortIcon field="facility.name"></p-sortIcon></th>
+        <th pSortableColumn="contractType" style="width:20%"> {{ 'app.price-request.price-request-page.contract-type' | translate }} <p-sortIcon field="contractType"></p-sortIcon></th>
+        <th pSortableColumn="requestStatus" style="width:20%"> {{ 'app.price-request.price-request-page.status' | translate }} <p-sortIcon field="requestStatus"></p-sortIcon> </th>
         <th style="width:30%">{{ 'app.price-request.price-request-page.actions' | translate }}</th>
       </tr>
     </ng-template>
 
     <ng-template pTemplate="body" let-service let-expanded="expanded">
       <tr>
-        <td>
-          <p-button type="button" [pRowToggler]="service" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"/>
-        </td>
+        <td><p-button type="button" [pRowToggler]="service" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"/></td>
         <td>{{ service.facility.name }}</td>
         <td>{{ 'enums.contract-types.'+ service.contractType | translate }}</td>
         <td>{{ 'enums.request-status.'+ service.requestStatus | translate }}</td>
@@ -39,7 +28,7 @@
           <div [class.visible]="service.showActions" class="smooth-buttons">
             @if (service.showActions) {
               <p-button class="m-1" (click)="showHidePopUp=true" icon="pi pi-eye-slash" pTooltip="{{ 'app.price-request.price-request-page.hide' | translate }}" tooltipPosition="top"></p-button>
-              <p-button class="m-1" [routerLink]="['/create-price-offer/', service.id]" icon="pi pi-file-edit" [disabled]="service.requestStatus !== 1" pTooltip="{{ 'app.price-request.price-request-page.make-offer' | translate }}" tooltipPosition="top"></p-button>
+              <p-button class="m-1" [routerLink]="['/create-price-offer/', service.id]" icon="pi pi-file-edit" pTooltip="{{ 'app.price-request.price-request-page.make-offer' | translate }}" tooltipPosition="top"></p-button>
               <p-button class="m-1" [routerLink]="['/price-request-details/', service.id]" icon="pi pi-info-circle" pTooltip="{{ 'app.price-request.price-request-page.details' | translate }}" tooltipPosition="top"></p-button>
               <p-button class="m-1" (click)="openChat()" icon="pi pi-comments" pTooltip="{{ 'app.price-request.price-request-page.chat' | translate }}" tooltipPosition="top"></p-button>
             }

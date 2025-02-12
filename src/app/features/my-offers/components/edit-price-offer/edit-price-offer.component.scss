@@ -25,21 +25,16 @@
     flex-direction: column;
     gap: 0.5rem;
   }
-  .services {
+  .service-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .service-inputs {
     border: 1px solid #ddd;
     background: #f9f9f9;
     padding: 0.5rem;
     border-radius: 0.5rem;
-  }
-  .service-item {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    @media (max-width: 768px) {
-      flex-direction: column;
-    }
-  }
-  .service-inputs {
     width: 100%;
     margin: 0 0 10px;
     display: flex;
