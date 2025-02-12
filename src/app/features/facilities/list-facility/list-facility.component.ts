@@ -1,11 +1,10 @@
-import { Attribute, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FacilitiesService } from '../services/facilities.service';
 import { CommonModule } from '@angular/common';
 import { IResponseData } from '../models/iresponse-data';
-import { Route, Router, RouterLink, RouterModule } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { PaginatorModule, PaginatorState } from 'primeng/paginator';
-import { Dialog } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { LocalizationService } from '../../../core/services/localization/localization.service';
@@ -20,7 +19,6 @@ import { DeletePopupComponent } from '../../../shared/components/delete-popup/de
     FormsModule,
     PaginatorModule,
     CommonModule,
-
     ButtonModule,
     InputTextModule,
     RouterLink,

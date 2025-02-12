@@ -12,11 +12,14 @@ import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { IGetPriceOfferById } from '../../models/iget-price-offer-by-id';
 import { TooltipModule } from 'primeng/tooltip';
+import { DeletePopupComponent } from '../../../../shared/components/delete-popup/delete-popup.component';
+import { IPriceOfferService } from '../../models/iprice-offer-service';
+import { IPriceOfferOtherService } from '../../models/iprice-offer-other-service';
 
 @Component({
   selector: 'app-company-offers',
   standalone: true,
-  imports: [ IconFieldModule, TooltipModule, InputTextModule, InputIconModule, ButtonModule, TableModule, ToastModule, FormsModule, TranslatePipe, RouterModule],
+  imports: [ IconFieldModule, TooltipModule, InputTextModule, InputIconModule, ButtonModule, TableModule, ToastModule, FormsModule, TranslatePipe, RouterModule, DeletePopupComponent],
   templateUrl: './company-offers.component.html',
   styleUrl: './company-offers.component.scss'
 })
@@ -25,13 +28,13 @@ export class CompanyOffersComponent implements OnInit {
   private toastr = inject(ToastrService);
   priceOffers: IGetPriceOfferById[] = [];
   searchTerm = '';
+  showCancelPopUp = false;
+  showHidePopUp = false;
 
   ngOnInit(): void {
     this.getPrices();
   }
-  toggleActions(service: IGetPriceOfferById) {
-    service.showActions = !service.showActions;
-  }
+
   getPrices(): void {
     this.priceOffersService.getMyCompanyOffers().subscribe(res => {
       if (res.data) this.priceOffers = res.data;
@@ -40,20 +43,42 @@ export class CompanyOffersComponent implements OnInit {
   openChat(): void {
     this.toastr.info('Chat feature is coming soon!', 'Coming Soon');
   }
-  getTotalDailyCost(services: {dailyCostPerUnit:number, quantity:number}[]): number {
-    return services.reduce((total, service) => {
-      return total + (service.dailyCostPerUnit * service.quantity);
+  getTotalDailyCost(services: IPriceOfferService[], otherServices: IPriceOfferOtherService[]): number {
+    let total = 0;
+    total += services.reduce((acc, service) => {
+      return acc + (service.dailyCostPerUnit * service.quantity);
     }, 0);
+    total += otherServices.reduce((acc, service) => {
+      return acc + (service.dailyCostPerUnit * service.quantity);
+    }, 0);
+    return total
   }
-  getTotalMonthlyCost(services: {monthlyCostPerUnit:number, quantity:number}[]): number {
-    return services.reduce((total, service) => {
-      return total + (service.monthlyCostPerUnit * service.quantity);
+  getTotalMonthlyCost(services: IPriceOfferService[], otherServices: IPriceOfferOtherService[]): number {
+    let total = 0;
+    total += services.reduce((acc, service) => {
+      return acc + (service.monthlyCostPerUnit * service.quantity);
     }, 0);
+    total += otherServices.reduce((acc, service) => {
+      return acc + (service.monthlyCostPerUnit * service.quantity);
+    }, 0);
+    return total
   }
   cancelOffer(id: number){
+    this.showCancelPopUp = false;
     this.priceOffersService.cancel(id).subscribe(()=>{this.getPrices();})
   }
   hideOffer(id: number){
+    this.showHidePopUp = false;
     this.priceOffersService.hide(id).subscribe(()=>{this.getPrices();})
+  }
+
+  openCancelPopup() {
+    this.showCancelPopUp = true;
+  }
+  openHidePopup() {
+    this.showHidePopUp = true;
+  }
+  toggleActions(service: IGetPriceOfferById) {
+    service.showActions = !service.showActions;
   }
 }

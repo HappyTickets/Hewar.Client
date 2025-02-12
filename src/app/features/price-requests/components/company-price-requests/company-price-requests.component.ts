@@ -12,11 +12,12 @@ import { RouterModule } from '@angular/router';
 import { ICompanyPriceRequest } from '../../models/icompany-price-request';
 import { PriceRequestsService } from '../../services/price-requests.service';
 import { TooltipModule } from 'primeng/tooltip';
+import { DeletePopupComponent } from '../../../../shared/components/delete-popup/delete-popup.component';
 
 @Component({
   selector: 'app-company-price-requests',
   standalone: true,
-  imports: [ CommonModule, IconFieldModule,TooltipModule, InputTextModule, InputIconModule, ButtonModule, TableModule, FormsModule, TranslatePipe, RouterModule ],
+  imports: [ CommonModule, IconFieldModule,TooltipModule, InputTextModule, InputIconModule, ButtonModule, TableModule, FormsModule, TranslatePipe, RouterModule, DeletePopupComponent ],
   templateUrl: './company-price-requests.component.html',
   styleUrl: './company-price-requests.component.scss',
 })
@@ -25,6 +26,7 @@ export class CompanyPriceRequestsComponent implements OnInit {
   private toastr = inject(ToastrService);
   priceRequests: ICompanyPriceRequest[] = [];
   searchTerm = '';
+  showHidePopUp = false;
 
   ngOnInit(): void {
     this.getPrices();
@@ -44,6 +46,7 @@ export class CompanyPriceRequestsComponent implements OnInit {
   }
 
   hide(id: number) {
+    this.showHidePopUp = false;
     this.priceRequestsService.hide(id).subscribe(() => {
       this.getPrices();
     });

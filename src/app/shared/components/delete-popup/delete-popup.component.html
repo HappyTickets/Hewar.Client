@@ -1,23 +1,38 @@
 <p-dialog [modal]="true" [(visible)]="visible" [style]="{ width: '40rem' }">
-  <p class="head">
-    {{ "app.delete-item.question" | translate }} {{ itemName }}
-    {{ "app.delete-item.question-2" | translate }}
-  </p>
-  <p class="desc">
-    {{ "app.delete-item.complete" | translate }} {{ itemName }}
-    {{ "app.delete-item.click" | translate }}
-  </p>
+@if (type === 'hide') {
+  <p class="head">{{ "app.delete-item.hide-request-question" | translate }}</p>
+  <p class="desc">{{ "app.delete-item.click-hide" | translate }}</p>
   <div class="flex justify-between gap-2">
-    <p-button
-      label="{{ 'app.delete-item.delete' | translate }}"
-      class="delete-comp"
-      (click)="onDelete()"
-    />
-    <p-button
-      label="{{ 'app.delete-item.cancel' | translate }}"
-      class="cancel"
-      severity="secondary"
-      (click)="onCancel()"
-    />
+    <p-button label="{{ 'app.delete-item.hide' | translate }}" class="delete-comp" (click)="onDelete()"/>
+    <p-button label="{{ 'app.delete-item.cancel' | translate }}" class="cancel" severity="secondary" (click)="onCancel()"/>
   </div>
+} @else if (type === 'cancel') {
+  <p class="head">{{ "app.delete-item.cancel-request-question" | translate }}</p>
+  <p class="desc">{{ "app.delete-item.click-cancel" | translate }}</p>
+  <div class="flex justify-between gap-2">
+    <p-button label="{{ 'app.delete-item.complete-cancelation' | translate }}" class="delete-comp" (click)="onDelete()"/>
+    <p-button label="{{ 'app.delete-item.cancel' | translate }}" class="cancel" severity="secondary" (click)="onCancel()"/>
+  </div>
+} @else if (type === 'reject') {
+  <p class="head">{{ "app.delete-item.reject-request-question" | translate }}</p>
+  <p class="desc">{{ "app.delete-item.click-reject" | translate }}</p>
+  <div class="flex justify-between gap-2">
+    <p-button label="{{ 'app.delete-item.reject' | translate }}" class="delete-comp" (click)="onDelete()"/>
+    <p-button label="{{ 'app.delete-item.cancel' | translate }}" class="cancel" severity="secondary" (click)="onCancel()"/>
+  </div>
+} @else if (type === 'accept') {
+  <p class="head">{{ "app.delete-item.accept-request-question" | translate }}</p>
+  <p class="desc">{{ "app.delete-item.click-accept" | translate }}</p>
+  <div class="flex justify-between gap-2">
+    <p-button label="{{ 'app.delete-item.accept' | translate }}" class="delete-comp" (click)="onDelete()"/>
+    <p-button label="{{ 'app.delete-item.cancel' | translate }}" class="cancel" severity="secondary" (click)="onCancel()"/>
+  </div>
+}@else {
+  <p class="head"> {{ "app.delete-item.question" | translate }} {{ itemName }} {{ "app.delete-item.question-2" | translate }}</p>
+  <p class="desc"> {{ "app.delete-item.complete" | translate }} {{ itemName }} {{ "app.delete-item.click" | translate }}</p>
+  <div class="flex justify-between gap-2">
+    <p-button label="{{ 'app.delete-item.delete' | translate }}" class="delete-comp" (click)="onDelete()"/>
+    <p-button label="{{ 'app.delete-item.cancel' | translate }}" class="cancel" severity="secondary" (click)="onCancel()"/>
+  </div>
+  }
 </p-dialog>
