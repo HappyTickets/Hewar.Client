@@ -35,11 +35,16 @@
         <td>{{ 'enums.request-status.' + service.offerStatus | translate }}</td>
         <td>{{ 'enums.contract-types.' + service.priceRequest.contractType | translate }}</td>
         <td>
-          <p-button class="m-1" routerLink="/update-price-offer/{{service.id}}" [label]="'update' | translate" [disabled]="service.offerStatus !== 1"/>
-          <p-button class="m-1" [label]="'hide' | translate" (click)="hideOffer(service.id)"/>
-          <p-button class="m-1" [label]="'cancel' | translate" (click)="cancelOffer(service.id)" [disabled]="service.offerStatus !== 1"/>
-          <p-button class="m-1" routerLink="/price-offer-details/{{service.id}}" [label]="'details' | translate"/>
-          <p-button class="m-1" (click)="openChat()" [label]="'chat' | translate"/>
+          <p-button icon="pi pi-cog" (click)="toggleActions(service)" pTooltip="{{ 'app.price-request.price-request-page.actions' | translate }}" tooltipPosition="top"></p-button>
+          <div [class.visible]="service.showActions" class="smooth-buttons">
+            @if (service.showActions) {
+              <p-button class="m-1" [routerLink]="['/update-price-offer/', service.id]" icon="pi pi-pencil" [disabled]="service.offerStatus !== 1" pTooltip="{{ 'update' | translate }}" tooltipPosition="top"></p-button>
+              <p-button class="m-1" icon="pi pi-eye-slash" (click)="hideOffer(service.id)" pTooltip="{{ 'hide' | translate }}" tooltipPosition="top"></p-button>
+              <p-button class="m-1" icon="pi pi-times" (click)="cancelOffer(service.id)" [disabled]="service.offerStatus !== 1" pTooltip="{{ 'cancel' | translate }}" tooltipPosition="top"></p-button>
+              <p-button class="m-1" [routerLink]="['/price-offer-details/', service.id]" icon="pi pi-info-circle" pTooltip="{{ 'details' | translate }}" tooltipPosition="top"></p-button>
+              <p-button class="m-1" icon="pi pi-comments" (click)="openChat()" pTooltip="{{ 'chat' | translate }}" tooltipPosition="top"></p-button>
+            }
+          </div>
         </td>
       </tr>
     </ng-template>

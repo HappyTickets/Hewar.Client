@@ -5,20 +5,19 @@ import { RouterModule } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { ButtonModule } from 'primeng/button';
-import { DialogModule } from 'primeng/dialog';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
-import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { PriceOffersService } from '../../services/price-offers.service';
 import { IGetPriceOfferById } from '../../models/iget-price-offer-by-id';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-facility-offers',
   standalone: true,
-  imports: [ CommonModule, IconFieldModule, InputTextModule, InputIconModule, ButtonModule, TableModule, DialogModule, ToastModule, InputNumberModule, FormsModule, TranslatePipe, RouterModule],
+  imports: [ CommonModule, IconFieldModule, InputTextModule, InputIconModule, ButtonModule, TableModule, TooltipModule, ToastModule, FormsModule, TranslatePipe, RouterModule],
   templateUrl: './facility-offers.component.html',
   styleUrl: './facility-offers.component.scss'
 })
@@ -32,6 +31,9 @@ export class FacilityOffersComponent implements OnInit {
     this.getPrices();
   }
 
+  toggleActions(service: IGetPriceOfferById) {
+    service.showActions = !service.showActions;
+  }
   getPrices(): void {
     this.priceOffersService.getMyFacilityOffers().subscribe(res => {
       if (res.data) this.priceOffers = res.data;

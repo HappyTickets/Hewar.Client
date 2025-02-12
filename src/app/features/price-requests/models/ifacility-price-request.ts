@@ -1,6 +1,8 @@
 import { ContractType } from '../../../shared/enums/contract-type';
 import { RequestStatus } from '../../../shared/enums/request-status';
-import { ShiftType } from '../../../shared/enums/shift-type';
+import { ICompany } from '../../companies/models/ICompany';
+import { IPriceRequestOtherService } from './iprice-request-other-service';
+import { IPriceRequestService } from './iprice-request-service';
 
 export interface IFacilityPriceRequest {
   id: number;
@@ -11,26 +13,9 @@ export interface IFacilityPriceRequest {
   notes?: string;
   requestStatus: RequestStatus;
   hasOffers: boolean;
-  company: {
-    id: number;
-    name: string;
-    contactEmail: string;
-    phoneNumber: string;
-    logo: string;
-  };
-  services: {
-    serviceId: number;
-    quantity: number;
-    shiftType: ShiftType;
-  }[];
-  otherServices: {
-    id: number;
-    name: string;
-    quantity: number;
-    shiftType: ShiftType;
-    monthlyCost?: number;
-    dailyCost?: number;
-  }[];
+  company: ICompany;
+  services: IPriceRequestService[];
+  otherServices: IPriceRequestOtherService[];
 
-  isEditMode?: boolean;
+  showActions?: boolean;
 }

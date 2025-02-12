@@ -13,5 +13,6 @@ export interface IGetPriceOfferById {
   offerStatus: RequestStatus;
   otherServices: IPriceOfferOtherService[];
   services: IPriceOfferService[];
-  priceRequest: IPriceRequest
+  priceRequest: IPriceRequest;
+  showActions?: boolean;
 }

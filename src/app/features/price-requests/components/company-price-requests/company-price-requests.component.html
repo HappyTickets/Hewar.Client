@@ -35,10 +35,15 @@
         <td>{{ 'enums.contract-types.'+ service.contractType | translate }}</td>
         <td>{{ 'enums.request-status.'+ service.requestStatus | translate }}</td>
         <td>
-          <p-button class="m-1" (click)="hide(service.id)" label="{{ 'app.price-request.price-request-page.hide' | translate }}"/>
-          <p-button class="m-1" routerLink="/create-price-offer/{{service.id}}" label="{{ 'app.price-request.price-request-page.make-offer' | translate }}" [disabled]="service.requestStatus!==1"/>
-          <p-button class="m-1" routerLink="/price-request-details/{{service.id}}" label="{{ 'app.price-request.price-request-page.details' | translate }}"/>
-          <p-button class="m-1" (click)="openChat()" label="{{ 'app.price-request.price-request-page.chat' | translate }}"/>
+          <p-button icon="pi pi-cog" (click)="toggleActions(service)" pTooltip="{{ 'app.price-request.price-request-page.actions' | translate }}" tooltipPosition="top"></p-button>
+          <div [class.visible]="service.showActions" class="smooth-buttons">
+            @if (service.showActions) {
+              <p-button class="m-1" (click)="hide(service.id)" icon="pi pi-eye-slash" pTooltip="{{ 'app.price-request.price-request-page.hide' | translate }}" tooltipPosition="top"></p-button>
+              <p-button class="m-1" [routerLink]="['/create-price-offer/', service.id]" icon="pi pi-file-edit" [disabled]="service.requestStatus !== 1" pTooltip="{{ 'app.price-request.price-request-page.make-offer' | translate }}" tooltipPosition="top"></p-button>
+              <p-button class="m-1" [routerLink]="['/price-request-details/', service.id]" icon="pi pi-info-circle" pTooltip="{{ 'app.price-request.price-request-page.details' | translate }}" tooltipPosition="top"></p-button>
+              <p-button class="m-1" (click)="openChat()" icon="pi pi-comments" pTooltip="{{ 'app.price-request.price-request-page.chat' | translate }}" tooltipPosition="top"></p-button>
+            }
+          </div>
         </td>
       </tr>
     </ng-template>
