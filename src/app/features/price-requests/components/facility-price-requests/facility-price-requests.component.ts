@@ -13,11 +13,12 @@ import { PriceRequestsService } from '../../services/price-requests.service';
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-facility-price-requests',
   standalone: true,
-  imports: [IconFieldModule, InputTextModule, InputIconModule, ButtonModule, TableModule, ToastModule, InputNumberModule, FormsModule, CommonModule, TranslatePipe, RouterModule],
+  imports: [IconFieldModule, ButtonModule, InputTextModule, InputIconModule, TooltipModule, ButtonModule, TableModule, ToastModule, InputNumberModule, FormsModule, CommonModule, TranslatePipe, RouterModule],
   templateUrl: './facility-price-requests.component.html',
   styleUrl: './facility-price-requests.component.scss'
 })
@@ -26,6 +27,11 @@ export class FacilityPriceRequestsComponent implements OnInit {
   private toastr = inject(ToastrService);
   priceRequests: IFacilityPriceRequest[] = [];
   searchTerm = '';
+
+
+  toggleActions(service: IFacilityPriceRequest) {
+    service.showActions = !service.showActions;
+  }
 
   ngOnInit(): void {
     this.getPriceRequests()
@@ -43,15 +49,14 @@ export class FacilityPriceRequestsComponent implements OnInit {
     this.toastr.info('Chat feature is coming soon!', 'Coming Soon');
   }
   cancelPriceRequest(id :number) {
-    this.priceRequestsService.cancel(id).subscribe(res => {
+    this.priceRequestsService.cancel(id).subscribe(() => {
       this.getPriceRequests();
-      console.log(res);
     })
   }
   hidePriceRequest(id :number) {
-    this.priceRequestsService.hide(id).subscribe(res => {
+    this.priceRequestsService.hide(id).subscribe(() => {
       this.getPriceRequests();
-      console.log(res);
     })
   }
+
 }
