@@ -6,110 +6,107 @@
   <p-table [value]="certificates" [paginator]="true" [rows]="10" [globalFilterFields]="['facilityName']" selectionMode="single" #dt [tableStyle]="{ 'height': '20rem'}">
     <ng-template #caption>
       <div class="flex justify-content-between gap-2">
-        <input pInputText type="text" [(ngModel)]="searchTerm" placeholder="Search..." (input)="dt.filterGlobal(searchTerm, 'contains')">
-        <p-button label="Add Certificate" icon="pi pi-plus" (click)="openAddDialog()"></p-button>
+        <input pInputText type="text" [(ngModel)]="searchTerm" [placeholder]="'app.security-certificate.search-placeholder' | translate" (input)="dt.filterGlobal(searchTerm, 'contains')">
+        <p-button [label]="'app.security-certificate.add-certificate' | translate" icon="pi pi-plus" (click)="openAddDialog()"></p-button>
       </div>
     </ng-template>
-     <ng-template pTemplate="header">
-       <tr>
-         <th>Facility</th>
-         <th>Start Date</th>
-         <th>End Date</th>
-         <th>Site Area</th>
-         <th>Guards</th>
-         <th>Cameras</th>
-         <th>Monitoring Room</th>
-         <th>Status</th>
-         <th>Actions</th>
-       </tr>
-     </ng-template>
-     <ng-template pTemplate="body" let-cert>
-       <tr>
-         <td>{{ cert.facilityName }}</td>
-         <td>{{ cert.startDate | date }}</td>
-         <td>{{ cert.endDate | date }}</td>
-         <td>{{ cert.siteArea }}</td>
-         <td>{{ cert.agreedNumberOfSecurityGuards }}</td>
-         <td>{{ cert.numberOfCameras }}</td>
-         <td>{{ cert.hasCentralMonitoringRoom ? 'Yes' : 'No' }}</td>
-         <td>{{ 'enums.security-certificate-status.'+cert.status | translate }}</td>
-         <td class="flex h-full justify-content-center align-items-center">
-           <p-button icon="pi pi-cog" (click)="toggleActions(cert)" pTooltip="{{ 'app.price-request.price-request-page.actions' | translate }}" tooltipPosition="top"></p-button>
-           <div [class.visible]="cert.showActions" class="smooth-buttons">
-             @if (cert.showActions) {
-               <p-button icon="pi pi-pencil" class="p-button-text p-button-rounded" pTooltip="Edit" tooltipPosition="top" (click)="editCertificate(cert)"></p-button>
-               <p-button icon="pi pi-trash" class="p-button-text p-button-rounded p-button-danger" pTooltip="Delete" tooltipPosition="top" (click)="confirmDelete(cert.id)"></p-button>
-               <p-button *ngIf="cert.status !== 'Approved'" icon="pi pi-check" class="p-button-text p-button-rounded p-button-success" pTooltip="Approve" tooltipPosition="top" (click)="approve(cert.id)"></p-button>
-               <p-button *ngIf="cert.status !== 'Rejected'" icon="pi pi-times" class="p-button-text p-button-rounded p-button-warning" pTooltip="Reject" tooltipPosition="top" (click)="reject(cert.id)"></p-button>
-             }
-           </div>
-         </td>
-       </tr>
-     </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>{{ 'app.security-certificate.facility' | translate }}</th>
+        <th>{{ 'app.security-certificate.start-date' | translate }}</th>
+        <th>{{ 'app.security-certificate.end-date' | translate }}</th>
+        <th>{{ 'app.security-certificate.site-area' | translate }}</th>
+        <th>{{ 'app.security-certificate.guards' | translate }}</th>
+        <th>{{ 'app.security-certificate.cameras' | translate }}</th>
+        <th>{{ 'app.security-certificate.monitoring-room' | translate }}</th>
+        <th>{{ 'app.security-certificate.status' | translate }}</th>
+        <th>{{ 'app.security-certificate.actions' | translate }}</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-cert>
+      <tr>
+        <td>{{ cert.facilityName }}</td>
+        <td>{{ cert.startDate | date }}</td>
+        <td>{{ cert.endDate | date }}</td>
+        <td>{{ cert.siteArea }}</td>
+        <td>{{ cert.agreedNumberOfSecurityGuards }}</td>
+        <td>{{ cert.numberOfCameras }}</td>
+        <td>{{ cert.hasCentralMonitoringRoom ? 'Yes' : 'No' }}</td>
+        <td>{{ 'enums.security-certificate-status.'+cert.status | translate }}</td>
+        <td class="flex h-full justify-content-center align-items-center">
+          <p-button icon="pi pi-cog" (click)="toggleActions(cert)" pTooltip="{{ 'app.security-certificate.actions' | translate }}" tooltipPosition="top"></p-button>
+          <div [class.visible]="cert.showActions" class="smooth-buttons">
+            @if (cert.showActions) {
+              <p-button icon="pi pi-pencil" class="p-button-text p-button-rounded" pTooltip="{{ 'app.security-certificate.edit' | translate }}" tooltipPosition="top" (click)="editCertificate(cert)"></p-button>
+              <p-button icon="pi pi-trash" class="p-button-text p-button-rounded p-button-danger" pTooltip="{{ 'app.security-certificate.delete' | translate }}" tooltipPosition="top" (click)="confirmDelete(cert.id)"></p-button>
+              <p-button *ngIf="cert.status !== 'Approved'" icon="pi pi-check" class="p-button-text p-button-rounded p-button-success" pTooltip="{{ 'app.security-certificate.approve' | translate }}" tooltipPosition="top" (click)="approve(cert.id)"></p-button>
+              <p-button *ngIf="cert.status !== 'Rejected'" icon="pi pi-times" class="p-button-text p-button-rounded p-button-warning" pTooltip="{{ 'app.security-certificate.reject' | translate }}" tooltipPosition="top" (click)="reject(cert.id)"></p-button>
+            }
+          </div>
+        </td>
+      </tr>
+    </ng-template>
   </p-table>
 </div>
 
 <!-- Add/Edit Dialog -->
-<p-dialog [(visible)]="displayDialog" [modal]="true" header="Security Certificate">
+<p-dialog [(visible)]="displayDialog" [modal]="true" [header]="'app.security-certificate.dialog-header' | translate">
   <form [formGroup]="certificateForm" class="certificate-form">
     <div class="flex-row justify-content-between">
       <div>
-        <label for="startDate">Start Date</label>
-        <p-datepicker  formControlName="startDate" [iconDisplay]="'input'" [showIcon]="true" dateFormat="yy-mm-dd"></p-datepicker >
+        <label for="startDate">{{ 'app.security-certificate.start-date' | translate }}</label>
+        <p-datepicker formControlName="startDate" [iconDisplay]="'input'" [showIcon]="true" dateFormat="yy-mm-dd"></p-datepicker>
       </div>
       <div>
-        <label for="endDate">End Date</label>
-        <p-datepicker  formControlName="endDate" [iconDisplay]="'input'" [showIcon]="true" dateFormat="yy-mm-dd"></p-datepicker >
+        <label for="endDate">{{ 'app.security-certificate.end-date' | translate }}</label>
+        <p-datepicker formControlName="endDate" [iconDisplay]="'input'" [showIcon]="true" dateFormat="yy-mm-dd"></p-datepicker>
       </div>
     </div>
     <div>
-      <label for="siteArea">Site Area</label>
+      <label for="siteArea">{{ 'app.security-certificate.site-area' | translate }}</label>
       <p-inputNumber formControlName="siteArea" [useGrouping]="false"></p-inputNumber>
     </div>
     <div>
-      <label for="agreedNumberOfSecurityGuards">Agreed Number Of Security Guards</label>
+      <label for="agreedNumberOfSecurityGuards">{{ 'app.security-certificate.agreed-number-of-guards' | translate }}</label>
       <p-inputNumber formControlName="agreedNumberOfSecurityGuards" [useGrouping]="false"></p-inputNumber>
     </div>
-
     <div>
-      <label for="numberOfCameras">Number Of Cameras</label>
+      <label for="numberOfCameras">{{ 'app.security-certificate.cameras' | translate }}</label>
       <p-inputNumber formControlName="numberOfCameras" [useGrouping]="false"></p-inputNumber>
     </div>
     <div>
-      <label for="hasCentralMonitoringRoom">Monitoring Room</label>
+      <label for="hasCentralMonitoringRoom">{{ 'app.security-certificate.monitoring-room' | translate }}</label>
       <p-checkbox formControlName="hasCentralMonitoringRoom" binary="true"></p-checkbox>
     </div>
     <div>
-      <label for="contractDocumentUrl">Contract Document Url</label>
+      <label for="contractDocumentUrl">{{ 'app.security-certificate.contract-document-url' | translate }}</label>
       <input pInputText formControlName="contractDocumentUrl">
     </div>
     <div formGroupName="address">
       <div>
-        <label for="street">Street</label>
+        <label for="street">{{ 'app.security-certificate.street' | translate }}</label>
         <input pInputText formControlName="street">
       </div>
       <div>
-        <label for="city">City</label>
+        <label for="city">{{ 'app.security-certificate.city' | translate }}</label>
         <input pInputText formControlName="city">
       </div>
       <div>
-        <label for="state">State</label>
+        <label for="state">{{ 'app.security-certificate.state' | translate }}</label>
         <input pInputText formControlName="state">
       </div>
       <div>
-        <label for="country">Country</label>
+        <label for="country">{{ 'app.security-certificate.country' | translate }}</label>
         <input pInputText formControlName="country">
       </div>
       <div>
-        <label for="postalCode">Postal Code</label>
+        <label for="postalCode">{{ 'app.security-certificate.postal-code' | translate }}</label>
         <input pInputText formControlName="postalCode">
       </div>
     </div>
     <div class="flex flex-row justify-content-between">
-      <p-button label="Save" (click)="saveCertificate()"/>
-      <p-button label="Cancel" (click)="displayDialog = false"/>
+      <p-button [label]="'app.security-certificate.save' | translate" (click)="saveCertificate()"/>
+      <p-button [label]="'app.security-certificate.cancel' | translate" (click)="displayDialog = false"/>
     </div>
-    {{certificateForm.value | json}}
   </form>
 </p-dialog>
-

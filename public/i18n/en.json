@@ -597,6 +597,33 @@
         "total-monthly-cost": "Total Monthly Cost",
         "other-services": "Other Services"
       }
+    },
+    "security-certificate": {
+      "facility": "Facility",
+      "start-date": "Start Date",
+      "end-date": "End Date",
+      "site-area": "Site Area",
+      "guards": "Guards",
+      "cameras": "Cameras",
+      "monitoring-room": "Monitoring Room",
+      "status": "Status",
+      "actions": "Actions",
+      "search-placeholder": "Search...",
+      "add-certificate": "Add Certificate",
+      "edit": "Edit",
+      "delete": "Delete",
+      "approve": "Approve",
+      "reject": "Reject",
+      "dialog-header": "Security Certificate",
+      "agreed-number-of-guards": "Agreed Number of Security Guards",
+      "contract-document-url": "Contract Document URL",
+      "street": "Street",
+      "city": "City",
+      "state": "State",
+      "country": "Country",
+      "postal-code": "Postal Code",
+      "save": "Save",
+      "cancel": "Cancel"
     }
   },
   "enums": {
