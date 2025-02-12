@@ -31,69 +31,37 @@ export const routes: Route[] = [
   { path: 'guards', component: GuardsComponent },
   { path: 'insurance-ads', component: InsuranceAdsComponent },
 
+  // Facilities
+  { path: 'allfacilities', component: ListFacilityComponent },
+  { path: 'createFacilities', component: CreateFacilityComponent,},
+  { path: 'update-facility/:id', component: UpdateFacilityComponent },
+  { path: 'facilities/:id', component: DetialsFacilityComponent,},
+  { path: 'facilities', component: FacilitiesComponent },
+
+  // Companies
+  { path: 'companies/updateCompany/:id', component: UpdateCompanyComponent },
+  { path: 'companies/companyDetails/:id', component: CompanyDetailsComponent },
   { path: 'companies', component: CompaniesComponent },
   { path: 'companies/createCompany', component: CreateCompanyComponent },
 
-
-  {
-    path: 'companies/create-price-request/:id',
-    component: CreatePriceRequestComponent,
-  },
-  { path: 'companies/offers', component: CompanyOffersComponent },
-
-  { path: 'companies/updateCompany/:id', component: UpdateCompanyComponent },
-  { path: 'companies/companyDetails/:id', component: CompanyDetailsComponent },
-  {
-    path: 'companies/create-price-request/:id',
-    component: CreatePriceRequestComponent,
-  },
-  { path: 'companies/offers', component: CompanyOffersComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'create-reset-password', component: CreateResetPasswordComponent },
-  { path: 'reset-password', component: ResetPasswordComponent },
-
-  {
-    path: 'allfacilities',
-    component: ListFacilityComponent,
-  },
-  {
-    path: 'createFacilities',
-    component: CreateFacilityComponent,
-  },
-  {
-    path: 'update-facility/:id',
-    component: UpdateFacilityComponent, // Use the same component
-  },
-  {
-    path: 'facilities/:id',
-    component: DetialsFacilityComponent,
-  },
-
-  { path: 'companies/updateCompany/:id', component: UpdateCompanyComponent },
-  { path: 'companies/companyDetails/:id', component: CompanyDetailsComponent },
-
-  { path: 'facilities', component: FacilitiesComponent },
-  { path: 'facilities', component: ListFacilityComponent },
-  { path: 'createFacilities', component: CreateFacilityComponent },
-  { path: 'update-facility/:id', component: UpdateFacilityComponent },
-  { path: 'facilities/:id', component: DetialsFacilityComponent },
-
+  // Price Requests
   { path: 'company-price-request', component: CompanyPriceRequestsComponent },
   { path: 'facility-price-request', component: FacilityPriceRequestsComponent },
   { path: 'price-request-details/:id', component: PriceRequestDetailsComponent },
+  { path: 'create-price-request/:companyId', component: EditPriceRequestComponent },
+  { path: 'update-price-request/:priceRequestId', component: EditPriceRequestComponent },
+
+  // Price Offers
   { path: 'price-offer-details/:id', component: PriceOfferDetailsComponent },
   { path: 'company-price-offer', component: CompanyOffersComponent },
   { path: 'facility-price-offer', component: FacilityOffersComponent },
-  { path: 'create-price-request/:companyId', component: EditPriceRequestComponent },
-  { path: 'update-price-request/:priceRequestId', component: EditPriceRequestComponent },
   { path: 'create-price-offer/:priceRequestId', component: EditPriceOfferComponent },
   { path: 'update-price-offer/:priceOfferId', component: EditPriceOfferComponent },
 
+  // Registration
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'create-reset-password', component: CreateResetPasswordComponent },
-
 
   { path: '**', component: NotFoundComponent }, // wild card path
 ];
