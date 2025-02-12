@@ -30,6 +30,7 @@ export class FacilityPriceRequestsComponent implements OnInit {
   searchTerm = '';
   showCancelPopUp = false;
   showHidePopUp = false;
+  currentId = 0;
 
   ngOnInit(): void {
     this.getPriceRequests()
@@ -46,15 +47,15 @@ export class FacilityPriceRequestsComponent implements OnInit {
   openChat(): void {
     this.toastr.info('Chat feature is coming soon!', 'Coming Soon');
   }
-  cancelPriceRequest(id :number) {
+  cancelPriceRequest() {
     this.showCancelPopUp = false;
-    this.priceRequestsService.cancel(id).subscribe(() => {
+    this.priceRequestsService.cancel(this.currentId).subscribe(() => {
       this.getPriceRequests();
     })
   }
-  hidePriceRequest(id :number) {
+  hidePriceRequest() {
     this.showHidePopUp = false;
-    this.priceRequestsService.hide(id).subscribe(() => {
+    this.priceRequestsService.hide(this.currentId).subscribe(() => {
       this.getPriceRequests();
     })
   }

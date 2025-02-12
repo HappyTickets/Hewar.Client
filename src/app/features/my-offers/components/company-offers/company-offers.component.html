@@ -39,14 +39,14 @@
           <div [class.visible]="service.showActions" class="smooth-buttons">
             @if (service.showActions) {
               <p-button class="m-1" [routerLink]="['/update-price-offer/', service.id]" icon="pi pi-pencil" [disabled]="service.offerStatus !== 1" pTooltip="{{ 'update' | translate }}" tooltipPosition="top"></p-button>
-              <p-button class="m-1" icon="pi pi-eye-slash" (click)="openHidePopup()" pTooltip="{{ 'hide' | translate }}" tooltipPosition="top"></p-button>
-              <p-button class="m-1" icon="pi pi-times" (click)="openCancelPopup()" [disabled]="service.offerStatus !== 1" pTooltip="{{ 'cancel' | translate }}" tooltipPosition="top"></p-button>
+              <p-button class="m-1" icon="pi pi-eye-slash" (click)="showHidePopUp=true;currentId=service.id" pTooltip="{{ 'hide' | translate }}" tooltipPosition="top"></p-button>
+              <p-button class="m-1" icon="pi pi-times" (click)="showCancelPopUp=true;currentId=service.id" [disabled]="service.offerStatus !== 1" pTooltip="{{ 'cancel' | translate }}" tooltipPosition="top"></p-button>
               <p-button class="m-1" [routerLink]="['/price-offer-details/', service.id]" icon="pi pi-info-circle" pTooltip="{{ 'details' | translate }}" tooltipPosition="top"></p-button>
               <p-button class="m-1" icon="pi pi-comments" (click)="openChat()" pTooltip="{{ 'chat' | translate }}" tooltipPosition="top"></p-button>
             }
           </div>
-          <app-delete-popup [visible]="showHidePopUp" type="hide" (confirmDelete)="hideOffer(service.id)" (closePopup)="showHidePopUp = false"></app-delete-popup>
-          <app-delete-popup [visible]="showCancelPopUp" type="cancel" (confirmDelete)="cancelOffer(service.id)" (closePopup)="showCancelPopUp = false"></app-delete-popup>
+          <app-delete-popup [visible]="showHidePopUp" type="hide" (confirmDelete)="hideOffer()" (closePopup)="showHidePopUp = false"></app-delete-popup>
+          <app-delete-popup [visible]="showCancelPopUp" type="cancel" (confirmDelete)="cancelOffer()" (closePopup)="showCancelPopUp = false"></app-delete-popup>
         </td>
       </tr>
     </ng-template>

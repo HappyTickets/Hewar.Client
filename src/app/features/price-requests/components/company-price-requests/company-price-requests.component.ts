@@ -26,6 +26,7 @@ export class CompanyPriceRequestsComponent implements OnInit {
   private toastr = inject(ToastrService);
   priceRequests: ICompanyPriceRequest[] = [];
   searchTerm = '';
+  currentId= 0;
   showHidePopUp = false;
 
   ngOnInit(): void {
@@ -45,9 +46,9 @@ export class CompanyPriceRequestsComponent implements OnInit {
     this.toastr.info('Chat feature is coming soon!', 'Coming Soon');
   }
 
-  hide(id: number) {
+  hide() {
     this.showHidePopUp = false;
-    this.priceRequestsService.hide(id).subscribe(() => {
+    this.priceRequestsService.hide(this.currentId).subscribe(() => {
       this.getPrices();
     });
   }

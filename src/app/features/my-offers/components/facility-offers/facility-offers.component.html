@@ -27,16 +27,16 @@
           <p-button icon="pi pi-cog" (click)="toggleActions(service)" pTooltip="{{ 'app.price-request.price-request-page.actions' | translate }}" tooltipPosition="top"></p-button>
           <div [class.visible]="service.showActions" class="smooth-buttons">
             @if (service.showActions) {
-              <p-button class="m-1" icon="pi pi-check" [disabled]="service.offerStatus !== 1" (click)="showAcceptPopUp = true" pTooltip="{{ 'app.price-offer.price-offers-page.accept' | translate }}" tooltipPosition="top"></p-button>
-              <p-button class="m-1" icon="pi pi-times" [disabled]="service.offerStatus !== 1" (click)="showRejectPopUp = true" pTooltip="{{ 'app.price-offer.price-offers-page.reject' | translate }}" tooltipPosition="top"></p-button>
-              <p-button class="m-1" icon="pi pi-eye-slash" (click)="showHidePopUp = true" pTooltip="{{ 'app.price-offer.price-offers-page.hide' | translate }}" tooltipPosition="top"></p-button>
+              <p-button class="m-1" icon="pi pi-check" [disabled]="service.offerStatus !== 1" (click)="showAcceptPopUp = true;currentId=service.id" pTooltip="{{ 'app.price-offer.price-offers-page.accept' | translate }}" tooltipPosition="top"></p-button>
+              <p-button class="m-1" icon="pi pi-times" [disabled]="service.offerStatus !== 1" (click)="showRejectPopUp = true;currentId=service.id" pTooltip="{{ 'app.price-offer.price-offers-page.reject' | translate }}" tooltipPosition="top"></p-button>
+              <p-button class="m-1" icon="pi pi-eye-slash" (click)="showHidePopUp = true;currentId=service.id" pTooltip="{{ 'app.price-offer.price-offers-page.hide' | translate }}" tooltipPosition="top"></p-button>
               <p-button class="m-1" icon="pi pi-info-circle" [routerLink]="['/price-offer-details/', service.id]" pTooltip="{{ 'app.price-offer.price-offers-page.details' | translate }}" tooltipPosition="top"></p-button>
               <p-button class="m-1" icon="pi pi-comments" (click)="openChat()" pTooltip="{{ 'app.price-offer.price-offers-page.chat' | translate }}" tooltipPosition="top"></p-button>
             }
           </div>
-          <app-delete-popup [visible]="showHidePopUp" type="hide" (confirmDelete)="hideOffer(service.id)" (closePopup)="showHidePopUp = false"></app-delete-popup>
-          <app-delete-popup [visible]="showAcceptPopUp" type="accept" (confirmDelete)="acceptOffer(service.id)" (closePopup)="showAcceptPopUp = false"></app-delete-popup>
-          <app-delete-popup [visible]="showRejectPopUp" type="reject" (confirmDelete)="rejectOffer(service.id)" (closePopup)="showRejectPopUp = false"></app-delete-popup>
+          <app-delete-popup [visible]="showHidePopUp" type="hide" (confirmDelete)="hideOffer()" (closePopup)="showHidePopUp = false"></app-delete-popup>
+          <app-delete-popup [visible]="showAcceptPopUp" type="accept" (confirmDelete)="acceptOffer()" (closePopup)="showAcceptPopUp = false"></app-delete-popup>
+          <app-delete-popup [visible]="showRejectPopUp" type="reject" (confirmDelete)="rejectOffer()" (closePopup)="showRejectPopUp = false"></app-delete-popup>
         </td>
       </tr>
     </ng-template>

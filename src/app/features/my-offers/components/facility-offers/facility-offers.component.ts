@@ -30,6 +30,7 @@ export class FacilityOffersComponent implements OnInit {
   priceOffers: IGetPriceOfferById[] = [];
   searchTerm = '';
 
+  currentId = 0;
   showAcceptPopUp = false;
   showHidePopUp = false;
   showRejectPopUp = false;
@@ -65,17 +66,17 @@ export class FacilityOffersComponent implements OnInit {
     return total
   }
 
-  acceptOffer(id: number){
+  acceptOffer(){
     this.showAcceptPopUp = false;
-    this.priceOffersService.accept(id).subscribe(()=>{this.getPrices();})
+    this.priceOffersService.accept(this.currentId).subscribe(()=>{this.getPrices();})
   }
-  rejectOffer(id: number){
+  rejectOffer(){
     this.showRejectPopUp = false;
-    this.priceOffersService.reject(id).subscribe(()=>{this.getPrices();})
+    this.priceOffersService.reject(this.currentId).subscribe(()=>{this.getPrices();})
   }
-  hideOffer(id: number){
+  hideOffer(){
     this.showHidePopUp = false;
-    this.priceOffersService.hide(id).subscribe(()=>{this.getPrices();})
+    this.priceOffersService.hide(this.currentId).subscribe(()=>{this.getPrices();})
   }
   toggleActions(service: IGetPriceOfferById) {
     service.showActions = !service.showActions;

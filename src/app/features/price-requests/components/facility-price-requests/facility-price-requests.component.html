@@ -39,14 +39,14 @@
           <div [class.visible]="service.showActions" class="smooth-buttons">
             @if (service.showActions) {
               <p-button class="m-1" [routerLink]="['/update-price-request/' + service.id]" [disabled]="service.requestStatus !== 1" icon="pi pi-pencil" pTooltip="{{ 'app.price-request.price-request-page.update' | translate }}" tooltipPosition="top"></p-button>
-              <p-button class="m-1" (click)="showCancelPopUp = true" [disabled]="service.requestStatus !== 1" icon="pi pi-times" pTooltip="{{ 'app.price-request.price-request-page.cancel' | translate }}" tooltipPosition="top"></p-button>
-              <p-button class="m-1" (click)="showHidePopUp = true" icon="pi pi-eye-slash" pTooltip="{{ 'app.price-request.price-request-page.hide' | translate }}" tooltipPosition="top"></p-button>
+              <p-button class="m-1" (click)="showCancelPopUp=true;currentId=service.id" [disabled]="service.requestStatus !== 1" icon="pi pi-times" pTooltip="{{ 'app.price-request.price-request-page.cancel' | translate }}" tooltipPosition="top"></p-button>
+              <p-button class="m-1" (click)="showHidePopUp=true;currentId=service.id" icon="pi pi-eye-slash" pTooltip="{{ 'app.price-request.price-request-page.hide' | translate }}" tooltipPosition="top"></p-button>
               <p-button class="m-1" (click)="openChat()" icon="pi pi-comments" pTooltip="{{ 'app.price-request.price-request-page.chat' | translate }}" tooltipPosition="top"></p-button>
               <p-button class="m-1" [routerLink]="['/price-request-details/' + service.id]" icon="pi pi-info-circle" pTooltip="{{ 'app.price-request.price-request-page.details' | translate }}" tooltipPosition="top"></p-button>
             }
           </div>
-          <app-delete-popup [visible]="showHidePopUp" type="hide" (confirmDelete)="hidePriceRequest(service.id)" (closePopup)="showHidePopUp = false"></app-delete-popup>
-          <app-delete-popup [visible]="showCancelPopUp" type="cancel" (confirmDelete)="cancelPriceRequest(service.id)" (closePopup)="showCancelPopUp = false"></app-delete-popup>
+          <app-delete-popup [visible]="showHidePopUp" type="hide" (confirmDelete)="hidePriceRequest()" (closePopup)="showHidePopUp = false"></app-delete-popup>
+          <app-delete-popup [visible]="showCancelPopUp" type="cancel" (confirmDelete)="cancelPriceRequest()" (closePopup)="showCancelPopUp = false"></app-delete-popup>
         </td>
 
       </tr>

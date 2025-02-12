@@ -28,6 +28,7 @@ export class CompanyOffersComponent implements OnInit {
   private toastr = inject(ToastrService);
   priceOffers: IGetPriceOfferById[] = [];
   searchTerm = '';
+  currentId = 0;
   showCancelPopUp = false;
   showHidePopUp = false;
 
@@ -37,6 +38,8 @@ export class CompanyOffersComponent implements OnInit {
   getPrices(): void {
     this.priceOffersService.getMyCompanyOffers().subscribe(res => {
       if (res.data) this.priceOffers = res.data;
+      console.log(res.data);
+
     })
   }
   openChat(): void {
@@ -62,21 +65,15 @@ export class CompanyOffersComponent implements OnInit {
     }, 0);
     return total
   }
-  cancelOffer(id: number){
+  cancelOffer(){
     this.showCancelPopUp = false;
-    this.priceOffersService.cancel(id).subscribe(()=>{this.getPrices();})
+    this.priceOffersService.cancel(this.currentId).subscribe(()=>{this.getPrices();})
   }
-  hideOffer(id: number){
+  hideOffer(){
     this.showHidePopUp = false;
-    this.priceOffersService.hide(id).subscribe(()=>{this.getPrices();})
+    this.priceOffersService.hide(this.currentId).subscribe(()=>{this.getPrices();})
   }
 
-  openCancelPopup() {
-    this.showCancelPopUp = true;
-  }
-  openHidePopup() {
-    this.showHidePopUp = true;
-  }
   toggleActions(service: IGetPriceOfferById) {
     service.showActions = !service.showActions;
   }
