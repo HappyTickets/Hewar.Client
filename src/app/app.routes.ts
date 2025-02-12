@@ -14,7 +14,6 @@ import { ListFacilityComponent } from './features/facilities/list-facility/list-
 import { CreateFacilityComponent } from './features/facilities/create-facility/create-facility.component';
 import { UpdateFacilityComponent } from './features/facilities/update-facility/update-facility.component';
 import { DetialsFacilityComponent } from './features/facilities/detials-facility/detials-facility.component';
-
 import { UpdateCompanyComponent } from './features/companies/components/update-company/update-company.component';
 import { CompanyDetailsComponent } from './features/companies/components/company-details/company-details.component';
 import { FacilityPriceRequestsComponent } from './features/price-requests/components/facility-price-requests/facility-price-requests.component';
@@ -26,7 +25,6 @@ import { PriceRequestDetailsComponent } from './features/price-requests/componen
 import { PriceOfferDetailsComponent } from './features/my-offers/components/price-offer-details/price-offer-details.component';
 import { CompanyPriceRequestsComponent } from './features/price-requests/components/company-price-requests/company-price-requests.component';
 
-
 export const routes: Route[] = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomePageComponent },
@@ -35,6 +33,43 @@ export const routes: Route[] = [
 
   { path: 'companies', component: CompaniesComponent },
   { path: 'companies/createCompany', component: CreateCompanyComponent },
+
+
+  {
+    path: 'companies/create-price-request/:id',
+    component: CreatePriceRequestComponent,
+  },
+  { path: 'companies/offers', component: CompanyOffersComponent },
+
+  { path: 'companies/updateCompany/:id', component: UpdateCompanyComponent },
+  { path: 'companies/companyDetails/:id', component: CompanyDetailsComponent },
+  {
+    path: 'companies/create-price-request/:id',
+    component: CreatePriceRequestComponent,
+  },
+  { path: 'companies/offers', component: CompanyOffersComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'create-reset-password', component: CreateResetPasswordComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
+
+  {
+    path: 'allfacilities',
+    component: ListFacilityComponent,
+  },
+  {
+    path: 'createFacilities',
+    component: CreateFacilityComponent,
+  },
+  {
+    path: 'update-facility/:id',
+    component: UpdateFacilityComponent, // Use the same component
+  },
+  {
+    path: 'facilities/:id',
+    component: DetialsFacilityComponent,
+  },
+
   { path: 'companies/updateCompany/:id', component: UpdateCompanyComponent },
   { path: 'companies/companyDetails/:id', component: CompanyDetailsComponent },
 
@@ -58,6 +93,7 @@ export const routes: Route[] = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'create-reset-password', component: CreateResetPasswordComponent },
+
 
   { path: '**', component: NotFoundComponent }, // wild card path
 ];

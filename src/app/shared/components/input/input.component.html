@@ -1,14 +1,29 @@
 <div class="input-container mb-3">
-  @if (label) {
-  <label [for]="formControl" class="input-label">{{ 'app.'+ label | translate }}</label>
-  }
+  <label [for]="formControl" class="input-label">{{
+    "app." + label | translate
+  }}</label>
   @if (type === 'dropdown') {
-  <p-select [readonly]="readonly" [options]="options" [placeholder]="placeholder ? ('app.' + placeholder | translate): ''" [formControl]="formControl" inputId="{{ controlName }}" optionLabel="name" optionValue="code"></p-select>
+  <p-select
+    [options]="options"
+    [placeholder]="'app.' + placeholder | translate"
+    [formControl]="formControl"
+    inputId="{{ controlName }}"
+    optionLabel="name"
+    optionValue="code"
+  ></p-select>
   } @else {
   <p-iconfield>
     <p-inputicon class="pi" [ngClass]="icon" />
-    <input pInputText [type]="type" [placeholder]="'app.' + placeholder | translate" [formControl]="formControl"/>
+    <input
+      pInputText
+      [type]="type"
+      [placeholder]="'app.' + placeholder | translate"
+      [formControl]="formControl"
+    />
   </p-iconfield>
-  }
-  @if (hasError) {<p-message severity="error" [text]="'app.' + errorKey | translate"></p-message>}
+  } @if (hasError) {<p-message
+    severity="error"
+    [text]="'app.' + errorKey | translate"
+  ></p-message
+  >}
 </div>

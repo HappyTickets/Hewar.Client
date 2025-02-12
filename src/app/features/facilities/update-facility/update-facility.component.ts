@@ -104,14 +104,6 @@ export class UpdateFacilityComponent implements OnInit {
         country: ['', Validators.required],
         postalCode: ['', Validators.required],
       }),
-      // adminInfo: this.fb.group({
-      //   email: ['', [Validators.required, Validators.email]],
-      //   password: ['', Validators.required],
-      //   firstName: ['', Validators.required],
-      //   lastName: ['', Validators.required],
-      //   phone: ['', Validators.required],
-      //   imageUrl: [''],
-      // }),
     });
   }
 
@@ -142,18 +134,7 @@ export class UpdateFacilityComponent implements OnInit {
       }
     });
   }
-  // updateFacility(): void {
-  //   if (this.facilityForm.invalid) return;
 
-  //   this.facilityService.updateFacility( this.facilityForm.value).subscribe(
-  //     (response) => {
-  //       console.log('Facility updated:', response);
-  //     },
-  //     (error) => {
-  //       console.error('Update failed:', error);
-  //     }
-  //   );
-  // }
   validateNumberInput(event: KeyboardEvent) {
     const charCode = event.which ? event.which : event.keyCode;
     if (charCode < 48 || charCode > 57) {
@@ -218,5 +199,11 @@ export class UpdateFacilityComponent implements OnInit {
   }
   cancel(): void {
     this.router.navigate(['/facilities']);
+  }
+  get addressFormGroup(): FormGroup {
+    return this.facilityForm.get('address') as FormGroup;
+  }
+  get adminInfo(): FormGroup {
+    return this.facilityForm.get('adminInfo') as FormGroup;
   }
 }
