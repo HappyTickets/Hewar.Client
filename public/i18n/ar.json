@@ -625,5 +625,29 @@
       "1": "دوام جزئي",
       "2": "دوام كامل"
     }
+    
+  },
+  "ads": {
+    "crearte-ad":{
+      "header": "إنشاء إعلان جديد",
+      "title": "العنوان",
+      "description": "الوصف",
+      "OrderPriceRequest":"طلب عرض سعر",
+      "contractDate":"تاريخ التعاقد",
+      "startContract":"بداية التعاقد",
+      "endContract":"نهاية التعاقد",
+      "contractType":"نوع التعاقد",
+      "services":"الخدمات",
+      "serviceType": "نوع الخدمة",
+      "quantity": "الكمية",
+      "shiftType": "نوع الوردية",
+      "otherDetails": "تفاصيل أخرى",
+      "serviceName": "اسم الخدمة",
+       "publish": "نشر",
+      "cancel": "إلغاء"
+      
+
+    }
   }
+  
 }

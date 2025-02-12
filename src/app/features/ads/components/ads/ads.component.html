@@ -1,0 +1,162 @@
+<form class="container" [formGroup]="createAdForm">
+  <div class="header">
+    <h1>{{ "ads.crearte-ad.header" | translate }}</h1>
+  </div>
+
+  <div class="content">
+    <!-- title  Section -->
+
+    <h2>{{ "ads.crearte-ad.title" | translate }}</h2>
+
+    <div class="input-group col-12">
+      <input
+        pInputText
+        formControlName="title"
+        [placeholder]="'ads.crearte-ad.title' | translate"
+      />
+    </div>
+
+  <!-- Description Section -->
+
+
+    <h2>{{ "ads.crearte-ad.description" | translate }}</h2>
+
+    <div class="input-group col-12">
+      <textarea
+        pInputTextarea
+        formControlName="description"
+        [placeholder]="'ads.crearte-ad.description' | translate"
+      ></textarea>
+    </div>
+
+    <!-- Price Request Section -->
+
+    <h2>{{ "ads.crearte-ad.OrderPriceRequest" | translate }}</h2>
+    <div class="grid">
+      <div class="input-group col-12 md:col-6">
+        <label for="startDate">{{
+          "ads.crearte-ad.contractDate" | translate
+        }}</label>
+        <p-datepicker
+          formControlName="startDate"
+          [placeholder]="'ads.crearte-ad.startContract' | translate"
+          showIcon
+          iconDisplay="input"
+          [minDate]="date"
+        ></p-datepicker>
+      </div>
+      <div class="input-group col-12 md:col-6">
+        <label for="endDate">{{
+          "ads.crearte-ad.endContract" | translate
+        }}</label>
+        <p-datepicker
+          formControlName="endDate"
+          [placeholder]="'ads.crearte-ad.endContract' | translate"
+          showIcon
+          iconDisplay="input"
+        ></p-datepicker>
+      </div>
+
+      <div class="input-group col-12">
+        <label for="contractType">{{
+          "ads.crearte-ad.contractType" | translate
+        }}</label>
+
+        <p-select
+          id="contractType"
+          [options]="contractTypes"
+          formControlName="contractType"
+          [placeholder]=""
+        >
+        </p-select>
+      </div>
+    </div>
+
+    <!-- Service Details Section -->
+
+    <h2>{{ "ads.crearte-ad.services" | translate }}</h2>
+    <div formArrayName="services">
+      @for (service of services.controls ; track service; let i = $index) {
+
+      <div [formGroupName]="i" class="service-item">
+        @if (i === createAdForm.value.services.length - 1) {
+        <p-button icon="pi pi-plus" (click)="addService()"></p-button>
+        }
+        <div class="input-row">
+          <p-select
+            [options]="securityRoles"
+            formControlName="shiftType"
+            [placeholder]="'ads.crearte-ad.serviceType' | translate"
+          ></p-select>
+          <p-inputNumber
+            [showButtons]="true"
+            formControlName="quantity"
+            [placeholder]="'ads.crearte-ad.quantity' | translate"
+          ></p-inputNumber>
+          <p-select
+            [options]="shiftType"
+            formControlName="shiftType"
+            [placeholder]="'ads.crearte-ad.shiftType' | translate"
+          ></p-select>
+        </div>
+        <p-button
+          icon="pi pi-trash"
+          (click)="removeService(i)"
+          [disabled]="i === 0 && createAdForm.value.services.length <= 1"
+        ></p-button>
+      </div>
+
+      }
+    </div>
+ 
+    <!-- Other Services Section -->
+
+    <h2>{{ "ads.crearte-ad.otherDetails" | translate }}</h2>
+    <div formArrayName="otherServices">
+      @for (service of otherServices.controls; track service; let i = $index) {
+      <div [formGroupName]="i" class="service-item">
+        @if (i === createAdForm.value.otherServices.length - 1) {
+        <p-button icon="pi pi-plus" (click)="addOtherService()"></p-button>
+        }
+        <div class="input-row">
+          <input
+            pInputText
+            formControlName="name"
+            [placeholder]="'ads.crearte-ad.serviceName' | translate"
+          />
+          <p-inputNumber
+            [showButtons]="true"
+            formControlName="quantity"
+            [min]="1"
+            [placeholder]="'ads.crearte-ad.quantity' | translate"
+          ></p-inputNumber>
+          <p-select
+            [options]="shiftType"
+            formControlName="shiftType"
+            [placeholder]="'ads.crearte-ad.shiftType' | translate"
+          ></p-select>
+        </div>
+        <p-button
+          icon="pi pi-trash"
+          (click)="removeOtherService(i)"
+          [disabled]="i === 0 && createAdForm.value.otherServices.length <= 1"
+        ></p-button>
+      </div>
+      }
+    </div>
+        <!-- Buttons -->
+
+        <div class="button-group">
+            <p-button
+            [label]="'ads.crearte-ad.cancel' | translate"
+            (click)="onCancel()"
+            fluid="true"
+          ></p-button>
+          <p-button
+            [label]="'ads.crearte-ad.publish' | translate"
+            (click)="onSubmit()"
+            fluid="true"
+          ></p-button>
+        </div>
+  </div>
+</form>

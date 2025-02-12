@@ -20,7 +20,7 @@ import { UpdateFacilityComponent } from './features/facilities/update-facility/u
 
 import { UpdateCompanyComponent } from './features/companies/components/update-company/update-company.component';
 import { CompanyDetailsComponent } from './features/companies/components/company-details/company-details.component';
-
+import { AdsComponent } from './features/ads/components/ads/ads.component';
 
 export const routes: Route[] = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -38,10 +38,13 @@ export const routes: Route[] = [
   },
   { path: 'companies/offers', component: CompanyOffersComponent },
 
-
   { path: 'companies/updateCompany/:id', component: UpdateCompanyComponent },
   { path: 'companies/companyDetails/:id', component: CompanyDetailsComponent },
-  { path: 'companies/create-price-request/:id', component: CreatePriceRequestComponent },
+  {
+    path: 'companies/create-price-request/:id',
+    component: CreatePriceRequestComponent,
+  },
+  { path: 'createAds', component: AdsComponent },
   { path: 'companies/offers', component: CompanyOffersComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -60,7 +63,6 @@ export const routes: Route[] = [
     path: 'update-facility/:id',
     component: UpdateFacilityComponent, // Use the same component
   },
-
 
   { path: '**', component: NotFoundComponent }, // wild card path
 ];
