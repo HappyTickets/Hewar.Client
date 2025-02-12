@@ -34,7 +34,6 @@ export class CompanyOffersComponent implements OnInit {
   ngOnInit(): void {
     this.getPrices();
   }
-
   getPrices(): void {
     this.priceOffersService.getMyCompanyOffers().subscribe(res => {
       if (res.data) this.priceOffers = res.data;
