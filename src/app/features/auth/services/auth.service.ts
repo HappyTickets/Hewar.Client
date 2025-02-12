@@ -23,26 +23,34 @@ export class AuthService {
     return this.http.post<IApiResponse<null>>(authRoutes.registerGuard, guard);
   }
 
-  registerFacility( facility: IRegisterFacility ): Observable<IApiResponse<null>> {
-    return this.http.post<IApiResponse<null>>( authRoutes.registerFacility, facility);
+  registerFacility(
+    facility: IRegisterFacility
+  ): Observable<IApiResponse<null>> {
+    return this.http.post<IApiResponse<null>>(
+      authRoutes.registerFacility,
+      facility
+    );
   }
 
   registerCompany(company: IRegisterCompany): Observable<IApiResponse<null>> {
-    return this.http.post<IApiResponse<null>>( authRoutes.registerCompany, company );
+    return this.http.post<IApiResponse<null>>(
+      authRoutes.registerCompany,
+      company
+    );
   }
 
   // <== == == == == == == == Login & Logout == == == == == == == ==>
   login(loginData: ILogin): Observable<IApiResponse<ILoginResponse>> {
-    return this.http.post<IApiResponse<ILoginResponse>>(authRoutes.login, loginData).pipe(
-      tap((res) => {
-        if (res.data) {
-          this.storeResponse(res.data);
-          console.log(res.data);
-
-          this.router.navigate(['/home']);
-        } else throw new Error('Response data is null');
-      })
-    )
+    return this.http
+      .post<IApiResponse<ILoginResponse>>(authRoutes.login, loginData)
+      .pipe(
+        tap((res) => {
+          if (res.data) {
+            this.storeResponse(res.data);
+            this.router.navigate(['/home']);
+          } else throw new Error('Response data is null');
+        })
+      );
   }
 
   logout(): void {
@@ -50,27 +58,22 @@ export class AuthService {
   }
 
   refreshToken(): Observable<IApiResponse<ILoginResponse>> {
-    if (!this.checkAccessTokenExpiry()) {
-      this.logout();
-      throw new Error('Access token has expired. Please log in again.');
-    }
     const accessToken = this.getAccessToken();
     if (!accessToken) {
       this.logout();
       throw new Error('Refresh token is missing');
     }
-
-    return this.http.post<IApiResponse<ILoginResponse>>(authRoutes.refreshToken, { accessToken } ).pipe(
-      tap((res) => {
-        if (res.data) this.storeResponse(res.data);
-        else throw new Error('Response data is null');
-      })
-    )
+    return this.http.post<IApiResponse<ILoginResponse>>(
+      authRoutes.refreshToken,
+      { accessToken }
+    );
   }
 
   // <== == == == == == == == Email == == == == == == == ==>
   sendConfirmationEmail(email: string): Observable<IApiResponse<null>> {
-    return this.http.post<IApiResponse<null>>(emailRoutes.sendConfirmation, { email });
+    return this.http.post<IApiResponse<null>>(emailRoutes.sendConfirmation, {
+      email,
+    });
   }
 
   confirmEmail(request: IConfirmEmail): Observable<IApiResponse<null>> {
@@ -78,7 +81,10 @@ export class AuthService {
   }
 
   confirmEmailChange(request: IConfirmEmail): Observable<IApiResponse<null>> {
-    return this.http.post<IApiResponse<null>>( emailRoutes.confirmChange, request);
+    return this.http.post<IApiResponse<null>>(
+      emailRoutes.confirmChange,
+      request
+    );
   }
 
   // <== == == == == == == == Password == == == == == == == ==>
@@ -91,24 +97,32 @@ export class AuthService {
   }
 
   createResetPassword(email: string): Observable<IApiResponse<null>> {
-    return this.http.post<IApiResponse<null>>( passwordRoutes.createResetPassword, { email });
+    return this.http.post<IApiResponse<null>>(
+      passwordRoutes.createResetPassword,
+      { email }
+    );
   }
 
   checkAccessTokenExpiry(): boolean {
     const accessTokenExpDate = this.getUserInfo()?.accessTokenExpDate;
 
-    if (!accessTokenExpDate) throw new Error('Access token expiration date is missing');
+    if (!accessTokenExpDate)
+      throw new Error('Access token expiration date is missing');
 
     const expirationDate = new Date(accessTokenExpDate).getTime();
     return expirationDate > Date.now();
   }
 
   storeResponse(data: ILoginResponse): void {
-    localStorage.setItem('userInfo', JSON.stringify({
-      firstName: data.firstName,
-      permissions: data.permissions,
-    }));
-    localStorage.setItem('accessToken',data.accessToken)
+    localStorage.setItem(
+      'userInfo',
+      JSON.stringify({
+        firstName: data.firstName,
+        permissions: data.permissions,
+        accessTokenExpDate: data.accessTokenExpDate,
+      })
+    );
+    localStorage.setItem('accessToken', data.accessToken);
   }
 
   getAccessToken(): string | null {

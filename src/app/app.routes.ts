@@ -8,11 +8,7 @@ import { HomePageComponent } from './features/home-page/home-page.component';
 import { LoginComponent } from './features/auth/components/login/login.component';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 import { RegisterComponent } from './features/auth/components/register/register.component';
-import { CreatePriceRequestComponent } from './features/price-requests/components/price-request/create-price-request.component';
-import { ResetPasswordComponent } from './features/auth/components/reset-password/reset-password.component';
 import { CreateResetPasswordComponent } from './features/auth/components/create-reset-password/create-reset-password.component';
-import { CompanyOffersComponent } from './features/my-offers/components/company-offers/company-offers.component';
-import { FacilityOffersComponent } from './features/my-offers/components/facility-offers/facility-offers.component';
 
 import { ListFacilityComponent } from './features/facilities/list-facility/list-facility.component';
 import { CreateFacilityComponent } from './features/facilities/create-facility/create-facility.component';
@@ -20,16 +16,24 @@ import { UpdateFacilityComponent } from './features/facilities/update-facility/u
 import { DetialsFacilityComponent } from './features/facilities/detials-facility/detials-facility.component';
 import { UpdateCompanyComponent } from './features/companies/components/update-company/update-company.component';
 import { CompanyDetailsComponent } from './features/companies/components/company-details/company-details.component';
+import { FacilityPriceRequestsComponent } from './features/price-requests/components/facility-price-requests/facility-price-requests.component';
+import { CompanyOffersComponent } from './features/my-offers/components/company-offers/company-offers.component';
+import { FacilityOffersComponent } from './features/my-offers/components/facility-offers/facility-offers.component';
+import { EditPriceRequestComponent } from './features/price-requests/components/edit-price-request/edit-price-request.component';
+import { EditPriceOfferComponent } from './features/my-offers/components/edit-price-offer/edit-price-offer.component';
+import { PriceRequestDetailsComponent } from './features/price-requests/components/price-request-details/price-request-details.component';
+import { PriceOfferDetailsComponent } from './features/my-offers/components/price-offer-details/price-offer-details.component';
+import { CompanyPriceRequestsComponent } from './features/price-requests/components/company-price-requests/company-price-requests.component';
 
 export const routes: Route[] = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomePageComponent },
   { path: 'guards', component: GuardsComponent },
   { path: 'insurance-ads', component: InsuranceAdsComponent },
-  { path: 'facilities', component: FacilitiesComponent },
-  { path: 'facilities/offers', component: FacilityOffersComponent },
+
   { path: 'companies', component: CompaniesComponent },
   { path: 'companies/createCompany', component: CreateCompanyComponent },
+
 
   {
     path: 'companies/create-price-request/:id',
@@ -65,6 +69,31 @@ export const routes: Route[] = [
     path: 'facilities/:id',
     component: DetialsFacilityComponent,
   },
+
+  { path: 'companies/updateCompany/:id', component: UpdateCompanyComponent },
+  { path: 'companies/companyDetails/:id', component: CompanyDetailsComponent },
+
+  { path: 'facilities', component: FacilitiesComponent },
+  { path: 'facilities', component: ListFacilityComponent },
+  { path: 'createFacilities', component: CreateFacilityComponent },
+  { path: 'update-facility/:id', component: UpdateFacilityComponent },
+  { path: 'facilities/:id', component: DetialsFacilityComponent },
+
+  { path: 'company-price-request', component: CompanyPriceRequestsComponent },
+  { path: 'facility-price-request', component: FacilityPriceRequestsComponent },
+  { path: 'price-request-details/:id', component: PriceRequestDetailsComponent },
+  { path: 'price-offer-details/:id', component: PriceOfferDetailsComponent },
+  { path: 'company-price-offer', component: CompanyOffersComponent },
+  { path: 'facility-price-offer', component: FacilityOffersComponent },
+  { path: 'create-price-request/:companyId', component: EditPriceRequestComponent },
+  { path: 'update-price-request/:priceRequestId', component: EditPriceRequestComponent },
+  { path: 'create-price-offer/:priceRequestId', component: EditPriceOfferComponent },
+  { path: 'update-price-offer/:priceOfferId', component: EditPriceOfferComponent },
+
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'create-reset-password', component: CreateResetPasswordComponent },
+
 
   { path: '**', component: NotFoundComponent }, // wild card path
 ];

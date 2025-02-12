@@ -78,7 +78,7 @@ export class RegisterFacilityComponent {
         },
         address: {
           street: this.registerForm.value.street,
-          city: this.registerForm.value.city,
+          city: ""+this.registerForm.value.city,
           state: this.registerForm.value.state,
           country: this.registerForm.value.country,
           postalCode: this.registerForm.value.postalCode,

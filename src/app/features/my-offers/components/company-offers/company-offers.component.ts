@@ -1,52 +1,57 @@
-import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { ButtonModule } from 'primeng/button';
-import { DialogModule } from 'primeng/dialog';
-import { TableModule } from 'primeng/table';
-import { ToastModule } from 'primeng/toast';
-import { InputNumberModule } from 'primeng/inputnumber';
-import { FormsModule } from '@angular/forms';
+import { Component, inject, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { PriceOffersService } from '../../services/price-offers.service';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
+import { ButtonModule } from 'primeng/button';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
+import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
-import { IOffer, openedOffers } from '../../dummy-data';
+import { TableModule } from 'primeng/table';
+import { ToastModule } from 'primeng/toast';
+import { IGetPriceOfferById } from '../../models/iget-price-offer-by-id';
 
 @Component({
-  standalone: true,
-  imports: [CommonModule, IconFieldModule, InputTextModule, InputIconModule, ButtonModule, TableModule, DialogModule, ToastModule, InputNumberModule, FormsModule],
   selector: 'app-company-offers',
+  standalone: true,
+  imports: [ IconFieldModule, InputTextModule, InputIconModule, ButtonModule, TableModule, ToastModule, InputNumberModule, FormsModule, TranslatePipe, RouterModule],
   templateUrl: './company-offers.component.html',
   styleUrl: './company-offers.component.scss'
 })
-export class CompanyOffersComponent {
+export class CompanyOffersComponent implements OnInit {
+  private priceOffersService = inject(PriceOffersService);
   private toastr = inject(ToastrService);
-  companyOffers = openedOffers;
+  priceOffers: IGetPriceOfferById[] = [];
   searchTerm = '';
 
+  ngOnInit(): void {
+    this.getPrices();
+  }
+
+  getPrices(): void {
+    this.priceOffersService.getMyCompanyOffers().subscribe(res => {
+      if (res.data) this.priceOffers = res.data;
+    })
+  }
   openChat(): void {
     this.toastr.info('Chat feature is coming soon!', 'Coming Soon');
   }
-
-  editOffer(offer: IOffer): void {
-    offer.isEditMode = true;
+  getTotalDailyCost(services: {dailyCostPerUnit:number, quantity:number}[]): number {
+    return services.reduce((total, service) => {
+      return total + (service.dailyCostPerUnit * service.quantity);
+    }, 0);
   }
-
-  cancelEdit(offer: IOffer): void {
-    offer.isEditMode = false;
+  getTotalMonthlyCost(services: {monthlyCostPerUnit:number, quantity:number}[]): number {
+    return services.reduce((total, service) => {
+      return total + (service.monthlyCostPerUnit * service.quantity);
+    }, 0);
   }
-
-  isSubmitDisabled(offer: IOffer): boolean {
-    return offer.services.some((service) => !service.monthlyCost || !service.dailyCost);
+  cancelOffer(id: number){
+    this.priceOffersService.cancel(id).subscribe(()=>{this.getPrices();})
   }
-
-  submitOffer(offer: IOffer): void {
-    offer.isEditMode = false;
-    this.toastr.success('Offer updated successfully!', 'Success');
-  }
-
-  deleteOffer(offer: IOffer): void {
-    this.companyOffers = this.companyOffers.filter((o) => o.id !== offer.id);
-    this.toastr.success('Offer deleted successfully!', 'Success');
+  hideOffer(id: number){
+    this.priceOffersService.hide(id).subscribe(()=>{this.getPrices();})
   }
 }

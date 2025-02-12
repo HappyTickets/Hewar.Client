@@ -1,9 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatTabsModule } from '@angular/material/tabs';
+import { RouterModule } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { ButtonModule } from 'primeng/button';
-import { DataViewModule } from 'primeng/dataview';
 import { DialogModule } from 'primeng/dialog';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
@@ -11,44 +12,52 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
-import { IOffer, securityOffers } from '../../dummy-data';
+import { PriceOffersService } from '../../services/price-offers.service';
+import { IGetPriceOfferById } from '../../models/iget-price-offer-by-id';
 
 @Component({
   selector: 'app-facility-offers',
   standalone: true,
-  imports: [DataViewModule, IconFieldModule, InputTextModule, InputIconModule, ButtonModule, TableModule, DialogModule, MatTabsModule, ToastModule, InputNumberModule, FormsModule],
+  imports: [ CommonModule, IconFieldModule, InputTextModule, InputIconModule, ButtonModule, TableModule, DialogModule, ToastModule, InputNumberModule, FormsModule, TranslatePipe, RouterModule],
   templateUrl: './facility-offers.component.html',
   styleUrl: './facility-offers.component.scss'
 })
-export class FacilityOffersComponent {
+export class FacilityOffersComponent implements OnInit {
+  private priceOffersService = inject(PriceOffersService);
   private toastr = inject(ToastrService);
-  securityOffers = securityOffers;
+  priceOffers: IGetPriceOfferById[] = [];
   searchTerm = '';
+
+  ngOnInit(): void {
+    this.getPrices();
+  }
+
+  getPrices(): void {
+    this.priceOffersService.getMyFacilityOffers().subscribe(res => {
+      if (res.data) this.priceOffers = res.data;
+    })
+  }
 
   openChat(): void {
     this.toastr.info('Chat feature is coming soon!', 'Coming Soon');
   }
-
-  editOffer(offer: IOffer): void {
-    offer.isEditMode = true;
+  getTotalDailyCost(services: {dailyCostPerUnit:number, quantity:number}[]): number {
+    return services.reduce((total, service) => {
+      return total + (service.dailyCostPerUnit * service.quantity);
+    }, 0);
   }
-
-  cancelEdit(offer: IOffer): void {
-    offer.isEditMode = false;
+  getTotalMonthlyCost(services: {monthlyCostPerUnit:number, quantity:number}[]): number {
+    return services.reduce((total, service) => {
+      return total + (service.monthlyCostPerUnit * service.quantity);
+    }, 0);
   }
-
-  isSubmitDisabled(offer: IOffer): boolean {
-    return offer.services.some((service) => !service.monthlyCost || !service.dailyCost);
+  acceptOffer(id: number){
+    this.priceOffersService.accept(id).subscribe(()=>{this.getPrices();})
   }
-
-  submitOffer(offer: IOffer): void {
-    offer.isEditMode = false;
-    this.toastr.success('Offer updated successfully!', 'Success');
+  rejectOffer(id: number){
+    this.priceOffersService.reject(id).subscribe(()=>{this.getPrices();})
   }
-
-  deleteOffer(offer: IOffer): void {
-    this.securityOffers = this.securityOffers.filter((o) => o.id !== offer.id);
-    this.toastr.success('Offer deleted successfully!', 'Success');
+  hideOffer(id: number){
+    this.priceOffersService.hide(id).subscribe(()=>{this.getPrices();})
   }
 }
-
