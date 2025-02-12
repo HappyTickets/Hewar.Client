@@ -4,24 +4,21 @@
   position: relative;
   display: block;
 }
-
 ::ng-deep a::before {
   position: absolute;
   right: 0;
   color: #6f7481;
 }
-
 ::ng-deep a:hover {
   color: #000;
 }
-
 ::ng-deep a:hover::before {
   color: #fff;
 }
 ::ng-deep .p-button {
   background: linear-gradient(267.93deg, #00223c -5.69%, #1a759f 103.34%) !important;
   color: #fff;
-  border-color: black !important;
+  border: none !important;
 }
 ::ng-deep .p-button:hover {
   background: linear-gradient(267.93deg, #015da3 -5.69%, #1a759f 103.34%) !important;
