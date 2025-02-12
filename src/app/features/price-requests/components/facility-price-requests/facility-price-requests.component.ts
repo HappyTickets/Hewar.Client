@@ -10,14 +10,16 @@ import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { IFacilityPriceRequest } from '../../models/ifacility-price-request';
 import { PriceRequestsService } from '../../services/price-requests.service';
-import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
+import { TooltipModule } from 'primeng/tooltip';
+import { DeletePopupComponent } from '../../../../shared/components/delete-popup/delete-popup.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-facility-price-requests',
   standalone: true,
-  imports: [IconFieldModule, InputTextModule, InputIconModule, ButtonModule, TableModule, ToastModule, InputNumberModule, FormsModule, CommonModule, TranslatePipe, RouterModule],
+  imports: [IconFieldModule, ButtonModule, InputTextModule, InputIconModule, TooltipModule, ButtonModule, TableModule, ToastModule, InputNumberModule, FormsModule, TranslatePipe, RouterModule, DeletePopupComponent, CommonModule],
   templateUrl: './facility-price-requests.component.html',
   styleUrl: './facility-price-requests.component.scss'
 })
@@ -26,6 +28,9 @@ export class FacilityPriceRequestsComponent implements OnInit {
   private toastr = inject(ToastrService);
   priceRequests: IFacilityPriceRequest[] = [];
   searchTerm = '';
+  showCancelPopUp = false;
+  showHidePopUp = false;
+  currentId = 0;
 
   ngOnInit(): void {
     this.getPriceRequests()
@@ -42,16 +47,19 @@ export class FacilityPriceRequestsComponent implements OnInit {
   openChat(): void {
     this.toastr.info('Chat feature is coming soon!', 'Coming Soon');
   }
-  cancelPriceRequest(id :number) {
-    this.priceRequestsService.cancel(id).subscribe(res => {
+  cancelPriceRequest() {
+    this.showCancelPopUp = false;
+    this.priceRequestsService.cancel(this.currentId).subscribe(() => {
       this.getPriceRequests();
-      console.log(res);
     })
   }
-  hidePriceRequest(id :number) {
-    this.priceRequestsService.hide(id).subscribe(res => {
+  hidePriceRequest() {
+    this.showHidePopUp = false;
+    this.priceRequestsService.hide(this.currentId).subscribe(() => {
       this.getPriceRequests();
-      console.log(res);
     })
+  }
+  toggleActions(service: IFacilityPriceRequest) {
+    service.showActions = !service.showActions;
   }
 }

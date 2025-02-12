@@ -28,9 +28,6 @@ export class ConfirmEmailComponent {
 
   onConfirm(): void {
     if (this.confirmationCode && this.email) {
-      console.log(this.confirmationCode);
-      console.log(this.email);
-
       this.authService.confirmEmail({ verificationCode: this.confirmationCode, email: this.email }).subscribe(() => {
           this.onCancel();
           this.loginAfterVerification();

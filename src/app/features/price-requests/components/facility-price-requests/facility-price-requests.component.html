@@ -34,13 +34,21 @@
         <td>{{ service.company.name }}</td>
         <td>{{ 'enums.contract-types.' + service.contractType | translate }}</td>
         <td>{{ 'enums.request-status.' + service.requestStatus | translate }}</td>
-        <td>
-          <p-button class="m-1" [routerLink]="['/update-price-request/' + service.id ]" [disabled]="service.requestStatus !== 1" [label]="'app.price-request.price-request-page.update' | translate"/>
-          <p-button class="m-1" (click)="cancelPriceRequest(service.id)" [label]="'app.price-request.price-request-page.cancel' | translate" [disabled]="service.requestStatus !== 1"/>
-          <p-button class="m-1" (click)="hidePriceRequest(service.id)" [label]="'app.price-request.price-request-page.hide' | translate"/>
-          <p-button class="m-1" (click)="openChat()" [label]="'app.price-request.price-request-page.chat' | translate"/>
-          <p-button class="m-1" [routerLink]="['/price-request-details/' + service.id ]" [label]="'app.price-request.price-request-page.details' | translate"/>
+        <td class="flex flex-row">
+          <p-button icon="pi pi-cog" (click)="toggleActions(service)" pTooltip="{{ 'app.price-request.price-request-page.actions' | translate }}" tooltipPosition="top"></p-button>
+          <div [class.visible]="service.showActions" class="smooth-buttons">
+            @if (service.showActions) {
+              <p-button class="m-1" [routerLink]="['/update-price-request/' + service.id]" [disabled]="service.requestStatus !== 1" icon="pi pi-pencil" pTooltip="{{ 'app.price-request.price-request-page.update' | translate }}" tooltipPosition="top"></p-button>
+              <p-button class="m-1" (click)="showCancelPopUp=true;currentId=service.id" [disabled]="service.requestStatus !== 1" icon="pi pi-times" pTooltip="{{ 'app.price-request.price-request-page.cancel' | translate }}" tooltipPosition="top"></p-button>
+              <p-button class="m-1" (click)="showHidePopUp=true;currentId=service.id" icon="pi pi-eye-slash" pTooltip="{{ 'app.price-request.price-request-page.hide' | translate }}" tooltipPosition="top"></p-button>
+              <p-button class="m-1" (click)="openChat()" icon="pi pi-comments" pTooltip="{{ 'app.price-request.price-request-page.chat' | translate }}" tooltipPosition="top"></p-button>
+              <p-button class="m-1" [routerLink]="['/price-request-details/' + service.id]" icon="pi pi-info-circle" pTooltip="{{ 'app.price-request.price-request-page.details' | translate }}" tooltipPosition="top"></p-button>
+            }
+          </div>
+          <app-delete-popup [visible]="showHidePopUp" type="hide" (confirmDelete)="hidePriceRequest()" (closePopup)="showHidePopUp = false"></app-delete-popup>
+          <app-delete-popup [visible]="showCancelPopUp" type="cancel" (confirmDelete)="cancelPriceRequest()" (closePopup)="showCancelPopUp = false"></app-delete-popup>
         </td>
+
       </tr>
     </ng-template>
 
@@ -63,15 +71,15 @@
             <ng-template pTemplate="header">
               <tr>
                 <th style="width:20%">{{ 'app.price-request.price-request-page.service-id' | translate }}</th>
-                <th style="width:20%">{{ 'app.price-request.price-request-page.quantity' | translate }}</th>
                 <th style="width:20%">{{ 'app.price-request.price-request-page.shift' | translate }}</th>
+                <th style="width:20%">{{ 'app.price-request.price-request-page.quantity' | translate }}</th>
               </tr>
             </ng-template>
             <ng-template pTemplate="body" let-service>
               <tr>
                 <td>{{ service.serviceName }}</td>
-                <td>{{ service.quantity }}</td>
                 <td>{{ 'enums.shift-type.' + service.shiftType | translate }}</td>
+                <td>{{ service.quantity }}</td>
               </tr>
             </ng-template>
           </p-table>
@@ -81,16 +89,16 @@
             <ng-template pTemplate="header">
               <tr>
                 <th style="width:30%">{{ 'app.price-request.price-request-page.service' | translate }}</th>
-                <th style="width:30%">{{ 'app.price-request.price-request-page.quantity' | translate }}</th>
                 <th style="width:30%">{{ 'app.price-request.price-request-page.shift' | translate }}</th>
+                <th style="width:30%">{{ 'app.price-request.price-request-page.quantity' | translate }}</th>
               </tr>
             </ng-template>
 
             <ng-template pTemplate="body" let-service>
               <tr>
                 <td>{{ service.name }}</td>
-                <td>{{ service.quantity }}</td>
                 <td>{{ 'enums.shift-type.' + service.shiftType | translate }}</td>
+                <td>{{ service.quantity }}</td>
               </tr>
             </ng-template>
           </p-table>

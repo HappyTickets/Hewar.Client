@@ -5,20 +5,22 @@ import { RouterModule } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { ButtonModule } from 'primeng/button';
-import { DialogModule } from 'primeng/dialog';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
-import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { PriceOffersService } from '../../services/price-offers.service';
 import { IGetPriceOfferById } from '../../models/iget-price-offer-by-id';
+import { TooltipModule } from 'primeng/tooltip';
+import { DeletePopupComponent } from '../../../../shared/components/delete-popup/delete-popup.component';
+import { IPriceOfferService } from '../../models/iprice-offer-service';
+import { IPriceOfferOtherService } from '../../models/iprice-offer-other-service';
 
 @Component({
   selector: 'app-facility-offers',
   standalone: true,
-  imports: [ CommonModule, IconFieldModule, InputTextModule, InputIconModule, ButtonModule, TableModule, DialogModule, ToastModule, InputNumberModule, FormsModule, TranslatePipe, RouterModule],
+  imports: [ CommonModule, IconFieldModule, InputTextModule, InputIconModule, ButtonModule, TableModule, TooltipModule, ToastModule, FormsModule, TranslatePipe, RouterModule, DeletePopupComponent],
   templateUrl: './facility-offers.component.html',
   styleUrl: './facility-offers.component.scss'
 })
@@ -28,36 +30,55 @@ export class FacilityOffersComponent implements OnInit {
   priceOffers: IGetPriceOfferById[] = [];
   searchTerm = '';
 
+  currentId = 0;
+  showAcceptPopUp = false;
+  showHidePopUp = false;
+  showRejectPopUp = false;
   ngOnInit(): void {
     this.getPrices();
   }
-
   getPrices(): void {
     this.priceOffersService.getMyFacilityOffers().subscribe(res => {
       if (res.data) this.priceOffers = res.data;
     })
   }
-
   openChat(): void {
     this.toastr.info('Chat feature is coming soon!', 'Coming Soon');
   }
-  getTotalDailyCost(services: {dailyCostPerUnit:number, quantity:number}[]): number {
-    return services.reduce((total, service) => {
-      return total + (service.dailyCostPerUnit * service.quantity);
+  getTotalDailyCost(services: IPriceOfferService[], otherServices: IPriceOfferOtherService[]): number {
+    let total = 0;
+    total += services.reduce((acc, service) => {
+      return acc + (service.dailyCostPerUnit * service.quantity);
     }, 0);
-  }
-  getTotalMonthlyCost(services: {monthlyCostPerUnit:number, quantity:number}[]): number {
-    return services.reduce((total, service) => {
-      return total + (service.monthlyCostPerUnit * service.quantity);
+    total += otherServices.reduce((acc, service) => {
+      return acc + (service.dailyCostPerUnit * service.quantity);
     }, 0);
+    return total
   }
-  acceptOffer(id: number){
-    this.priceOffersService.accept(id).subscribe(()=>{this.getPrices();})
+  getTotalMonthlyCost(services: IPriceOfferService[], otherServices: IPriceOfferOtherService[]): number {
+    let total = 0;
+    total += services.reduce((acc, service) => {
+      return acc + (service.monthlyCostPerUnit * service.quantity);
+    }, 0);
+    total += otherServices.reduce((acc, service) => {
+      return acc + (service.monthlyCostPerUnit * service.quantity);
+    }, 0);
+    return total
   }
-  rejectOffer(id: number){
-    this.priceOffersService.reject(id).subscribe(()=>{this.getPrices();})
+
+  acceptOffer(){
+    this.showAcceptPopUp = false;
+    this.priceOffersService.accept(this.currentId).subscribe(()=>{this.getPrices();})
   }
-  hideOffer(id: number){
-    this.priceOffersService.hide(id).subscribe(()=>{this.getPrices();})
+  rejectOffer(){
+    this.showRejectPopUp = false;
+    this.priceOffersService.reject(this.currentId).subscribe(()=>{this.getPrices();})
+  }
+  hideOffer(){
+    this.showHidePopUp = false;
+    this.priceOffersService.hide(this.currentId).subscribe(()=>{this.getPrices();})
+  }
+  toggleActions(service: IGetPriceOfferById) {
+    service.showActions = !service.showActions;
   }
 }

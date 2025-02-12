@@ -7,16 +7,19 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
-import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { IGetPriceOfferById } from '../../models/iget-price-offer-by-id';
+import { TooltipModule } from 'primeng/tooltip';
+import { DeletePopupComponent } from '../../../../shared/components/delete-popup/delete-popup.component';
+import { IPriceOfferService } from '../../models/iprice-offer-service';
+import { IPriceOfferOtherService } from '../../models/iprice-offer-other-service';
 
 @Component({
   selector: 'app-company-offers',
   standalone: true,
-  imports: [ IconFieldModule, InputTextModule, InputIconModule, ButtonModule, TableModule, ToastModule, InputNumberModule, FormsModule, TranslatePipe, RouterModule],
+  imports: [ IconFieldModule, TooltipModule, InputTextModule, InputIconModule, ButtonModule, TableModule, ToastModule, FormsModule, TranslatePipe, RouterModule, DeletePopupComponent],
   templateUrl: './company-offers.component.html',
   styleUrl: './company-offers.component.scss'
 })
@@ -25,33 +28,53 @@ export class CompanyOffersComponent implements OnInit {
   private toastr = inject(ToastrService);
   priceOffers: IGetPriceOfferById[] = [];
   searchTerm = '';
+  currentId = 0;
+  showCancelPopUp = false;
+  showHidePopUp = false;
 
   ngOnInit(): void {
     this.getPrices();
   }
-
   getPrices(): void {
     this.priceOffersService.getMyCompanyOffers().subscribe(res => {
       if (res.data) this.priceOffers = res.data;
+      console.log(res.data);
+
     })
   }
   openChat(): void {
     this.toastr.info('Chat feature is coming soon!', 'Coming Soon');
   }
-  getTotalDailyCost(services: {dailyCostPerUnit:number, quantity:number}[]): number {
-    return services.reduce((total, service) => {
-      return total + (service.dailyCostPerUnit * service.quantity);
+  getTotalDailyCost(services: IPriceOfferService[], otherServices: IPriceOfferOtherService[]): number {
+    let total = 0;
+    total += services.reduce((acc, service) => {
+      return acc + (service.dailyCostPerUnit * service.quantity);
     }, 0);
-  }
-  getTotalMonthlyCost(services: {monthlyCostPerUnit:number, quantity:number}[]): number {
-    return services.reduce((total, service) => {
-      return total + (service.monthlyCostPerUnit * service.quantity);
+    total += otherServices.reduce((acc, service) => {
+      return acc + (service.dailyCostPerUnit * service.quantity);
     }, 0);
+    return total
   }
-  cancelOffer(id: number){
-    this.priceOffersService.cancel(id).subscribe(()=>{this.getPrices();})
+  getTotalMonthlyCost(services: IPriceOfferService[], otherServices: IPriceOfferOtherService[]): number {
+    let total = 0;
+    total += services.reduce((acc, service) => {
+      return acc + (service.monthlyCostPerUnit * service.quantity);
+    }, 0);
+    total += otherServices.reduce((acc, service) => {
+      return acc + (service.monthlyCostPerUnit * service.quantity);
+    }, 0);
+    return total
   }
-  hideOffer(id: number){
-    this.priceOffersService.hide(id).subscribe(()=>{this.getPrices();})
+  cancelOffer(){
+    this.showCancelPopUp = false;
+    this.priceOffersService.cancel(this.currentId).subscribe(()=>{this.getPrices();})
+  }
+  hideOffer(){
+    this.showHidePopUp = false;
+    this.priceOffersService.hide(this.currentId).subscribe(()=>{this.getPrices();})
+  }
+
+  toggleActions(service: IGetPriceOfferById) {
+    service.showActions = !service.showActions;
   }
 }

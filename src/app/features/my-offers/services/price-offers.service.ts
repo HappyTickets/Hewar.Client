@@ -26,8 +26,8 @@ export class PriceOffersService {
   reject(offerId: number):Observable <IApiResponse<null>> {
     return this.http.patch<IApiResponse<null>>(`${this.baseEndPoint}reject`, {} , {params: { offerId }});
   }
-  hide(offerId: number):Observable <IApiResponse<null>> {
-    return this.http.patch<IApiResponse<null>>(`${this.baseEndPoint}hide`, {} , {params: { offerId }});
+  hide(priceOfferId: number):Observable <IApiResponse<null>> {
+    return this.http.patch<IApiResponse<null>>(`${this.baseEndPoint}hide`, {} , {params: { priceOfferId }});
   }
   show(offerId: number):Observable <IApiResponse<null>> {
     return this.http.patch<IApiResponse<null>>(`${this.baseEndPoint}show`, {} , {params: { offerId }});
