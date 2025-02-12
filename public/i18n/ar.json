@@ -391,6 +391,7 @@
         "invaliContractType": "نوع التعاقد مطلوب",
         "services": "الخدمات",
         "serviceType": "نوع الخدمة",
+        "add-service": "أضف خدمة",
         "quantity": "الكمية",
         "shiftType": "نوع الوردية",
         "otherDetails": "خدمات أخرى",

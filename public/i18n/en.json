@@ -351,6 +351,7 @@
         "invaliContractType": "Contract Type required",
         "services": "Services",
         "serviceType": "Service Type",
+        "add-service": "Add service",
         "quantity": "Quantity",
         "shiftType": "Shift Type",
         "otherDetails": "Other Services",

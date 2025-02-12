@@ -19,7 +19,7 @@
       </div>
       <div class="input-group col-12 md:col-4">
         <label for="endDate">{{ 'app.price-request.edit-price-request.endContract' | translate }}</label>
-        <p-datepicker formControlName="endDate" [placeholder]="'app.price-request.edit-price-request.endContract' | translate" showIcon iconDisplay="input" [minDate]="editPriceRequestForm.get('startDate')?.value || date" [disabled]="!editPriceRequestForm.get('startDate')?.value"></p-datepicker>
+        <p-datepicker formControlName="endDate" [placeholder]="'app.price-request.edit-price-request.endContract' | translate" showIcon iconDisplay="input" [minDate]="editPriceRequestForm.get('startDate')?.value || date"></p-datepicker>
       </div>
       <div class="input-group col-12 md:col-4">
         <label for="contractType">{{ 'app.price-request.edit-price-request.contractType' | translate }}</label>
@@ -27,9 +27,8 @@
       </div>
     </div>
 
-    <!-- Service Details Section -->
     <h2>{{ 'app.price-request.edit-price-request.services' | translate }}</h2>
-    <div formArrayName="services" class="services">
+    <div formArrayName="services">
       @for (service of services.controls; track service; let i = $index) {
         <div [formGroupName]="i" class="service-item">
           <div class="service-inputs">
@@ -58,7 +57,7 @@
         </div>
         @if (i === editPriceRequestForm.value.services.length - 1) {
         <div class="flex justify-content-center">
-          <p-button icon="pi pi-plus" (click)="addService()"></p-button>
+          <p-button [label]="'app.price-request.edit-price-request.add-service' | translate" (click)="addService()"></p-button>
         </div>
         }
       }
@@ -95,7 +94,7 @@
         </div>
       }
       <div class="flex justify-content-center">
-        <p-button icon="pi pi-plus" (click)="addOtherService()"></p-button>
+        <p-button [label]="'app.price-request.edit-price-request.add-service' | translate" (click)="addOtherService()"></p-button>
       </div>
     </div>
 
