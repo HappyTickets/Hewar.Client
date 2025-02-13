@@ -1,0 +1,112 @@
+.chat-toggle-btn {
+  position: fixed;
+  bottom: 6vw;
+  right: 2vw;
+  width: max(3vw, 2rem);
+  height: max(3vw, 2rem);
+  background: rgb(26, 117, 159);
+  color: var(--p-button-primary-color);
+  border: none;
+  border-radius: 50%;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    background: rgb(10, 50, 68);
+  }
+}
+::ng-deep .pi-comments {
+  .p-button {
+    background: transparent !important;
+    &:hover {
+      background: transparent !important;
+    }
+  }
+}
+
+.chat-container {
+  z-index: 9999999;
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 350px;
+  height: 450px;
+  background: white;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  display: none;
+  flex-direction: column;
+  border-radius: 15px;
+  overflow: hidden;
+  &.show {
+    display: flex;
+  }
+  .chat-header {
+    background: #007bff;
+    color: white;
+    position: relative;
+    text-align: center;
+    .close-btn {
+      background: rgb(10, 50, 68) !important;
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      line-height: 25px;
+      &:hover {
+      background: rgb(14, 79, 109) !important;
+      }
+    }
+  }
+  .chat-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    div {
+      max-width: 75%;
+      padding: 8px 12px;
+      margin: 5px 0;
+      border-radius: 15px;
+      &.sent {
+        background: #007bff;
+        color: white;
+        align-self: flex-end;
+      }
+      &.received {
+        background: #f1f1f1;
+        align-self: flex-start;
+      }
+    }
+  }
+  .chat-input {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    background: white;
+    input {
+      flex: 1;
+      padding: 0 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+    }
+    .send-btn {
+      padding: 8px 15px;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  }
+}
