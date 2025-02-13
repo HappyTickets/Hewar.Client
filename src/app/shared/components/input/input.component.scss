@@ -2,24 +2,15 @@
 .input-container {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 0.5rem;
 }
 
 .input-label {
   font-size: 0.875rem;
   color: #6c757d;
-  font-weight: 500;
 }
 
 p-select, input[pInputText] {
   width: 100%;
-  border: 1px solid #ced4da;
-  border-radius: 8px;
-  font-size: 1rem;
-  background-color: #fff;
-  transition: border-color 0.3s ease-in-out;
 }
 
-p-select:hover, input[pInputText]:hover, input[pInputText]:focus, input[pInputText]:active {
-  border-color: #6bbef7;
-}
