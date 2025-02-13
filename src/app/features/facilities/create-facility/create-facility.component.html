@@ -279,11 +279,11 @@
         </p>
 
         <div class="grid">
-          <ng-container formGroupName="addressFormGroup">
+          <ng-container formGroupName="address">
             @for (input of addressDataInputs; track $index) {
             <div class="col-12 md:col-6 lg:col-4">
               <app-input
-                [formGroup]="addressFormGroup"
+                [formGroup]="addressGroup"
                 [placeholder]="input.placeholder"
                 [errorKey]="input.errorKey"
                 [controlName]="input.controlName"
@@ -320,7 +320,7 @@
               facilityForm.get('adminInfo')?.hasError('mismatch')){
               <p-message
                 severity="error"
-                [text]="'app.' + input.errorKey + '-2' | translate"
+                [text]="'app.' + input.errorKey | translate"
               ></p-message>
               }
             </div>
@@ -348,7 +348,12 @@
         <button type="submit" class="save">
           {{ "app.create-update-facility.save" | translate }}
         </button>
-        <button class="cancel" routerLink="/facilities">
+        <button
+          class="cancel"
+          routerLink="/facilities"
+          type="button"
+          (click)="cancel()"
+        >
           {{ "app.create-update-facility.cancel" | translate }}
         </button>
       </div>

@@ -13,7 +13,17 @@ import { SelectModule } from 'primeng/select';
 @Component({
   selector: 'app-input',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MessageModule, InputTextModule, SelectModule, IconFieldModule, InputIconModule, PasswordModule,TranslatePipe],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MessageModule,
+    InputTextModule,
+    SelectModule,
+    IconFieldModule,
+    InputIconModule,
+    PasswordModule,
+    TranslatePipe,
+  ],
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss'],
 })
@@ -26,13 +36,12 @@ export class InputComponent {
   @Input() type = 'text';
   @Input() icon!: string;
   @Input() readonly = false;
-  @Input() options: { name: string, code: number }[] = [];
-
+  @Input() options: { name: string; code: number }[] = [];
 
   get formControl(): FormControl {
     return this.formGroup.get(this.controlName) as FormControl;
   }
   get hasError(): boolean {
-    return this.formControl.invalid && this.formControl.touched;
+    return this.formControl?.invalid && this.formControl.touched;
   }
 }
