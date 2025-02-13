@@ -1,17 +1,17 @@
 <div style="
-    display: flex; 
-    align-items: center; 
-    flex-direction: column; 
-    background-image: url(/photos/9c83c96b693b4c2b9ab608b40712c423.png); 
-    background-size: 100vw; 
-    background-repeat: no-repeat; 
-    width: 100%; 
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-image: url(/photos/9c83c96b693b4c2b9ab608b40712c423.png);
+    background-size: 100vw;
+    background-repeat: no-repeat;
+    width: 100%;
     height: 49.3vw;">
     <div style="margin: auto;">
         <div style="
-            display: flex; 
-            align-items: center; 
-            flex-direction: column; 
+            display: flex;
+            align-items: center;
+            flex-direction: column;
             gap: 1.9vw;">
             <div class="header-text-container">
                 <div class="header-title fade-in-left-text">
@@ -26,8 +26,8 @@
     </div>
 </div>
 <div style="
-    display: flex; 
-    flex-direction: row; 
+    display: flex;
+    flex-direction: row;
     width: 100%;
     justify-content: space-around;
     min-height: 5.79vw;
@@ -55,9 +55,9 @@
     <mat-tab-group [dir]="language === 'ar' ? 'rtl' : 'ltr'">
         @for (tab of servicesTabs; track tab.label; let tabIndex = $index) {
             <mat-tab [label]="tab.label | translate">
-                <p-carousel 
-                    [value]="tab.cards" 
-                    [numVisible]="getVisibleItems(tab.cards.length < 3 ? tab.cards.length : 3)" 
+                <p-carousel
+                    [value]="tab.cards"
+                    [numVisible]="getVisibleItems(tab.cards.length < 3 ? tab.cards.length : 3)"
                     [numScroll]="getVisibleItems(tab.cards.length < 3 ? tab.cards.length : 3)"
                     [style]="{'padding-top': '1.16vw', 'padding-bottom': '1.16vw'}">
                     <ng-template let-card pTemplate="item">
@@ -109,7 +109,7 @@
             {{'app.home-page.why-us.content' | translate}}
         </div>
         <p-button label="{{'app.home-page.why-us.action' | translate}}" [style]="{ 'width': 'max(13.95vw, 10rem)', 'height': 'max(3.59vw, 2rem)', 'font-family': 'tajawal-regular', '--p-button-primary-background': '#3D98DB', '--p-button-primary-hover-background': '#2071AC', 'font-size': 'max(1.39vw, 1rem)'}"/>
-    </div> 
+    </div>
     <div>
         <img style="border-radius: 20px; width: 39.81vw;" src="/photos/9b83c96b693b4c2b9ab608b40712c423.png" alt="Company services illustration">
     </div>
@@ -130,10 +130,10 @@
                                 <path d="M19.9967 3.33325C14.9834 3.33325 11.7334 6.69825 7.89003 7.92492C6.3267 8.42492 5.54503 8.67325 5.22837 9.02492C4.9117 9.37492 4.82003 9.88992 4.63503 10.9166C2.6517 21.9099 6.98503 32.0733 17.3184 36.0299C18.4267 36.4549 18.9817 36.6666 20.0017 36.6666C21.0217 36.6666 21.5784 36.4533 22.6884 36.0283C33.02 32.0733 37.3484 21.9099 35.365 10.9166C35.18 9.88992 35.0867 9.37492 34.77 9.02325C34.4534 8.67159 33.6734 8.42325 32.11 7.92492C28.265 6.69825 25.01 3.33325 19.9967 3.33325Z" stroke="#00223C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 <path d="M17.0834 16.5983C17.0834 16.4983 17.0967 15.9216 17.1001 15.1983C17.1001 14.535 17.0434 13.8983 17.3601 13.315C18.5434 10.9583 21.9434 11.1983 22.7834 13.5983C22.9284 13.9933 22.9384 14.6183 22.9334 15.1983C22.9284 15.9366 22.9434 16.5983 22.9434 16.5983M17.2284 17.3C15.4284 17.3 14.5284 18.6 14.3284 19.4C14.1284 20.2 14.1284 23.1 14.2484 24.3C14.6484 25.8 15.6484 26.42 16.6284 26.62C17.5284 26.7 21.3284 26.67 22.4284 26.67C24.0284 26.7 25.2284 26.1 25.7284 24.3C25.8284 23.7 25.9284 20.4 25.6784 19.4C25.1484 17.8 23.8284 17.3 22.8284 17.3H17.2284Z" stroke="#00223C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </g>
-                        </svg>                  
+                        </svg>
                     </ng-template>
-                    <ng-template #title> 
-                        {{achievement.title | translate}} 
+                    <ng-template #title>
+                        {{achievement.title | translate}}
                     </ng-template>
                     {{achievement.count}} {{achievement.subtitle | translate}}
                     </p-card>
@@ -164,12 +164,12 @@
     <h3 class="section-title">
         {{'app.home-page.news.title' | translate}}
     </h3>
-    <p-carousel 
-        [value]="news" 
-        [numVisible]="getVisibleItems(5)" 
-        [numScroll]="getVisibleItems(5)" 
-        [showNavigators]="true" 
-        [showIndicators]="false" 
+    <p-carousel
+        [value]="news"
+        [numVisible]="getVisibleItems(5)"
+        [numScroll]="getVisibleItems(5)"
+        [showNavigators]="true"
+        [showIndicators]="false"
         [style]="{'width': '90vw', 'margin': '0 auto', 'height': 'fit-content'}">
         <ng-template let-newsItem pTemplate="item">
             <div style="margin: 0.5vw;">
@@ -201,10 +201,10 @@
 </div>
 
 @if (showScrollButton) {
-    <p-button 
-        icon="pi pi-arrow-up" 
-        (onClick)="scrollToTop()" 
+    <p-button
+        icon="pi pi-arrow-up"
+        (onClick)="scrollToTop()"
         [style]="scrollTopButtonStyle"
-        styleClass="scroll-top-button" 
+        styleClass="scroll-top-button"
         />
 }

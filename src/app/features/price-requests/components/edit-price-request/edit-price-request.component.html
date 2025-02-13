@@ -1,16 +1,10 @@
 <form class="container" [formGroup]="editPriceRequestForm">
   <div class="header">
     <img class="logo" [src]="companyData.logo" alt="Security Logo"/>
-    @if (companyData.id) {
-    <div>
-      <h2>{{ companyData.name }}</h2>
-      <p>{{ companyData.contactEmail }}</p>
-    </div>
-    }
+    @if (companyData.id) {<div><h2>{{ companyData.name }}</h2><p>{{ companyData.contactEmail }}</p></div>}
   </div>
 
   <div class="content">
-    <!-- Price Request Section -->
     <h2>{{ 'app.price-request.edit-price-request.header' | translate }}</h2>
     <div class="grid">
       <div class="input-group col-12 md:col-4">
@@ -22,8 +16,7 @@
         <p-datepicker formControlName="endDate" [placeholder]="'app.price-request.edit-price-request.endContract' | translate" showIcon iconDisplay="input" [minDate]="editPriceRequestForm.get('startDate')?.value || date"></p-datepicker>
       </div>
       <div class="input-group col-12 md:col-4">
-        <label for="contractType">{{ 'app.price-request.edit-price-request.contractType' | translate }}</label>
-        <app-input placeholder="price-request.edit-price-request.chooseContractType" [formGroup]="editPriceRequestForm" [options]="contractTypes" errorKey="price-request.edit-price-request.invaliContractType" controlName="contractType" icon="pi-map" type="dropdown"></app-input>
+        <app-input placeholder="price-request.edit-price-request.contractType" label="price-request.edit-price-request.contractType" [formGroup]="editPriceRequestForm" [options]="contractTypes" errorKey="price-request.edit-price-request.invaliContractType" controlName="contractType" icon="pi-map" type="dropdown"></app-input>
       </div>
     </div>
 
@@ -97,12 +90,8 @@
         <p-button [label]="'app.price-request.edit-price-request.add-service' | translate" (click)="addOtherService()"></p-button>
       </div>
     </div>
-
-    <!-- Notes Section -->
     <h2>{{ 'app.price-request.edit-price-request.addNotes' | translate }}</h2>
     <textarea pTextarea formControlName="notes" class="w-full" rows="5" [placeholder]="'app.price-request.edit-price-request.enterDetails' | translate" [autoResize]="true" ></textarea>
-
-    <!-- Buttons -->
     <div class="button-group">
       <p-button [label]="'app.price-request.edit-price-request.cancel' | translate" (click)="onCancel()" fluid="true" ></p-button>
       <p-button [label]="mode === 'create' ? ('app.price-request.edit-price-request.create' | translate) : ('app.price-request.edit-price-request.update' | translate)" (click)="onSubmit()" fluid="true" [disabled]="editPriceRequestForm.invalid" [loading]="loading"></p-button>

@@ -70,7 +70,33 @@
         "corporate-protection": "حماية الشركات"
       }
     },
-
+    "security-certificate": {
+      "facility": "المنشأة",
+      "start-date": "تاريخ البدء",
+      "end-date": "تاريخ الانتهاء",
+      "site-area": "المساحة",
+      "guards": "الحراس",
+      "cameras": "الكاميرات",
+      "monitoring-room": "غرفة المراقبة",
+      "status": "الحالة",
+      "actions": "الإجراءات",
+      "search-placeholder": "بحث...",
+      "add-certificate": "إضافة شهادة",
+      "edit": "تعديل",
+      "delete": "حذف",
+      "approve": "الموافقة",
+      "reject": "رفض",
+      "dialog-header": "شهادة الأمان",
+      "agreed-number-of-guards": "عدد الحراس المتفق عليه",
+      "contract-document-url": "رابط وثيقة العقد",
+      "street": "الشارع",
+      "city": "المدينة",
+      "state": "الولاية",
+      "country": "الدولة",
+      "postal-code": "الرمز البريدي",
+      "save": "حفظ",
+      "cancel": "إلغاء"
+    },
     "create-update-facility": {
       "create-title": "إنشاء منشأة",
       "update-title": "تعديل المنشأة",
@@ -143,7 +169,6 @@
       "save": "حفظ",
       "cancel": "الغاء"
     },
-
     "validation": {
       "required": "هذا الحقل مطلوب",
       "email": "يرجى إدخال بريد إلكتروني صحيح",
