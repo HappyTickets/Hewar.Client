@@ -1,7 +1,5 @@
 <div class="input-container mb-3">
-  <label [for]="formControl" class="input-label">{{
-    "app." + label | translate
-  }}</label>
+  <label [for]="formControl" class="input-label">{{"app." + label | translate}}</label>
   @if (type === 'dropdown') {
   <p-select
     [options]="options"

@@ -86,6 +86,7 @@ export class AuthService {
   }
   storeResponse(data: ILoginResponse): void {
     localStorage.setItem('userInfo',JSON.stringify({
+        userId: data.userId,
         firstName: data.firstName,
         permissions: data.permissions,
         accessTokenExpDate: data.accessTokenExpDate,
