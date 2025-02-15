@@ -36,14 +36,26 @@
       align-items: center;
       justify-content: center;
       text-align: left;
+      margin-top: 50px;
+      margin-bottom: 50px;
+     
+      
+    }
+
+    .headerContent{
+      
       overflow: hidden;
+      background: linear-gradient(267.93deg, #00223c -5.69%, #1a759f 103.34%);
+      color: #fff;
+      padding: 30px 0;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      text-align: center;
+
     }
   
-    .logo {
-      width: 10rem;
-      height: 10rem;
-      border-radius: 50%;
-    }
+ 
     .input-group {
       display: flex;
       flex-direction: column;
@@ -101,4 +113,10 @@
       min-width: 120px;
     }
   }
-  
+
+  .all{
+    padding: 20px;
+    border-radius: 10px;
+   margin: 50px;
+   box-shadow : 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  }

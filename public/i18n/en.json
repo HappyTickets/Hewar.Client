@@ -800,7 +800,17 @@
       "addNotes": "Notes",
       "enterDetails": "Enter additional details",
       "publish": "Publish",
-      "cancel": "Cancel"
+      "cancel": "Cancel",
+      "titleError": "Title is required",
+      "descriptionError": "Description is required",
+      "contractDateError": "Contract Date is required",
+      "startContractError": "Start of Contracting is required",
+      "endContractError": "End of Contracting is required",
+      "contractTypeError": "Contract Type is required",
+      "serviceTypeError": "Service Type is required",
+      "quantityError": "Quantity is required",
+      "shiftTypeError": "Shift Type is required"
+      
 
     }
   }

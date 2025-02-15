@@ -26,6 +26,7 @@ import { PriceOfferDetailsComponent } from './features/my-offers/components/pric
 import { CompanyPriceRequestsComponent } from './features/price-requests/components/company-price-requests/company-price-requests.component';
 import { SecurityCertificateComponent } from './features/security-certificate/components/security-certificate/security-certificate.component';
 import { AdsComponent } from './features/ads/components/ads/ads.component';
+import { AllAdsComponent } from './features/ads/components/all-ads/all-ads.component';
 
 export const routes: Route[] = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -86,6 +87,7 @@ export const routes: Route[] = [
 
   // Ads
   { path: 'createAds', component: AdsComponent },
+  { path: 'ads', component: AllAdsComponent },
 
   { path: '**', component: NotFoundComponent }, // wild card path
 ];

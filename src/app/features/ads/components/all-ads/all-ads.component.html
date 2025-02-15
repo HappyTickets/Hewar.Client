@@ -1,0 +1,39 @@
+<div class="container allAds">
+  <p-card
+    *ngFor="let ad of myAds"
+    [style]="{ width: '25rem', overflow: 'hidden' }"
+  >
+    <ng-template #title>
+      <h2 class="title">{{ ad.title }}</h2></ng-template
+    >
+    <ng-template #subtitle class="contractType">
+      <p class="contractType">{{ ad.contractType }}</p>
+    </ng-template>
+    <div>
+      <p class="description">
+        {{ ad.description }}
+      </p>
+    </div>
+
+    <div class="date">
+      <p>تاريخ البداية: {{ ad.startdate }}</p>
+
+      <p>تاريخ الانتهاء: {{ ad.endDate }}</p>
+    </div>
+
+    <ul *ngIf="ad.services && ad.services.length > 0">
+      <li *ngFor="let service of ad.services">
+        <p class="serviceId">{{ service.serviceId }}</p>
+        <p class="quantity">العدد {{ service.quantity }}</p>
+        <p class="shiftType">{{ service.shiftType }}</p>
+      </li>
+    </ul>
+    <ng-template #footer>
+      <div class="flex gap-4 mt-1">
+        <p-button label="Delete" class="w-full" styleClass="w-full" />
+        <p-button label="Chat" class="w-full" styleClass="w-full" />
+        <p-button label="Edit" class="w-full" styleClass="w-full" />
+      </div>
+    </ng-template>
+  </p-card>
+</div>

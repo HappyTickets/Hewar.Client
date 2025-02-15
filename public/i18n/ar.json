@@ -807,7 +807,18 @@
       "otherDetails": "تفاصيل أخرى",
       "serviceName": "اسم الخدمة",
        "publish": "نشر",
-      "cancel": "إلغاء"
+      "cancel": "إلغاء",
+      "titleError": "العنوان مطلوب",
+      "descriptionError": "الوصف مطلوب",
+      "contractDateError": "تاريخ التعاقد مطلوب",
+      "startContractError": "بداية التعاقد مطلوب",
+      "endContractError": "نهاية التعاقد مطلوب",
+      "contractTypeError": "نوع التعاقد مطلوب",
+      "servicesError": "الخدمات مطلوبة",
+      "serviceTypeError": "نوع الخدمة مطلوب",
+      "quantityError": "الكمية مطلوبة",
+      "shiftTypeError": "نوع الوردية مطلوب"
+    
       
 
     }
