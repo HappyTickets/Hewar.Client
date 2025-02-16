@@ -48,6 +48,7 @@ export class EditPriceOfferComponent implements OnInit {
   priceRequestData: IPriceRequest = {} as IPriceRequest;
   facilityData: IFacility = {} as IFacility;
   editPriceOfferForm: FormGroup;
+  editPriceOfferForm: FormGroup;
   date = new Date();
   loading = false;
 
@@ -85,6 +86,7 @@ export class EditPriceOfferComponent implements OnInit {
   }
   constructor() {
     this.editPriceOfferForm = this.fb.group({
+    this.editPriceOfferForm = this.fb.group({
       contractType: ['', [Validators.required]],
       startDate: ['', [Validators.required]],
       endDate: ['', [Validators.required]],
@@ -94,9 +96,15 @@ export class EditPriceOfferComponent implements OnInit {
   }
   onSubmit(): void {
     if (this.editPriceOfferForm.valid) {
+    if (this.editPriceOfferForm.valid) {
       if (this.mode === 'create') {
         const priceOffer: ICreatePriceOffer = {
           priceRequestId: this.priceRequestData.id,
+          contractType: this.editPriceOfferForm.value.contractType,
+          startDate: this.editPriceOfferForm.value.startDate,
+          endDate: this.editPriceOfferForm.value.endDate,
+          services: this.editPriceOfferForm.value.services,
+          otherServices: this.editPriceOfferForm.value.otherServices,
           contractType: this.editPriceOfferForm.value.contractType,
           startDate: this.editPriceOfferForm.value.startDate,
           endDate: this.editPriceOfferForm.value.endDate,
@@ -109,6 +117,11 @@ export class EditPriceOfferComponent implements OnInit {
       } else if (this.mode === 'update') {
         const priceOffer: IUpdatePriceOffer = {
           priceOfferId: this.priceOfferData.id,
+          contractType: this.editPriceOfferForm.value.contractType,
+          startDate: this.editPriceOfferForm.value.startDate,
+          endDate: this.editPriceOfferForm.value.endDate,
+          services: this.editPriceOfferForm.value.services,
+          otherServices: this.editPriceOfferForm.value.otherServices,
           contractType: this.editPriceOfferForm.value.contractType,
           startDate: this.editPriceOfferForm.value.startDate,
           endDate: this.editPriceOfferForm.value.endDate,
@@ -141,8 +154,10 @@ export class EditPriceOfferComponent implements OnInit {
   }
   get services() {
     return this.editPriceOfferForm.get('services') as FormArray;
+    return this.editPriceOfferForm.get('services') as FormArray;
   }
   get otherServices() {
+    return this.editPriceOfferForm.get('otherServices') as FormArray;
     return this.editPriceOfferForm.get('otherServices') as FormArray;
   }
   addService(): void {
@@ -163,9 +178,9 @@ export class EditPriceOfferComponent implements OnInit {
   }
   onCancel(): void {
     this.editPriceOfferForm.reset();
+    this.editPriceOfferForm.reset();
   }
   assignCreateValues() {
-    console.log(this.priceRequestData.startDate);
     this.editPriceOfferForm.patchValue({
       contractType: this.priceRequestData.contractType,
       startDate: new Date(this.priceRequestData.startDate),
@@ -203,6 +218,7 @@ export class EditPriceOfferComponent implements OnInit {
     }
   }
   assignUpdateValues() {
+    this.editPriceOfferForm.patchValue({
     this.editPriceOfferForm.patchValue({
       contractType: this.priceOfferData.priceRequest.contractType,
       startDate: new Date(this.priceOfferData.priceRequest.startDate),
