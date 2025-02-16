@@ -11,9 +11,8 @@ import { InputComponent } from '../../../../shared/components/input/input.compon
 import { TranslatePipe } from '@ngx-translate/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { catchError, EMPTY, tap } from 'rxjs';
-import { ContractService } from '../../services/contract.service';
-import { IContractFields } from '../../models/icontract-fields';
+import { IUpdateContract } from '../../models/iupdate-contract';
+import { IContract } from '../../models/icontract';
 
 @Component({
   selector: 'app-contract-form',
@@ -118,15 +117,54 @@ export class ContractFormComponent implements OnInit {
             this.router.navigate([`contract-preview/${this.offerId}`]);
           });
       } else {
-        this.contractService
-          .UpdateContractByFields(this.contractForm.value, this.contractId)
-          .subscribe(() => {
-            this.router.navigate([`contract-preview/${this.offerId}`]);
-          });
+        const form: IUpdateContract = {
+          contract: this.contractForm.value,
+          id: this.offerId,
+        };
+        this.contractsService.updateFields(form).subscribe();
       }
     }
   }
-  assignValues(res: IContractFields) {
-    this.contractForm.patchValue(res.contractFields);
+  assignValues(res: IContract) {
+    console.log(res);
+
+    this.contractForm.patchValue({
+      partyOne: res.partyOne,
+      partyTwo: res.partyTwo,
+      contractSignDate: new Date(res.contractSignDate),
+      contractStartDate: new Date(res.contractStartDate),
+    });
+    if (res.scheduleEntries && res.scheduleEntries.length > 0) {
+      res.scheduleEntries.forEach((entry) => {
+        const scheduleEntryGroup = this.fb.group({
+          location: this.fb.group({
+            ar: [entry.location.ar, Validators.required],
+            en: [entry.location.en, Validators.required],
+          }),
+          guardsRequired: this.fb.group({
+            ar: [entry.guardsRequired.ar, Validators.required],
+            en: [entry.guardsRequired.en, Validators.required],
+          }),
+          shiftTime: this.fb.group({
+            ar: [entry.shiftTime.ar, Validators.required],
+            en: [entry.shiftTime.en, Validators.required],
+          }),
+          notes: this.fb.group({
+            ar: [entry.notes.ar],
+            en: [entry.notes.en],
+          }),
+        });
+        this.scheduleEntries.push(scheduleEntryGroup);
+      });
+    }
+    if (res.customClauses && res.customClauses.length > 0) {
+      res.customClauses.forEach((clause) => {
+        const customClauseGroup = this.fb.group({
+          ar: [clause.ar, Validators.required],
+          en: [clause.en, Validators.required],
+        });
+        this.customClauses.push(customClauseGroup);
+      });
+    }
   }
 }
