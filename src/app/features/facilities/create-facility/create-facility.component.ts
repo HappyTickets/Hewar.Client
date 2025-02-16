@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {
+  AbstractControl,
   FormBuilder,
   FormGroup,
   FormsModule,
@@ -70,6 +71,7 @@ interface UploadEvent {
     IconFieldModule,
     FloatLabelModule,
     InputIconModule,
+    MessageModule,
   ],
   providers: [MessageService],
   templateUrl: './create-facility.component.html',
@@ -87,6 +89,9 @@ export class CreateFacilityComponent implements OnInit {
   totalSize: number = 0;
   totalSizePercent: number = 0;
   facilityForm!: FormGroup;
+  addressGroup!: FormGroup;
+  createCompForm!: FormGroup;
+  adminInfoGroup!: FormGroup;
 
   imagePreview: string | ArrayBuffer | null = null;
   constructor(
@@ -105,20 +110,150 @@ export class CreateFacilityComponent implements OnInit {
         }
       }
     );
-    // this.facilityForm = this.fb.group({
-    //   name: ['', Validators.required],
-    //   type: [null, Validators.required],
-    //   activityType: [null, Validators.required],
-    //   address: ['', Validators.required],
-    //   city: ['', Validators.required],
-    //   phone: ['', Validators.required],
-    //   email: ['', [Validators.required, Validators.email]],
-    //   responsibleName: ['', Validators.required],
-    //   responsiblePhone: ['', Validators.required],
-    //   commercialRegistration: ['', Validators.required],
-    //   imageUrl: [''],
-    // });
   }
+  fcilityDataInputs = [
+    {
+      placeholder: 'create-update-facility.namePlaceholder',
+      errorKey: 'create-update-facility.nameError',
+      controlName: 'name',
+      icon: 'pi-user',
+      type: 'text',
+      label: 'create-update-facility.name',
+    },
+    {
+      placeholder: 'create-update-facility.activityTypePLaceHolder',
+      errorKey: 'create-update-facility.activityTypeErr',
+      controlName: 'activityType',
+      icon: 'pi-envelope',
+      type: 'text',
+      label: 'create-update-facility.activityType',
+    },
+    {
+      placeholder: 'create-update-facility.typePlaceholder',
+      errorKey: 'create-update-facility.typeError',
+      controlName: 'type',
+      icon: 'pi-envelope',
+      type: 'text',
+      label: 'create-update-facility.type',
+    },
+    {
+      placeholder: 'create-update-facility.registrationNumberPlaceholder',
+      errorKey: 'create-update-facility.registrationNumberError',
+      controlName: 'commercialRegistration',
+      icon: 'pi-pen-to-square',
+      type: 'text',
+      label: 'create-update-facility.registrationNumber',
+    },
+    {
+      placeholder: 'create-update-facility.responsibleNamePlaceholder',
+      errorKey: 'create-update-facility.responsibleNameErr',
+      controlName: 'responsibleName',
+      icon: 'pi-pen-to-square',
+      type: 'text',
+      label: 'create-update-facility.responsibleName',
+    },
+    {
+      placeholder: 'create-update-facility.phoneNumberPlaceholder',
+      errorKey: 'create-update-facility.phoneNumberError',
+      controlName: 'responsiblePhone',
+      icon: 'pi-phone',
+      type: 'text',
+      label: 'create-update-facility.phoneNumber',
+    },
+  ];
+  adminDataInputs = [
+    {
+      placeholder: 'create-update-facility.emailPlaceholder',
+      errorKey: 'create-update-facility.emailError',
+      controlName: 'email',
+      icon: 'pi-envelope',
+      type: 'email',
+      label: 'create-update-facility.email',
+    },
+    {
+      placeholder: 'create-update-facility.passwordPlaceholder',
+      errorKey: 'create-update-facility.passwordError',
+      controlName: 'password',
+      icon: 'pi-lock',
+      type: 'password',
+      label: 'create-update-facility.password',
+    },
+    {
+      placeholder: 'create-update-facility.confirmPasswordPlaceholder',
+      errorKey: 'create-update-facility.confirmPasswordError-2',
+      controlName: 'confirmPassword',
+      icon: 'pi-lock',
+      type: 'password',
+      label: 'create-update-facility.confirmPassword',
+    },
+
+    {
+      placeholder: 'create-update-facility.firstName',
+      errorKey: 'create-update-facility.firstName',
+      controlName: 'firstName',
+      icon: 'pi-user',
+      type: 'text',
+      label: 'create-update-facility.lastName',
+    },
+    {
+      placeholder: 'create-update-facility.lastNamePlaceholder',
+      errorKey: 'create-update-facility.lastNameError',
+      controlName: 'lastName',
+      icon: 'pi-user',
+      type: 'text',
+      label: 'create-update-facility.lastName',
+    },
+    {
+      placeholder: 'create-update-facility.phonePlaceholder',
+      errorKey: 'create-update-facility.phoneError',
+      controlName: 'phone',
+      icon: 'pi-phone',
+      type: 'text',
+      label: 'create-update-facility.phone',
+    },
+  ];
+  addressDataInputs = [
+    {
+      placeholder: 'title',
+      errorKey: 'create-update-facility.streetError',
+      controlName: 'street',
+      icon: 'pi-map-marker',
+      type: 'text',
+      label: 'create-update-facility.street',
+    },
+    {
+      placeholder: 'create-update-facility.cityPlaceholder',
+      errorKey: 'create-update-facility.cityError',
+      controlName: 'city',
+      icon: 'pi-map-marker',
+      type: 'text',
+      label: 'create-update-facility.city',
+    },
+    {
+      placeholder: 'create-update-facility.statePlaceholder',
+      errorKey: 'create-update-facility.stateError',
+      controlName: 'state',
+      icon: 'pi-map-marker',
+      type: 'text',
+      label: 'create-update-facility.state',
+    },
+    {
+      placeholder: 'create-update-facility.countryPlaceholder',
+      errorKey: 'create-update-facility.countryError',
+      controlName: 'country',
+      icon: 'pi-map-marker',
+      type: 'text',
+      label: 'create-update-facility.country',
+    },
+    {
+      placeholder: 'create-update-facility.postalCodePlaceholder',
+      errorKey: 'create-update-facility.postalCodeError',
+      controlName: 'postalCode',
+      icon: 'pi-map-marker',
+      type: 'text',
+      label: 'create-update-facility.postalCode',
+    },
+  ];
   ngOnInit() {
     this.facilityForm = this.fb.group({
       type: ['', Validators.required],
@@ -137,15 +272,22 @@ export class CreateFacilityComponent implements OnInit {
         country: ['', Validators.required],
         postalCode: ['', Validators.required],
       }),
-      adminInfo: this.fb.group({
-        email: ['', [Validators.required, Validators.email]],
-        password: ['', Validators.required],
-        firstName: ['', Validators.required],
-        lastName: ['', Validators.required],
-        phone: ['', Validators.required],
-        imageUrl: [''],
-      }),
+      adminInfo: this.fb.group(
+        {
+          email: ['', [Validators.required, Validators.email]],
+          password: ['', Validators.required],
+          confirmPassword: ['', [Validators.required]],
+
+          firstName: ['', Validators.required],
+          lastName: ['', Validators.required],
+          phone: ['', Validators.required],
+          imageUrl: [''],
+        },
+        { validator: this.checkPasswords }
+      ),
     });
+    this.adminInfoGroup = this.facilityForm.get('adminInfo') as FormGroup;
+    this.addressGroup = this.facilityForm.get('address') as FormGroup;
 
     // التحقق من أن القيمة التي يتم إرسالها هي النص فقط
     this.facilityForm.get('activityType')?.valueChanges.subscribe((value) => {
@@ -178,6 +320,9 @@ export class CreateFacilityComponent implements OnInit {
     //   });
     // });
     if (true) {
+      this.adminInfo.removeControl('confirmPassword');
+      console.log(this.facilityForm);
+
       this.imageUploader.uploadFiles().subscribe(
         (imageNames) => {
           console.log('Uploaded images:', imageNames);
@@ -207,9 +352,9 @@ export class CreateFacilityComponent implements OnInit {
         summary: 'Success',
         detail: 'Facility Created',
       });
-      setTimeout(() => {
-        this.router.navigate(['/facilities']);
-      }, 1500);
+      // setTimeout(() => {
+      //   this.router.navigate(['/facilities']);
+      // }, 1500);
     }
   }
   cancel(): void {
@@ -220,5 +365,19 @@ export class CreateFacilityComponent implements OnInit {
   }
   handelimagenam(imageName: string): void {
     this.imageName = imageName; // Set error message
+  }
+  // get addressFormGroup(): FormGroup {
+  //   return this.facilityForm.get('address') as FormGroup;
+  // }
+  get adminInfo(): FormGroup {
+    return this.facilityForm.get('adminInfo') as FormGroup;
+  }
+  hasMismatchError(): boolean {
+    return this.facilityForm.get('password')?.hasError('mismatch') ?? false;
+  }
+  checkPasswords(g: AbstractControl) {
+    const password = g.get('password')?.value;
+    const confirmPassword = g.get('confirmPassword')?.value;
+    return password === confirmPassword ? null : { mismatch: true };
   }
 }

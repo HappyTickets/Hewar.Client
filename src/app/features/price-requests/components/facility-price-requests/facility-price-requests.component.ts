@@ -2,7 +2,6 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ButtonModule } from 'primeng/button';
-import { DialogModule } from 'primeng/dialog';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { InputNumberModule } from 'primeng/inputnumber';
@@ -11,15 +10,16 @@ import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { IFacilityPriceRequest } from '../../models/ifacility-price-request';
 import { PriceRequestsService } from '../../services/price-requests.service';
-import { CommonModule } from '@angular/common';
-import { RequestStatus } from '../../../../shared/enums/request-status';
 import { TranslatePipe } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
+import { TooltipModule } from 'primeng/tooltip';
+import { DeletePopupComponent } from '../../../../shared/components/delete-popup/delete-popup.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-facility-price-requests',
   standalone: true,
-  imports: [IconFieldModule, InputTextModule, InputIconModule, ButtonModule, TableModule, DialogModule, ToastModule, InputNumberModule, FormsModule, CommonModule, TranslatePipe, RouterModule],
+  imports: [IconFieldModule, ButtonModule, InputTextModule, InputIconModule, TooltipModule, ButtonModule, TableModule, ToastModule, InputNumberModule, FormsModule, TranslatePipe, RouterModule, DeletePopupComponent, CommonModule],
   templateUrl: './facility-price-requests.component.html',
   styleUrl: './facility-price-requests.component.scss'
 })
@@ -28,6 +28,9 @@ export class FacilityPriceRequestsComponent implements OnInit {
   private toastr = inject(ToastrService);
   priceRequests: IFacilityPriceRequest[] = [];
   searchTerm = '';
+  showCancelPopUp = false;
+  showHidePopUp = false;
+  currentId = 0;
 
   ngOnInit(): void {
     this.getPriceRequests()
@@ -40,42 +43,23 @@ export class FacilityPriceRequestsComponent implements OnInit {
       }
     })
   }
-  getRequestStatusLabel(status: RequestStatus): string {
-    const statusLabels: Record<RequestStatus, string> = {
-      [RequestStatus.Pending]: 'Pending',
-      [RequestStatus.accepted]: 'Accepted',
-      [RequestStatus.Rejected]: 'Rejected',
-      [RequestStatus.Cancelled]: 'Cancelled',
-      [RequestStatus.Completed]: 'Completed',
-    };
-    return statusLabels[status] || 'Unknown';
-  }
 
   openChat(): void {
     this.toastr.info('Chat feature is coming soon!', 'Coming Soon');
   }
-
-  editService(service: IFacilityPriceRequest): void {
-    service.isEditMode = true;
-  }
-
-  cancelEdit(service: IFacilityPriceRequest): void {
-    service.isEditMode = false;
-  }
-
-  isSubmitDisabled(service: IFacilityPriceRequest): boolean {
-    return service.otherServices.some((service) => !service.monthlyCost || !service.dailyCost);
-  }
-
-  submitService(service: IFacilityPriceRequest): void {
-    service.isEditMode = false;
-    this.toastr.success('Service updated successfully!', 'Success');
-  }
-
-  cancelPriceRequest(id :number) {
-    this.priceRequestsService.cancel(id).subscribe(res => {
+  cancelPriceRequest() {
+    this.showCancelPopUp = false;
+    this.priceRequestsService.cancel(this.currentId).subscribe(() => {
       this.getPriceRequests();
-      console.log(res);
     })
+  }
+  hidePriceRequest() {
+    this.showHidePopUp = false;
+    this.priceRequestsService.hide(this.currentId).subscribe(() => {
+      this.getPriceRequests();
+    })
+  }
+  toggleActions(service: IFacilityPriceRequest) {
+    service.showActions = !service.showActions;
   }
 }

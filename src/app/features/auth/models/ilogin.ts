@@ -6,10 +6,8 @@ export interface ILogin {
   password: string;
 }
 export interface ILoginResponse {
-  userName: string;
   firstName: string;
-  identityId: number;
-  accountId: number;
+  userId: number;
   email: string;
   imageUrl: string;
   permissions: Permissions[];

@@ -4,16 +4,18 @@ import { TranslateService } from '@ngx-translate/core';
 import { LocalizationService } from './core/services/localization/localization.service';
 import { PrimeNG } from 'primeng/config';
 import { NavBarComponent } from './shared/components/nav-bar/nav-bar.component';
-import Aura from '@primeng/themes/aura';
+// import Aura from '@primeng/themes/aura';
 import translationsEN from '../../public/i18n/en.json';
 import translationsAR from '../../public/i18n/ar.json';
 import { FooterComponent } from "./shared/components/footer/footer.component";
 import { DivNavbarComponent } from "./shared/components/div-navbar/div-navbar.component";
+import { MyPreset } from './mytheme';
+import { ChatComponent } from "./shared/components/chat/chat.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavBarComponent, FooterComponent, DivNavbarComponent],
+  imports: [RouterOutlet, NavBarComponent, FooterComponent, DivNavbarComponent, ChatComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -33,7 +35,7 @@ export class AppComponent {
     document.documentElement.lang = currentLang;
 
     this.primeng.theme.set({
-      preset: Aura,
+      preset: MyPreset,
       options: {
         darkModeSelector: 'dark'
       },

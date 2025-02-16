@@ -1,0 +1,17 @@
+<section class="chat-container" [ngClass]="{'show': showChat}">
+  <div class="chat-header">
+    <h3>Chat</h3>
+    <button class="close-btn" (click)="toggleChat()">✖</button>
+  </div>
+  <div class="chat-messages">
+    @for (msg of messages; track $index) {
+      <div [ngClass]="{ 'received': msg.sender.id === currentUserId, 'sent': msg.sender.id !== currentUserId }">
+        <p>{{ msg.content }}</p>
+      </div>
+    }
+  </div>
+  <div class="chat-input">
+    <input type="text" [formControl]="chatForm.controls['message']" placeholder="Type a message..." (keyup.enter)="sendMessage()" />
+    <p-button label="Send" icon="pi pi-send" class="send-btn" (click)="sendMessage()"></p-button>
+  </div>
+</section>

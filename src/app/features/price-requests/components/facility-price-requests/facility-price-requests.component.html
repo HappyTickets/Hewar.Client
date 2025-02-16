@@ -1,19 +1,28 @@
 <div class="container">
-  <p-table [value]="priceRequests" dataKey="id" stripedRows [paginator]="true" [rows]="10" [globalFilterFields]="['company.name']" selectionMode="single" #dt [tableStyle]="{'height': '50rem' }">
+  <p-table [value]="priceRequests" dataKey="id" stripedRows [paginator]="true" [rows]="10" [globalFilterFields]="['company.name']" selectionMode="single" #dt [rowsPerPageOptions]="[5, 10, 20]" [tableStyle]="{ 'min-width': '50rem'}">
     <ng-template #caption>
       <p-iconfield iconPosition="left">
         <p-inputicon><i class="pi pi-search"></i></p-inputicon>
-        <input pInputText type="text" [(ngModel)]="searchTerm" (input)="dt.filterGlobal(searchTerm, 'contains')" placeholder="Global Search"/>
+        <input pInputText type="text" [(ngModel)]="searchTerm" (input)="dt.filterGlobal(searchTerm, 'contains')" [placeholder]="'app.price-request.price-request-page.global-search' | translate"/>
       </p-iconfield>
     </ng-template>
 
     <ng-template pTemplate="header">
       <tr>
         <th></th>
-        <th pSortableColumn="company.name">Client Name <p-sortIcon field="company.name"></p-sortIcon></th>
-        <th pSortableColumn="company.contractType">Contract Type <p-sortIcon field="company.contractType"></p-sortIcon></th>
-        <th pSortableColumn="company.requestStatus">Request Status <p-sortIcon field="company.requestStatus"></p-sortIcon></th>
-        <th>Actions</th>
+        <th pSortableColumn="company.name" style="width:20%">
+          {{ 'app.price-request.price-request-page.company-name' | translate }}
+          <p-sortIcon field="company.name"></p-sortIcon>
+        </th>
+        <th pSortableColumn="contractType" style="width:20%">
+          {{ 'app.price-request.price-request-page.contract-type' | translate }}
+          <p-sortIcon field="contractType"></p-sortIcon>
+        </th>
+        <th pSortableColumn="requestStatus" style="width:20%">
+          {{ 'app.price-request.price-request-page.status' | translate }}
+          <p-sortIcon field="requestStatus"></p-sortIcon>
+        </th>
+        <th style="width:40%">{{ 'app.price-request.price-request-page.actions' | translate }}</th>
       </tr>
     </ng-template>
 
@@ -23,13 +32,23 @@
           <p-button type="button" [pRowToggler]="service" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"/>
         </td>
         <td>{{ service.company.name }}</td>
-        <td>{{ 'enums.contract-types.'+ service.contractType | translate }}</td>
-        <td>{{ 'enums.request-status.'+ service.requestStatus | translate }}</td>
-        <td>
-          <p-button class="mx-1" (click)="openChat()" label="Chat"/>
-          <p-button class="mx-1" [routerLink]="['/update-price-request/' + service.id ]" label="Edit" [disabled]="service.requestStatus === 4"/>
-          <p-button class="mx-1" (click)="cancelPriceRequest(service.id)" label="Cancel" [disabled]="service.requestStatus === 4"/>
+        <td>{{ 'enums.contract-types.' + service.contractType | translate }}</td>
+        <td>{{ 'enums.request-status.' + service.requestStatus | translate }}</td>
+        <td class="flex flex-row">
+          <p-button icon="pi pi-cog" (click)="toggleActions(service)" pTooltip="{{ 'app.price-request.price-request-page.actions' | translate }}" tooltipPosition="top"></p-button>
+          <div [class.visible]="service.showActions" class="smooth-buttons">
+            @if (service.showActions) {
+              <p-button class="m-1" [routerLink]="['/update-price-request/' + service.id]" [disabled]="service.requestStatus !== 1" icon="pi pi-pencil" pTooltip="{{ 'app.price-request.price-request-page.update' | translate }}" tooltipPosition="top"></p-button>
+              <p-button class="m-1" (click)="showCancelPopUp=true;currentId=service.id" [disabled]="service.requestStatus !== 1" icon="pi pi-times" pTooltip="{{ 'app.price-request.price-request-page.cancel' | translate }}" tooltipPosition="top"></p-button>
+              <p-button class="m-1" (click)="showHidePopUp=true;currentId=service.id" icon="pi pi-eye-slash" pTooltip="{{ 'app.price-request.price-request-page.hide' | translate }}" tooltipPosition="top"></p-button>
+              <p-button class="m-1" (click)="openChat()" icon="pi pi-comments" pTooltip="{{ 'app.price-request.price-request-page.chat' | translate }}" tooltipPosition="top"></p-button>
+              <p-button class="m-1" [routerLink]="['/price-request-details/' + service.id]" icon="pi pi-info-circle" pTooltip="{{ 'app.price-request.price-request-page.details' | translate }}" tooltipPosition="top"></p-button>
+            }
+          </div>
+          <app-delete-popup [visible]="showHidePopUp" type="hide" (confirmDelete)="hidePriceRequest()" (closePopup)="showHidePopUp = false"></app-delete-popup>
+          <app-delete-popup [visible]="showCancelPopUp" type="cancel" (confirmDelete)="cancelPriceRequest()" (closePopup)="showCancelPopUp = false"></app-delete-popup>
         </td>
+
       </tr>
     </ng-template>
 
@@ -37,77 +56,49 @@
     <ng-template pTemplate="rowexpansion" let-service>
       <tr>
         <td colspan="5">
-          <div class="flex justify-content-between mt-1">
-            <div>Start Date: <strong>{{ service.startDate | date }}</strong></div>
-            <div>End Date: <strong>{{ service.endDate | date }}</strong></div>
+          <div class="flex justify-content-between">
+            <div>
+              {{ 'app.price-request.price-request-page.start-date' | translate }}:
+              <strong>{{ service.startDate | date }}</strong>
+            </div>
+            <div>
+              {{ 'app.price-request.price-request-page.end-date' | translate }}:
+              <strong>{{ service.endDate | date }}</strong>
+            </div>
           </div>
-        </td>
-      </tr>
-
-      <tr>
-        <td colspan="5">
-          <h2>Services</h2>
+          <h2>{{ 'app.price-request.price-request-page.services' | translate }}</h2>
           <p-table [value]="service.services" dataKey="id">
             <ng-template pTemplate="header">
               <tr>
-                <th>Service Id</th>
-                <th>Quantity</th>
-                <th>Shift Type</th>
-                <th>Monthly Cost</th>
-                <th>Daily Cost</th>
+                <th style="width:20%">{{ 'app.price-request.price-request-page.service-id' | translate }}</th>
+                <th style="width:20%">{{ 'app.price-request.price-request-page.shift' | translate }}</th>
+                <th style="width:20%">{{ 'app.price-request.price-request-page.quantity' | translate }}</th>
               </tr>
             </ng-template>
             <ng-template pTemplate="body" let-service>
               <tr>
-                <td>{{ service.serviceId }}</td>
-                <td>{{ service.quantity }}</td>
+                <td>{{ service.serviceName }}</td>
                 <td>{{ 'enums.shift-type.' + service.shiftType | translate }}</td>
-                <td>
-                  <ng-container *ngIf="service.isEditMode; else viewMode">
-                    <p-inputNumber [(ngModel)]="service.monthlyCost" [min]="0" [minFractionDigits]="0" [maxFractionDigits]="0" placeholder="Enter Monthly Cost" class="w-full"/>                  </ng-container>
-                  <ng-template #viewMode>{{ service.monthlyCost }}</ng-template>
-                </td>
-                <td>
-                  <ng-container *ngIf="service.isEditMode; else viewMode2">
-                    <p-inputNumber [(ngModel)]="service.dailyCost"
-                                   [min]="0" [minFractionDigits]="0" [maxFractionDigits]="0"
-                                   placeholder="Enter Daily Cost" class="w-full"/>
-                  </ng-container>
-                  <ng-template #viewMode2>{{ service.dailyCost }}</ng-template>
-                </td>
+                <td>{{ service.quantity }}</td>
               </tr>
             </ng-template>
           </p-table>
-          <h2>Other Services</h2>
+
+          <h2>{{ 'app.price-request.price-request-page.other-services' | translate }}</h2>
           <p-table [value]="service.otherServices" dataKey="id">
             <ng-template pTemplate="header">
               <tr>
-                <th>Service Type</th>
-                <th>Quantity</th>
-                <th>Shift Type</th>
-                <th>Monthly Cost</th>
-                <th>Daily Cost</th>
+                <th style="width:30%">{{ 'app.price-request.price-request-page.service' | translate }}</th>
+                <th style="width:30%">{{ 'app.price-request.price-request-page.shift' | translate }}</th>
+                <th style="width:30%">{{ 'app.price-request.price-request-page.quantity' | translate }}</th>
               </tr>
             </ng-template>
 
             <ng-template pTemplate="body" let-service>
               <tr>
                 <td>{{ service.name }}</td>
-                <td>{{ service.quantity }}</td>
                 <td>{{ 'enums.shift-type.' + service.shiftType | translate }}</td>
-                <td>
-                  <ng-container *ngIf="service.isEditMode; else viewMode">
-                    <p-inputNumber [(ngModel)]="service.monthlyCost" [min]="0" [minFractionDigits]="0" [maxFractionDigits]="0" placeholder="Enter Monthly Cost" class="w-full"/>                  </ng-container>
-                  <ng-template #viewMode>{{ service.monthlyCost }}</ng-template>
-                </td>
-                <td>
-                  <ng-container *ngIf="service.isEditMode; else viewMode2">
-                    <p-inputNumber [(ngModel)]="service.dailyCost"
-                                   [min]="0" [minFractionDigits]="0" [maxFractionDigits]="0"
-                                   placeholder="Enter Daily Cost" class="w-full"/>
-                  </ng-container>
-                  <ng-template #viewMode2>{{ service.dailyCost }}</ng-template>
-                </td>
+                <td>{{ service.quantity }}</td>
               </tr>
             </ng-template>
           </p-table>

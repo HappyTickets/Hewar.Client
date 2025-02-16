@@ -1,0 +1,96 @@
+<form class="container" [formGroup]="editPriceRequestForm">
+  <div class="header">
+    <img class="logo" [src]="companyData.logo" alt="Security Logo"/>
+    @if (companyData.id) {
+    <div>
+      <h2>{{ companyData.name }}</h2>
+      <p>{{ companyData.contactEmail }}</p>
+    </div>
+    }
+  </div>
+
+  <div class="content">
+    <!-- Price Request Section -->
+    <h2>{{ 'app.price-request.edit-price-request.header' | translate }}</h2>
+    <div class="grid">
+      <div class="input-group col-12 md:col-4">
+        <label for="startDate">{{ 'app.price-request.edit-price-request.contractDate' | translate }}</label>
+        <p-datepicker formControlName="startDate" showIcon iconDisplay="input" [disabled]="true"></p-datepicker>
+      </div>
+      <div class="input-group col-12 md:col-4">
+        <label for="endDate">{{ 'app.price-request.edit-price-request.endContract' | translate }}</label>
+        <p-datepicker formControlName="endDate" showIcon iconDisplay="input" [disabled]="true"></p-datepicker>
+      </div>
+      <div class="input-group col-12 md:col-4">
+        <label for="contractType">{{ 'app.price-request.edit-price-request.contractType' | translate }}</label>
+        <app-input [formGroup]="editPriceRequestForm" [options]="contractTypes" controlName="contractType" icon="pi-map" type="dropdown"></app-input>
+      </div>
+    </div>
+
+    <!-- Service Details Section -->
+    <h2>{{ 'app.price-request.edit-price-request.services' | translate }}</h2>
+    <div formArrayName="services" class="services">
+      @for (service of services.controls; track service; let i = $index) {
+        <div [formGroupName]="i" class="service-item">
+          <div class="service-inputs">
+            <div class="input-row grid">
+              <div class="flex flex-column gap-1 md:col-4 col-12">
+                @if (i === 0) {
+                  <label for="serviceId-{{i}}">{{ 'app.price-request.edit-price-request.chooseService' | translate }}</label>
+                }
+                <p-select readonly [options]="companyServices" formControlName="serviceId" optionLabel="name" optionValue="id"></p-select>
+              </div>
+              <div class="flex flex-column gap-1 md:col-4 col-12">
+                @if (i === 0) {
+                  <label for="shiftType-{{i}}">{{ 'app.price-request.edit-price-request.shiftType' | translate }}</label>
+                }
+                <p-select readonly [options]="shiftType" formControlName="shiftType" optionLabel="name" optionValue="code"></p-select>
+              </div>
+              <div class="flex flex-column gap-1 md:col-4 col-12">
+                @if (i === 0) {
+                  <label for="quantity-{{i}}">{{ 'app.price-request.edit-price-request.quantity' | translate }}</label>
+                }
+                <p-inputNumber readonly fluid="true" [showButtons]="true" [min]="0" formControlName="quantity"></p-inputNumber>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- Other Services Section -->
+    <h2>{{ 'app.price-request.edit-price-request.otherDetails' | translate }}</h2>
+    <div formArrayName="otherServices" class="services">
+      @for (service of otherServices.controls; track service; let i = $index) {
+        <div [formGroupName]="i" class="service-item">
+          <div class="service-inputs">
+            <div class="input-row grid">
+              <div class="input-group col-12 md:col-4">
+                @if (i === 0) {
+                  <label for="otherServiceName-{{i}}">{{ 'app.price-request.edit-price-request.serviceName' | translate }}</label>
+                }
+                <input readonly pInputText formControlName="name"/>
+              </div>
+              <div class="input-group col-12 md:col-4">
+                @if (i === 0) {
+                  <label for="otherShiftType-{{i}}">{{ 'app.price-request.edit-price-request.shiftType' | translate }}</label>
+                }
+                <p-select readonly [options]="shiftType" formControlName="shiftType" optionLabel="name" optionValue="code"></p-select>
+              </div>
+              <div class="input-group col-12 md:col-4">
+                @if (i === 0) {
+                  <label for="otherQuantity-{{i}}">{{ 'app.price-request.edit-price-request.quantity' | translate }}</label>
+                }
+                <p-inputNumber readonly fluid="true" [showButtons]="true" formControlName="quantity" [min]="1"></p-inputNumber>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- Notes Section -->
+    <h2>{{ 'app.price-request.edit-price-request.addNotes' | translate }}</h2>
+    <textarea pTextarea formControlName="notes" class="w-full" rows="5" [autoResize]="true" ></textarea>
+  </div>
+</form>

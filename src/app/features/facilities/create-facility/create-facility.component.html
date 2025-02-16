@@ -1,4 +1,4 @@
-<p-toast></p-toast>
+<!-- <p-toast></p-toast>
 
 <div class="facility-form">
   <h2>{{ "app.facilities.add-facility" | translate }}</h2>
@@ -9,135 +9,96 @@
     class="form-create-facility"
   >
     <p class="p-group">{{ "app.facilities.facility-data" | translate }}</p>
-    <div class="group">
-      <p-floatlabel>
-        <p-iconfield>
-          <p-inputicon class="pi pi-user" />
-          <input
-            pInputText
-            id="name"
-            autocomplete="off"
-            formControlName="name"
-          />
-        </p-iconfield>
-        <label for="name">{{
-          "app.facilities.facility-name" | translate
-        }}</label>
-      </p-floatlabel>
+    <div class="group group1">
+      <app-input
+        placeholder="facilities.facility-name"
+        [formGroup]="facilityForm"
+        errorKey="invalidName"
+        controlName="name"
+        icon="pi-id-card"
+        type="text"
+        label="facilities.facility-name"
+      ></app-input>
 
-      <div class="p-input">
-        <p-floatlabel>
-          <p-iconfield>
-            <p-inputicon class="pi pi-user" />
-            <input
-              pInputText
-              id="type"
-              autocomplete="off"
-              formControlName="type"
-            />
-          </p-iconfield>
-          <label for="type">{{
-            "app.facilities.facility-type" | translate
-          }}</label>
-        </p-floatlabel>
-      </div>
-      <div class="p-input">
-        <p-floatlabel>
-          <p-iconfield>
-            <p-inputicon class="pi pi-barcode" />
-            <input
-              pInputText
-              id="commercialRegistration"
-              autocomplete="off"
-              formControlName="commercialRegistration"
-            />
-          </p-iconfield>
-          <label for="commercialRegistration">{{
-            "app.facilities.Commercial-Registration" | translate
-          }}</label>
-        </p-floatlabel>
-      </div>
-      <div class="p-input">
-        <p-floatlabel>
-          <p-iconfield>
-            <p-inputicon class="pi pi-barcode" />
-            <input
-              pInputText
-              id="activityType"
-              autocomplete="off"
-              formControlName="activityType"
-            />
-          </p-iconfield>
-          <label for="activityType">{{
-            "app.facilities.activity-type" | translate
-          }}</label>
-        </p-floatlabel>
-      </div>
+      <app-input
+        placeholder="facilities.facility-type"
+        [formGroup]="facilityForm"
+        errorKey="facilities.facility-type"
+        controlName="type"
+        icon="pi-building"
+        type="text"
+        label="facilities.facility-type"
+      ></app-input>
+
+      <app-input
+        placeholder="facilities.Commercial-Registration"
+        [formGroup]="facilityForm"
+        errorKey="facilities.Commercial-Registration"
+        controlName="commercialRegistration"
+        icon="pi-file"
+        type="text"
+        label="facilities.Commercial-Registration"
+      ></app-input>
+
+      <app-input
+        placeholder="facilities.activity-type"
+        [formGroup]="facilityForm"
+        errorKey="facilities.activity-type"
+        controlName="activityType"
+        icon="pi-barcode"
+        type="text"
+        label="facilities.activity-type"
+      ></app-input>
     </div>
+
     <p class="p-group">
       {{ "app.facilities.facility-det-address" | translate }}
     </p>
     <div class="group">
       <div class="address" formGroupName="address">
         <div class="p-input">
-          <p-floatlabel>
-            <p-iconfield>
-              <p-inputicon class="pi pi-building-columns" />
-              <input
-                pInputText
-                id="street"
-                autocomplete="off"
-                formControlName="street"
-              />
-            </p-iconfield>
-            <label for="activityType">{{
-              "app.facilities.street" | translate
-            }}</label>
-          </p-floatlabel>
+          <app-input
+            [formGroup]="addressFormGroup"
+            placeholder="facilities.street"
+            errorKey="facilities.street"
+            controlName="street"
+            icon="pi-map-marker"
+            type="text"
+            label="facilities.street"
+          ></app-input>
         </div>
         <div class="p-input">
-          <p-floatlabel>
-            <p-iconfield>
-              <p-inputicon class="pi pi-map" />
-              <input
-                pInputText
-                id="city"
-                autocomplete="off"
-                formControlName="city"
-              />
-            </p-iconfield>
-            <label for="city">{{ "app.facilities.city" | translate }}</label>
-          </p-floatlabel>
+          <app-input
+            placeholder="facilities.city"
+            [formGroup]="addressFormGroup"
+            errorKey="facilities.city"
+            controlName="city"
+            icon="pi-map"
+            type="text"
+            label="facilities.city"
+          ></app-input>
         </div>
         <div class="p-input">
-          <p-floatlabel>
-            <p-iconfield>
-              <p-inputicon class="pi pi-map-marker" />
-              <input
-                pInputText
-                id="state"
-                autocomplete="off"
-                formControlName="state"
-              />
-            </p-iconfield>
-            <label for="state">{{ "app.facilities.state" | translate }}</label>
-          </p-floatlabel>
+          <app-input
+            placeholder="facilities.state"
+            [formGroup]="addressFormGroup"
+            errorKey="facilities.state"
+            controlName="state"
+            icon="pi-globe"
+            type="text"
+            label="facilities.state"
+          ></app-input>
         </div>
         <div class="p-input">
-          <p-floatlabel>
-            <p-iconfield>
-              <p-inputicon class="pi pi-flag" />
-              <input
-                pInputText
-                id="country"
-                autocomplete="off"
-                formControlName="country"
-              />
-            </p-iconfield>
-            <label for="country">{{
-              "app.facilities.country" | translate
-            }}</label>
-          </p-floatlabel>
+          <app-input
+            placeholder="facilities.country"
+            [formGroup]="addressFormGroup"
+            errorKey="facilities.country"
+            controlName="country"
+            icon="pi-flag"
+            type="text"
+            label="facilities.country"
+          ></app-input>
         </div>
       </div>
     </div>
@@ -147,38 +108,27 @@
     <div class="group">
       <div class="responsibleData">
         <div class="p-input">
-          <p-floatlabel>
-            <p-iconfield>
-              <p-inputicon class="pi pi-user-edit" />
-              <input
-                pInputText
-                id="responsibleName"
-                autocomplete="off"
-                formControlName="responsibleName"
-              />
-            </p-iconfield>
-            <label for="responsibleName">{{
-              "app.facilities.responsipoleNam" | translate
-            }}</label>
-          </p-floatlabel>
+          <app-input
+            placeholder="facilities.responsipoleNam"
+            [formGroup]="facilityForm"
+            errorKey="facilities.responsipoleNam"
+            controlName="responsibleName"
+            icon="pi-user"
+            type="text"
+            label="facilities.responsipoleNam"
+          ></app-input>
         </div>
         <div class="p-input">
-          <p-floatlabel>
-            <p-iconfield>
-              <p-inputicon class="pi pi-phone" />
-              <input
-                pInputText
-                id="responsiblePhone"
-                type="tel"
-                formControlName="responsiblePhone"
-                autocomplete="off"
-                (keypress)="validateNumberInput($event)"
-              />
-            </p-iconfield>
-            <label for="responsiblePhone">{{
-              "app.facilities.phone" | translate
-            }}</label>
-          </p-floatlabel>
+          <app-input
+            (keypress)="validateNumberInput($event)"
+            placeholder="facilities.phone"
+            [formGroup]="facilityForm"
+            errorKey="facilities.phone"
+            controlName="responsiblePhone"
+            icon="pi-phone"
+            type="text"
+            label="facilities.phone"
+          ></app-input>
         </div>
       </div>
     </div>
@@ -188,83 +138,71 @@
     <div class="group">
       <div class="admin-info" formGroupName="adminInfo">
         <div class="p-input">
-          <p-floatlabel>
-            <p-iconfield>
-              <p-inputicon class="pi pi-at" />
-              <input
-                pInputText
-                id="email"
-                autocomplete="off"
-                formControlName="email"
-              />
-            </p-iconfield>
-            <label for="email">{{ "app.facilities.email" | translate }}</label>
-          </p-floatlabel>
+          <app-input
+            placeholder="facilities.email"
+            [formGroup]="adminInfo"
+            errorKey="facilities.email"
+            controlName="email"
+            icon="pi-at"
+            type="email"
+            label="facilities.email"
+          ></app-input>
         </div>
         <div class="p-input">
-          <p-floatlabel>
-            <p-iconfield>
-              <p-inputicon class="pi pi-key" />
-              <input
-                pInputText
-                type="password"
-                id="password"
-                autocomplete="off"
-                formControlName="password"
-              />
-            </p-iconfield>
-            <label for="password">{{
-              "app.facilities.password" | translate
-            }}</label>
-          </p-floatlabel>
+          <app-input
+            placeholder="facilities.password"
+            [formGroup]="adminInfo"
+            errorKey="facilities.password"
+            controlName="password"
+            icon="pi-lock"
+            type="password"
+            label="facilities.password"
+          ></app-input>
         </div>
         <div class="p-input">
-          <p-floatlabel>
-            <p-iconfield>
-              <p-inputicon class="pi pi-user" />
-              <input
-                pInputText
-                id="firstName"
-                autocomplete="off"
-                formControlName="firstName"
-              />
-            </p-iconfield>
-            <label for="firstName">{{
-              "app.facilities.firstName" | translate
-            }}</label>
-          </p-floatlabel>
+          <app-input
+            placeholder="facilities.Confirmpassword"
+            [formGroup]="adminInfo"
+            errorKey="facilities.Confirmpassword"
+            controlName="password"
+            icon="pi-lock"
+            type="password"
+            label="facilities.Confirmpassword"
+          ></app-input>
         </div>
         <div class="p-input">
-          <p-floatlabel>
-            <p-iconfield>
-              <p-inputicon class="pi pi-user" />
-              <input
-                pInputText
-                id="lastName"
-                autocomplete="off"
-                formControlName="lastName"
-              />
-            </p-iconfield>
-            <label for="lastName">{{
-              "app.facilities.lastName" | translate
-            }}</label>
-          </p-floatlabel>
+          <app-input
+            placeholder="facilities.firstName"
+            [formGroup]="adminInfo"
+            errorKey="facilities.firstName"
+            controlName="firstName"
+            icon="pi-user"
+            type="text"
+            label="facilities.firstName"
+          ></app-input>
         </div>
         <div class="p-input">
-          <p-floatlabel>
-            <p-iconfield>
-              <p-inputicon class="pi pi-phone" />
-              <input
-                pInputText
-                id="phone"
-                type="tel"
-                formControlName="phone"
-                autocomplete="off"
-                (keypress)="validateNumberInput($event)"
-              />
-            </p-iconfield>
-            <label for="phone">{{ "app.facilities.phone" | translate }}</label>
-          </p-floatlabel>
+          <app-input
+            placeholder="facilities.lastName"
+            [formGroup]="adminInfo"
+            errorKey="facilities.lastName"
+            controlName="lastName"
+            icon="pi-user"
+            type="text"
+            label="facilities.lastName"
+          ></app-input>
+        </div>
+        <div class="p-input">
+          <app-input
+            (keypress)="validateNumberInput($event)"
+            placeholder="facilities.phone"
+            [formGroup]="adminInfo"
+            errorKey="facilities.phone"
+            controlName="phone"
+            icon="pi-phone"
+            type="text"
+            label="facilities.phone"
+          ></app-input>
         </div>
       </div>
     </div>
@@ -307,4 +245,118 @@
       </div>
     </div>
   </form>
+</div> -->
+
+<div class="create-component">
+  <div class="container">
+    <h2 class="text-center mb-4">
+      {{ "app.create-update-facility.create-title" | translate }}
+    </h2>
+    <form [formGroup]="facilityForm" (ngSubmit)="onSubmit()">
+      <div class="card">
+        <p class="p-group">
+          {{ "app.create-update-facility.facility-data-title" | translate }}
+        </p>
+        <div class="grid">
+          @for (input of fcilityDataInputs; track $index) {
+          <div class="col-12 md:col-6 lg:col-4">
+            <app-input
+              [formGroup]="facilityForm"
+              [placeholder]="input.placeholder"
+              [errorKey]="input.errorKey"
+              [controlName]="input.controlName"
+              [icon]="input.icon"
+              [type]="input.type"
+              [label]="input.label"
+            >
+            </app-input>
+          </div>
+          }
+        </div>
+
+        <p class="p-group">
+          {{ "app.create-update-facility.address-data-title" | translate }}
+        </p>
+
+        <div class="grid">
+          <ng-container formGroupName="address">
+            @for (input of addressDataInputs; track $index) {
+            <div class="col-12 md:col-6 lg:col-4">
+              <app-input
+                [formGroup]="addressGroup"
+                [placeholder]="input.placeholder"
+                [errorKey]="input.errorKey"
+                [controlName]="input.controlName"
+                [icon]="input.icon"
+                [type]="input.type"
+                [label]="input.label"
+              >
+              </app-input>
+            </div>
+            }
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="card">
+        <p class="p-group">
+          {{ "app.create-update-facility.admin-data-title" | translate }}
+        </p>
+        <div class="grid">
+          <ng-container formGroupName="adminInfo">
+            @for (input of adminDataInputs; track $index) {
+            <div class="col-12 md:col-6 lg:col-4">
+              <app-input
+                [formGroup]="adminInfo"
+                [placeholder]="input.placeholder"
+                [errorKey]="input.errorKey"
+                [controlName]="input.controlName"
+                [icon]="input.icon"
+                [type]="input.type"
+                [label]="input.label"
+              >
+              </app-input>
+              @if(input.controlName === 'confirmPassword' &&
+              facilityForm.get('adminInfo')?.hasError('mismatch')){
+              <p-message
+                severity="error"
+                [text]="'app.' + input.errorKey | translate"
+              ></p-message>
+              }
+            </div>
+            }
+            <div class="group">
+              <div class="image-upload">
+                <label for="">{{
+                  "app.facilities.upload-image" | translate
+                }}</label>
+                <i class="pi pi-cloud-upload"></i>
+                <app-image-uploader
+                  (fileSizeError)="handleFileSizeError($event)"
+                  (imageName)="handelimagenam($event)"
+                ></app-image-uploader>
+                <div *ngIf="fileUploadError" class="error-message">
+                  {{ fileUploadError }}
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button type="submit" class="save">
+          {{ "app.create-update-facility.save" | translate }}
+        </button>
+        <button
+          class="cancel"
+          routerLink="/facilities"
+          type="button"
+          (click)="cancel()"
+        >
+          {{ "app.create-update-facility.cancel" | translate }}
+        </button>
+      </div>
+    </form>
+  </div>
 </div>
