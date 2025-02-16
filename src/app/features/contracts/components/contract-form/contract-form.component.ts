@@ -20,11 +20,12 @@ import { TableModule } from 'primeng/table';
 import { InputComponent } from '../../../../shared/components/input/input.component';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ContractsService } from '../../services/contracts.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IFillContract } from '../../models/ifill-contract';
 import { CommonModule } from '@angular/common';
-import { IUpdateContract } from '../../models/iupdate-contract';
 import { IContract } from '../../models/icontract';
+import { catchError, EMPTY, tap } from 'rxjs';
+import { IUpdateContract } from '../../models/iupdate-contract';
 
 @Component({
   selector: 'app-contract-form',
@@ -52,41 +53,29 @@ export class ContractFormComponent implements OnInit {
   private contractsService = inject(ContractsService);
   private route = inject(ActivatedRoute);
   private fb = inject(FormBuilder);
+  private router = inject(Router);
   date = new Date(Date.now());
-  contractForm!: FormGroup;
   mode: 'create' | 'update' = 'create';
->>>>>>> 1f61da8 (create the services, models, form component)
+  contractForm!: FormGroup;
+  contractId = 0;
   offerId = 0;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.offerId = +(params.get('id') ?? 0);
-<<<<<<< HEAD
-      this.contractService
-        .GetContractFieldsByOfferId(this.offerId).pipe(
-          tap((res) => {
-            if (res.data) {
-              if (res.data.contractId) this.contractId = res.data.contractId;
-              this.mode = 'update';
-              this.assignValues(res.data);
-            }
-          }),
-          catchError(() => {
-            this.mode = 'create';
-            return EMPTY;
-          })
-        )
-        .subscribe();
-=======
-      this.contractsService.getContractFieldsByOfferId(this.offerId).subscribe((res)=> {
-        if (res.data) {
-          console.log(res);
-
-          this.assignValues(res.data);
-          this.mode = 'update';
-        }
-      })
->>>>>>> 1f61da8 (create the services, models, form component)
+      this.contractsService.getContractFieldsByOfferId(this.offerId).pipe(
+        tap((res) => {
+          if (res.data) {
+            if (res.data.contractId) this.contractId = res.data.contractId;
+            this.mode = 'update';
+            this.assignValues(res.data);
+          }
+        }),
+        catchError(() => {
+          this.mode = 'create';
+          return EMPTY;
+        })
+      ).subscribe();
     });
   }
   constructor() {
@@ -278,17 +267,19 @@ export class ContractFormComponent implements OnInit {
   submitContract() {
     if (this.contractForm.valid) {
       if (this.mode === 'create') {
-        const form: IFillContract = {contract: this.contractForm.value,offerId:this.offerId}
-        this.contractsService.fillFields(form).subscribe();
+        const form: IFillContract = {contract: this.contractForm.value, offerId:this.offerId}
+        this.contractsService.fillFields(form).subscribe(() => {
+          this.router.navigate([`contract-preview/${this.contractId}`]);
+        });
       } else {
-        const form: IUpdateContract = {contract: this.contractForm.value, id:this.offerId}
-        this.contractsService.updateFields(form).subscribe();
+        const form: IUpdateContract = {contract: this.contractForm.value, id: this.contractId}
+        this.contractsService.updateFields(form).subscribe(() => {
+          this.router.navigate([`contract-preview/${this.contractId}`]);
+        });
       }
     }
   }
   assignValues(res: IContract) {
-    console.log(res);
-
     this.contractForm.patchValue({
       partyOne: res.partyOne,
       partyTwo: res.partyTwo,
