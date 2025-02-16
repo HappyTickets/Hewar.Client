@@ -1,6 +1,12 @@
 import { TableModule } from 'primeng/table';
 import { Component, inject, OnInit, Renderer2 } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { IContractTemplate } from '../../models/icontract-template';
 import { CommonModule } from '@angular/common';
@@ -20,7 +26,15 @@ import { ClausesService } from '../../services/clauses.service';
 @Component({
   selector: 'app-contract-preview',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule, ButtonModule, InputTextModule, TranslatePipe, TableModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    ButtonModule,
+    InputTextModule,
+    TranslatePipe,
+    TableModule,
+  ],
   templateUrl: './contract-preview.component.html',
   styleUrls: ['./contract-preview.component.scss'],
 })
@@ -86,13 +100,13 @@ export class ContractPreviewComponent implements OnInit {
   }
   private loadScheduleEntries(): void {
     this.scheduleEntries.clear();
-    this.scheduleEntriesData.forEach(entry => {
+    this.scheduleEntriesData.forEach((entry) => {
       this.scheduleEntries.push(this.createScheduleEntry(entry));
     });
   }
   private loadCustomClauses(): void {
     this.customClauses.clear();
-    this.customClausesData.forEach(clause => {
+    this.customClausesData.forEach((clause) => {
       this.customClauses.push(this.createCustomClause(clause));
     });
   }
@@ -128,12 +142,19 @@ export class ContractPreviewComponent implements OnInit {
   saveScheduleEntries(): void {
     this.scheduleEntriesData = this.scheduleForm.value.scheduleEntries;
     this.isEditing = false;
-    this.scheduleEntriesService.Create(this.scheduleForm.value.scheduleEntries, this.contractId || 0).subscribe();
+    this.scheduleEntriesService
+      .Create(this.scheduleForm.value.scheduleEntries, this.contractId || 0)
+      .subscribe();
   }
   saveCustomClauses(): void {
     this.customClausesData = this.customClausesForm.value.customClauses;
     this.isEditingClauses = false;
-    this.clausesService.CreateCustomClauses(this.customClausesForm.value.customClauses, this.contractId || 0).subscribe();
+    this.clausesService
+      .CreateCustomClauses(
+        this.customClausesForm.value.customClauses,
+        this.contractId || 0
+      )
+      .subscribe();
   }
   toggleEdit(): void {
     this.isEditing = !this.isEditing;
@@ -148,26 +169,56 @@ export class ContractPreviewComponent implements OnInit {
     }
   }
   private replacePlaceholders(): void {
-    const keys = this.contract.contractKeys.reduce((acc, key) => {acc[key.keyName] = key;return acc;}, {} as Record<string, IContractKey>);
+    const keys = this.contract.contractKeys.reduce((acc, key) => {
+      acc[key.keyName] = key;
+      return acc;
+    }, {} as Record<string, IContractKey>);
     if (this.language === 'ar') {
-      this.contract.staticContractTemplate.preambleAr = this.replaceKeys(this.contract.staticContractTemplate.preambleAr,keys);
-      this.contract.staticContractTemplate.closingRemarkAr = this.replaceKeys(this.contract.staticContractTemplate.closingRemarkAr,keys);
-      this.contract.staticClauses.forEach((clause) => {clause.contentAr = this.replaceKeys(clause.contentAr, keys)});
+      this.contract.staticContractTemplate.preambleAr = this.replaceKeys(
+        this.contract.staticContractTemplate.preambleAr,
+        keys
+      );
+      this.contract.staticContractTemplate.closingRemarkAr = this.replaceKeys(
+        this.contract.staticContractTemplate.closingRemarkAr,
+        keys
+      );
+      this.contract.staticClauses.forEach((clause) => {
+        clause.contentAr = this.replaceKeys(clause.contentAr, keys);
+      });
     } else {
-      this.contract.staticContractTemplate.preambleEn = this.replaceKeys(this.contract.staticContractTemplate.preambleEn,keys);
-      this.contract.staticContractTemplate.closingRemarkEn = this.replaceKeys(this.contract.staticContractTemplate.closingRemarkEn,keys);
-      this.contract.staticClauses.forEach((clause) => {clause.contentEn = this.replaceKeys(clause.contentEn, keys)});
+      this.contract.staticContractTemplate.preambleEn = this.replaceKeys(
+        this.contract.staticContractTemplate.preambleEn,
+        keys
+      );
+      this.contract.staticContractTemplate.closingRemarkEn = this.replaceKeys(
+        this.contract.staticContractTemplate.closingRemarkEn,
+        keys
+      );
+      this.contract.staticClauses.forEach((clause) => {
+        clause.contentEn = this.replaceKeys(clause.contentEn, keys);
+      });
     }
   }
-  private replaceKeys( text: string, keys: Record<string, IContractKey>): string {
-    return text.replace(/{{(.*?)}}/g, (_, key) => {
-      const trimmedKey = key.trim();
-      const keyDetails = keys[trimmedKey];
-      if(trimmedKey === 'OfferNumber') {return `<span>${this.contract.offerNumber}</span>`;}
-      else if(trimmedKey === 'OfferDate') {return `<span>${new Date(this.contract.offerDate).toLocaleDateString('en-GB')}</span>`;}
-      if (!keyDetails)return `<span class="placeholder-key">${trimmedKey}</span>`;
-      return `<span class="placeholder-key ${keyDetails.id}">${keyDetails.value}</span>`;
-      }).replace(/\n/g, '<br>');
+  private replaceKeys(
+    text: string,
+    keys: Record<string, IContractKey>
+  ): string {
+    return text
+      .replace(/{{(.*?)}}/g, (_, key) => {
+        const trimmedKey = key.trim();
+        const keyDetails = keys[trimmedKey];
+        if (trimmedKey === 'OfferNumber') {
+          return `<span>${this.contract.offerNumber}</span>`;
+        } else if (trimmedKey === 'OfferDate') {
+          return `<span>${new Date(this.contract.offerDate).toLocaleDateString(
+            'en-GB'
+          )}</span>`;
+        }
+        if (!keyDetails)
+          return `<span class="placeholder-key">${trimmedKey}</span>`;
+        return `<span class="placeholder-key ${keyDetails.id}">${keyDetails.value}</span>`;
+      })
+      .replace(/\n/g, '<br>');
   }
   onPlaceholderClick(event: MouseEvent): void {
     const target = event.target as HTMLElement;
@@ -182,15 +233,21 @@ export class ContractPreviewComponent implements OnInit {
     const parent = target.parentElement;
     if (!parent) return;
     // Create input field
-    this.placeholderInput = this.renderer.createElement('input') as HTMLInputElement;
+    this.placeholderInput = this.renderer.createElement(
+      'input'
+    ) as HTMLInputElement;
     this.renderer.addClass(this.placeholderInput, 'placeholder-input');
     this.placeholderInput.value = this.editingValue || '';
     // Create save button
-    this.saveButton = this.renderer.createElement('button') as HTMLButtonElement;
+    this.saveButton = this.renderer.createElement(
+      'button'
+    ) as HTMLButtonElement;
     this.renderer.addClass(this.saveButton, 'save-button');
     this.saveButton.innerText = 'Save';
     // Create cancel button
-    this.cancelButton = this.renderer.createElement('button') as HTMLButtonElement;
+    this.cancelButton = this.renderer.createElement(
+      'button'
+    ) as HTMLButtonElement;
     this.renderer.addClass(this.cancelButton, 'cancel-button');
     this.cancelButton.innerText = 'Cancel';
     // Replace target with input field
@@ -199,8 +256,12 @@ export class ContractPreviewComponent implements OnInit {
     this.renderer.insertBefore(parent, this.cancelButton, target);
     this.renderer.removeChild(parent, target);
     // Add event listeners
-    this.renderer.listen(this.saveButton, 'click', () =>this.onSaveClick(parent));
-    this.renderer.listen(this.cancelButton, 'click', () =>this.onCancelClick(target, parent));
+    this.renderer.listen(this.saveButton, 'click', () =>
+      this.onSaveClick(parent)
+    );
+    this.renderer.listen(this.cancelButton, 'click', () =>
+      this.onCancelClick(target, parent)
+    );
   }
   private onSaveClick(parent: HTMLElement): void {
     const newValue = this.placeholderInput?.value;
@@ -236,20 +297,39 @@ export class ContractPreviewComponent implements OnInit {
     const contractKey = this.contract.contractKeys.find((k) => k.id === +key);
     if (contractKey) {
       contractKey.value = newValue;
-      this.contractService.UpdateContractByKeys([{ newValue, contractKeyId: +key }],this.contractId || 0).subscribe();
+      this.contractService
+        .UpdateContractByKeys(
+          [{ newValue, contractKeyId: +key }],
+          this.contractId || 0
+        )
+        .subscribe();
     }
   }
-  getTotalDailyCost(services: IPriceOfferService[], otherServices: IPriceOfferOtherService[]): number {
+  getTotalDailyCost(
+    services: IPriceOfferService[],
+    otherServices: IPriceOfferOtherService[]
+  ): number {
     let total = 0;
-    total += services.reduce((acc, service) => {return acc + (service.dailyCostPerUnit * service.quantity);}, 0);
-    total += otherServices.reduce((acc, service) => {return acc + (service.dailyCostPerUnit * service.quantity);}, 0);
-    return total
+    total += services.reduce((acc, service) => {
+      return acc + service.dailyCostPerUnit * service.quantity;
+    }, 0);
+    total += otherServices.reduce((acc, service) => {
+      return acc + service.dailyCostPerUnit * service.quantity;
+    }, 0);
+    return total;
   }
-  getTotalMonthlyCost(services: IPriceOfferService[], otherServices: IPriceOfferOtherService[]): number {
+  getTotalMonthlyCost(
+    services: IPriceOfferService[],
+    otherServices: IPriceOfferOtherService[]
+  ): number {
     let total = 0;
-    total += services.reduce((acc, service) => {return acc + (service.monthlyCostPerUnit * service.quantity);}, 0);
-    total += otherServices.reduce((acc, service) => {return acc + (service.monthlyCostPerUnit * service.quantity);}, 0);
-    return total
+    total += services.reduce((acc, service) => {
+      return acc + service.monthlyCostPerUnit * service.quantity;
+    }, 0);
+    total += otherServices.reduce((acc, service) => {
+      return acc + service.monthlyCostPerUnit * service.quantity;
+    }, 0);
+    return total;
   }
 
   tempFacilitySignature = this.contract.facilitySignature;
@@ -269,7 +349,10 @@ export class ContractPreviewComponent implements OnInit {
     if (type === 'facility') {
       this.contract.facilitySignature = this.tempFacilitySignature;
       this.editingFacility = false;
-      this.sendSignatureToServer('facilitySignature', this.tempFacilitySignature);
+      this.sendSignatureToServer(
+        'facilitySignature',
+        this.tempFacilitySignature
+      );
     } else {
       this.contract.companySignature = this.tempCompanySignature;
       this.editingCompany = false;
@@ -278,7 +361,8 @@ export class ContractPreviewComponent implements OnInit {
   }
 
   sendSignatureToServer(key: string, signature: string | null) {
-    this.contractService.signContract(this.contractId || 0, signature || '' ).subscribe();
+    this.contractService
+      .signContract(this.contractId || 0, signature || '')
+      .subscribe();
   }
 }
-
