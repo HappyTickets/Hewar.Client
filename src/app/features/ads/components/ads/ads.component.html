@@ -29,6 +29,7 @@
         ></p-message>
       </div>
 
+
       <!-- Description Section -->
 
       <h2>{{ "ads.crearte-ad.description" | translate }}</h2>
@@ -138,6 +139,7 @@
             <p-select
               [options]="servicesOptions"
               formControlName="serviceId"
+              optionLabel="name" optionValue="id"
               name="serviceId"
               [placeholder]="'ads.crearte-ad.serviceType' | translate"
             ></p-select>

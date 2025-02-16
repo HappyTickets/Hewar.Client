@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { ICreateAd } from '../models/icreate-ad';
-import { IResponse } from '../../insurance-ads/model/IResponsive';
 import { IUpdateAd } from '../models/iupdate-ad';
-import { IGetHewarService } from '../models/iget-hewar-service';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
+import { IApiResponse } from '../../../shared/models/IApiResponse';
+import { IAdService } from '../models/iad-service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,53 +15,41 @@ export class AdsService {
   HewarServiceEndPoint = '/api/HewarServices/getAll';
 
   createAD(data: ICreateAd) {
-    return this.http.post<IResponse<number>>(
+    return this.http.post<IApiResponse<number>>(
       `${this.baseEndPoint}create`,
       data
     );
   }
-  updateAd( id: number, data: IUpdateAd) {
-    return this.http.put<IResponse<unknown>>(
-      `${this.baseEndPoint}update/${id}`,
+  updateAd(  data: IUpdateAd) {
+    return this.http.put<IApiResponse<unknown>>(
+      `${this.baseEndPoint}update`,
       data
     );
   }
 
-  getAdById(adId: number) {
-    return this.http.get<IResponse<ICreateAd>>(`${this.baseEndPoint}${adId}`);
+  getAdById(id: number) : Observable<IApiResponse<ICreateAd>> {
+    return this.http.get<IApiResponse<ICreateAd>>(`${this.baseEndPoint}getAdById` , {params:{id}})
   }
 
-  getMyAds() {
-    return this.http.get<IResponse<ICreateAd[]>>(
+  getMyAds() : Observable<IApiResponse<ICreateAd[]>> {
+    return this.http.get<IApiResponse<ICreateAd[]>>(
       `${this.baseEndPoint}getMyAds`
     );
   }
 
   getOpenAds() {
-    return this.http.get<IResponse<ICreateAd[]>>(
+    return this.http.get<IApiResponse<ICreateAd[]>>(
       `${this.baseEndPoint}getOpened`
     );
   }
 
   deleteAd(id: number) {
-    return this.http.delete<IResponse<unknown>>(`${this.baseEndPoint}/${id}`);
+    return this.http.delete<IApiResponse<unknown>>(`${this.baseEndPoint}/${id}`);
   }
 
-  getHewarServices(): Observable<{ label: string; value: number }[]> {
+  getHewarServices(): Observable<IApiResponse<IAdService[]>> {
     return this.http
-      .get<IResponse<IGetHewarService[]>>(this.HewarServiceEndPoint)
-      .pipe(
-        map((response) => {
-          if (response && response.isSuccess && Array.isArray(response.data)) {
-            return response.data.map((service) => ({
-              label: service.name,
-              value: service.id,
-            }));
-          } else {
-            console.error('API returned invalid data format:', response);
-            return [];
-          }
-        })
-      );
+      .get<IApiResponse<IAdService[]>>(this.HewarServiceEndPoint)
+     
   }
 }

@@ -40,7 +40,7 @@ export class AllAdsComponent implements OnInit {
   gitMyAds(): void {
     this.adsService.getMyAds().subscribe({
       next: (data) => {
-        this.myAds = data.data;
+       if(data.data) this.myAds = data.data;
       },
       error: (err) => {
         console.log(err);

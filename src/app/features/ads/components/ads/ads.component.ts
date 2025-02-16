@@ -22,7 +22,8 @@ import { ICreateAd } from '../../models/icreate-ad';
 import { CommonModule } from '@angular/common';
 import { LocalizationService } from '../../../../core/services/localization/localization.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IUpdateAd, AdStatus } from '../../models/iupdate-ad';
+import { IUpdateAd } from '../../models/iupdate-ad';
+import { IAdService } from '../../models/iad-service';
 
 @Component({
   selector: 'app-ads',
@@ -47,6 +48,7 @@ export class AdsComponent implements OnInit {
   createAdForm: FormGroup;
   isEditMode = false;
   adId: number | null = null;
+  adData: ICreateAd = {} as ICreateAd;
 
   private fb = inject(FormBuilder);
   private adsService = inject(AdsService);
@@ -65,7 +67,7 @@ export class AdsComponent implements OnInit {
   // contractTypes = this.localizationService.createDropdown(ContractType);
 
   date = new Date();
-  servicesOptions: { label: string; value: number }[] = [];
+  servicesOptions: IAdService[] = [];
 
   constructor() {
     this.createAdForm = this.fb.group({
@@ -98,7 +100,7 @@ export class AdsComponent implements OnInit {
     this.adsService.getHewarServices().subscribe({
       next: (data) => {
         console.log('Data from API:', data);
-        this.servicesOptions = data;
+       if(data.data) this.servicesOptions = data.data;
       },
       error: (error) => {
         console.error('Error fetching Hewar services:', error);
@@ -107,31 +109,28 @@ export class AdsComponent implements OnInit {
   }
 
   loadAdData(adId: number): void {
-    this.adsService.getAdById(adId).subscribe({
-      next: (ad) => {
-        this.createAdForm.patchValue({
-          id: ad.data.id,
-          title: ad.data.title,
-          description: ad.data.description,
-          contractType: ad.data.contractType,
-          startDate: ad.data.startDate,
-          endDate: ad.data.endDate,
-        });
+    this.adsService.getAdById(adId).subscribe((res) => {
+      if (res.data) this.adData = res.data;
+      this.createAdForm.patchValue({
+        id: this.adData.id,
+        title: this.adData.title,
+        description: this.adData.description,
+        contractType: this.adData.contractType,
+        startDate: this.adData.startDate,
+     
+        endDate: this.adData.endDate,
+      });
 
-        this.services.clear();
-        ad.data.services.forEach((service) => {
-          this.services.push(
-            this.fb.group({
-              serviceId: [service.serviceId, Validators.required],
-              quantity: [service.quantity, Validators.required],
-              sheftType: [service.shiftType, Validators.required],
-            })
-          );
-        });
-      },
-      error: (err) => {
-        console.log(err);
-      },
+      this.services.clear();
+      this.adData.services.forEach((service) => {
+        this.services.push(
+          this.fb.group({
+            serviceId: [service.serviceId, Validators.required],
+            quantity: [service.quantity, Validators.required],
+            shiftType: [service.shiftType, Validators.required],
+          })
+        );
+      });
     });
   }
 
@@ -180,7 +179,7 @@ export class AdsComponent implements OnInit {
   onSubmit(): void {
     this.createAdForm.markAllAsTouched();
     if (this.createAdForm.valid) {
-      const adData: ICreateAd  = {
+      const adData: ICreateAd = {
         title: this.createAdForm.value.title,
         description: this.createAdForm.value.description,
         startDate: this.createAdForm.value.startdate,
@@ -189,48 +188,47 @@ export class AdsComponent implements OnInit {
         services: this.createAdForm.value.services,
       };
 
-      if (this.isEditMode && this.adId ) {
-
+      if (this.isEditMode && this.adId) {
         const updateAdData: IUpdateAd = {
-          ...adData,
           id: this.adId,
-          startDate: this.createAdForm.value.startDate,
-          status: AdStatus.Active
+          title: this.createAdForm.value.title,
+          description: this.createAdForm.value.description,
+          startDate: this.createAdForm.value.startdate,
+          endDate: this.createAdForm.value.endDate,
+          contractType: this.createAdForm.value.contractType,
+          services: this.createAdForm.value.services,
+          status: 1,
         };
-        this.adsService.updateAd(this.adId, updateAdData).subscribe ({
-          next:(res)=>{
-           console.log(res)
-           this.router.navigate(['/ads'])
-
+        this.adsService.updateAd( updateAdData).subscribe({
+          next: (res) => {
+            console.log(res);
+            this.router.navigate(['/ads']);
           },
-          error:(err)=>{
-            console.log(err)
-
-          }
-        })
+          error: (err) => {
+            console.log(err);
+          },
+        });
       } else {
         this.adsService.createAD(adData).subscribe({
-          next:(res)=>{
+          next: (res) => {
             console.log(res);
-            this.router.navigate(['/ads'])
-
+            this.router.navigate(['/ads']);
           },
-          error: (err)=> {
+          error: (err) => {
             console.log(err);
-
-          }
-        })
+          },
+        });
       }
 
-  //     this.router.navigate(['/ads']);
-  //     this.adsService.createAD(adData).subscribe({
-  //       next: (response) => {
-  //         console.log(response);
-  //       },
-  //       error: (error) => {
-  //         console.log(error);
-  //       },
-  //     });
+      //     this.router.navigate(['/ads']);
+      //     this.adsService.createAD(adData).subscribe({
+      //       next: (response) => {
+      //         console.log(response);
+      //       },
+      //       error: (error) => {
+      //         console.log(error);
+      //       },
+      //     });
     }
   }
   onCancel(): void {
