@@ -11,8 +11,8 @@ import { ContractsService } from '../../services/contracts.service';
 import { ActivatedRoute } from '@angular/router';
 import { IFillContract } from '../../models/ifill-contract';
 import { CommonModule } from '@angular/common';
-import { IGetContractFieldsByOfferId } from '../../models/iget-contract-fields-by-offer-id';
 import { IUpdateContract } from '../../models/iupdate-contract';
+import { IContract } from '../../models/icontract';
 
 @Component({
   selector: 'app-contract-form',
@@ -178,7 +178,7 @@ export class ContractFormComponent implements OnInit {
       }
     }
   }
-  assignValues(res: IGetContractFieldsByOfferId) {
+  assignValues(res: IContract) {
     console.log(res);
 
     this.contractForm.patchValue({
