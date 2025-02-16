@@ -624,6 +624,67 @@
       "postal-code": "Postal Code",
       "save": "Save",
       "cancel": "Cancel"
+    },
+    "contract": {
+      "form": {
+        "contractDetails": "Contract Details",
+        "contractSignDate": "Contract Signing Date",
+        "contractStartDate": "Contract Start Date",
+        "partyOne": "Party One",
+        "partyTwo": "Party Two",
+        "name": {
+          "ar": "Name in Arabic",
+          "en": "Name in English"
+        },
+        "mainOfficeCity": {
+          "ar": "Main Office City in Arabic",
+          "en": "Main Office City in English"
+        },
+        "publicSecurityLicense": "Public Security License",
+        "telephone": "Telephone",
+        "mobile": "Mobile",
+        "email": "Email",
+        "nationalAddress": {
+          "ar": "City (National Address) in Arabic",
+          "en": "City (National Address) in English"
+        },
+        "postalCode": "Postal Code",
+        "unitNumber": "Unit Number",
+        "buildingNumber": "Building Number",
+        "representativeName": {
+          "ar": "Representative Name in Arabic",
+          "en": "Representative Name in English"
+        },
+        "representativeTitle": {
+          "ar": "Representative Title in Arabic",
+          "en": "Representative Title in English"
+        },
+        "commercialRegistration": "Commercial Registration",
+        "registrationInSabl": "Registration in Sabl",
+        "guardsCount": "Number of Guards",
+        "commercialRegistrationCity": {
+          "ar": "Commercial Registration City in Arabic",
+          "en": "Commercial Registration City in English"
+        },
+        "locationToBeSecured": {
+          "ar": "Location to be Secured in Arabic",
+          "en": "Location to be Secured in English"
+        },
+        "schedule": "Schedule",
+        "location": "Location",
+        "guardsRequired": "Guards Required",
+        "shiftTime": "Shift Time",
+        "notes": "Notes",
+        "delete": "Delete",
+        "addEntry": "Add Entry",
+        "customClauses": "Custom Clauses",
+        "addClause": "Add Clause",
+        "submitContract": "Submit Contract",
+        "lang": {
+          "ar": "Arabic",
+          "en": "English"
+        }
+      }
     }
   },
   "enums": {

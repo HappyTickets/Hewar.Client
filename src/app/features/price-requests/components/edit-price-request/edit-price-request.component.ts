@@ -3,7 +3,6 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormArray } fr
 import { Router, ActivatedRoute } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
-import { DatePickerModule } from 'primeng/datepicker';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
@@ -19,11 +18,12 @@ import { CompanyUtilitiesService } from '../../../companies/services/company-uti
 import { IPriceRequest } from '../../models/iprice-request';
 import { PriceRequestsService } from '../../services/price-requests.service';
 import { ICreatePriceRequest } from '../../models/icreate-price-request';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-edit-price-request',
   standalone: true,
-  imports: [ SelectModule, InputNumberModule, TextareaModule, ButtonModule, DatePickerModule, ReactiveFormsModule, InputTextModule, TranslatePipe, InputComponent ],
+  imports: [SelectModule, InputNumberModule, TextareaModule, ButtonModule, ReactiveFormsModule, InputTextModule, TranslatePipe, InputComponent, CommonModule ],
   templateUrl: './edit-price-request.component.html',
   styleUrl: './edit-price-request.component.scss',
 })
