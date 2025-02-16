@@ -34,24 +34,23 @@ export const routes: Route[] = [
   { path: 'companies', component: CompaniesComponent },
   { path: 'companies/createCompany', component: CreateCompanyComponent },
 
-
-  {
-    path: 'companies/create-price-request/:id',
-    component: CreatePriceRequestComponent,
-  },
+  // {
+  //   path: 'companies/create-price-request/:id',
+  //   component: CreatePriceRequestComponent,
+  // },
   { path: 'companies/offers', component: CompanyOffersComponent },
 
   { path: 'companies/updateCompany/:id', component: UpdateCompanyComponent },
   { path: 'companies/companyDetails/:id', component: CompanyDetailsComponent },
-  {
-    path: 'companies/create-price-request/:id',
-    component: CreatePriceRequestComponent,
-  },
+  // {
+  //   path: 'companies/create-price-request/:id',
+  //   component: CreatePriceRequestComponent,
+  // },
   { path: 'companies/offers', component: CompanyOffersComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'create-reset-password', component: CreateResetPasswordComponent },
-  { path: 'reset-password', component: ResetPasswordComponent },
+  // { path: 'reset-password', component: ResetPasswordComponent },
 
   {
     path: 'allfacilities',
@@ -81,19 +80,33 @@ export const routes: Route[] = [
 
   { path: 'company-price-request', component: CompanyPriceRequestsComponent },
   { path: 'facility-price-request', component: FacilityPriceRequestsComponent },
-  { path: 'price-request-details/:id', component: PriceRequestDetailsComponent },
+  {
+    path: 'price-request-details/:id',
+    component: PriceRequestDetailsComponent,
+  },
   { path: 'price-offer-details/:id', component: PriceOfferDetailsComponent },
   { path: 'company-price-offer', component: CompanyOffersComponent },
   { path: 'facility-price-offer', component: FacilityOffersComponent },
-  { path: 'create-price-request/:companyId', component: EditPriceRequestComponent },
-  { path: 'update-price-request/:priceRequestId', component: EditPriceRequestComponent },
-  { path: 'create-price-offer/:priceRequestId', component: EditPriceOfferComponent },
-  { path: 'update-price-offer/:priceOfferId', component: EditPriceOfferComponent },
+  {
+    path: 'create-price-request/:companyId',
+    component: EditPriceRequestComponent,
+  },
+  {
+    path: 'update-price-request/:priceRequestId',
+    component: EditPriceRequestComponent,
+  },
+  {
+    path: 'create-price-offer/:priceRequestId',
+    component: EditPriceOfferComponent,
+  },
+  {
+    path: 'update-price-offer/:priceOfferId',
+    component: EditPriceOfferComponent,
+  },
 
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'create-reset-password', component: CreateResetPasswordComponent },
-
 
   { path: '**', component: NotFoundComponent }, // wild card path
 ];
