@@ -17,6 +17,14 @@ import { DetialsFacilityComponent } from './features/facilities/detials-facility
 import { UpdateCompanyComponent } from './features/companies/components/update-company/update-company.component';
 import { CompanyDetailsComponent } from './features/companies/components/company-details/company-details.component';
 import { FacilityPriceRequestsComponent } from './features/price-requests/components/facility-price-requests/facility-price-requests.component';
+
+import { ListFacilityComponent } from './features/facilities/list-facility/list-facility.component';
+import { CreateFacilityComponent } from './features/facilities/create-facility/create-facility.component';
+import { UpdateFacilityComponent } from './features/facilities/update-facility/update-facility.component';
+import { DetialsFacilityComponent } from './features/facilities/detials-facility/detials-facility.component';
+import { UpdateCompanyComponent } from './features/companies/components/update-company/update-company.component';
+import { CompanyDetailsComponent } from './features/companies/components/company-details/company-details.component';
+import { FacilityPriceRequestsComponent } from './features/price-requests/components/facility-price-requests/facility-price-requests.component';
 import { CompanyOffersComponent } from './features/my-offers/components/company-offers/company-offers.component';
 import { FacilityOffersComponent } from './features/my-offers/components/facility-offers/facility-offers.component';
 import { EditPriceRequestComponent } from './features/price-requests/components/edit-price-request/edit-price-request.component';
@@ -41,8 +49,18 @@ export const routes: Route[] = [
   // },
   { path: 'companies/offers', component: CompanyOffersComponent },
 
+  // {
+  //   path: 'companies/create-price-request/:id',
+  //   component: CreatePriceRequestComponent,
+  // },
+  { path: 'companies/offers', component: CompanyOffersComponent },
+
   { path: 'companies/updateCompany/:id', component: UpdateCompanyComponent },
   { path: 'companies/companyDetails/:id', component: CompanyDetailsComponent },
+  // {
+  //   path: 'companies/create-price-request/:id',
+  //   component: CreatePriceRequestComponent,
+  // },
   // {
   //   path: 'companies/create-price-request/:id',
   //   component: CreatePriceRequestComponent,
