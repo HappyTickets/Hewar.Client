@@ -1,82 +1,81 @@
 import { Component } from '@angular/core';
-import { HewarServicesComponent } from '../hewar-services.component';
-import { HewarServicesService } from '../services/hewar-services.service';
-import { IResponse } from '../models/iresponse';
-import { IUpdate } from '../models/iupdate';
-import { TableModule } from 'primeng/table';
-import { Router } from '@angular/router';
-import { ButtonModule } from 'primeng/button';
 import { DeletePopupComponent } from '../../../shared/components/delete-popup/delete-popup.component';
-import { IResponseData } from '../../facilities/models/iresponse-data';
-import { Icreate } from '../models/icreate';
+import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
+import { IUpdate } from '../models/models/iupdate';
+import { CompanyServicesService } from '../services/company-services.service';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { PaginatorModule, PaginatorState } from 'primeng/paginator';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-interface PageEvent {
-  first: number;
-  rows: number;
-  page: number;
-  pageCount: number;
-}
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
-  selector: 'app-servicess-list',
+  selector: 'app-list-services',
   standalone: true,
   imports: [
+    DeletePopupComponent,
     TableModule,
     ButtonModule,
-    DeletePopupComponent,
-    CommonModule,
     PaginatorModule,
+    CommonModule,
+    InputTextModule,
+    RouterLink,
     TranslateModule,
+    RouterModule,
+    DeletePopupComponent,
   ],
-  templateUrl: './servicess-list.component.html',
-  styleUrl: './servicess-list.component.scss',
+  templateUrl: './list-services.component.html',
+  styleUrl: './list-services.component.scss',
 })
-export class ServicessListComponent {
+export class ListServicesComponent {
+  AllServices!: IUpdate[];
+  visibleDeletePopup = false;
+  showDeletePopup = false;
+  currentCard!: IUpdate;
   first: number = 0;
-  rows: number = 5;
+  rows: number = 10;
   totalRecords = 0;
   paginatedServices: any[] = []; // Displayed services per page
   loading = true;
-  AllServices!: IUpdate[];
+
   selectedService: IUpdate | null = null; // ✅ Track only the selected service
 
   constructor(
-    private HewarService: HewarServicesService,
+    private companyServices: CompanyServicesService,
     private router: Router
   ) {}
-
   ngOnInit(): void {
+    this.companyServices.getAllServices().subscribe((data) => {
+      this.AllServices = data.data;
+    });
     this.loadServices();
   }
-
   loadServices() {
     this.loading = true;
-    this.HewarService.getAllServices().subscribe((response) => {
+    this.companyServices.getAllServices().subscribe((response) => {
       this.AllServices = response.data; // Store all services
       this.totalRecords = this.AllServices.length;
       this.updatePaginatedServices();
       this.loading = false;
     });
   }
-
   onUpdate(service: IUpdate): void {
-    this.router.navigate(['/update-hewar-service', service.id]);
+    this.router.navigate(['/update-company-services', service.id]);
   }
-
-  add() {
-    this.router.navigate(['/creat-hewar-service']);
-  }
-
   openDeletePopup(service: IUpdate) {
-    this.selectedService = service; // ✅ Ensure correct service is selected
+    this.selectedService = service; // ✅ Ensure the correct service is selected
   }
 
+  onPageChange(event: PaginatorState) {
+    this.first = event.first ?? 0;
+    this.rows = event.rows ?? 10;
+    this.updatePaginatedServices();
+  }
   deleteFacility() {
     if (!this.selectedService) return; // Prevent deleting if no service selected
 
-    this.HewarService.deleteService(this.selectedService.id).subscribe({
+    this.companyServices.deleteService(this.selectedService.id).subscribe({
       next: () => {
         this.selectedService = null; // ✅ Close popup
         this.loadServices(); // ✅ Refresh list after delete
@@ -87,16 +86,13 @@ export class ServicessListComponent {
     });
   }
 
-  onPageChange(event: PaginatorState) {
-    this.first = event.first ?? 0;
-    this.rows = event.rows ?? 10;
-    this.updatePaginatedServices();
-  }
-
   updatePaginatedServices() {
     this.paginatedServices = this.AllServices.slice(
       this.first,
       this.first + this.rows
     );
+  }
+  add() {
+    this.router.navigate(['/create-company-service']);
   }
 }

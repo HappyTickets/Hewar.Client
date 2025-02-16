@@ -1,21 +1,21 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { CompanyServicesService } from '../services/company-services.service';
 import {
-  ReactiveFormsModule,
-  FormsModule,
-  Validators,
   FormBuilder,
   FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { LocalizationService } from '../../../core/services/localization/localization.service';
+import { Subscription } from 'rxjs';
+import { CardModule } from 'primeng/card';
+import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
-import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { TextareaModule } from 'primeng/textarea';
-import { Subscription } from 'rxjs';
-import { LocalizationService } from '../../../core/services/localization/localization.service';
-import { HewarServicesService } from '../services/hewar-services.service';
-import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-update-services',
@@ -33,20 +33,18 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './update-services.component.html',
   styleUrl: './update-services.component.scss',
 })
-export class UpdateServicesComponent {
+export class UpdateCompanyServiceComponent {
   serviceForm!: FormGroup;
   private languageSubscription!: Subscription;
   language!: 'ar' | 'en';
   serviceId!: number;
-
   constructor(
     private fb: FormBuilder,
     private localizationService: LocalizationService,
-    private service: HewarServicesService,
+    private service: CompanyServicesService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
-
   ngOnInit() {
     this.serviceId = Number(this.route.snapshot.paramMap.get('id'));
 
@@ -54,13 +52,11 @@ export class UpdateServicesComponent {
     this.serviceForm = this.fb.group({
       id: [this.route.snapshot.paramMap.get('id')],
       name: ['', Validators.required],
-      description: ['', Validators.required],
+      description: [''],
     });
 
     // Fetch the existing service data
-    this.service.getServiceById(this.serviceId).subscribe((service) => {
-      this.serviceForm.patchValue(service);
-    });
+
     this.service.getServiceById(this.serviceId).subscribe((service) => {
       if (service) {
         this.serviceForm.patchValue({
@@ -89,8 +85,8 @@ export class UpdateServicesComponent {
     if (this.serviceForm.valid) {
       this.service.updateService(this.serviceForm.value).subscribe({
         next: () => {
-          this.router.navigate(['/get-all-hewar-services']);
-          console.log('Service updated successfully');
+          this.router.navigate(['/companyservices']);
+          console.log('Service created successfully');
         },
         error: (err) => console.error('Error creating service', err),
       });
