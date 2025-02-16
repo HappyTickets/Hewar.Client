@@ -23,7 +23,7 @@
       </div>
       <div class="input-group col-12 md:col-4">
         <label for="contractType">{{ 'app.price-request.edit-price-request.contractType' | translate }}</label>
-        <app-input [readonly]="true" [formGroup]="createPriceOfferForm" [options]="contractTypes" errorKey="price-request.edit-price-request.invaliContractType" controlName="contractType" icon="pi-map" type="dropdown"></app-input>
+        <app-input [formGroup]="createPriceOfferForm" [options]="contractTypes" errorKey="price-request.edit-price-request.invaliContractType" controlName="contractType" icon="pi-map" type="dropdown"></app-input>
       </div>
     </div>
 

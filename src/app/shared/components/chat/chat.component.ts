@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
+import { ChatService } from './services/chat.service';
+import { IChat, IResponseChat } from './models/IGetChat';
 
 @Component({
   selector: 'app-chat',
@@ -10,31 +12,38 @@ import { ButtonModule } from 'primeng/button';
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.scss'
 })
-export class ChatComponent {
-  messages = [
-    { text: 'Hello!', sent: false },
-    { text: 'Hi there!', sent: true }
-  ];
+export class ChatComponent implements OnInit {
+  @Input() showChat = false
+  @Output() closeChat = new EventEmitter<void>();
 
+  messages: IChat[] = []
+  currentUserId  = 40
   chatForm = new FormGroup({
     message: new FormControl('')
   });
 
-  showChat = false;
+  constructor(private _chatService:ChatService) {
+  }
+  ngOnInit(): void {
+    const userInfoString = localStorage.getItem('userInfo');
+    if (userInfoString) {
+      const userInfo = JSON.parse(userInfoString);
+      this.currentUserId = userInfo.userId
+    }
+    this._chatService.getChat(1).subscribe((res:IResponseChat) => {
+      this.messages = res.data
+      console.log(res.data)
+    })
+  }
 
   toggleChat() {
-    this.showChat = !this.showChat;
+    this.closeChat.emit();
   }
 
   sendMessage() {
     const newMessage = this.chatForm.value.message?.trim();
     if (newMessage) {
-      this.messages.push({ text: newMessage, sent: true });
-      this.chatForm.reset();
-
-      setTimeout(() => {
-        this.messages.push({ text: 'Auto-reply: Got it!', sent: false });
-      }, 1000);
+      console.log('yes')
     }
   }
 }

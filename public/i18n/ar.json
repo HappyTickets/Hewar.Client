@@ -522,7 +522,8 @@
         "quantity": "الكمية",
         "shift": "الوردية",
         "other-services": "خدمات أخرى",
-        "service": "الخدمة",
+        "service": "الخدمة"
+      },
       "companies-details": {
         "name": "الاسم",
         "phone": "الهاتف",
