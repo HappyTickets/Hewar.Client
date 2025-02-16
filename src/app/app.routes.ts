@@ -33,6 +33,7 @@ import { UpdateCompanyServiceComponent } from './features/company-services/updat
 import { ListServicesComponent } from './features/company-services/list-services/list-services.component';
 import { CreateServiceComponent } from './features/company-services/create-service/create-service.component';
 import { ContractFormComponent } from './features/contracts/components/contract-form/contract-form.component';
+import { ContractPreviewComponent } from './features/contracts/components/contract-preview/contract-preview.component';
 
 import { ImageUploadTestComponent } from './image-upload-test/image-upload-test.component';
 
@@ -113,6 +114,7 @@ export const routes: Route[] = [
 
   // Contracts
   { path: 'contract-form/:id', component: ContractFormComponent },
+  { path: 'contract-preview/:id', component: ContractPreviewComponent },
 
   { path: '**', component: NotFoundComponent }, // wild card path
 ];
