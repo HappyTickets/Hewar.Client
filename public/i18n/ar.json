@@ -657,10 +657,7 @@
       "click-accept": "اضغط على \"قبول\" لإكمال العملية.",
       "delete": "حذف",
       "hide": "إخفاء",
-      "accept": "قبول",
-      "reject": "رفض",
-      "complete-cancelation": "إكمال",
-      "cancel": "إلغاء"
+      "cancel": "الغاء"
     },
     "contract": {
       "form": {
