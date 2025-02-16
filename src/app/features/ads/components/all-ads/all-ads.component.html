@@ -1,13 +1,12 @@
 <div class="container allAds">
-  <p-card
-    *ngFor="let ad of myAds"
-    [style]="{ width: '25rem', overflow: 'hidden' }"
-  >
+  <p-card *ngFor="let ad of myAds">
     <ng-template #title>
       <h2 class="title">{{ ad.title }}</h2></ng-template
     >
     <ng-template #subtitle class="contractType">
-      <p class="contractType">{{ ad.contractType }}</p>
+      <p class="contractType">
+        {{ "enums.contractTypes." + ad.contractType | translate }}
+      </p>
     </ng-template>
     <div>
       <p class="description">
@@ -16,23 +15,47 @@
     </div>
 
     <div class="date">
-      <p>تاريخ البداية: {{ ad.startdate }}</p>
+      <p>
+        {{ "allAds.allMyAds.startContract" | translate }} :
+        {{ ad.startDate | date : "MMM dd, yyyy 'at' hh:mm a" }}
+      </p>
 
-      <p>تاريخ الانتهاء: {{ ad.endDate }}</p>
+      <p>
+        {{ "allAds.allMyAds.endContract" | translate }} :{{
+          ad.endDate | date : "MMM dd, yyyy 'at' hh:mm a"
+        }}
+      </p>
     </div>
 
     <ul *ngIf="ad.services && ad.services.length > 0">
       <li *ngFor="let service of ad.services">
         <p class="serviceId">{{ service.serviceId }}</p>
-        <p class="quantity">العدد {{ service.quantity }}</p>
-        <p class="shiftType">{{ service.shiftType }}</p>
+        <p class="quantity">
+          {{ "allAds.allMyAds.quantity" | translate }} :{{ service.quantity }}
+        </p>
+        <p class="shiftType">
+          {{ "enums.shiftType." + service.shiftType | translate }}
+        </p>
       </li>
     </ul>
     <ng-template #footer>
       <div class="flex gap-4 mt-1">
-        <p-button label="Delete" class="w-full" styleClass="w-full" />
-        <p-button label="Chat" class="w-full" styleClass="w-full" />
-        <p-button label="Edit" class="w-full" styleClass="w-full" />
+        <p-button
+          label="{{ 'allAds.allMyAds.delete' | translate }}"
+          class="w-full"
+          styleClass="w-full"
+        />
+        <p-button
+          label="{{ 'allAds.allMyAds.chat' | translate }}"
+          class="w-full"
+          styleClass="w-full"
+        />
+        <p-button
+          label="{{ 'allAds.allMyAds.edit' | translate }}"
+          class="w-full"
+          styleClass="w-full"
+          (click)="editAd(ad.id)"
+        />
       </div>
     </ng-template>
   </p-card>

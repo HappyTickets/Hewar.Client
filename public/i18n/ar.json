@@ -788,7 +788,7 @@
       "1": "شهري",
       "2": "سنوي"
     }
-    
+
   },
   "ads": {
     "crearte-ad":{
@@ -818,10 +818,22 @@
       "serviceTypeError": "نوع الخدمة مطلوب",
       "quantityError": "الكمية مطلوبة",
       "shiftTypeError": "نوع الوردية مطلوب"
-    
-      
+
+
+
+    }
+  },
+  "allAds": {
+    "allMyAds": {
+      "startContract":"بداية التعاقد",
+      "endContract":"نهاية التعاقد",
+      "quantity": "العدد",
+      "delete": "حذف",
+      "edit":"تعديل",
+      "chat": "مراسلة"
+
 
     }
   }
-  
+
 }

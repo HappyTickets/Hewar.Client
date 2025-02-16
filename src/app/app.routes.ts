@@ -88,6 +88,7 @@ export const routes: Route[] = [
   // Ads
   { path: 'createAds', component: AdsComponent },
   { path: 'ads', component: AllAdsComponent },
+  { path: 'ads/edit/:id', component: AdsComponent },
 
   { path: '**', component: NotFoundComponent }, // wild card path
 ];

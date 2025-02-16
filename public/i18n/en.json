@@ -782,7 +782,7 @@
     }
   },
   "ads": {
-    "crearte-ad":{
+    "crearte-ad": {
       "header": "Create New Ad",
       "title": "Title",
       "description": "Description",
@@ -810,8 +810,16 @@
       "serviceTypeError": "Service Type is required",
       "quantityError": "Quantity is required",
       "shiftTypeError": "Shift Type is required"
-      
-
+    }
+  },
+  "allAds": {
+    "allMyAds": {
+      "startContract": "Start of Contracting",
+      "endContract": "End of Contracting",
+      "quantity": "Quantity",
+      "delete":"Delete",
+      "edit":"edit",
+      "chat": "chat"
     }
   }
 }

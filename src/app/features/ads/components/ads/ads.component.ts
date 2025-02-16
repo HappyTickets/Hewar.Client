@@ -21,6 +21,8 @@ import { MessageModule } from 'primeng/message';
 import { ICreateAd } from '../../models/icreate-ad';
 import { CommonModule } from '@angular/common';
 import { LocalizationService } from '../../../../core/services/localization/localization.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { IUpdateAd, AdStatus } from '../../models/iupdate-ad';
 
 @Component({
   selector: 'app-ads',
@@ -43,10 +45,14 @@ import { LocalizationService } from '../../../../core/services/localization/loca
 })
 export class AdsComponent implements OnInit {
   createAdForm: FormGroup;
+  isEditMode = false;
+  adId: number | null = null;
 
   private fb = inject(FormBuilder);
   private adsService = inject(AdsService);
   private localizationService = inject(LocalizationService);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
 
   contractTypes = Object.entries(ContractType)
     .filter(([key]) => isNaN(Number(key)))
@@ -77,17 +83,54 @@ export class AdsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.route.params.subscribe((parasm) => {
+      if (parasm['id']) {
+        this.isEditMode = true;
+        this.adId = +parasm['id'];
+        this.loadAdData(this.adId);
+      }
+    });
+
     this.createAdForm.valueChanges.subscribe(() => {
       console.log('Form Status: ', this.createAdForm.status);
     });
 
     this.adsService.getHewarServices().subscribe({
       next: (data) => {
-        console.log('✅ Data from API:', data);
+        console.log('Data from API:', data);
         this.servicesOptions = data;
       },
       error: (error) => {
         console.error('Error fetching Hewar services:', error);
+      },
+    });
+  }
+
+  loadAdData(adId: number): void {
+    this.adsService.getAdById(adId).subscribe({
+      next: (ad) => {
+        this.createAdForm.patchValue({
+          id: ad.data.id,
+          title: ad.data.title,
+          description: ad.data.description,
+          contractType: ad.data.contractType,
+          startDate: ad.data.startDate,
+          endDate: ad.data.endDate,
+        });
+
+        this.services.clear();
+        ad.data.services.forEach((service) => {
+          this.services.push(
+            this.fb.group({
+              serviceId: [service.serviceId, Validators.required],
+              quantity: [service.quantity, Validators.required],
+              sheftType: [service.shiftType, Validators.required],
+            })
+          );
+        });
+      },
+      error: (err) => {
+        console.log(err);
       },
     });
   }
@@ -137,22 +180,57 @@ export class AdsComponent implements OnInit {
   onSubmit(): void {
     this.createAdForm.markAllAsTouched();
     if (this.createAdForm.valid) {
-      const adData: ICreateAd = {
+      const adData: ICreateAd  = {
         title: this.createAdForm.value.title,
         description: this.createAdForm.value.description,
-        startdate: this.createAdForm.value.startdate,
+        startDate: this.createAdForm.value.startdate,
         endDate: this.createAdForm.value.endDate,
         contractType: this.createAdForm.value.contractType,
         services: this.createAdForm.value.services,
       };
-      this.adsService.createAD(adData).subscribe({
-        next: (response) => {
-          console.log(response);
-        },
-        error: (error) => {
-          console.log(error);
-        },
-      });
+
+      if (this.isEditMode && this.adId ) {
+
+        const updateAdData: IUpdateAd = {
+          ...adData,
+          id: this.adId,
+          startDate: this.createAdForm.value.startDate,
+          status: AdStatus.Active
+        };
+        this.adsService.updateAd(this.adId, updateAdData).subscribe ({
+          next:(res)=>{
+           console.log(res)
+           this.router.navigate(['/ads'])
+
+          },
+          error:(err)=>{
+            console.log(err)
+
+          }
+        })
+      } else {
+        this.adsService.createAD(adData).subscribe({
+          next:(res)=>{
+            console.log(res);
+            this.router.navigate(['/ads'])
+
+          },
+          error: (err)=> {
+            console.log(err);
+
+          }
+        })
+      }
+
+  //     this.router.navigate(['/ads']);
+  //     this.adsService.createAD(adData).subscribe({
+  //       next: (response) => {
+  //         console.log(response);
+  //       },
+  //       error: (error) => {
+  //         console.log(error);
+  //       },
+  //     });
     }
   }
   onCancel(): void {

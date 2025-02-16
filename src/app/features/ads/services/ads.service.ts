@@ -20,9 +20,9 @@ export class AdsService {
       data
     );
   }
-  updateAd(data: IUpdateAd) {
+  updateAd( id: number, data: IUpdateAd) {
     return this.http.put<IResponse<unknown>>(
-      `${this.baseEndPoint}update`,
+      `${this.baseEndPoint}update/${id}`,
       data
     );
   }
@@ -41,6 +41,10 @@ export class AdsService {
     return this.http.get<IResponse<ICreateAd[]>>(
       `${this.baseEndPoint}getOpened`
     );
+  }
+
+  deleteAd(id: number) {
+    return this.http.delete<IResponse<unknown>>(`${this.baseEndPoint}/${id}`);
   }
 
   getHewarServices(): Observable<{ label: string; value: number }[]> {
