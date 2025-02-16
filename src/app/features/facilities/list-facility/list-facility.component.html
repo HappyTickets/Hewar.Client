@@ -24,11 +24,7 @@
       </div>
     </div>
     @for (card of filteredCards().slice(first, first + rows); track $index) {
-    <div
-      class="card d-flex"
-      *ngIf="card.type"
-      (click)="goToFacilityDetails(card.id)"
-    >
+    <div class="card d-flex" *ngIf="card.type">
       <div class="card-image">
         <img
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEfH9O71AqLC5OqNlOVBTVSZjTRQSUr9gmmg&s"

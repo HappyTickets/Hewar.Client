@@ -126,6 +126,7 @@ export class ListFacilityComponent implements OnInit, OnDestroy {
     document.body.classList.remove('card-scale');
     this.currentCard = facility;
     this.showDeletePopup = true;
+    console.log('<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
   }
   // private setDirection(lang: 'ar' | 'en') {
   //   const section = document.getElementById('facilities-section');

@@ -33,6 +33,42 @@ export const routes: Route[] = [
 
   { path: 'companies', component: CompaniesComponent },
   { path: 'companies/createCompany', component: CreateCompanyComponent },
+
+  // {
+  //   path: 'companies/create-price-request/:id',
+  //   component: CreatePriceRequestComponent,
+  // },
+  { path: 'companies/offers', component: CompanyOffersComponent },
+
+  { path: 'companies/updateCompany/:id', component: UpdateCompanyComponent },
+  { path: 'companies/companyDetails/:id', component: CompanyDetailsComponent },
+  // {
+  //   path: 'companies/create-price-request/:id',
+  //   component: CreatePriceRequestComponent,
+  // },
+  { path: 'companies/offers', component: CompanyOffersComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'create-reset-password', component: CreateResetPasswordComponent },
+  // { path: 'reset-password', component: ResetPasswordComponent },
+
+  {
+    path: 'allfacilities',
+    component: ListFacilityComponent,
+  },
+  {
+    path: 'createFacilities',
+    component: CreateFacilityComponent,
+  },
+  {
+    path: 'update-facility/:id',
+    component: UpdateFacilityComponent, // Use the same component
+  },
+  {
+    path: 'facilities/:id',
+    component: DetialsFacilityComponent,
+  },
+
   { path: 'companies/updateCompany/:id', component: UpdateCompanyComponent },
   { path: 'companies/companyDetails/:id', component: CompanyDetailsComponent },
 
@@ -48,9 +84,29 @@ export const routes: Route[] = [
     path: 'price-request-details/:id',
     component: PriceRequestDetailsComponent,
   },
+  {
+    path: 'price-request-details/:id',
+    component: PriceRequestDetailsComponent,
+  },
   { path: 'price-offer-details/:id', component: PriceOfferDetailsComponent },
   { path: 'company-price-offer', component: CompanyOffersComponent },
   { path: 'facility-price-offer', component: FacilityOffersComponent },
+  {
+    path: 'create-price-request/:companyId',
+    component: EditPriceRequestComponent,
+  },
+  {
+    path: 'update-price-request/:priceRequestId',
+    component: EditPriceRequestComponent,
+  },
+  {
+    path: 'create-price-offer/:priceRequestId',
+    component: EditPriceOfferComponent,
+  },
+  {
+    path: 'update-price-offer/:priceOfferId',
+    component: EditPriceOfferComponent,
+  },
   {
     path: 'create-price-request/:companyId',
     component: EditPriceRequestComponent,
