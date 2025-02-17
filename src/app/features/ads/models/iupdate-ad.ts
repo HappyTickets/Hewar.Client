@@ -10,13 +10,13 @@ export interface IUpdateAd {
   endDate: string;
   contractType: ContractType;
   status: AdStatus;
-  services: [
+  services:
     {
       serviceId: number;
       quantity: number;
       shiftType: ShiftType;
-    }
-  ];
+    }[]
+
 }
 
 export { AdStatus };

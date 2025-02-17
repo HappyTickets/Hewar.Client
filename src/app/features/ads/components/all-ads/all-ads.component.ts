@@ -9,7 +9,15 @@ import { ICreateAd } from '../../models/icreate-ad';
 import { CommonModule, DatePipe } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
+import { InputTextModule } from 'primeng/inputtext';
+import { TableModule } from 'primeng/table';
+import { TooltipModule } from 'primeng/tooltip';
+import { DeletePopupComponent } from '../../../../shared/components/delete-popup/delete-popup.component';
+import { TreeTableModule } from 'primeng/treetable';
+import { PanelModule } from 'primeng/panel';
 
 @Component({
   selector: 'app-all-ads',
@@ -22,6 +30,19 @@ import { Router } from '@angular/router';
     TranslatePipe,
     FormsModule,
     DatePipe,
+    CommonModule,
+    IconFieldModule,
+    TooltipModule,
+    InputTextModule,
+    InputIconModule,
+    ButtonModule,
+    TableModule,
+    FormsModule,
+    TranslatePipe,
+    RouterModule,
+    DeletePopupComponent,
+    TreeTableModule,
+    PanelModule,
   ],
   templateUrl: './all-ads.component.html',
   styleUrl: './all-ads.component.scss',
@@ -30,6 +51,7 @@ export class AllAdsComponent implements OnInit {
   private adsService = inject(AdsService);
   private router = inject(Router);
   myAds: ICreateAd[] = [];
+  search = '';
 
   // ads$ : Observable<IResponse<ICreateAd[]>> = this.adsService.getMyAds()
 
@@ -40,7 +62,7 @@ export class AllAdsComponent implements OnInit {
   gitMyAds(): void {
     this.adsService.getMyAds().subscribe({
       next: (data) => {
-       if(data.data) this.myAds = data.data;
+        if (data.data) this.myAds = data.data;
       },
       error: (err) => {
         console.log(err);
@@ -58,8 +80,15 @@ export class AllAdsComponent implements OnInit {
       },
     });
   }
+  toggleActions(ad: ICreateAd) {
+    ad.showActions = !ad.showActions;
+  }
 
   editAd(id: number | undefined) {
     this.router.navigate(['/ads/edit', id]);
+  }
+
+  details(id: number) {
+    this.router.navigate(['/ad', id], { queryParams: { mode: 'details' } });
   }
 }
