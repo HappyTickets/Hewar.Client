@@ -247,7 +247,7 @@ export class AdsComponent implements OnInit {
 //         contractType: this.createAdForm.value.contractType,
 //         services: this.createAdForm.value.services,
 //       };
-      
+
 
 //         this.adsService.createAD(adData).subscribe({
 //           next: (res) => {
@@ -258,7 +258,7 @@ export class AdsComponent implements OnInit {
 //             console.log(err);
 //           },
 //         });
-      
+
 //     }
 //   }
 
