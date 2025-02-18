@@ -129,7 +129,9 @@ export class AdsComponent implements OnInit {
         endDate: this.adData.endDate,
       });
 
-      this.services.clear();
+      while (this.services.length !== 0) {
+        this.services.removeAt(0);
+      }    this.services.clear();
 
       this.adData.services.forEach((service) => {
         this.services.push(

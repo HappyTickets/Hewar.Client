@@ -68,7 +68,7 @@
 
             <p-button
               class="m-1"
-              (click)="editAd(ad.id)"
+              [routerLink]="['/ads/edit/' + ad.id]"
               icon="pi pi-pencil"
               pTooltip="{{ 'allAds.allMyAds.update' | translate }}"
               tooltipPosition="top"
