@@ -25,6 +25,12 @@ import { PriceRequestDetailsComponent } from './features/price-requests/componen
 import { PriceOfferDetailsComponent } from './features/my-offers/components/price-offer-details/price-offer-details.component';
 import { CompanyPriceRequestsComponent } from './features/price-requests/components/company-price-requests/company-price-requests.component';
 import { SecurityCertificateComponent } from './features/security-certificate/components/security-certificate/security-certificate.component';
+import { CreateServicesComponent } from './features/hewar-services/create-services/create-services.component';
+import { ServicessListComponent } from './features/hewar-services/servicess-list/servicess-list.component';
+import { UpdateServicesComponent } from './features/hewar-services/update-services/update-services.component';
+import { UpdateCompanyServiceComponent } from './features/company-services/update-services/update-services.component';
+import { ListServicesComponent } from './features/company-services/list-services/list-services.component';
+import { CreateServiceComponent } from './features/company-services/create-service/create-service.component';
 
 export const routes: Route[] = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -34,9 +40,9 @@ export const routes: Route[] = [
 
   // Facilities
   { path: 'allfacilities', component: ListFacilityComponent },
-  { path: 'createFacilities', component: CreateFacilityComponent,},
+  { path: 'createFacilities', component: CreateFacilityComponent },
   { path: 'update-facility/:id', component: UpdateFacilityComponent },
-  { path: 'facilities/:id', component: DetialsFacilityComponent,},
+  { path: 'facilities/:id', component: DetialsFacilityComponent },
   { path: 'facilities', component: FacilitiesComponent },
 
   { path: 'companies', component: CompaniesComponent },
@@ -49,16 +55,31 @@ export const routes: Route[] = [
   // Price Requests
   { path: 'company-price-request', component: CompanyPriceRequestsComponent },
   { path: 'facility-price-request', component: FacilityPriceRequestsComponent },
-  { path: 'price-request-details/:id', component: PriceRequestDetailsComponent },
-  { path: 'create-price-request/:companyId', component: EditPriceRequestComponent },
-  { path: 'update-price-request/:priceRequestId', component: EditPriceRequestComponent },
+  {
+    path: 'price-request-details/:id',
+    component: PriceRequestDetailsComponent,
+  },
+  {
+    path: 'create-price-request/:companyId',
+    component: EditPriceRequestComponent,
+  },
+  {
+    path: 'update-price-request/:priceRequestId',
+    component: EditPriceRequestComponent,
+  },
 
   // Price Offers
   { path: 'price-offer-details/:id', component: PriceOfferDetailsComponent },
   { path: 'company-price-offer', component: CompanyOffersComponent },
   { path: 'facility-price-offer', component: FacilityOffersComponent },
-  { path: 'create-price-offer/:priceRequestId', component: EditPriceOfferComponent },
-  { path: 'update-price-offer/:priceOfferId', component: EditPriceOfferComponent },
+  {
+    path: 'create-price-offer/:priceRequestId',
+    component: EditPriceOfferComponent,
+  },
+  {
+    path: 'update-price-offer/:priceOfferId',
+    component: EditPriceOfferComponent,
+  },
 
   // Registration
   { path: 'login', component: LoginComponent },
@@ -67,6 +88,19 @@ export const routes: Route[] = [
 
   // Security Certificate
   { path: 'security-certificate', component: SecurityCertificateComponent },
+
+  // Hewar Services
+  { path: 'creat-hewar-service', component: CreateServicesComponent },
+  { path: 'get-all-hewar-services', component: ServicessListComponent },
+  { path: 'update-hewar-service/:id', component: UpdateServicesComponent },
+
+  //Companies services
+  { path: 'companyservices', component: ListServicesComponent },
+  {
+    path: 'update-company-services/:id',
+    component: UpdateCompanyServiceComponent,
+  },
+  { path: 'create-company-service', component: CreateServiceComponent },
 
   { path: '**', component: NotFoundComponent }, // wild card path
 ];

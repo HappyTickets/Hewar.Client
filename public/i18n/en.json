@@ -139,6 +139,26 @@
       "save": "Save",
       "cancel": "Cancel"
     },
+    "company-services": {
+      "create-Service": "Create Service",
+      "ServiceName": "Service Name",
+      "title": "Create New Services",
+      "show-all": "Show All Services",
+      "Description": "Description",
+      "DescriptionPlaceholder": "Description",
+      "edit": "Edit",
+      "delete": "Delete",
+      "add-service": "Add Service",
+      "service-saved-successfully": "Service saved successfully",
+      "service-updated-successfully": "Service updated successfully"
+    },
+    "company-services-validation": {
+      "descriptionError": "Description is required",
+      "descriptionPlaceholder": "Description",
+      "lenght": "Description must be at least 10 characters",
+      "name": "name is required"
+    },
+
     "validation": {
       "required": "This field is required",
       "email": "Please enter a valid email",
