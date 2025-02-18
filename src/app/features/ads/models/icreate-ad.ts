@@ -1,5 +1,5 @@
 import { ContractType } from '../../../shared/enums/contract-type';
-import { ShiftType } from '../../../shared/enums/shift-type';
+import { IPriceRequestService } from '../../price-requests/models/iprice-request-service';
 
 export interface ICreateAd {
   id?: number;
@@ -8,9 +8,5 @@ export interface ICreateAd {
   startDate: string;
   endDate: string;
   contractType: ContractType;
-  services: {
-    serviceId: number;
-    quantity: number;
-    shiftType: ShiftType;
-  }[];
+  services: IPriceRequestService[];
 }

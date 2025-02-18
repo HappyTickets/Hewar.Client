@@ -41,6 +41,8 @@ export class AllAdsComponent implements OnInit {
     this.adsService.getMyAds().subscribe({
       next: (data) => {
        if(data.data) this.myAds = data.data;
+       console.log(data.data);
+
       },
       error: (err) => {
         console.log(err);
