@@ -1,6 +1,6 @@
 import { AdStatus } from '../../../shared/enums/ad-status';
 import { ContractType } from '../../../shared/enums/contract-type';
-import { ShiftType } from '../../../shared/enums/shift-type';
+import { IPriceRequestService } from '../../price-requests/models/iprice-request-service';
 
 export interface IUpdateAd {
   id: number;
@@ -10,13 +10,7 @@ export interface IUpdateAd {
   endDate: string;
   contractType: ContractType;
   status: AdStatus;
-  services:
-    {
-      serviceId: number;
-      quantity: number;
-      shiftType: ShiftType;
-    }[]
-
+  services: IPriceRequestService[];
 }
 
 export { AdStatus };

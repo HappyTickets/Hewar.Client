@@ -50,34 +50,18 @@ export const routes: Route[] = [
   // Price Requests
   { path: 'company-price-request', component: CompanyPriceRequestsComponent },
   { path: 'facility-price-request', component: FacilityPriceRequestsComponent },
-  {
-    path: 'price-request-details/:id',
-    component: PriceRequestDetailsComponent,
-  },
-  {
-    path: 'create-price-request/:companyId',
-    component: EditPriceRequestComponent,
-  },
-  {
-    path: 'update-price-request/:priceRequestId',
-    component: EditPriceRequestComponent,
-  },
+  { path: 'price-request-details/:id', component: PriceRequestDetailsComponent },
+  { path: 'create-price-request/:companyId', component: EditPriceRequestComponent },
+  { path: 'update-price-request/:priceRequestId', component: EditPriceRequestComponent },
 
   // Price Offers
   { path: 'price-offer-details/:id', component: PriceOfferDetailsComponent },
   { path: 'company-price-offer', component: CompanyOffersComponent },
   { path: 'facility-price-offer', component: FacilityOffersComponent },
-  {
-    path: 'create-price-offer/:priceRequestId',
-    component: EditPriceOfferComponent,
-  },
-  {
-    path: 'update-price-offer/:priceOfferId',
-    component: EditPriceOfferComponent,
-  },
+  { path: 'create-price-offer/:priceRequestId', component: EditPriceOfferComponent },
+  { path: 'update-price-offer/:priceOfferId', component: EditPriceOfferComponent },
 
   // Registration
-
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'create-reset-password', component: CreateResetPasswordComponent },

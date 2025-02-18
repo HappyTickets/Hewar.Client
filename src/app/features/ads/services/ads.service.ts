@@ -20,11 +20,9 @@ export class AdsService {
       data
     );
   }
-  updateAd(data: IUpdateAd) : Observable<IApiResponse<IUpdateAd[]>>  {
-    return this.http.put<IApiResponse<IUpdateAd[]>>(
-      `${this.baseEndPoint}update`,
-      data
-    );
+
+  updateAd(data: IUpdateAd) : Observable<IApiResponse<null>>  {
+    return this.http.put<IApiResponse<null>>(`${this.baseEndPoint}update`, data );
   }
 
   getAdById(id: number) : Observable<IApiResponse<ICreateAd>> {
@@ -50,6 +48,6 @@ export class AdsService {
   getHewarServices(): Observable<IApiResponse<IAdService[]>> {
     return this.http
       .get<IApiResponse<IAdService[]>>(this.HewarServiceEndPoint)
-     
+
   }
 }

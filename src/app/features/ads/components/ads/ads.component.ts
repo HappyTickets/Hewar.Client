@@ -1,12 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import {
-  FormArray,
-  FormBuilder,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ContractType } from '../../../../shared/enums/contract-type';
 import { ShiftType } from '../../../../shared/enums/shift-type';
 import { AdsService } from '../../services/ads.service';
@@ -24,48 +17,29 @@ import { LocalizationService } from '../../../../core/services/localization/loca
 import { ActivatedRoute, Router } from '@angular/router';
 import { IUpdateAd } from '../../models/iupdate-ad';
 import { IAdService } from '../../models/iad-service';
+import { InputComponent } from '../../../../shared/components/input/input.component';
 
 @Component({
   selector: 'app-ads',
   standalone: true,
-  imports: [
-    SelectModule,
-    InputNumberModule,
-    TextareaModule,
-    ButtonModule,
-    DatePickerModule,
-    ReactiveFormsModule,
-    InputTextModule,
-    TranslatePipe,
-    MessageModule,
-    CommonModule,
-    FormsModule,
-  ],
+  imports: [SelectModule, InputNumberModule, MessageModule, TextareaModule, ButtonModule, DatePickerModule, ReactiveFormsModule, InputTextModule, TranslatePipe, CommonModule, FormsModule, InputComponent ],
   templateUrl: './ads.component.html',
   styleUrl: './ads.component.scss',
 })
 export class AdsComponent implements OnInit {
-  createAdForm: FormGroup;
-  isEditMode = false;
-  isDetailsMode = false;
-  id: number | null = null;
-  adData: ICreateAd = {} as ICreateAd;
-
   private fb = inject(FormBuilder);
   private adsService = inject(AdsService);
   private localizationService = inject(LocalizationService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
+  createAdForm: FormGroup;
+  isEditMode = false;
+  adId = 0;
+  adData: ICreateAd = {} as ICreateAd;
 
-  contractTypes = Object.entries(ContractType)
-    .filter(([key]) => isNaN(Number(key)))
-    .map(([key, value]) => ({ label: key, value }));
-  shiftType = Object.entries(ShiftType)
-    .filter(([key]) => isNaN(Number(key)))
-    .map(([key, value]) => ({ label: key, value }));
 
-  // shiftType = this.localizationService.createDropdown(ShiftType);
-  // contractTypes = this.localizationService.createDropdown(ContractType);
+  shiftType = this.localizationService.createDropdown(ShiftType);
+  contractTypes = this.localizationService.createDropdown(ContractType);
 
   date = new Date();
   servicesOptions: IAdService[] = [];
@@ -78,73 +52,46 @@ export class AdsComponent implements OnInit {
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
       services: this.fb.array([this.createServiceGroup()]),
-      // otherServices: this.fb.array([this.createOtherServiceGroup()]),
     });
-    console.log(this.services);
-
-    this.createAdForm.updateValueAndValidity();
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      if (params['id']) {
-        this.id = +params['id'];
-        this.route.queryParams.subscribe((queryParams) => {
-          if (queryParams['mode'] === 'details') {
-            this.isDetailsMode = true;
-          } else {
-            this.isEditMode = true;
-          }
-          if (this.id !== null) {
-            this.loadAdData(this.id);
-          }
-        });
+    this.route.params.subscribe((parasm) => {
+      if (parasm['id']) {
+        this.isEditMode = true;
+        this.adId = +parasm['id'];
+        this.loadAdData(this.adId);
       }
     });
-
-    this.createAdForm.valueChanges.subscribe(() => {
-      console.log('Form Status: ', this.createAdForm.status);
-    });
-
-    this.adsService.getHewarServices().subscribe({
-      next: (data) => {
-        console.log('Data from API:', data);
-        if (data.data) this.servicesOptions = data.data;
-      },
-      error: (error) => {
-        console.error('Error fetching Hewar services:', error);
-      },
+    this.adsService.getHewarServices().subscribe((data) => {
+       if(data.data) this.servicesOptions = data.data;
     });
   }
 
-  loadAdData(id: number): void {
-    this.adsService.getAdById(id).subscribe((res) => {
-      if (res.data) this.adData = res.data;
-      this.createAdForm.patchValue({
-        id: this.adData.id,
-        title: this.adData.title,
-        description: this.adData.description,
-        contractType: this.adData.contractType,
-        startDate: this.adData.startDate,
-        endDate: this.adData.endDate,
-      });
+  loadAdData(adId: number): void {
+    this.adsService.getAdById(adId).subscribe((res) => {
+      if (res.data){
+        this.adData = res.data;
+        console.log(res.data);
 
-      while (this.services.length !== 0) {
-        this.services.removeAt(0);
-      }    this.services.clear();
+        this.createAdForm.patchValue({
+          id: this.adData.id,
+          title: this.adData.title,
+          description: this.adData.description,
+          contractType: this.adData.contractType,
+          startDate: this.adData.startDate,
+          endDate: this.adData.endDate,
+        });
 
-      this.adData.services.forEach((service) => {
-        this.services.push(
-          this.fb.group({
-            serviceId: [service.serviceId, Validators.required],
-            quantity: [service.quantity, Validators.required],
-            shiftType: [service.shiftType, Validators.required],
-          })
-        );
-      });
-
-      if (this.isDetailsMode) {
-        this.createAdForm.disable();
+        this.adData.services.forEach((service) => {
+          this.services.push(
+            this.fb.group({
+              serviceId: [service.serviceId, Validators.required],
+              quantity: [service.quantity, Validators.required],
+              shiftType: [service.shiftType, Validators.required],
+            })
+          );
+        });
       }
     });
   }
@@ -171,28 +118,7 @@ export class AdsComponent implements OnInit {
     }
   }
 
-  // createOtherServiceGroup(): FormGroup {
-  //   return this.fb.group({
-  //     name: [''],
-  //     quantity: [null, [Validators.required]],
-  //     shiftType: ['', [Validators.required]],
-  //   });
-  // }
-  // get otherServices() {
-  //   return this.createAdForm.get('otherServices') as FormArray;
-  // }
-
-  // addOtherService(): void {
-  //   this.otherServices.push(this.createOtherServiceGroup());
-  // }
-  // removeOtherService(index: number): void {
-  //   if (this.otherServices.length > 0) {
-  //     this.otherServices.removeAt(index);
-  //   }
-  // }
-
   onSubmit(): void {
-    this.createAdForm.markAllAsTouched();
     if (this.createAdForm.valid) {
       const adData: ICreateAd = {
         title: this.createAdForm.value.title,
@@ -203,42 +129,24 @@ export class AdsComponent implements OnInit {
         services: this.createAdForm.value.services,
       };
 
-      this.adsService.createAD(adData).subscribe({
-        next: (res) => {
-          console.log(res);
-          this.router.navigate(['/ads']);
-        },
-        error: (err) => {
-          console.log(err);
-        },
-      });
-    }
-  }
-
-  onSubmitUpd() {
-    if (this.isEditMode && this.id) {
-      const updateAdData: IUpdateAd = {
-        id: this.id,
-        title: this.createAdForm.value.title,
-        description: this.createAdForm.value.description,
-        startDate: this.createAdForm.value.startdate,
-        endDate: this.createAdForm.value.endDate,
-        contractType: this.createAdForm.value.contractType,
-        services: this.createAdForm.value.services,
-        status: 1,
-      };
-      this.adsService.updateAd(updateAdData).subscribe({
-        next: (res) => {
-          console.log(res);
-          this.router.navigate(['/ads']);
-        },
-        error: (err) => {
-          console.log(err);
-        },
-      });
+      if (this.isEditMode) {
+        const updateAdData: IUpdateAd = {
+          id: +this.adId,
+          title: this.createAdForm.value.title,
+          description: this.createAdForm.value.description,
+          startDate: this.createAdForm.value.startdate,
+          endDate: this.createAdForm.value.endDate,
+          contractType: this.createAdForm.value.contractType,
+          services: this.createAdForm.value.services,
+          status: 1,
+        };
+        this.adsService.updateAd( updateAdData).subscribe(() => {this.router.navigate(['/ads'])});
+      } else {
+        this.adsService.createAD(adData).subscribe(() => {this.router.navigate(['/ads'])});
+      }
     }
   }
   onCancel(): void {
-    this.router.navigate(['/home']);
+    this.createAdForm.reset();
   }
 }
