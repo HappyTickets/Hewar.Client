@@ -26,6 +26,8 @@ import { PriceOfferDetailsComponent } from './features/my-offers/components/pric
 import { CompanyPriceRequestsComponent } from './features/price-requests/components/company-price-requests/company-price-requests.component';
 import { SecurityCertificateComponent } from './features/security-certificate/components/security-certificate/security-certificate.component';
 
+import { ImageUploadTestComponent } from './image-upload-test/image-upload-test.component';
+
 export const routes: Route[] = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomePageComponent },
@@ -63,6 +65,10 @@ export const routes: Route[] = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'create-reset-password', component: CreateResetPasswordComponent },
+
+// Testing 
+{ path: 'upload-test', component: ImageUploadTestComponent },
+
 
   // Security Certificate
   { path: 'security-certificate', component: SecurityCertificateComponent },
