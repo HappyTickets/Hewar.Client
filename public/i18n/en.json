@@ -809,17 +809,41 @@
       "contractTypeError": "Contract Type is required",
       "serviceTypeError": "Service Type is required",
       "quantityError": "Quantity is required",
-      "shiftTypeError": "Shift Type is required"
+      "shiftTypeError": "Shift Type is required",
+      "update": "Update"
+
     }
   },
   "allAds": {
     "allMyAds": {
       "startContract": "Start of Contracting",
       "endContract": "End of Contracting",
-      "quantity": "Quantity",
       "delete":"Delete",
       "edit":"edit",
-      "chat": "chat"
+      "global-search": "Global Search",
+      "company-name": "Company Name",
+      "contract-type": "Contract Type",
+      "status": "Status",
+      "actions": "Actions",
+      "update": "Update",
+      "cancel": "Cancel",
+      "hide": "Hide",
+      "chat": "Chat",
+      "make-offer": "Make Offer",
+      "details": "Details",
+      "start-date": "Start Date",
+      "end-date": "End Date",
+      "services": "Services",
+      "facility-name": "Facility Name",
+      "service-id": "ID",
+      "quantity": "Quantity",
+      "shift": "Shift",
+      "other-services": "Other Services",
+      "service": "Service",
+      "title": "Title",
+      "description": "Description"
+
+
     }
   }
 }

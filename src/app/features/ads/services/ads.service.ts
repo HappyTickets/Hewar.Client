@@ -20,9 +20,8 @@ export class AdsService {
       data
     );
   }
-  updateAd( data: IUpdateAd) {
-    console.log(data);
 
+  updateAd(data: IUpdateAd) : Observable<IApiResponse<null>>  {
     return this.http.put<IApiResponse<null>>(`${this.baseEndPoint}update`, data );
   }
 

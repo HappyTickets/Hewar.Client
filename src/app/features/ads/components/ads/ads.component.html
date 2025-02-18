@@ -65,12 +65,14 @@
           (click)="onCancel()"
           fluid="true"
         ></p-button>
+        @if (!isEditMode) {
         <p-button
           [label]="'ads.crearte-ad.publish' | translate"
           fluid="true"
           (click)="onSubmit()"
+          [disabled]="createAdForm.invalid"
           ></p-button>
-          <!-- [disabled]="createAdForm.invalid" -->
+        }
       </div>
     </div>
   </form>

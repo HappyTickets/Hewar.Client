@@ -119,7 +119,7 @@ export class AdsComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (!this.createAdForm.valid) {
+    if (this.createAdForm.valid) {
       const adData: ICreateAd = {
         title: this.createAdForm.value.title,
         description: this.createAdForm.value.description,
@@ -137,7 +137,7 @@ export class AdsComponent implements OnInit {
           startDate: this.createAdForm.value.startdate,
           endDate: this.createAdForm.value.endDate,
           contractType: this.createAdForm.value.contractType,
-          services: [{serviceId: 2, quantity: 2, shiftType: 1}],
+          services: this.createAdForm.value.services,
           status: 1,
         };
         this.adsService.updateAd( updateAdData).subscribe(() => {this.router.navigate(['/ads'])});
