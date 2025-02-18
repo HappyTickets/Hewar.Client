@@ -9,4 +9,5 @@ export interface ICreateAd {
   endDate: string;
   contractType: ContractType;
   services: IPriceRequestService[];
+  showActions?: boolean;
 }
