@@ -33,12 +33,7 @@ import { UpdateCompanyServiceComponent } from './features/company-services/updat
 import { ListServicesComponent } from './features/company-services/list-services/list-services.component';
 import { CreateServiceComponent } from './features/company-services/create-service/create-service.component';
 
-import { ContractFormComponent } from './features/contracts/components/contract-form/contract-form.component';
-import { ContractPreviewComponent } from './features/contracts/components/contract-preview/contract-preview.component';
-
 import { ImageUploadTestComponent } from './image-upload-test/image-upload-test.component';
-
-import { NotificationTestComponent } from './notification-test/compenent/notification-test.component';
 
 export const routes: Route[] = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -62,18 +57,32 @@ export const routes: Route[] = [
   // Price Requests
   { path: 'company-price-request', component: CompanyPriceRequestsComponent },
   { path: 'facility-price-request', component: FacilityPriceRequestsComponent },
-  { path: 'price-request-details/:id', component: PriceRequestDetailsComponent },
-  { path: 'create-price-request/:companyId', component: EditPriceRequestComponent },
-  { path: 'update-price-request/:priceRequestId', component: EditPriceRequestComponent },
+  {
+    path: 'price-request-details/:id',
+    component: PriceRequestDetailsComponent,
+  },
+  {
+    path: 'create-price-request/:companyId',
+    component: EditPriceRequestComponent,
+  },
+  {
+    path: 'update-price-request/:priceRequestId',
+    component: EditPriceRequestComponent,
+  },
 
   // Price Offers
   { path: 'company-price-offer', component: CompanyOffersComponent },
   { path: 'facility-price-offer', component: FacilityOffersComponent },
 
-  { path: 'create-price-offer/:priceRequestId', component: EditPriceOfferComponent },
-  { path: 'update-price-offer/:priceOfferId', component: EditPriceOfferComponent },
+  {
+    path: 'create-price-offer/:priceRequestId',
+    component: EditPriceOfferComponent,
+  },
+  {
+    path: 'update-price-offer/:priceOfferId',
+    component: EditPriceOfferComponent,
+  },
   { path: 'price-offer-details/:id', component: PriceOfferDetailsComponent },
-
 
   // Registration
   { path: 'login', component: LoginComponent },
@@ -87,7 +96,6 @@ export const routes: Route[] = [
   // Security Certificate
   { path: 'security-certificate', component: SecurityCertificateComponent },
 
-
   // Hewar Services
   { path: 'get-all-hewar-services', component: ServicessListComponent },
   { path: 'creat-hewar-service', component: CreateServicesComponent },
@@ -95,14 +103,15 @@ export const routes: Route[] = [
 
   //Companies services
   { path: 'companyservices', component: ListServicesComponent },
-  { path: 'update-company-services/:id', component: UpdateCompanyServiceComponent,},
+  {
+    path: 'update-company-services/:id',
+    component: UpdateCompanyServiceComponent,
+  },
   { path: 'create-company-service', component: CreateServiceComponent },
 
   // Contracts
   { path: 'contract-form/:id', component: ContractFormComponent },
   { path: 'contract-preview/:id', component: ContractPreviewComponent },
-
-
 
   { path: '**', component: NotFoundComponent }, // wild card path
 ];
