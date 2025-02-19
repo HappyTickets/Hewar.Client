@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { ButtonModule } from 'primeng/button';
@@ -27,6 +27,7 @@ import { IPriceOfferOtherService } from '../../models/iprice-offer-other-service
 export class FacilityOffersComponent implements OnInit {
   private priceOffersService = inject(PriceOffersService);
   private toastr = inject(ToastrService);
+  private router = inject(Router);
   priceOffers: IGetPriceOfferById[] = [];
   searchTerm = '';
 
@@ -65,10 +66,12 @@ export class FacilityOffersComponent implements OnInit {
     }, 0);
     return total
   }
-
   acceptOffer(){
     this.showAcceptPopUp = false;
-    this.priceOffersService.accept(this.currentId).subscribe(()=>{this.getPrices();})
+    this.priceOffersService.accept(this.currentId).subscribe(()=>{
+      this.getPrices();
+      this.router.navigate([`/contract-form/${this.currentId}`])
+    })
   }
   rejectOffer(){
     this.showRejectPopUp = false;

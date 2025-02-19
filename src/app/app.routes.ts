@@ -25,6 +25,8 @@ import { PriceRequestDetailsComponent } from './features/price-requests/componen
 import { PriceOfferDetailsComponent } from './features/my-offers/components/price-offer-details/price-offer-details.component';
 import { CompanyPriceRequestsComponent } from './features/price-requests/components/company-price-requests/company-price-requests.component';
 import { SecurityCertificateComponent } from './features/security-certificate/components/security-certificate/security-certificate.component';
+import { ContractFormComponent } from './features/contracts/components/contract-form/contract-form.component';
+import { ContractPreviewComponent } from './features/contracts/components/contract-preview/contract-preview.component';
 
 import { ImageUploadTestComponent } from './image-upload-test/image-upload-test.component';
 
@@ -72,6 +74,11 @@ export const routes: Route[] = [
 
   // Security Certificate
   { path: 'security-certificate', component: SecurityCertificateComponent },
+
+  // Contracts
+  { path: 'contract-form/:id', component: ContractFormComponent },
+  { path: 'contract-preview/:id', component: ContractPreviewComponent },
+
 
   { path: '**', component: NotFoundComponent }, // wild card path
 ];
