@@ -55,7 +55,6 @@ export class EditPriceOfferComponent implements OnInit {
     this.route.paramMap.subscribe((params) => {
       const priceRequestId = params.get('priceRequestId');
       const priceOfferId = params.get('priceOfferId');
-
       if (priceRequestId) {
         this.priceRequestsService.getById(+priceRequestId).subscribe((res) => {
           if (res.data) {
@@ -166,6 +165,7 @@ export class EditPriceOfferComponent implements OnInit {
     this.editPriceOfferForm.reset();
   }
   assignCreateValues() {
+    console.log(this.priceRequestData.startDate);
     this.editPriceOfferForm.patchValue({
       contractType: this.priceRequestData.contractType,
       startDate: new Date(this.priceRequestData.startDate),

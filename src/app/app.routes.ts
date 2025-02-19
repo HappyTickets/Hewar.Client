@@ -44,9 +44,9 @@ export const routes: Route[] = [
   { path: 'facilities', component: FacilitiesComponent },
 
   // Companies
+  { path: 'companies', component: CompaniesComponent },
   { path: 'companies/updateCompany/:id', component: UpdateCompanyComponent },
   { path: 'companies/companyDetails/:id', component: CompanyDetailsComponent },
-  { path: 'companies', component: CompaniesComponent },
   { path: 'companies/createCompany', component: CreateCompanyComponent },
 
   // Price Requests
@@ -57,20 +57,19 @@ export const routes: Route[] = [
   { path: 'update-price-request/:priceRequestId', component: EditPriceRequestComponent },
 
   // Price Offers
-  { path: 'price-offer-details/:id', component: PriceOfferDetailsComponent },
   { path: 'company-price-offer', component: CompanyOffersComponent },
   { path: 'facility-price-offer', component: FacilityOffersComponent },
   { path: 'create-price-offer/:priceRequestId', component: EditPriceOfferComponent },
   { path: 'update-price-offer/:priceOfferId', component: EditPriceOfferComponent },
+  { path: 'price-offer-details/:id', component: PriceOfferDetailsComponent },
 
   // Registration
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'create-reset-password', component: CreateResetPasswordComponent },
 
-// Testing 
-{ path: 'upload-test', component: ImageUploadTestComponent },
-
+  // Testing
+  { path: 'upload-test', component: ImageUploadTestComponent },
 
   // Security Certificate
   { path: 'security-certificate', component: SecurityCertificateComponent },
