@@ -83,6 +83,11 @@ export class PriceOfferDetailsComponent implements OnInit {
     this.createPriceOfferForm.reset();
   }
   assignValues() {
+    this.createPriceOfferForm.patchValue({
+      contractType: this.priceOfferData.priceRequest.contractType,
+      startDate: new Date(this.priceOfferData.priceRequest.startDate),
+      endDate: new Date(this.priceOfferData.priceRequest.endDate),
+    });
     if (this.priceOfferData.services) {
       this.services.clear();
       this.priceOfferData.services.forEach((service) => {

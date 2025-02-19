@@ -9,6 +9,7 @@ import { InputIconModule } from 'primeng/inputicon';
 import { PasswordModule } from 'primeng/password';
 import { TranslatePipe } from '@ngx-translate/core';
 import { SelectModule } from 'primeng/select';
+import { DatePicker } from 'primeng/datepicker';
 
 @Component({
   selector: 'app-input',
@@ -23,6 +24,7 @@ import { SelectModule } from 'primeng/select';
     InputIconModule,
     PasswordModule,
     TranslatePipe,
+    DatePicker
   ],
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss'],
@@ -36,9 +38,19 @@ export class InputComponent {
   @Input() type = 'text';
   @Input() icon!: string;
   @Input() readonly = false;
+  @Input() nestedControlName?: string;
   @Input() options: { name: string; code: number }[] = [];
 
+  // For Date
+  @Input() minDate: Date = new Date(Date.now());
+  @Input() maxDate?: Date;
+
+
   get formControl(): FormControl {
+    if (this.nestedControlName) {
+      const nestedControl = this.formGroup.get(this.controlName)?.get(this.nestedControlName) as FormControl;
+      return nestedControl;
+    }
     return this.formGroup.get(this.controlName) as FormControl;
   }
   get hasError(): boolean {
