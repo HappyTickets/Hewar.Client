@@ -181,6 +181,7 @@ export class EditPriceOfferComponent implements OnInit {
     this.editPriceOfferForm.reset();
   }
   assignCreateValues() {
+    console.log(this.priceRequestData.startDate);
     this.editPriceOfferForm.patchValue({
       contractType: this.priceRequestData.contractType,
       startDate: new Date(this.priceRequestData.startDate),
