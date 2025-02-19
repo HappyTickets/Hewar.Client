@@ -1,252 +1,3 @@
-<!-- <p-toast></p-toast>
-
-<div class="facility-form">
-  <h2>{{ "app.facilities.add-facility" | translate }}</h2>
-
-  <form
-    [formGroup]="facilityForm"
-    (ngSubmit)="onSubmit()"
-    class="form-create-facility"
-  >
-    <p class="p-group">{{ "app.facilities.facility-data" | translate }}</p>
-    <div class="group group1">
-      <app-input
-        placeholder="facilities.facility-name"
-        [formGroup]="facilityForm"
-        errorKey="invalidName"
-        controlName="name"
-        icon="pi-id-card"
-        type="text"
-        label="facilities.facility-name"
-      ></app-input>
-
-      <app-input
-        placeholder="facilities.facility-type"
-        [formGroup]="facilityForm"
-        errorKey="facilities.facility-type"
-        controlName="type"
-        icon="pi-building"
-        type="text"
-        label="facilities.facility-type"
-      ></app-input>
-
-      <app-input
-        placeholder="facilities.Commercial-Registration"
-        [formGroup]="facilityForm"
-        errorKey="facilities.Commercial-Registration"
-        controlName="commercialRegistration"
-        icon="pi-file"
-        type="text"
-        label="facilities.Commercial-Registration"
-      ></app-input>
-
-      <app-input
-        placeholder="facilities.activity-type"
-        [formGroup]="facilityForm"
-        errorKey="facilities.activity-type"
-        controlName="activityType"
-        icon="pi-barcode"
-        type="text"
-        label="facilities.activity-type"
-      ></app-input>
-    </div>
-
-    <p class="p-group">
-      {{ "app.facilities.facility-det-address" | translate }}
-    </p>
-    <div class="group">
-      <div class="address" formGroupName="address">
-        <div class="p-input">
-          <app-input
-            [formGroup]="addressFormGroup"
-            placeholder="facilities.street"
-            errorKey="facilities.street"
-            controlName="street"
-            icon="pi-map-marker"
-            type="text"
-            label="facilities.street"
-          ></app-input>
-        </div>
-        <div class="p-input">
-          <app-input
-            placeholder="facilities.city"
-            [formGroup]="addressFormGroup"
-            errorKey="facilities.city"
-            controlName="city"
-            icon="pi-map"
-            type="text"
-            label="facilities.city"
-          ></app-input>
-        </div>
-        <div class="p-input">
-          <app-input
-            placeholder="facilities.state"
-            [formGroup]="addressFormGroup"
-            errorKey="facilities.state"
-            controlName="state"
-            icon="pi-globe"
-            type="text"
-            label="facilities.state"
-          ></app-input>
-        </div>
-        <div class="p-input">
-          <app-input
-            placeholder="facilities.country"
-            [formGroup]="addressFormGroup"
-            errorKey="facilities.country"
-            controlName="country"
-            icon="pi-flag"
-            type="text"
-            label="facilities.country"
-          ></app-input>
-        </div>
-      </div>
-    </div>
-    <p class="p-group">
-      {{ "app.facilities.facility-Responsible" | translate }}
-    </p>
-    <div class="group">
-      <div class="responsibleData">
-        <div class="p-input">
-          <app-input
-            placeholder="facilities.responsipoleNam"
-            [formGroup]="facilityForm"
-            errorKey="facilities.responsipoleNam"
-            controlName="responsibleName"
-            icon="pi-user"
-            type="text"
-            label="facilities.responsipoleNam"
-          ></app-input>
-        </div>
-        <div class="p-input">
-          <app-input
-            (keypress)="validateNumberInput($event)"
-            placeholder="facilities.phone"
-            [formGroup]="facilityForm"
-            errorKey="facilities.phone"
-            controlName="responsiblePhone"
-            icon="pi-phone"
-            type="text"
-            label="facilities.phone"
-          ></app-input>
-        </div>
-      </div>
-    </div>
-    <p class="p-group">
-      {{ "app.facilities.facility-admin" | translate }}
-    </p>
-    <div class="group">
-      <div class="admin-info" formGroupName="adminInfo">
-        <div class="p-input">
-          <app-input
-            placeholder="facilities.email"
-            [formGroup]="adminInfo"
-            errorKey="facilities.email"
-            controlName="email"
-            icon="pi-at"
-            type="email"
-            label="facilities.email"
-          ></app-input>
-        </div>
-        <div class="p-input">
-          <app-input
-            placeholder="facilities.password"
-            [formGroup]="adminInfo"
-            errorKey="facilities.password"
-            controlName="password"
-            icon="pi-lock"
-            type="password"
-            label="facilities.password"
-          ></app-input>
-        </div>
-        <div class="p-input">
-          <app-input
-            placeholder="facilities.Confirmpassword"
-            [formGroup]="adminInfo"
-            errorKey="facilities.Confirmpassword"
-            controlName="password"
-            icon="pi-lock"
-            type="password"
-            label="facilities.Confirmpassword"
-          ></app-input>
-        </div>
-        <div class="p-input">
-          <app-input
-            placeholder="facilities.firstName"
-            [formGroup]="adminInfo"
-            errorKey="facilities.firstName"
-            controlName="firstName"
-            icon="pi-user"
-            type="text"
-            label="facilities.firstName"
-          ></app-input>
-        </div>
-        <div class="p-input">
-          <app-input
-            placeholder="facilities.lastName"
-            [formGroup]="adminInfo"
-            errorKey="facilities.lastName"
-            controlName="lastName"
-            icon="pi-user"
-            type="text"
-            label="facilities.lastName"
-          ></app-input>
-        </div>
-        <div class="p-input">
-          <app-input
-            (keypress)="validateNumberInput($event)"
-            placeholder="facilities.phone"
-            [formGroup]="adminInfo"
-            errorKey="facilities.phone"
-            controlName="phone"
-            icon="pi-phone"
-            type="text"
-            label="facilities.phone"
-          ></app-input>
-        </div>
-      </div>
-    </div>
-    <p class="p-group">
-      {{ "app.facilities.facility-image" | translate }}
-    </p>
-    <div class="group">
-      <div class="imag-uplod">
-        <label for="">{{ "app.facilities.upload-image" | translate }}</label>
-        <i class="pi pi-cloud-upload"></i>
-
-        <app-image-uploader
-          (fileSizeError)="handleFileSizeError($event)"
-          (imageName)="handelimagenam($event)"
-        ></app-image-uploader>
-        <div *ngIf="fileUploadError" class="error-message">
-          {{ fileUploadError }}
-        </div>
-      </div>
-    </div>
-    <div class="buttons">
-      <div class="form-buttons">
-        <div>
-          <button
-            pButton
-            type="submit"
-            label="Create "
-            class="p-my-button"
-          ></button>
-        </div>
-        <div>
-          <button
-            pButton
-            type="button"
-            label="Cancel"
-            class="p-button-secondary"
-            (click)="cancel()"
-          ></button>
-        </div>
-      </div>
-    </div>
-  </form>
-</div> -->
-
 <div class="create-component">
   <div class="container">
     <h2 class="text-center mb-4">
@@ -272,7 +23,23 @@
             </app-input>
           </div>
           }
+          <div class="group">
+            <div class="image-upload">
+              <label for="">{{
+                "app.facilities.upload-logo" | translate
+              }}</label>
+              <i class="pi pi-cloud-upload"></i>
+              <app-image-uploader
+                (fileSizeError)="handleFileSizeError($event)"
+                (imageName)="handleLogoName($event)"
+              ></app-image-uploader>
+              <div *ngIf="fileUploadError" class="error-message">
+                {{ fileUploadError }}
+              </div>
+            </div>
+          </div>
         </div>
+        <input type="text" formControlName="logo" hidden />
 
         <p class="p-group">
           {{ "app.create-update-facility.address-data-title" | translate }}
