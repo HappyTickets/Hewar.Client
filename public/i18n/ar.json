@@ -644,7 +644,18 @@
     },
     "delete-item": {
       "question": "هل أنت متأكد من حذف ",
+      "question": "هل أنت متأكد من حذف ",
       "question-2": "؟",
+      "hide-request-question": "هل أنت متأكد من إخفاء طلب التسعير؟",
+      "cancel-request-question": "هل أنت متأكد من إلغاء طلب التسعير؟",
+      "reject-request-question": "هل أنت متأكد من رفض طلب التسعير؟",
+      "accept-request-question": "هل أنت متأكد من قبول طلب التسعير؟",
+      "complete": "لإكمال الحذف",
+      "click": "اضغط على \"حذف\" لإكمال العملية.",
+      "click-hide": "اضغط على \"إخفاء\" لإكمال العملية.",
+      "click-cancel": "اضغط على \"إكمال\" لإكمال العملية.",
+      "click-reject": "اضغط على \"رفض\" لإكمال العملية.",
+      "click-accept": "اضغط على \"قبول\" لإكمال العملية.",
       "hide-request-question": "هل أنت متأكد من إخفاء طلب التسعير؟",
       "cancel-request-question": "هل أنت متأكد من إلغاء طلب التسعير؟",
       "reject-request-question": "هل أنت متأكد من رفض طلب التسعير؟",
@@ -723,6 +734,10 @@
         }
       }
       "cancel": "الغاء"
+      "accept": "قبول",
+      "reject": "رفض",
+      "complete-cancelation": "إكمال",
+      "cancel": "إلغاء"
     },
     "contract": {
       "form": {
