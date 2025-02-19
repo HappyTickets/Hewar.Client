@@ -4,7 +4,13 @@
     (ngSubmit)="submitContract()"
     class="container"
   >
+  <form
+    [formGroup]="contractForm"
+    (ngSubmit)="submitContract()"
+    class="container"
+  >
     <p-card>
+      <h2>📝 {{ "app.contract.form.contractDetails" | translate }}</h2>
       <h2>📝 {{ "app.contract.form.contractDetails" | translate }}</h2>
       <div class="grid">
         <app-input
@@ -25,10 +31,28 @@
           type="date"
           [minDate]="date"
         ></app-input>
+        <app-input
+          class="col-12 md:col-6"
+          placeholder="contract.form.contractSignDate"
+          label="contract.form.contractSignDate"
+          [formGroup]="contractForm"
+          controlName="contractSignDate"
+          type="date"
+          [minDate]="date"
+        ></app-input>
+        <app-input
+          class="col-12 md:col-6"
+          placeholder="contract.form.contractStartDate"
+          label="contract.form.contractStartDate"
+          [formGroup]="contractForm"
+          controlName="contractStartDate"
+          type="date"
+          [minDate]="date"
+        ></app-input>
       </div>
       <h3>🟢 {{ "app.contract.form.partyOne" | translate }}</h3>
+      <h3>🟢 {{ "app.contract.form.partyOne" | translate }}</h3>
       <div class="p-fluid grid">
-        <<<<<<< HEAD
         <app-input
           class="col-12 md:col-6"
           label="contract.form.name.ar"
@@ -211,7 +235,179 @@
         ></app-input>
       </div>
       <h3>🔵 {{ "app.contract.form.partyTwo" | translate }}</h3>
+      <h3>🔵 {{ "app.contract.form.partyTwo" | translate }}</h3>
       <div class="p-fluid grid">
+        <app-input
+          class="col-12 md:col-6"
+          label="contract.form.name.ar"
+          [formGroup]="contractForm"
+          controlName="facilityNameAr"
+          placeholder="contract.form.name.ar"
+          type="text"
+          icon="pi-user"
+        ></app-input>
+        <app-input
+          class="col-12 md:col-6"
+          label="contract.form.name.en"
+          [formGroup]="contractForm"
+          controlName="facilityNameEn"
+          placeholder="contract.form.name.en"
+          type="text"
+          icon="pi-user"
+        ></app-input>
+        <app-input
+          class="col-12 md:col-6"
+          label="contract.form.mainOfficeCity.ar"
+          [formGroup]="contractForm"
+          controlName="facilityMainOfficeCityAr"
+          placeholder="contract.form.mainOfficeCity.ar"
+          type="text"
+          icon="pi-building"
+        ></app-input>
+        <app-input
+          class="col-12 md:col-6"
+          label="contract.form.mainOfficeCity.en"
+          [formGroup]="contractForm"
+          controlName="facilityMainOfficeCityEn"
+          placeholder="contract.form.mainOfficeCity.en"
+          type="text"
+          icon="pi-building"
+        ></app-input>
+        <app-input
+          class="col-12 md:col-6"
+          label="contract.form.mobile"
+          [formGroup]="contractForm"
+          controlName="facilityMobile"
+          placeholder="contract.form.mobile"
+          type="text"
+          icon="pi-mobile"
+        ></app-input>
+        <app-input
+          class="col-12 md:col-6"
+          label="contract.form.email"
+          [formGroup]="contractForm"
+          controlName="facilityEmail"
+          placeholder="contract.form.email"
+          type="email"
+          icon="pi-envelope"
+        ></app-input>
+        <app-input
+          class="col-12 md:col-6"
+          label="contract.form.nationalAddress.ar"
+          [formGroup]="contractForm"
+          controlName="facilityAddressCityAr"
+          placeholder="contract.form.nationalAddress.ar"
+          type="text"
+          icon="pi-map-marker"
+        ></app-input>
+        <app-input
+          class="col-12 md:col-6"
+          label="contract.form.nationalAddress.en"
+          [formGroup]="contractForm"
+          controlName="facilityAddressCityEn"
+          placeholder="contract.form.nationalAddress.en"
+          type="text"
+          icon="pi-map-marker"
+        ></app-input>
+        <app-input
+          class="col-12 md:col-6"
+          label="contract.form.postalCode"
+          [formGroup]="contractForm"
+          controlName="facilityAddressPostalCode"
+          placeholder="contract.form.postalCode"
+          type="text"
+          icon="pi-map-marker"
+        ></app-input>
+        <app-input
+          class="col-12 md:col-6"
+          label="contract.form.unitNumber"
+          [formGroup]="contractForm"
+          controlName="facilityAddressUnitNumber"
+          placeholder="contract.form.unitNumber"
+          type="text"
+          icon="pi-map-marker"
+        ></app-input>
+        <app-input
+          class="col-12"
+          label="contract.form.buildingNumber"
+          [formGroup]="contractForm"
+          controlName="facilityAddressBuildingNumber"
+          placeholder="contract.form.buildingNumber"
+          type="text"
+          icon="pi-map-marker"
+        ></app-input>
+        <app-input
+          class="col-12 md:col-6"
+          label="contract.form.representativeName.ar"
+          [formGroup]="contractForm"
+          controlName="facilityRepresentativeNameAr"
+          placeholder="contract.form.representativeName.ar"
+          type="text"
+          icon="pi-user"
+        ></app-input>
+        <app-input
+          class="col-12 md:col-6"
+          label="contract.form.representativeName.en"
+          [formGroup]="contractForm"
+          controlName="facilityRepresentativeNameEn"
+          placeholder="contract.form.representativeName.en"
+          type="text"
+          icon="pi-user"
+        ></app-input>
+        <app-input
+          class="col-12 md:col-6"
+          label="contract.form.representativeTitle.ar"
+          [formGroup]="contractForm"
+          controlName="facilityRepresentativeTitleAr"
+          placeholder="contract.form.representativeTitle.ar"
+          type="text"
+          icon="pi-user"
+        ></app-input>
+        <app-input
+          class="col-12 md:col-6"
+          label="contract.form.representativeTitle.en"
+          [formGroup]="contractForm"
+          controlName="facilityRepresentativeTitleEn"
+          placeholder="contract.form.representativeTitle.en"
+          type="text"
+          icon="pi-user"
+        ></app-input>
+        <app-input
+          class="col-12 md:col-6"
+          label="contract.form.commercialRegistrationCity.ar"
+          [formGroup]="contractForm"
+          controlName="facilityCommercialRegistrationCityAr"
+          placeholder="contract.form.commercialRegistrationCity.ar"
+          type="text"
+          icon="pi-building"
+        ></app-input>
+        <app-input
+          class="col-12 md:col-6"
+          label="contract.form.commercialRegistrationCity.en"
+          [formGroup]="contractForm"
+          controlName="facilityCommercialRegistrationCityEn"
+          placeholder="contract.form.commercialRegistrationCity.en"
+          type="text"
+          icon="pi-building"
+        ></app-input>
+        <app-input
+          class="col-12 md:col-6"
+          label="contract.form.locationToBeSecured.ar"
+          [formGroup]="contractForm"
+          controlName="facilityLocationToBeSecuredAr"
+          placeholder="contract.form.locationToBeSecured.ar"
+          type="text"
+          icon="pi-map-marker"
+        ></app-input>
+        <app-input
+          class="col-12 md:col-6"
+          label="contract.form.locationToBeSecured.en"
+          [formGroup]="contractForm"
+          controlName="facilityLocationToBeSecuredEn"
+          placeholder="contract.form.locationToBeSecured.en"
+          type="text"
+          icon="pi-map-marker"
+        ></app-input>
         <app-input
           class="col-12 md:col-6"
           label="contract.form.name.ar"
@@ -385,559 +581,6 @@
         ></app-input>
       </div>
       <div class="flex justify-content-between mt-3">
-        =======
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.name.ar"
-          [formGroup]="contractForm"
-          controlName="partyOne"
-          nestedControlName="name.ar"
-          placeholder="contract.form.name.ar"
-          type="text"
-          icon="pi-user"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.name.en"
-          [formGroup]="contractForm"
-          controlName="partyOne"
-          nestedControlName="name.en"
-          placeholder="contract.form.name.en"
-          type="text"
-          icon="pi-user"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.mainOfficeCity.ar"
-          [formGroup]="contractForm"
-          controlName="partyOne"
-          nestedControlName="mainOfficeCity.ar"
-          placeholder="contract.form.mainOfficeCity.ar"
-          type="text"
-          icon="pi-building"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.mainOfficeCity.en"
-          [formGroup]="contractForm"
-          controlName="partyOne"
-          nestedControlName="mainOfficeCity.en"
-          placeholder="contract.form.mainOfficeCity.en"
-          type="text"
-          icon="pi-building"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.telephone"
-          [formGroup]="contractForm"
-          controlName="partyOne"
-          nestedControlName="telephone"
-          placeholder="contract.form.telephone"
-          type="text"
-          icon="pi-phone"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.mobile"
-          [formGroup]="contractForm"
-          controlName="partyOne"
-          nestedControlName="mobile"
-          placeholder="contract.form.mobile"
-          type="text"
-          icon="pi-mobile"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.publicSecurityLicense"
-          [formGroup]="contractForm"
-          controlName="partyOne"
-          nestedControlName="publicSecurityLicense"
-          placeholder="contract.form.publicSecurityLicense"
-          type="text"
-          icon="pi-id-card"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.email"
-          [formGroup]="contractForm"
-          controlName="partyOne"
-          nestedControlName="email"
-          placeholder="contract.form.email"
-          type="email"
-          icon="pi-envelope"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.nationalAddress.ar"
-          [formGroup]="contractForm"
-          controlName="partyOne"
-          nestedControlName="nationalAddress.city.ar"
-          placeholder="contract.form.nationalAddress.ar"
-          type="text"
-          icon="pi-map-marker"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.nationalAddress.en"
-          [formGroup]="contractForm"
-          controlName="partyOne"
-          nestedControlName="nationalAddress.city.en"
-          placeholder="contract.form.nationalAddress.en"
-          type="text"
-          icon="pi-map-marker"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.postalCode"
-          [formGroup]="contractForm"
-          controlName="partyOne"
-          nestedControlName="nationalAddress.postalCode"
-          placeholder="contract.form.postalCode"
-          type="text"
-          icon="pi-map-marker"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.unitNumber"
-          [formGroup]="contractForm"
-          controlName="partyOne"
-          nestedControlName="nationalAddress.unitNumber"
-          placeholder="contract.form.unitNumber"
-          type="text"
-          icon="pi-map-marker"
-        ></app-input>
-        <app-input
-          class="col-12"
-          label="contract.form.buildingNumber"
-          [formGroup]="contractForm"
-          controlName="partyOne"
-          nestedControlName="nationalAddress.buildingNumber"
-          placeholder="contract.form.buildingNumber"
-          type="text"
-          icon="pi-map-marker"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.representativeName.ar"
-          [formGroup]="contractForm"
-          controlName="partyOne"
-          nestedControlName="representativeName.ar"
-          placeholder="contract.form.representativeName.ar"
-          type="text"
-          icon="pi-user"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.representativeName.en"
-          [formGroup]="contractForm"
-          controlName="partyOne"
-          nestedControlName="representativeName.en"
-          placeholder="contract.form.representativeName.en"
-          type="text"
-          icon="pi-user"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.representativeTitle.ar"
-          [formGroup]="contractForm"
-          controlName="partyOne"
-          nestedControlName="representativeTitle.ar"
-          placeholder="contract.form.representativeTitle.ar"
-          type="text"
-          icon="pi-user"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.representativeTitle.en"
-          [formGroup]="contractForm"
-          controlName="partyOne"
-          nestedControlName="representativeTitle.en"
-          placeholder="contract.form.representativeTitle.en"
-          type="text"
-          icon="pi-user"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.commercialRegistration"
-          [formGroup]="contractForm"
-          controlName="partyOne"
-          nestedControlName="commercialRegistration"
-          placeholder="contract.form.commercialRegistration"
-          type="text"
-          icon="pi-id-card"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.guardsCount"
-          [formGroup]="contractForm"
-          controlName="partyOne"
-          nestedControlName="guardsCount"
-          placeholder="contract.form.guardsCount"
-          type="number"
-          icon="pi-users"
-        ></app-input>
-        <app-input
-          class="col-12"
-          label="contract.form.registrationInSabl"
-          [formGroup]="contractForm"
-          controlName="partyOne"
-          nestedControlName="registrationInSabl"
-          placeholder="contract.form.registrationInSabl"
-          type="text"
-          icon="pi-id-card"
-        ></app-input>
-      </div>
-      <h3>🔵 {{ "app.contract.form.partyTwo" | translate }}</h3>
-      <div class="p-fluid grid">
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.name.ar"
-          [formGroup]="contractForm"
-          controlName="partyTwo"
-          nestedControlName="name.ar"
-          placeholder="contract.form.name.ar"
-          type="text"
-          icon="pi-user"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.name.en"
-          [formGroup]="contractForm"
-          controlName="partyTwo"
-          nestedControlName="name.en"
-          placeholder="contract.form.name.en"
-          type="text"
-          icon="pi-user"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.mainOfficeCity.ar"
-          [formGroup]="contractForm"
-          controlName="partyTwo"
-          nestedControlName="mainOfficeCity.ar"
-          placeholder="contract.form.mainOfficeCity.ar"
-          type="text"
-          icon="pi-building"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.mainOfficeCity.en"
-          [formGroup]="contractForm"
-          controlName="partyTwo"
-          nestedControlName="mainOfficeCity.en"
-          placeholder="contract.form.mainOfficeCity.en"
-          type="text"
-          icon="pi-building"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.telephone"
-          [formGroup]="contractForm"
-          controlName="partyTwo"
-          nestedControlName="telephone"
-          placeholder="contract.form.telephone"
-          type="text"
-          icon="pi-phone"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.mobile"
-          [formGroup]="contractForm"
-          controlName="partyTwo"
-          nestedControlName="mobile"
-          placeholder="contract.form.mobile"
-          type="text"
-          icon="pi-mobile"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.publicSecurityLicense"
-          [formGroup]="contractForm"
-          controlName="partyTwo"
-          nestedControlName="publicSecurityLicense"
-          placeholder="contract.form.publicSecurityLicense"
-          type="text"
-          icon="pi-id-card"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.email"
-          [formGroup]="contractForm"
-          controlName="partyTwo"
-          nestedControlName="email"
-          placeholder="contract.form.email"
-          type="email"
-          icon="pi-envelope"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.nationalAddress.ar"
-          [formGroup]="contractForm"
-          controlName="partyTwo"
-          nestedControlName="nationalAddress.city.ar"
-          placeholder="contract.form.nationalAddress.ar"
-          type="text"
-          icon="pi-map-marker"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.nationalAddress.en"
-          [formGroup]="contractForm"
-          controlName="partyTwo"
-          nestedControlName="nationalAddress.city.en"
-          placeholder="contract.form.nationalAddress.en"
-          type="text"
-          icon="pi-map-marker"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.postalCode"
-          [formGroup]="contractForm"
-          controlName="partyTwo"
-          nestedControlName="nationalAddress.postalCode"
-          placeholder="contract.form.postalCode"
-          type="text"
-          icon="pi-map-marker"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.unitNumber"
-          [formGroup]="contractForm"
-          controlName="partyTwo"
-          nestedControlName="nationalAddress.unitNumber"
-          placeholder="contract.form.unitNumber"
-          type="text"
-          icon="pi-map-marker"
-        ></app-input>
-        <app-input
-          class="col-12"
-          label="contract.form.buildingNumber"
-          [formGroup]="contractForm"
-          controlName="partyTwo"
-          nestedControlName="nationalAddress.buildingNumber"
-          placeholder="contract.form.buildingNumber"
-          type="text"
-          icon="pi-map-marker"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.representativeName.ar"
-          [formGroup]="contractForm"
-          controlName="partyTwo"
-          nestedControlName="representativeName.ar"
-          placeholder="contract.form.representativeName.ar"
-          type="text"
-          icon="pi-user"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.representativeName.en"
-          [formGroup]="contractForm"
-          controlName="partyTwo"
-          nestedControlName="representativeName.en"
-          placeholder="contract.form.representativeName.en"
-          type="text"
-          icon="pi-user"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.representativeTitle.ar"
-          [formGroup]="contractForm"
-          controlName="partyTwo"
-          nestedControlName="representativeTitle.ar"
-          placeholder="contract.form.representativeTitle.ar"
-          type="text"
-          icon="pi-user"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.representativeTitle.en"
-          [formGroup]="contractForm"
-          controlName="partyTwo"
-          nestedControlName="representativeTitle.en"
-          placeholder="contract.form.representativeTitle.en"
-          type="text"
-          icon="pi-user"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.commercialRegistrationCity.ar"
-          [formGroup]="contractForm"
-          controlName="partyTwo"
-          nestedControlName="commercialRegistrationCity.ar"
-          placeholder="contract.form.commercialRegistrationCity.ar"
-          type="text"
-          icon="pi-building"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.commercialRegistrationCity.en"
-          [formGroup]="contractForm"
-          controlName="partyTwo"
-          nestedControlName="commercialRegistrationCity.en"
-          placeholder="contract.form.commercialRegistrationCity.en"
-          type="text"
-          icon="pi-building"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.locationToBeSecured.ar"
-          [formGroup]="contractForm"
-          controlName="partyTwo"
-          nestedControlName="locationToBeSecured.ar"
-          placeholder="contract.form.locationToBeSecured.ar"
-          type="text"
-          icon="pi-map-marker"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.locationToBeSecured.en"
-          [formGroup]="contractForm"
-          controlName="partyTwo"
-          nestedControlName="locationToBeSecured.en"
-          placeholder="contract.form.locationToBeSecured.en"
-          type="text"
-          icon="pi-map-marker"
-        ></app-input>
-      </div>
-      <h3>📅 {{ "app.contract.form.schedule" | translate }}</h3>
-      <p-table
-        [value]="scheduleEntries.controls"
-        responsiveLayout="scroll"
-        [tableStyle]="{ 'min-width': '70rem' }"
-      >
-        <ng-template pTemplate="header">
-          <tr>
-            <th>📍 {{ "app.contract.form.location" | translate }}</th>
-            <th>👮 {{ "app.contract.form.guardsRequired" | translate }}</th>
-            <th>⏰ {{ "app.contract.form.shiftTime" | translate }}</th>
-            <th>📝 {{ "app.contract.form.notes" | translate }}</th>
-            <th>🗑️ {{ "app.contract.form.delete" | translate }}</th>
-          </tr>
-        </ng-template>
-        <ng-template let-entry let-i="index" pTemplate="body">
-          <tr [formGroup]="entry">
-            <td>
-              <app-input
-                [formGroup]="entry"
-                controlName="location"
-                nestedControlName="ar"
-                placeholder="contract.form.lang.ar"
-                type="text"
-                icon="pi-map-marker"
-              ></app-input>
-              <app-input
-                [formGroup]="entry"
-                controlName="location"
-                nestedControlName="en"
-                placeholder="contract.form.lang.en"
-                type="text"
-                icon="pi-map-marker"
-              ></app-input>
-            </td>
-            <td>
-              <app-input
-                [formGroup]="entry"
-                controlName="guardsRequired"
-                nestedControlName="ar"
-                placeholder="contract.form.lang.ar"
-                type="text"
-                icon="pi-users"
-              ></app-input>
-              <app-input
-                [formGroup]="entry"
-                controlName="guardsRequired"
-                nestedControlName="en"
-                placeholder="contract.form.lang.en"
-                type="text"
-                icon="pi-users"
-              ></app-input>
-            </td>
-            <td>
-              <app-input
-                [formGroup]="entry"
-                controlName="shiftTime"
-                nestedControlName="ar"
-                placeholder="contract.form.lang.ar"
-                type="text"
-                icon="pi-clock"
-              ></app-input>
-              <app-input
-                [formGroup]="entry"
-                controlName="shiftTime"
-                nestedControlName="en"
-                placeholder="contract.form.lang.en"
-                type="text"
-                icon="pi-clock"
-              ></app-input>
-            </td>
-            <td>
-              <app-input
-                [formGroup]="entry"
-                controlName="notes"
-                nestedControlName="ar"
-                placeholder="contract.form.lang.ar"
-                type="text"
-                icon="pi-info-circle"
-              ></app-input>
-              <app-input
-                [formGroup]="entry"
-                controlName="notes"
-                nestedControlName="en"
-                placeholder="contract.form.lang.en"
-                type="text"
-                icon="pi-info-circle"
-              ></app-input>
-            </td>
-            <td>
-              <p-button
-                icon="pi pi-trash"
-                (click)="removeScheduleEntry(i)"
-                severity="danger"
-              ></p-button>
-            </td>
-          </tr>
-        </ng-template>
-      </p-table>
-      <p-button
-        label="{{ 'app.contract.form.addClause' | translate }}"
-        icon="pi pi-plus"
-        (click)="addScheduleEntry()"
-      ></p-button>
-      <h3>📋 {{ "app.contract.form.customClauses" | translate }}</h3>
-      <p-table
-        [value]="customClauses.controls"
-        responsiveLayout="scroll"
-        [tableStyle]="{ 'min-width': '50rem' }"
-      >
-        <ng-template pTemplate="header">
-          <tr>
-            <th>🔤 {{ "app.contract.form.lang.ar" | translate }}</th>
-            <th>🔤 {{ "app.contract.form.lang.en" | translate }}</th>
-            <th>🗑️ {{ "app.contract.form.delete" | translate }}</th>
-          </tr>
-        </ng-template>
-        <ng-template let-clause let-i="index" pTemplate="body">
-          <tr [formGroup]="clause">
-            <td><input fluid="true" pInputText formControlName="ar" /></td>
-            <td><input fluid="true" pInputText formControlName="en" /></td>
-            <td>
-              <p-button
-                icon="pi pi-trash"
-                (click)="removeCustomClause(i)"
-                severity="danger"
-              ></p-button>
-            </td>
-          </tr>
-        </ng-template>
-      </p-table>
-      <div class="flex justify-content-between mt-3">
-        <p-button
-          label="{{ 'app.contract.form.addClause' | translate }}"
-          icon="pi pi-plus"
-          (click)="addCustomClause()"
-        ></p-button>
-        >>>>>>> 1f61da8 (create the services, models, form component)
         <p-button
           label="{{ 'app.contract.form.submitContract' | translate }}"
           icon="pi pi-check"
@@ -949,6 +592,4 @@
     </p-card>
   </form>
 </div>
-<<<<<<< HEAD
 {{ contractForm.value | json }}
-======= >>>>>>> 1f61da8 (create the services, models, form component)
