@@ -1,6 +1,180 @@
-<div class="container">
-  <form [formGroup]="formGroup">
-    <p-editor formControlName="text"></p-editor>
-  </form>
-</div>
+<div *ngIf="language === 'ar'" class="contract-preview" (click)="onPlaceholderClick($event)">
+  <h1>{{ contract.staticContractTemplate.titleAr }}</h1>
+  <p [innerHTML]="contract.staticContractTemplate.preambleAr"></p>
+  <p>• توفير عدد من حراس الامن وتحديد مواقعهم وأوقات عملهم كما هو موضح أدناه :.</p>
+  <p-table *ngIf="!isEditing" [value]="scheduleEntriesData" responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>الموقع</th>
+        <th>عدد الحراس</th>
+        <th>وقت العمل</th>
+        <th>ملاحظات</th>
+      </tr>
+    </ng-template>
+    <ng-template let-entry pTemplate="body">
+      <tr>
+        <td>{{ entry.locationAr }}</td>
+        <td>{{ entry.guardsRequired }}</td>
+        <td>{{ entry.shiftTimeAr }}</td>
+        <td>{{ entry.notesAr }}</td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <p-button (click)="toggleEdit()" [label]="isEditing ? 'تراجع' : 'تعديل'" severity="primary"></p-button>
+    </ng-template>
+  </p-table>
+  <p-table *ngIf="isEditing" [value]="scheduleEntries.controls" responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>الموقع</th>
+        <th>عدد الحراس</th>
+        <th>وقت العمل</th>
+        <th>ملاحظات</th>
+        <th>إجراء</th>
+      </tr>
+    </ng-template>
+    <ng-template let-entry let-i="rowIndex" pTemplate="body">
+      <tr [formGroup]="entry">
+        <td>
+          <input pInputText formControlName="locationAr" placeholder="الموقع بالعربية" />
+          <input pInputText formControlName="locationEn" placeholder="الموقع بالإنجليزية" />
+        </td>
+        <td><input pInputText formControlName="guardsRequired" type="number" /></td>
+        <td>
+          <input pInputText formControlName="shiftTimeAr" placeholder="الوردية بالعربية" />
+          <input pInputText formControlName="shiftTimeEn" placeholder="الوردية بالإنجليزية" />
+        </td>
+        <td>
+          <input pInputText formControlName="notesAr" placeholder="الملاحظات بالعربية" />
+          <input pInputText formControlName="notesEn" placeholder="الملاحظات بالإنجليزية" />
+        </td>
+        <td>
+          <p-button icon="pi pi-trash" severity="danger" (click)="removeScheduleEntry(i)"></p-button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <div class="flex justify-content-between">
+        <p-button label="إضافة صف جديد" icon="pi pi-plus" severity="success" (click)="addScheduleEntry()"/>
+        <p-button (click)="saveScheduleEntries()" label="حفظ" severity="primary"></p-button>
+        <p-button (click)="toggleEdit()" [label]="isEditing ? 'تراجع' : 'تعديل'" severity="primary"></p-button>
+      </div>
+    </ng-template>
+  </p-table>
+  <div *ngFor="let clause of contract.staticClauses; let i = index" class="clause">
+    <ng-container *ngIf="i === 11">
+      <h3>البند الثاني عشر</h3>
+      <p>بند تكلفة الخدمة المقدمة للطرف الثاني حسب الجدول ادناه :</p>
+      <!-- <h2>{{ 'app.price-offer.price-offers-page.services' | translate }}</h2> -->
+      <p-table [value]="contract.services" dataKey="id">
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width:15%">{{ 'app.price-offer.price-offers-page.service' | translate }}</th>
+            <th style="width:10%">{{ 'app.price-offer.price-offers-page.shift' | translate }}</th>
+            <th style="width:10%">{{ 'app.price-offer.price-offers-page.quantity' | translate }}</th>
+            <th style="width:10%">{{ 'app.price-offer.price-offers-page.daily-cost' | translate }}</th>
+            <th style="width:15%">{{ 'app.price-offer.price-offers-page.monthly-cost' | translate }}</th>
+            <th style="width:20%">{{ 'app.price-offer.price-offers-page.total-daily-cost' | translate }}</th>
+            <th style="width:20%">{{ 'app.price-offer.price-offers-page.total-monthly-cost' | translate }}</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-service>
+          <tr>
+            <td>{{ service.serviceName }}</td>
+            <td>{{ 'enums.shift-type.' + service.shiftType | translate }}</td>
+            <td>{{ service.quantity }}</td>
+            <td>{{ service.dailyCostPerUnit }}</td>
+            <td>{{ service.monthlyCostPerUnit }}</td>
+            <td>{{ service.dailyCostPerUnit * service.quantity }}</td>
+            <td>{{ service.monthlyCostPerUnit * service.quantity }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+      <ng-container *ngIf="contract.otherServices.length > 0">
+        <!-- <h2>{{ 'app.price-offer.price-offers-page.other-services' | translate }}</h2> -->
+        <p-table [value]="contract.otherServices" dataKey="id">
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="width:15%">{{ 'app.price-offer.price-offers-page.service' | translate }}</th>
+              <th style="width:10%">{{ 'app.price-offer.price-offers-page.shift' | translate }}</th>
+              <th style="width:10%">{{ 'app.price-offer.price-offers-page.quantity' | translate }}</th>
+              <th style="width:10%">{{ 'app.price-offer.price-offers-page.daily-cost' | translate }}</th>
+              <th style="width:15%">{{ 'app.price-offer.price-offers-page.monthly-cost' | translate }}</th>
+              <th style="width:20%">{{ 'app.price-offer.price-offers-page.total-daily-cost' | translate }}</th>
+              <th style="width:20%">{{ 'app.price-offer.price-offers-page.total-monthly-cost' | translate }}</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-service>
+            <tr>
+              <td>{{ service.name }}</td>
+              <td>{{ 'enums.shift-type.' + service.shiftType | translate }}</td>
+              <td>{{ service.quantity }}</td>
+              <td>{{ service.dailyCostPerUnit }}</td>
+              <td>{{ service.monthlyCostPerUnit }}</td>
+              <td>{{ service.dailyCostPerUnit * service.quantity }}</td>
+              <td>{{ service.monthlyCostPerUnit * service.quantity }}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+        <div class="flex justify-content-between">
+          <h3>{{ 'app.price-offer.price-offers-page.total-daily-cost' | translate }}: <strong>{{getTotalDailyCost(contract.services, contract.otherServices)}}</strong></h3>
+          <h3>{{ 'app.price-offer.price-offers-page.total-monthly-cost' | translate }}: <strong>{{getTotalMonthlyCost(contract.services, contract.otherServices)}}</strong></h3>
+        </div>
+      </ng-container>
+    </ng-container>
+    <h3>{{ clause.titleAr }}</h3>
+    <p [innerHTML]="clause.contentAr"></p>
+  </div>
 
+  <h3> {{ 'app.contract.form.customClauses' | translate}}</h3>
+  <p-table *ngIf="isEditingClauses" [value]="customClauses.controls" responsiveLayout="scroll" [tableStyle]="{ 'min-width': '50rem'}">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>🔤 {{ 'app.contract.form.lang.ar' | translate}}</th>
+        <th>🔤 {{ 'app.contract.form.lang.en' | translate}}</th>
+        <th>🗑️ {{ 'app.contract.form.delete' | translate}}</th>
+      </tr>
+    </ng-template>
+    <ng-template let-clause let-i="index" pTemplate="body">
+      <tr [formGroup]="clause">
+        <td><input fluid="true" pInputText formControlName="ar"/></td>
+        <td><input fluid="true" pInputText formControlName="en"/></td>
+        <td><p-button icon="pi pi-trash" (click)="removeCustomClause(i)" severity="danger"></p-button></td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <div class="flex justify-content-between">
+        <p-button label="إضافة بند جديد" icon="pi pi-plus" severity="success" (click)="addCustomClause()"/>
+        <p-button (click)="saveCustomClauses()" label="حفظ" severity="primary"></p-button>
+        <p-button (click)="toggleEditClauses()" [label]="isEditingClauses ? 'تراجع' : 'تعديل'" severity="primary"></p-button>
+      </div>
+    </ng-template>
+  </p-table>
+
+  <div *ngFor="let clause of contract.customClauses; let i = index" class="clause">
+    <h3>بند مخصص رقم {{i+1}}:</h3>
+    <p>{{clause.htmlContentAr}}</p>
+  </div>
+
+  <p [innerHTML]="contract.staticContractTemplate.closingRemarkAr"></p>
+  <div class="signatures">
+    <div class="signature">
+      <ng-container *ngIf="!editingFacility; else editFacility">
+        <span (click)="enableEditing('facility')">{{ contract.facilitySignature }}</span>
+      </ng-container>
+      <ng-template #editFacility>
+        <input pInputText [(ngModel)]="tempFacilitySignature" />
+        <p-button  (click)="saveSignature('facility')" label="حفظ"/>
+      </ng-template>
+    </div>
+    <div class="signature">
+      <ng-container *ngIf="!editingCompany; else editCompany">
+        <span (click)="enableEditing('company')">{{ contract.companySignature }}</span>
+      </ng-container>
+      <ng-template #editCompany>
+        <input pInputText [(ngModel)]="tempCompanySignature" />
+        <p-button  (click)="saveSignature('company')" label="حفظ"/>
+      </ng-template>
+    </div>
+  </div>
+</div>

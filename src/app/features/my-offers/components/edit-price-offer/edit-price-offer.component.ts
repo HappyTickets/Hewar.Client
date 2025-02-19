@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -22,11 +21,12 @@ import { IUpdatePriceOffer } from '../../models/iupdate-price-offer';
 import { ContractType } from '../../../../shared/enums/contract-type';
 import { DatePickerModule } from 'primeng/datepicker';
 import { InputComponent } from '../../../../shared/components/input/input.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-edit-price-offer',
   standalone: true,
-  imports: [ SelectModule, InputNumberModule, TextareaModule, ButtonModule, ReactiveFormsModule, InputTextModule, TranslatePipe, CommonModule, TranslatePipe , DatePickerModule, InputComponent],
+  imports: [ SelectModule,CommonModule, InputNumberModule, TextareaModule, ButtonModule, ReactiveFormsModule, InputTextModule, TranslatePipe, TranslatePipe , DatePickerModule, InputComponent],
   templateUrl: './edit-price-offer.component.html',
   styleUrl: './edit-price-offer.component.scss',
 })
@@ -71,7 +71,7 @@ export class EditPriceOfferComponent implements OnInit {
           if (res.data) {
             this.priceOfferData = res.data;
             if (res.data.facility) this.facilityData = res.data.facility;
-            this.getCompanyServices(res.data.priceRequest.company.id)
+            this.getCompanyServices(res.data.priceRequest.company.id);
             this.assignUpdateValues();
             this.mode = 'update';
           }
@@ -116,7 +116,7 @@ export class EditPriceOfferComponent implements OnInit {
           services: this.editPriceOfferForm.value.services,
           otherServices: this.editPriceOfferForm.value.otherServices,
         };
-      this.priceOffersService.update(priceOffer).subscribe(() => {
+        this.priceOffersService.update(priceOffer).subscribe(() => {
         this.router.navigate(['/company-price-offer']);
       });
       }
@@ -171,8 +171,9 @@ export class EditPriceOfferComponent implements OnInit {
       startDate: new Date(this.priceRequestData.startDate),
       endDate: new Date(this.priceRequestData.endDate),
     });
+
+    this.services.clear();
     if (this.priceRequestData.services) {
-      this.services.clear();
       this.priceRequestData.services.forEach((service) => {
         this.services.push(
           this.fb.group({
@@ -186,8 +187,8 @@ export class EditPriceOfferComponent implements OnInit {
       });
     }
 
+    this.otherServices.clear();
     if (this.priceRequestData.otherServices) {
-      this.otherServices.clear();
       this.priceRequestData.otherServices.forEach((otherService) => {
         this.otherServices.push(
           this.fb.group({
@@ -207,8 +208,9 @@ export class EditPriceOfferComponent implements OnInit {
       startDate: new Date(this.priceOfferData.priceRequest.startDate),
       endDate: new Date(this.priceOfferData.priceRequest.endDate),
     });
+
+    this.services.clear();
     if (this.priceOfferData.services) {
-      this.services.clear();
       this.priceOfferData.services.forEach((service) => {
         this.services.push(
           this.fb.group({
@@ -222,8 +224,8 @@ export class EditPriceOfferComponent implements OnInit {
       });
     }
 
+    this.otherServices.clear();
     if (this.priceOfferData.otherServices) {
-      this.otherServices.clear();
       this.priceOfferData.otherServices.forEach((otherService) => {
         this.otherServices.push(
           this.fb.group({
