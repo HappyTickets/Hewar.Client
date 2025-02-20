@@ -1,87 +1,268 @@
 <form class="container" [formGroup]="editPriceOfferForm">
   <div class="header">
-    <img *ngIf="facilityData.id" class="logo" [src]="facilityData.logo" alt="Security Logo"/>
+    <img
+      *ngIf="facilityData.id"
+      class="logo"
+      [src]="facilityData.logo"
+      alt="Security Logo"
+    />
     <div *ngIf="facilityData.id">
       <h2>{{ facilityData.name }}</h2>
       <p>{{ facilityData.responsibleName }}</p>
     </div>
   </div>
   <div class="content">
-    <h2>{{ 'app.price-request.edit-price-request.header' | translate }}</h2>
+    <h2>{{ "app.price-request.edit-price-request.header" | translate }}</h2>
     <div class="grid">
-      <app-input class="col-12 md:col-4" placeholder="price-request.edit-price-request.startContract" label="price-request.edit-price-request.startContract" [formGroup]="editPriceOfferForm" controlName="startDate" type="date" [minDate]="date" [maxDate]="editPriceOfferForm.get('endDate')?.value"></app-input>
-      <app-input class="col-12 md:col-4" placeholder="price-request.edit-price-request.endContract" label="price-request.edit-price-request.endContract" [formGroup]="editPriceOfferForm" controlName="endDate" type="date" [minDate]="editPriceOfferForm.get('startDate')?.value || date"></app-input>
-      <app-input class="col-12 md:col-4" placeholder="price-request.edit-price-request.contractType" label="price-request.edit-price-request.contractType" [formGroup]="editPriceOfferForm" [options]="contractTypes" errorKey="price-request.edit-price-request.invaliContractType" controlName="contractType" icon="pi-map" type="dropdown"></app-input>
+      <app-input
+        class="col-12 md:col-4"
+        placeholder="price-request.edit-price-request.startContract"
+        label="price-request.edit-price-request.startContract"
+        [formGroup]="editPriceOfferForm"
+        controlName="startDate"
+        type="date"
+        [minDate]="date"
+        [maxDate]="editPriceOfferForm.get('endDate')?.value"
+      ></app-input>
+      <app-input
+        class="col-12 md:col-4"
+        placeholder="price-request.edit-price-request.endContract"
+        label="price-request.edit-price-request.endContract"
+        [formGroup]="editPriceOfferForm"
+        controlName="endDate"
+        type="date"
+        [minDate]="editPriceOfferForm.get('startDate')?.value || date"
+      ></app-input>
+      <app-input
+        class="col-12 md:col-4"
+        placeholder="price-request.edit-price-request.contractType"
+        label="price-request.edit-price-request.contractType"
+        [formGroup]="editPriceOfferForm"
+        [options]="contractTypes"
+        errorKey="price-request.edit-price-request.invaliContractType"
+        controlName="contractType"
+        icon="pi-map"
+        type="dropdown"
+      ></app-input>
     </div>
-    <h2>{{ 'app.price-offer.create-price-offer.services' | translate }}</h2>
+    <h2>{{ "app.price-offer.create-price-offer.services" | translate }}</h2>
     <div formArrayName="services">
-      <div *ngFor="let service of services.controls; let i = index" [formGroupName]="i" class="service-item">
+      <div
+        *ngFor="let service of services.controls; let i = index"
+        [formGroupName]="i"
+        class="service-item"
+      >
         <div class="service-inputs">
-          <p-button icon="pi pi-trash" (click)="removeService(i)" [disabled]="i === 0 && editPriceOfferForm.value.services.length <= 1"></p-button>
+          <p-button
+            icon="pi pi-trash"
+            (click)="removeService(i)"
+            [disabled]="
+              i === 0 && editPriceOfferForm.value.services.length <= 1
+            "
+          ></p-button>
           <div class="input-row grid">
             <div class="flex flex-column gap-1 lg:col-2 col-12">
-              <label *ngIf="i===0" for="serviceId-{{i}}">{{ 'app.price-offer.create-price-offer.securityRoles' | translate }}</label>
-              <p-select [options]="companyServices" formControlName="serviceId" [placeholder]="'app.price-offer.create-price-offer.securityRoles' | translate" optionLabel="name" optionValue="id"></p-select>
+              <label *ngIf="i === 0" for="serviceId-{{ i }}">{{
+                "app.price-offer.create-price-offer.securityRoles" | translate
+              }}</label>
+              <p-select
+                [options]="companyServices"
+                formControlName="serviceId"
+                [placeholder]="
+                  'app.price-offer.create-price-offer.securityRoles' | translate
+                "
+                optionLabel="name"
+                optionValue="id"
+              ></p-select>
             </div>
             <div class="flex flex-column gap-1 lg:col-2 col-12">
-              <label *ngIf="i===0" for="shiftType-{{i}}">{{ 'app.price-request.edit-price-request.shiftType' | translate }}</label>
-              <p-select [options]="shiftType" formControlName="shiftType" [placeholder]="'app.price-request.edit-price-request.shiftType' | translate" optionLabel="name" optionValue="code"></p-select>
+              <label *ngIf="i === 0" for="shiftType-{{ i }}">{{
+                "app.price-request.edit-price-request.shiftType" | translate
+              }}</label>
+              <p-select
+                [options]="shiftType"
+                formControlName="shiftType"
+                [placeholder]="
+                  'app.price-request.edit-price-request.shiftType' | translate
+                "
+                optionLabel="name"
+                optionValue="code"
+              ></p-select>
             </div>
             <div class="flex flex-column gap-1 lg:col-2 col-12">
-              <label *ngIf="i===0" for="quantity-{{i}}">{{ 'app.price-offer.create-price-offer.quantity' | translate }}</label>
-              <p-inputNumber [min]="0" fluid="true" [showButtons]="true" formControlName="quantity" [placeholder]="'app.price-offer.create-price-offer.quantity' | translate"></p-inputNumber>
+              <label *ngIf="i === 0" for="quantity-{{ i }}">{{
+                "app.price-offer.create-price-offer.quantity" | translate
+              }}</label>
+              <p-inputNumber
+                [min]="0"
+                fluid="true"
+                [showButtons]="true"
+                formControlName="quantity"
+                [placeholder]="
+                  'app.price-offer.create-price-offer.quantity' | translate
+                "
+              ></p-inputNumber>
             </div>
             <div class="flex flex-column gap-1 lg:col-3 col-12">
-              <label *ngIf="i===0" for="dailyCostPerUnit-{{i}}">{{ 'app.price-offer.create-price-offer.dailyCostPerUnit' | translate }}</label>
-              <p-inputNumber [min]="0" fluid="true" [showButtons]="true" formControlName="dailyCostPerUnit" [placeholder]="'app.price-offer.create-price-offer.dailyCostPerUnit' | translate"></p-inputNumber>
+              <label *ngIf="i === 0" for="dailyCostPerUnit-{{ i }}">{{
+                "app.price-offer.create-price-offer.dailyCostPerUnit"
+                  | translate
+              }}</label>
+              <p-inputNumber
+                [min]="0"
+                fluid="true"
+                [showButtons]="true"
+                formControlName="dailyCostPerUnit"
+                [placeholder]="
+                  'app.price-offer.create-price-offer.dailyCostPerUnit'
+                    | translate
+                "
+              ></p-inputNumber>
             </div>
             <div class="flex flex-column gap-1 lg:col-3 col-12">
-              <label *ngIf="i===0" for="monthlyCostPerUnit-{{i}}">{{ 'app.price-offer.create-price-offer.monthlyCostPerUnit' | translate }}</label>
-              <p-inputNumber [min]="0" fluid="true" [showButtons]="true" formControlName="monthlyCostPerUnit" [placeholder]="'app.price-offer.create-price-offer.monthlyCostPerUnit' | translate"></p-inputNumber>
+              <label *ngIf="i === 0" for="monthlyCostPerUnit-{{ i }}">{{
+                "app.price-offer.create-price-offer.monthlyCostPerUnit"
+                  | translate
+              }}</label>
+              <p-inputNumber
+                [min]="0"
+                fluid="true"
+                [showButtons]="true"
+                formControlName="monthlyCostPerUnit"
+                [placeholder]="
+                  'app.price-offer.create-price-offer.monthlyCostPerUnit'
+                    | translate
+                "
+              ></p-inputNumber>
             </div>
           </div>
         </div>
       </div>
-      <div class="flex justify-content-center" *ngIf="services.controls.length > 0">
-        <p-button [label]="'app.price-request.edit-price-request.add-service' | translate" (click)="addService()"></p-button>
+      <div
+        class="flex justify-content-center"
+        *ngIf="services.controls.length > 0"
+      >
+        <p-button
+          [label]="
+            'app.price-request.edit-price-request.add-service' | translate
+          "
+          (click)="addService()"
+        ></p-button>
       </div>
     </div>
-    <h2>{{ 'app.price-offer.create-price-offer.otherDetails' | translate }}</h2>
+    <h2>{{ "app.price-offer.create-price-offer.otherDetails" | translate }}</h2>
     <div formArrayName="otherServices">
-      <div *ngFor="let service of otherServices.controls; let i = index" [formGroupName]="i" class="service-item">
+      <div
+        *ngFor="let service of otherServices.controls; let i = index"
+        [formGroupName]="i"
+        class="service-item"
+      >
         <div class="service-inputs">
-          <p-button icon="pi pi-trash" (click)="removeOtherService(i)" [disabled]="i === 0 && editPriceOfferForm.value.otherServices.length <= 1"></p-button>
+          <p-button
+            icon="pi pi-trash"
+            (click)="removeOtherService(i)"
+            [disabled]="
+              i === 0 && editPriceOfferForm.value.otherServices.length <= 1
+            "
+          ></p-button>
           <div class="input-row grid">
             <div class="flex flex-column gap-1 lg:col-2 col-12">
-              <label *ngIf="i===0" for="otherServiceName-{{i}}">{{ 'app.price-offer.create-price-offer.serviceName' | translate }}</label>
-              <input pInputText formControlName="name" [placeholder]="'app.price-offer.create-price-offer.serviceName' | translate"/>
+              <label *ngIf="i === 0" for="otherServiceName-{{ i }}">{{
+                "app.price-offer.create-price-offer.serviceName" | translate
+              }}</label>
+              <input
+                pInputText
+                formControlName="name"
+                [placeholder]="
+                  'app.price-offer.create-price-offer.serviceName' | translate
+                "
+              />
             </div>
             <div class="flex flex-column gap-1 lg:col-2 col-12">
-              <label *ngIf="i===0" for="otherShiftType-{{i}}">{{ 'app.price-request.edit-price-request.shiftType' | translate }}</label>
-              <p-select [options]="shiftType" formControlName="shiftType" [placeholder]="'app.price-request.create-price-request.shiftType' | translate" optionLabel="name" optionValue="code"></p-select>
+              <label *ngIf="i === 0" for="otherShiftType-{{ i }}">{{
+                "app.price-request.edit-price-request.shiftType" | translate
+              }}</label>
+              <p-select
+                [options]="shiftType"
+                formControlName="shiftType"
+                [placeholder]="
+                  'app.price-request.create-price-request.shiftType' | translate
+                "
+                optionLabel="name"
+                optionValue="code"
+              ></p-select>
             </div>
             <div class="flex flex-column gap-1 lg:col-2 col-12">
-              <label *ngIf="i===0" for="otherQuantity-{{i}}">{{ 'app.price-offer.create-price-offer.quantity' | translate }}</label>
-              <p-inputNumber [min]="0" fluid="true" [showButtons]="true" formControlName="quantity" [placeholder]="'app.price-offer.create-price-offer.quantity' | translate"></p-inputNumber>
+              <label *ngIf="i === 0" for="otherQuantity-{{ i }}">{{
+                "app.price-offer.create-price-offer.quantity" | translate
+              }}</label>
+              <p-inputNumber
+                [min]="0"
+                fluid="true"
+                [showButtons]="true"
+                formControlName="quantity"
+                [placeholder]="
+                  'app.price-offer.create-price-offer.quantity' | translate
+                "
+              ></p-inputNumber>
             </div>
             <div class="flex flex-column gap-1 lg:col-3 col-12">
-              <label *ngIf="i===0" for="otherDailyCostPerUnit-{{i}}">{{ 'app.price-offer.create-price-offer.dailyCostPerUnit' | translate }}</label>
-              <p-inputNumber [min]="0" fluid="true" [showButtons]="true" formControlName="dailyCostPerUnit" [placeholder]="'app.price-offer.create-price-offer.dailyCostPerUnit' | translate"></p-inputNumber>
+              <label *ngIf="i === 0" for="otherDailyCostPerUnit-{{ i }}">{{
+                "app.price-offer.create-price-offer.dailyCostPerUnit"
+                  | translate
+              }}</label>
+              <p-inputNumber
+                [min]="0"
+                fluid="true"
+                [showButtons]="true"
+                formControlName="dailyCostPerUnit"
+                [placeholder]="
+                  'app.price-offer.create-price-offer.dailyCostPerUnit'
+                    | translate
+                "
+              ></p-inputNumber>
             </div>
             <div class="flex flex-column gap-1 lg:col-3 col-12">
-              <label *ngIf="i===0" for="otherMonthlyCostPerUnit-{{i}}">{{ 'app.price-offer.create-price-offer.monthlyCostPerUnit' | translate }}</label>
-              <p-inputNumber [min]="0" fluid="true" [showButtons]="true" formControlName="monthlyCostPerUnit" [placeholder]="'app.price-offer.create-price-offer.monthlyCostPerUnit' | translate"></p-inputNumber>
+              <label *ngIf="i === 0" for="otherMonthlyCostPerUnit-{{ i }}">{{
+                "app.price-offer.create-price-offer.monthlyCostPerUnit"
+                  | translate
+              }}</label>
+              <p-inputNumber
+                [min]="0"
+                fluid="true"
+                [showButtons]="true"
+                formControlName="monthlyCostPerUnit"
+                [placeholder]="
+                  'app.price-offer.create-price-offer.monthlyCostPerUnit'
+                    | translate
+                "
+              ></p-inputNumber>
             </div>
           </div>
         </div>
       </div>
-      <div class="flex justify-content-center" >
-        <p-button [label]="'app.price-request.edit-price-request.add-service' | translate" (click)="addOtherService()"></p-button>
+      <div class="flex justify-content-center">
+        <p-button
+          [label]="
+            'app.price-request.edit-price-request.add-service' | translate
+          "
+          (click)="addOtherService()"
+        ></p-button>
       </div>
     </div>
     <div class="button-group">
-      <p-button [label]="'app.price-offer.create-price-offer.cancel' | translate" (click)="onCancel()" fluid="true"></p-button>
-      <p-button [label]="'app.price-offer.create-price-offer.submit' | translate" (click)="onSubmit()" fluid="true" [disabled]="editPriceOfferForm.invalid" [loading]="loading"></p-button>
+      <p-button
+        [label]="'app.price-offer.create-price-offer.cancel' | translate"
+        (click)="onCancel()"
+        fluid="true"
+      ></p-button>
+      <p-button
+        [label]="'app.price-offer.create-price-offer.submit' | translate"
+        (click)="onSubmit()"
+        fluid="true"
+        [disabled]="editPriceOfferForm.invalid"
+        [loading]="loading"
+      ></p-button>
     </div>
-  </form>
+  </div>
 </form>
