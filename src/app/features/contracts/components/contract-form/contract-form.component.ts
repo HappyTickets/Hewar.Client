@@ -34,7 +34,6 @@ export class ContractFormComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private fb = inject(FormBuilder);
   private router = inject(Router);
-  private router = inject(Router);
   date = new Date(Date.now());
   mode: 'create' | 'update' = 'create';
   contractForm!: FormGroup;
@@ -109,7 +108,6 @@ export class ContractFormComponent implements OnInit {
       facilityLocationToBeSecuredEn: ['', Validators.required],
     });
   }
-
 
   submitContract() {
     if (this.contractForm.valid) {

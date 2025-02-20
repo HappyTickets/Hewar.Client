@@ -32,11 +32,11 @@ import { UpdateServicesComponent } from './features/hewar-services/update-servic
 import { UpdateCompanyServiceComponent } from './features/company-services/update-services/update-services.component';
 import { ListServicesComponent } from './features/company-services/list-services/list-services.component';
 import { CreateServiceComponent } from './features/company-services/create-service/create-service.component';
+
 import { ContractFormComponent } from './features/contracts/components/contract-form/contract-form.component';
 import { ContractPreviewComponent } from './features/contracts/components/contract-preview/contract-preview.component';
 
 import { ImageUploadTestComponent } from './image-upload-test/image-upload-test.component';
-import { ContractPreviewComponent } from './features/contracts/components/contract-preview/contract-preview.component';
 
 export const routes: Route[] = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -94,15 +94,14 @@ export const routes: Route[] = [
 
   // Testing
   { path: 'upload-test', component: ImageUploadTestComponent },
-  // Testing
-  { path: 'upload-test', component: ImageUploadTestComponent },
+  // { path: 'Notifications-test', component: NotificationTestComponent },
 
   // Security Certificate
   { path: 'security-certificate', component: SecurityCertificateComponent },
 
   // Hewar Services
-  { path: 'creat-hewar-service', component: CreateServicesComponent },
   { path: 'get-all-hewar-services', component: ServicessListComponent },
+  { path: 'creat-hewar-service', component: CreateServicesComponent },
   { path: 'update-hewar-service/:id', component: UpdateServicesComponent },
 
   //Companies services
@@ -115,7 +114,6 @@ export const routes: Route[] = [
 
   // Contracts
   { path: 'contract-form/:id', component: ContractFormComponent },
-  { path: 'contract-preview/:id', component: ContractPreviewComponent },
   { path: 'contract-preview/:id', component: ContractPreviewComponent },
 
   { path: '**', component: NotFoundComponent }, // wild card path

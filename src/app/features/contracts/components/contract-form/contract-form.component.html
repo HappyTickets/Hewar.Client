@@ -4,13 +4,7 @@
     (ngSubmit)="submitContract()"
     class="container"
   >
-  <form
-    [formGroup]="contractForm"
-    (ngSubmit)="submitContract()"
-    class="container"
-  >
     <p-card>
-      <h2>📝 {{ "app.contract.form.contractDetails" | translate }}</h2>
       <h2>📝 {{ "app.contract.form.contractDetails" | translate }}</h2>
       <div class="grid">
         <app-input
@@ -31,26 +25,7 @@
           type="date"
           [minDate]="date"
         ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          placeholder="contract.form.contractSignDate"
-          label="contract.form.contractSignDate"
-          [formGroup]="contractForm"
-          controlName="contractSignDate"
-          type="date"
-          [minDate]="date"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          placeholder="contract.form.contractStartDate"
-          label="contract.form.contractStartDate"
-          [formGroup]="contractForm"
-          controlName="contractStartDate"
-          type="date"
-          [minDate]="date"
-        ></app-input>
       </div>
-      <h3>🟢 {{ "app.contract.form.partyOne" | translate }}</h3>
       <h3>🟢 {{ "app.contract.form.partyOne" | translate }}</h3>
       <div class="p-fluid grid">
         <app-input
@@ -235,179 +210,7 @@
         ></app-input>
       </div>
       <h3>🔵 {{ "app.contract.form.partyTwo" | translate }}</h3>
-      <h3>🔵 {{ "app.contract.form.partyTwo" | translate }}</h3>
       <div class="p-fluid grid">
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.name.ar"
-          [formGroup]="contractForm"
-          controlName="facilityNameAr"
-          placeholder="contract.form.name.ar"
-          type="text"
-          icon="pi-user"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.name.en"
-          [formGroup]="contractForm"
-          controlName="facilityNameEn"
-          placeholder="contract.form.name.en"
-          type="text"
-          icon="pi-user"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.mainOfficeCity.ar"
-          [formGroup]="contractForm"
-          controlName="facilityMainOfficeCityAr"
-          placeholder="contract.form.mainOfficeCity.ar"
-          type="text"
-          icon="pi-building"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.mainOfficeCity.en"
-          [formGroup]="contractForm"
-          controlName="facilityMainOfficeCityEn"
-          placeholder="contract.form.mainOfficeCity.en"
-          type="text"
-          icon="pi-building"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.mobile"
-          [formGroup]="contractForm"
-          controlName="facilityMobile"
-          placeholder="contract.form.mobile"
-          type="text"
-          icon="pi-mobile"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.email"
-          [formGroup]="contractForm"
-          controlName="facilityEmail"
-          placeholder="contract.form.email"
-          type="email"
-          icon="pi-envelope"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.nationalAddress.ar"
-          [formGroup]="contractForm"
-          controlName="facilityAddressCityAr"
-          placeholder="contract.form.nationalAddress.ar"
-          type="text"
-          icon="pi-map-marker"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.nationalAddress.en"
-          [formGroup]="contractForm"
-          controlName="facilityAddressCityEn"
-          placeholder="contract.form.nationalAddress.en"
-          type="text"
-          icon="pi-map-marker"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.postalCode"
-          [formGroup]="contractForm"
-          controlName="facilityAddressPostalCode"
-          placeholder="contract.form.postalCode"
-          type="text"
-          icon="pi-map-marker"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.unitNumber"
-          [formGroup]="contractForm"
-          controlName="facilityAddressUnitNumber"
-          placeholder="contract.form.unitNumber"
-          type="text"
-          icon="pi-map-marker"
-        ></app-input>
-        <app-input
-          class="col-12"
-          label="contract.form.buildingNumber"
-          [formGroup]="contractForm"
-          controlName="facilityAddressBuildingNumber"
-          placeholder="contract.form.buildingNumber"
-          type="text"
-          icon="pi-map-marker"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.representativeName.ar"
-          [formGroup]="contractForm"
-          controlName="facilityRepresentativeNameAr"
-          placeholder="contract.form.representativeName.ar"
-          type="text"
-          icon="pi-user"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.representativeName.en"
-          [formGroup]="contractForm"
-          controlName="facilityRepresentativeNameEn"
-          placeholder="contract.form.representativeName.en"
-          type="text"
-          icon="pi-user"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.representativeTitle.ar"
-          [formGroup]="contractForm"
-          controlName="facilityRepresentativeTitleAr"
-          placeholder="contract.form.representativeTitle.ar"
-          type="text"
-          icon="pi-user"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.representativeTitle.en"
-          [formGroup]="contractForm"
-          controlName="facilityRepresentativeTitleEn"
-          placeholder="contract.form.representativeTitle.en"
-          type="text"
-          icon="pi-user"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.commercialRegistrationCity.ar"
-          [formGroup]="contractForm"
-          controlName="facilityCommercialRegistrationCityAr"
-          placeholder="contract.form.commercialRegistrationCity.ar"
-          type="text"
-          icon="pi-building"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.commercialRegistrationCity.en"
-          [formGroup]="contractForm"
-          controlName="facilityCommercialRegistrationCityEn"
-          placeholder="contract.form.commercialRegistrationCity.en"
-          type="text"
-          icon="pi-building"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.locationToBeSecured.ar"
-          [formGroup]="contractForm"
-          controlName="facilityLocationToBeSecuredAr"
-          placeholder="contract.form.locationToBeSecured.ar"
-          type="text"
-          icon="pi-map-marker"
-        ></app-input>
-        <app-input
-          class="col-12 md:col-6"
-          label="contract.form.locationToBeSecured.en"
-          [formGroup]="contractForm"
-          controlName="facilityLocationToBeSecuredEn"
-          placeholder="contract.form.locationToBeSecured.en"
-          type="text"
-          icon="pi-map-marker"
-        ></app-input>
         <app-input
           class="col-12 md:col-6"
           label="contract.form.name.ar"

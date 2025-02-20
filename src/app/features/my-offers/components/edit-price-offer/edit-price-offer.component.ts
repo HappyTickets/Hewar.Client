@@ -1,5 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  FormBuilder,
+  FormGroup,
+  Validators,
+  FormArray,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
@@ -26,7 +32,19 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-edit-price-offer',
   standalone: true,
-  imports: [ SelectModule,CommonModule, InputNumberModule, TextareaModule, ButtonModule, ReactiveFormsModule, InputTextModule, TranslatePipe, TranslatePipe , DatePickerModule, InputComponent],
+  imports: [
+    SelectModule,
+    CommonModule,
+    InputNumberModule,
+    TextareaModule,
+    ButtonModule,
+    ReactiveFormsModule,
+    InputTextModule,
+    TranslatePipe,
+    TranslatePipe,
+    DatePickerModule,
+    InputComponent,
+  ],
   templateUrl: './edit-price-offer.component.html',
   styleUrl: './edit-price-offer.component.scss',
 })
@@ -43,11 +61,10 @@ export class EditPriceOfferComponent implements OnInit {
   shiftType = this.localizationService.createDropdown(ShiftType);
   contractTypes = this.localizationService.createDropdown(ContractType);
 
-  mode: "create" | "update" = 'create';
+  mode: 'create' | 'update' = 'create';
   priceOfferData: IGetPriceOfferById = {} as IGetPriceOfferById;
   priceRequestData: IPriceRequest = {} as IPriceRequest;
   facilityData: IFacility = {} as IFacility;
-  editPriceOfferForm: FormGroup;
   editPriceOfferForm: FormGroup;
   date = new Date();
   loading = false;
@@ -67,7 +84,7 @@ export class EditPriceOfferComponent implements OnInit {
           }
         });
       } else if (priceOfferId) {
-        this.priceOffersService.getById(+priceOfferId).subscribe(res=> {
+        this.priceOffersService.getById(+priceOfferId).subscribe((res) => {
           if (res.data) {
             this.priceOfferData = res.data;
             if (res.data.facility) this.facilityData = res.data.facility;
@@ -86,7 +103,6 @@ export class EditPriceOfferComponent implements OnInit {
   }
   constructor() {
     this.editPriceOfferForm = this.fb.group({
-    this.editPriceOfferForm = this.fb.group({
       contractType: ['', [Validators.required]],
       startDate: ['', [Validators.required]],
       endDate: ['', [Validators.required]],
@@ -96,15 +112,9 @@ export class EditPriceOfferComponent implements OnInit {
   }
   onSubmit(): void {
     if (this.editPriceOfferForm.valid) {
-    if (this.editPriceOfferForm.valid) {
       if (this.mode === 'create') {
         const priceOffer: ICreatePriceOffer = {
           priceRequestId: this.priceRequestData.id,
-          contractType: this.editPriceOfferForm.value.contractType,
-          startDate: this.editPriceOfferForm.value.startDate,
-          endDate: this.editPriceOfferForm.value.endDate,
-          services: this.editPriceOfferForm.value.services,
-          otherServices: this.editPriceOfferForm.value.otherServices,
           contractType: this.editPriceOfferForm.value.contractType,
           startDate: this.editPriceOfferForm.value.startDate,
           endDate: this.editPriceOfferForm.value.endDate,
@@ -122,15 +132,10 @@ export class EditPriceOfferComponent implements OnInit {
           endDate: this.editPriceOfferForm.value.endDate,
           services: this.editPriceOfferForm.value.services,
           otherServices: this.editPriceOfferForm.value.otherServices,
-          contractType: this.editPriceOfferForm.value.contractType,
-          startDate: this.editPriceOfferForm.value.startDate,
-          endDate: this.editPriceOfferForm.value.endDate,
-          services: this.editPriceOfferForm.value.services,
-          otherServices: this.editPriceOfferForm.value.otherServices,
         };
         this.priceOffersService.update(priceOffer).subscribe(() => {
-        this.router.navigate(['/company-price-offer']);
-      });
+          this.router.navigate(['/company-price-offer']);
+        });
       }
     }
   }
@@ -154,10 +159,8 @@ export class EditPriceOfferComponent implements OnInit {
   }
   get services() {
     return this.editPriceOfferForm.get('services') as FormArray;
-    return this.editPriceOfferForm.get('services') as FormArray;
   }
   get otherServices() {
-    return this.editPriceOfferForm.get('otherServices') as FormArray;
     return this.editPriceOfferForm.get('otherServices') as FormArray;
   }
   addService(): void {
@@ -177,7 +180,6 @@ export class EditPriceOfferComponent implements OnInit {
     }
   }
   onCancel(): void {
-    this.editPriceOfferForm.reset();
     this.editPriceOfferForm.reset();
   }
   assignCreateValues() {
@@ -220,7 +222,6 @@ export class EditPriceOfferComponent implements OnInit {
   }
   assignUpdateValues() {
     this.editPriceOfferForm.patchValue({
-    this.editPriceOfferForm.patchValue({
       contractType: this.priceOfferData.priceRequest.contractType,
       startDate: new Date(this.priceOfferData.priceRequest.startDate),
       endDate: new Date(this.priceOfferData.priceRequest.endDate),
@@ -235,7 +236,10 @@ export class EditPriceOfferComponent implements OnInit {
             quantity: [service.quantity, [Validators.required]],
             shiftType: [service.shiftType, [Validators.required]],
             dailyCostPerUnit: [service.dailyCostPerUnit, [Validators.required]],
-            monthlyCostPerUnit: [service.monthlyCostPerUnit, [Validators.required]],
+            monthlyCostPerUnit: [
+              service.monthlyCostPerUnit,
+              [Validators.required],
+            ],
           })
         );
       });
@@ -249,8 +253,14 @@ export class EditPriceOfferComponent implements OnInit {
             name: [otherService.name, [Validators.required]],
             quantity: [otherService.quantity, [Validators.required]],
             shiftType: [otherService.shiftType, [Validators.required]],
-            dailyCostPerUnit: [otherService.dailyCostPerUnit, [Validators.required]],
-            monthlyCostPerUnit: [otherService.monthlyCostPerUnit, [Validators.required]],
+            dailyCostPerUnit: [
+              otherService.dailyCostPerUnit,
+              [Validators.required],
+            ],
+            monthlyCostPerUnit: [
+              otherService.monthlyCostPerUnit,
+              [Validators.required],
+            ],
           })
         );
       });
