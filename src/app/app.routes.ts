@@ -38,6 +38,8 @@ import { ContractPreviewComponent } from './features/contracts/components/contra
 
 import { ImageUploadTestComponent } from './image-upload-test/image-upload-test.component';
 
+import { NotificationTestComponent } from './notification-test/compenent/notification-test.component';
+
 export const routes: Route[] = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomePageComponent },
@@ -95,12 +97,14 @@ export const routes: Route[] = [
   // Testing
   { path: 'upload-test', component: ImageUploadTestComponent },
   // { path: 'Notifications-test', component: NotificationTestComponent },
+  { path: 'Notifications-test', component: NotificationTestComponent },
 
   // Security Certificate
   { path: 'security-certificate', component: SecurityCertificateComponent },
 
   // Hewar Services
   { path: 'get-all-hewar-services', component: ServicessListComponent },
+  { path: 'creat-hewar-service', component: CreateServicesComponent },
   { path: 'creat-hewar-service', component: CreateServicesComponent },
   { path: 'update-hewar-service/:id', component: UpdateServicesComponent },
 
