@@ -96,16 +96,13 @@ export const routes: Route[] = [
 
 
   // Hewar Services
-  { path: 'creat-hewar-service', component: CreateServicesComponent },
   { path: 'get-all-hewar-services', component: ServicessListComponent },
+  { path: 'creat-hewar-service', component: CreateServicesComponent },
   { path: 'update-hewar-service/:id', component: UpdateServicesComponent },
 
   //Companies services
   { path: 'companyservices', component: ListServicesComponent },
-  {
-    path: 'update-company-services/:id',
-    component: UpdateCompanyServiceComponent,
-  },
+  { path: 'update-company-services/:id', component: UpdateCompanyServiceComponent,},
   { path: 'create-company-service', component: CreateServiceComponent },
 
   // Contracts

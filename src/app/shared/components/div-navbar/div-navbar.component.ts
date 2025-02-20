@@ -67,6 +67,22 @@ export class DivNavbarComponent {
         { label: 'Contract Preview', routerLink: '/contract-preview/18' },
       ]
     },
+    {
+      label: 'companyservices',
+      items: [
+        { label: 'Company Services', routerLink: '/companyservices' },
+        { label: 'update-company-services', routerLink: '/update-company-services/21' },
+        { label: 'create-company-services', routerLink: '/create-company-service' },
+      ]
+    },
+    {
+      label: 'Hewar Service',
+      items: [
+        { label: 'Hewar Services', routerLink: '/get-all-hewar-services' },
+        { label: 'Create Hewar Service', routerLink: '/creat-hewar-service' },
+        { label: 'Update Hewar Service', routerLink: '/update-hewar-service/1' },
+      ]
+    },
   ];
 }
 
