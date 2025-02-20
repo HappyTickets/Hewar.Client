@@ -21,6 +21,7 @@
     "@angular/platform-browser": "^18.2.0",
     "@angular/platform-browser-dynamic": "^18.2.0",
     "@angular/router": "^18.2.0",
+    "@microsoft/signalr": "^8.0.7",
     "@ngx-translate/core": "^16.0.4",
     "@primeng/themes": "^18.0.2",
     "hewar.client": "file:",

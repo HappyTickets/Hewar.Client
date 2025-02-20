@@ -1,0 +1,45 @@
+<h2>SignalR Notifications</h2>
+<p>Status: {{ isConnected ? 'Connected' : 'Disconnected' }}</p>
+
+  <div class="container mt-4">
+    <h2 class="text-center mb-4">📢 Notifications {{notifications.length}}</h2>
+  
+    <div *ngIf="notifications.length === 0" class="alert alert-info text-center">
+      No notifications yet.
+    </div>
+  
+    <div *ngIf="notifications.length > 0" class="alert alert-light shadow-sm">
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped text-center align-middle">
+          <thead class="table-primary">
+            <tr>
+              <th>#</th>
+              <th>🔔 Event</th>
+              <th>🇸🇦 Arabic</th>
+              <th>🇬🇧 English</th>
+              <th>📌 Ref Type</th>
+              <th># Ref Id</th>
+              <th>📅 Sent Date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let notification of notifications; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td class="fw-bold">{{ notification.event }}</td>
+              <td>{{ notification.contentAr }}</td>
+              <td>{{ notification.contentEn }}</td>
+              <td>{{ notification.referenceType }}</td>
+              <td>{{ notification.referenceId}}</td>
+              <td>{{ notification.notifiedOn | date:'short' }}</td>
+              <td>
+                <span class="badge bg-success" *ngIf="!notification.isRead">New</span>
+                <span class="badge bg-secondary" *ngIf="notification.isRead">Read</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
