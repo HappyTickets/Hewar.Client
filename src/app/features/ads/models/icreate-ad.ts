@@ -4,7 +4,7 @@ import { IPriceRequestService } from '../../price-requests/models/iprice-request
 export interface ICreateAd {
   id?: number;
   title: string;
-  description: string;
+  description?: string;
   startDate: string;
   endDate: string;
   contractType: ContractType;

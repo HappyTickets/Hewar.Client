@@ -1,11 +1,5 @@
 <div class="all">
   <form class="container" [formGroup]="createAdForm">
-    <div class="header">
-      <div class="headerContent">
-        <h1>{{ "ads.crearte-ad.header" | translate }}</h1>
-      </div>
-    </div>
-
     <div class="content">
       <!-- title  Section -->
 
@@ -18,7 +12,7 @@
           name="title"
           [placeholder]="'ads.crearte-ad.title' | translate"
           [readonly]="isDetailsMode"
-
+          [class.readonly-field]="isDetailsMode"
         />
 
         <p-message
@@ -31,10 +25,11 @@
         ></p-message>
       </div>
 
-
       <!-- Description Section -->
 
-      <h2>{{ "ads.crearte-ad.description" | translate }}</h2>
+      <h2 *ngIf="!isDetailsMode">
+        {{ "ads.crearte-ad.description" | translate }}
+      </h2>
 
       <div class="input-group col-12">
         <textarea
@@ -42,6 +37,7 @@
           formControlName="description"
           name="description"
           [placeholder]="'ads.crearte-ad.description' | translate"
+          *ngIf="!isDetailsMode"
         ></textarea>
 
         <p-message
@@ -68,8 +64,7 @@
             showIcon
             iconDisplay="input"
             name="startDate"
-            [minDate]="date"
-
+            [disabled]="isDetailsMode"
           ></p-datepicker>
 
           <p-message
@@ -91,6 +86,7 @@
             [placeholder]="'ads.crearte-ad.endContract' | translate"
             showIcon
             iconDisplay="input"
+            [disabled]="isDetailsMode"
           ></p-datepicker>
 
           <p-message
@@ -115,7 +111,7 @@
             name="contractType"
             [placeholder]=""
             [readonly]="isDetailsMode"
-
+            [class.readonly-field]="isDetailsMode"
           >
           </p-select>
 
@@ -137,18 +133,24 @@
         @for (service of services.controls ; track service; let i = $index) {
 
         <div [formGroupName]="i" class="service-item">
-          @if (i === createAdForm.value.services.length - 1 && !isDetailsMode) {
-          <p-button icon="pi pi-plus" (click)="addService()"></p-button>
+          @if (i === createAdForm.value.services.length - 1 && !isDetailsMode )
+          {
+          <p-button
+            *ngIf="!isDetailsMode"
+            icon="pi pi-plus"
+            (click)="addService()"
+          ></p-button>
           }
           <div class="input-row">
             <p-select
               [options]="servicesOptions"
               formControlName="serviceId"
-              optionLabel="name" optionValue="id"
+              optionLabel="name"
+              optionValue="id"
               name="serviceId"
               [placeholder]="'ads.crearte-ad.serviceType' | translate"
               [readonly]="isDetailsMode"
-
+              [class.readonly-field]="isDetailsMode"
             ></p-select>
 
             <p-message
@@ -166,7 +168,7 @@
               name="quantity"
               [placeholder]="'ads.crearte-ad.quantity' | translate"
               [readonly]="isDetailsMode"
-
+              [class.readonly-field]="isDetailsMode"
             >
             </p-inputNumber>
 
@@ -184,6 +186,8 @@
               formControlName="shiftType"
               name="shiftType"
               [placeholder]="'ads.crearte-ad.shiftType' | translate"
+              [readonly]="isDetailsMode"
+              [class.readonly-field]="isDetailsMode"
             ></p-select>
 
             <p-message
@@ -199,6 +203,7 @@
             icon="pi pi-trash"
             (click)="removeService(i)"
             [disabled]="i === 0 && createAdForm.value.services.length <= 1"
+            *ngIf="!isDetailsMode"
           ></p-button>
         </div>
 
@@ -263,10 +268,15 @@
           [label]="'ads.crearte-ad.cancel' | translate"
           (click)="onCancel()"
           fluid="true"
+          *ngIf="!isDetailsMode"
         ></p-button>
         @if (!isDetailsMode) {
         <p-button
-          [label]="isEditMode ? ('ads.crearte-ad.update' | translate) : ('ads.crearte-ad.publish' | translate)"
+          [label]="
+            isEditMode
+              ? ('ads.crearte-ad.update' | translate)
+              : ('ads.crearte-ad.publish' | translate)
+          "
           fluid="true"
           [disabled]="createAdForm.invalid"
           (click)="onSubmit()"

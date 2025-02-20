@@ -20,9 +20,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { MessageModule } from 'primeng/message';
 import { ICreateAd } from '../../models/icreate-ad';
 import { CommonModule } from '@angular/common';
-import { LocalizationService } from '../../../../core/services/localization/localization.service';
+// import { LocalizationService } from '../../../../core/services/localization/localization.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IUpdateAd } from '../../models/iupdate-ad';
+import { AdStatus, IUpdateAd } from '../../models/iupdate-ad';
 import { IAdService } from '../../models/iad-service';
 
 @Component({
@@ -54,7 +54,7 @@ export class AdsComponent implements OnInit {
 
   private fb = inject(FormBuilder);
   private adsService = inject(AdsService);
-  private localizationService = inject(LocalizationService);
+  // private localizationService = inject(LocalizationService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
 
@@ -81,9 +81,6 @@ export class AdsComponent implements OnInit {
       services: this.fb.array([this.createServiceGroup()]),
       // otherServices: this.fb.array([this.createOtherServiceGroup()]),
     });
-    console.log(this.services);
-
-    this.createAdForm.updateValueAndValidity();
   }
 
   ngOnInit(): void {
@@ -103,13 +100,12 @@ export class AdsComponent implements OnInit {
       }
     });
 
-    this.createAdForm.valueChanges.subscribe(() => {
-      console.log('Form Status: ', this.createAdForm.status);
-    });
+    // this.createAdForm.valueChanges.subscribe(() => {
+    //   console.log('Form Status: ', this.createAdForm.status);
+    // });
 
     this.adsService.getHewarServices().subscribe({
       next: (data) => {
-        console.log('Data from API:', data);
         if (data.data) this.servicesOptions = data.data;
       },
       error: (error) => {
@@ -125,10 +121,10 @@ export class AdsComponent implements OnInit {
       this.createAdForm.patchValue({
         id: this.adData.id,
         title: this.adData.title,
-        description: this.adData.description,
+        // description: this.adData.description,
         contractType: this.adData.contractType,
-        startDate: this.adData.startDate,
-        endDate: this.adData.endDate,
+        startDate: this.adData.startDate ? new Date(this.adData.startDate) : null,
+        endDate: this.adData.endDate ? new Date(this.adData.endDate) : null
       });
 
       this.services.clear()
@@ -136,17 +132,15 @@ export class AdsComponent implements OnInit {
       this.adData.services.forEach((service) => {
         this.services.push(
           this.fb.group({
-            serviceId: [service.serviceId, Validators.required],
-            quantity: [service.quantity, Validators.required],
-            shiftType: [service.shiftType, Validators.required],
+            serviceId: [service.serviceId],
+            quantity: [service.quantity],
+            shiftType: [service.shiftType],
           })
         );
       });
 
 
-      if (this.isDetailsMode) {
-        this.createAdForm.disable();
-      }
+
     });
   }
 
@@ -177,22 +171,23 @@ export class AdsComponent implements OnInit {
       const adData: ICreateAd = {
         title: this.createAdForm.value.title,
         description: this.createAdForm.value.description,
-        startDate: this.createAdForm.value.startdate,
+        startDate: this.createAdForm.value.startDate,
         endDate: this.createAdForm.value.endDate,
         contractType: this.createAdForm.value.contractType,
         services: this.createAdForm.value.services,
       };
 
       if (this.isEditMode && this.id) {
+        
         const updateAdData: IUpdateAd = {
           id: this.id,
           title: this.createAdForm.value.title,
           description: this.createAdForm.value.description,
-          startDate: this.createAdForm.value.startdate,
+          startDate: this.createAdForm.value.startDate,
           endDate: this.createAdForm.value.endDate,
           contractType: this.createAdForm.value.contractType,
           services: this.createAdForm.value.services,
-          status: 1,
+          status: AdStatus.Closed,
         };
         this.adsService.updateAd(updateAdData).subscribe({
           next: (res) => {
@@ -236,55 +231,6 @@ export class AdsComponent implements OnInit {
   //   }
   // }
 
-//   onSubmit(): void {
-//     this.createAdForm.markAllAsTouched();
-//     if (this.createAdForm.valid) {
-//       const adData: ICreateAd = {
-//         title: this.createAdForm.value.title,
-//         description: this.createAdForm.value.description,
-//         startDate: this.createAdForm.value.startdate,
-//         endDate: this.createAdForm.value.endDate,
-//         contractType: this.createAdForm.value.contractType,
-//         services: this.createAdForm.value.services,
-//       };
-
-
-//         this.adsService.createAD(adData).subscribe({
-//           next: (res) => {
-//             console.log(res);
-//             this.router.navigate(['/ads']);
-//           },
-//           error: (err) => {
-//             console.log(err);
-//           },
-//         });
-
-//     }
-//   }
-
-//   onSubmitUpd() {
-//   if (this.isEditMode && this.id) {
-//     const updateAdData: IUpdateAd = {
-//       id: this.id,
-//       title: this.createAdForm.value.title,
-//       description: this.createAdForm.value.description,
-//       startDate: this.createAdForm.value.startdate,
-//       endDate: this.createAdForm.value.endDate,
-//       contractType: this.createAdForm.value.contractType,
-//       services: this.createAdForm.value.services,
-//       status: 1,
-//     };
-//     this.adsService.updateAd(updateAdData).subscribe({
-//       next: (res) => {
-//         console.log(res);
-//         this.router.navigate(['/ads']);
-//       },
-//       error: (err) => {
-//         console.log(err);
-//       },
-//     });
-//   }
-// }
   onCancel(): void {
     this.router.navigate(['/home'])
   }

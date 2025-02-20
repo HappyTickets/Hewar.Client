@@ -87,6 +87,8 @@
               icon="pi pi-comments"
               pTooltip="{{ 'allAds.allMyAds.chat' | translate }}"
               tooltipPosition="top"
+              [disabled]="ad.status !== 1"
+
             ></p-button>
             }
           </div>
@@ -107,14 +109,6 @@
               <strong>{{ ad.endDate | date }}</strong>
             </div>
           </div>
-
-          <p-panel
-            header="{{ 'allAds.allMyAds.description' | translate }}"
-            class="mt-3"
-          >
-            <p>{{ ad.description }}</p>
-          </p-panel>
-
           <h2>
             {{ "allAds.allMyAds.services" | translate }}
           </h2>
