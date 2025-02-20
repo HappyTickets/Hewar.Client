@@ -16,19 +16,6 @@ import { LocalizationService } from '../../../../core/services/localization/loca
 import { IContractKey } from '../../models/icontract-key';
 import { InputTextModule } from 'primeng/inputtext';
 import { TranslatePipe } from '@ngx-translate/core';
-import { IPriceOfferOtherService } from '../../../my-offers/models/iprice-offer-other-service';
-import { IPriceOfferService } from '../../../my-offers/models/iprice-offer-service';
-import { IScheduleEntry } from '../../models/ischedule-entry';
-import { ScheduleEntriesService } from '../../services/schedule-entries.service';
-import { IClause } from '../../models/iclause';
-import { ClausesService } from '../../services/clauses.service';
-
-import { ContractService } from '../../services/contract.service';
-import { IContractKey } from '../../models/icontract-key';
-import { ActivatedRoute } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { Subscription } from 'rxjs';
-import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-contract-preview',
@@ -44,20 +31,13 @@ import { TranslatePipe } from '@ngx-translate/core';
   ],
   templateUrl: './contract-preview.component.html',
   styleUrls: ['./contract-preview.component.scss'],
-  styleUrls: ['./contract-preview.component.scss'],
 })
 export class ContractPreviewComponent implements OnInit {
   private scheduleEntriesService = inject(ScheduleEntriesService);
   private clausesService = inject(ClausesService);
   private localizationService = inject(LocalizationService);
   private contractService = inject(ContractService);
-  private scheduleEntriesService = inject(ScheduleEntriesService);
-  private clausesService = inject(ClausesService);
-  private localizationService = inject(LocalizationService);
-  private contractService = inject(ContractService);
-  private languageSubscription: Subscription;
   private route = inject(ActivatedRoute);
-  private renderer = inject(Renderer2);
   private renderer = inject(Renderer2);
   private fb = inject(FormBuilder);
 
@@ -65,40 +45,6 @@ export class ContractPreviewComponent implements OnInit {
   private saveButton: HTMLButtonElement | null = null;
   private cancelButton: HTMLButtonElement | null = null;
 
-  contract: IContractTemplate = {} as IContractTemplate;
-  scheduleEntriesData: IScheduleEntry[] = [];
-  customClausesData: IClause[] = [];
-  customClausesForm: FormGroup;
-  scheduleForm: FormGroup;
-  offerId: number | null = null;
-  contractId: number | null = null;
-  language: 'ar' | 'en' = 'ar';
-  editingKey: string | null = null;
-  editingValue: string | null = null;
-  isEditing = false;
-  isEditingClauses = false;
-
-  constructor() {
-    this.language = this.localizationService.getLanguage();
-    this.scheduleForm = this.fb.group({
-      scheduleEntries: this.fb.array([]),
-    });
-    this.customClausesForm = this.fb.group({
-      customClauses: this.fb.array([]),
-    });
-  }
-  get scheduleEntries(): FormArray {
-    return this.scheduleForm.get('scheduleEntries') as FormArray;
-  }
-  get customClauses(): FormArray {
-    return this.customClausesForm.get('customClauses') as FormArray;
-  }
-
-  private placeholderInput: HTMLInputElement | null = null;
-  private cancelButton: HTMLButtonElement | null = null;
-  private saveButton: HTMLButtonElement | null = null;
-  editingValue: string | null = null;
-  editingKey: string | null = null;
   contract: IContractTemplate = {} as IContractTemplate;
   language: 'ar' | 'en' = 'ar';
   constructor() {
