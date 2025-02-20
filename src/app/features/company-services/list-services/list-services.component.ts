@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DeletePopupComponent } from '../../../shared/components/delete-popup/delete-popup.component';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { IUpdate } from '../models/models/iupdate';
 import { CompanyServicesService } from '../services/company-services.service';
-import { Router, RouterLink, RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { PaginatorModule, PaginatorState } from 'primeng/paginator';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
@@ -20,7 +20,6 @@ import { InputTextModule } from 'primeng/inputtext';
     PaginatorModule,
     CommonModule,
     InputTextModule,
-    RouterLink,
     TranslateModule,
     RouterModule,
     DeletePopupComponent,
@@ -28,13 +27,13 @@ import { InputTextModule } from 'primeng/inputtext';
   templateUrl: './list-services.component.html',
   styleUrl: './list-services.component.scss',
 })
-export class ListServicesComponent {
+export class ListServicesComponent implements OnInit {
   AllServices!: IUpdate[];
   visibleDeletePopup = false;
   showDeletePopup = false;
   currentCard!: IUpdate;
-  first: number = 0;
-  rows: number = 10;
+  first = 0;
+  rows = 10;
   totalRecords = 0;
   paginatedServices: any[] = []; // Displayed services per page
   loading = true;

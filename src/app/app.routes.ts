@@ -62,18 +62,9 @@ export const routes: Route[] = [
   // Price Requests
   { path: 'company-price-request', component: CompanyPriceRequestsComponent },
   { path: 'facility-price-request', component: FacilityPriceRequestsComponent },
-  {
-    path: 'price-request-details/:id',
-    component: PriceRequestDetailsComponent,
-  },
-  {
-    path: 'create-price-request/:companyId',
-    component: EditPriceRequestComponent,
-  },
-  {
-    path: 'update-price-request/:priceRequestId',
-    component: EditPriceRequestComponent,
-  },
+  { path: 'price-request-details/:id', component: PriceRequestDetailsComponent },
+  { path: 'create-price-request/:companyId', component: EditPriceRequestComponent },
+  { path: 'update-price-request/:priceRequestId', component: EditPriceRequestComponent },
 
   // Price Offers
   { path: 'company-price-offer', component: CompanyOffersComponent },

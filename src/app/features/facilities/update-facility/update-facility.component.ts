@@ -72,10 +72,10 @@ export class UpdateFacilityComponent implements OnInit {
   acilityId: string | null = null;
   facilityForm!: FormGroup;
   facilityId!: number;
-  fileUploadError: string = '';
-  preview: string = '';
+  fileUploadError = '';
+  preview = '';
   @ViewChild(ImageUploaderComponent) imageUploader!: ImageUploaderComponent;
-  imageName: string = '';
+  imageName = '';
 
   constructor(
     private route: ActivatedRoute,

@@ -30,6 +30,7 @@ module.exports = tseslint.config(
           style: "kebab-case",
         },
       ],
+      "accessibility/click-events-have-key-events": "off",
     },
   },
   {
@@ -38,6 +39,9 @@ module.exports = tseslint.config(
       ...angular.configs.templateRecommended,
       ...angular.configs.templateAccessibility,
     ],
-    rules: {},
+    rules: {
+      "accessibility/click-events-have-key-events": "off",
+      "jsx-a11y/click-events-have-key-events": "off",
+    },
   }
 );

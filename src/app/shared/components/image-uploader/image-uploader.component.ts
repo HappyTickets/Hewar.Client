@@ -35,7 +35,7 @@ export class ImageUploaderComponent implements OnInit {
   @Output() imageChanged = new EventEmitter<string>();
   @Output() imageSelected = new EventEmitter<File>(); // Emit valid image
   @Output() imageName = new EventEmitter<string>(); // Emit
-  selectedFileName: string = '';
+  selectedFileName = '';
   selectedFileNames: string[] = [];
 
   progressInfos: any[] = [];

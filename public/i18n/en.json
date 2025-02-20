@@ -158,7 +158,6 @@
       "lenght": "Description must be at least 10 characters",
       "name": "name is required"
     },
-
     "validation": {
       "required": "This field is required",
       "email": "Please enter a valid email",
@@ -704,6 +703,39 @@
           "ar": "Arabic",
           "en": "English"
         }
+      },
+      "schedule": {
+        "site": "Site",
+        "gaurdCount": "Guard Count",
+        "workTime": "Work Time",
+        "notes": "Notes",
+        "action": "Action",
+        "siteAr": "Site (Arabic)",
+        "siteEn": "Site (English)",
+        "shiftAr": "Shift (Arabic)",
+        "shiftEn": "Shift (English)",
+        "notesAr": "Notes (Arabic)",
+        "notesEn": "Notes (English)",
+        "addRow": "Add New Row"
+      },
+      "clause": {
+        "contentAr": "Content (Arabic)",
+        "contentEn": "Content (English)",
+        "clause": "Clause",
+        "number": "Number",
+        "edit": "Edit",
+        "add": "Add",
+        "ar": "Clause (Arabic)",
+        "en": "Clause (English)"
+      },
+      "signature": {
+        "facility": "Facility Signature",
+        "company": "Company Signature"
+      },
+      "preview": {
+        "intro": "• Providing a number of security guards, specifying their locations and working hours as shown below:",
+        "12-desc": "Service cost clause for the second party as per the table below:",
+        "12": "Clause Twelve"
       }
     }
   },

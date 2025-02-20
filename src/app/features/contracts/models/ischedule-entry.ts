@@ -1,6 +1,6 @@
 export interface IScheduleEntry {
-  id: number;
-  contractId: number;
+  id?: number;
+  contractId?: number;
   locationAr: string;
   locationEn: string;
   guardsRequired: number;
@@ -8,4 +8,6 @@ export interface IScheduleEntry {
   shiftTimeEn: string;
   notesAr: string;
   notesEn: string;
+  editing?: boolean;
+  new?: boolean;
 }

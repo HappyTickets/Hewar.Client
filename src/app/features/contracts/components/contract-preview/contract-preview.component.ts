@@ -1,151 +1,57 @@
-import { TableModule } from 'primeng/table';
-import { Component, inject, OnInit, Renderer2 } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { IContractTemplate } from '../../models/icontract-template';
-import { CommonModule } from '@angular/common';
-import { ContractService } from '../../services/contract.service';
-import { ButtonModule } from 'primeng/button';
+import { ContractDispayServiceComponent } from './../contract-dispay-service/contract-dispay-service.component';
 import { LocalizationService } from '../../../../core/services/localization/localization.service';
+import { ContractSignatureComponent } from '../contract-signature/contract-signature.component';
+import { ScheduleEntriesComponent } from '../schedule-entries/schedule-entries.component';
+import { CustomClausesComponent } from '../custom-clauses/custom-clauses.component';
+import { Component, inject, OnInit, Renderer2, OnDestroy } from '@angular/core';
+import { IContractTemplate } from '../../models/icontract-template';
+import { ContractService } from '../../services/contract.service';
 import { IContractKey } from '../../models/icontract-key';
-import { InputTextModule } from 'primeng/inputtext';
+import { ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Subscription } from 'rxjs';
 import { TranslatePipe } from '@ngx-translate/core';
-import { IPriceOfferOtherService } from '../../../my-offers/models/iprice-offer-other-service';
-import { IPriceOfferService } from '../../../my-offers/models/iprice-offer-service';
-import { IScheduleEntry } from '../../models/ischedule-entry';
-import { ScheduleEntriesService } from '../../services/schedule-entries.service';
-import { IClause } from '../../models/iclause';
-import { ClausesService } from '../../services/clauses.service';
 
 @Component({
   selector: 'app-contract-preview',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule, ButtonModule, InputTextModule, TranslatePipe, TableModule],
+  imports: [CommonModule, ScheduleEntriesComponent, ContractDispayServiceComponent, CustomClausesComponent, ContractSignatureComponent, TranslatePipe],
   templateUrl: './contract-preview.component.html',
   styleUrls: ['./contract-preview.component.scss'],
 })
-export class ContractPreviewComponent implements OnInit {
-  private scheduleEntriesService = inject(ScheduleEntriesService);
-  private clausesService = inject(ClausesService);
+export class ContractPreviewComponent implements OnInit, OnDestroy {
   private localizationService = inject(LocalizationService);
   private contractService = inject(ContractService);
+  private languageSubscription: Subscription;
   private route = inject(ActivatedRoute);
   private renderer = inject(Renderer2);
-  private fb = inject(FormBuilder);
-
   private placeholderInput: HTMLInputElement | null = null;
-  private saveButton: HTMLButtonElement | null = null;
   private cancelButton: HTMLButtonElement | null = null;
-
-  contract: IContractTemplate = {} as IContractTemplate;
-  scheduleEntriesData: IScheduleEntry[] = [];
-  customClausesData: IClause[] = [];
-  customClausesForm: FormGroup;
-  scheduleForm: FormGroup;
-  offerId: number | null = null;
-  contractId: number | null = null;
-  language: 'ar' | 'en' = 'ar';
-  editingKey: string | null = null;
+  private saveButton: HTMLButtonElement | null = null;
   editingValue: string | null = null;
-  isEditing = false;
-  isEditingClauses = false;
-
+  editingKey: string | null = null;
+  contract: IContractTemplate = {} as IContractTemplate;
+  language: 'ar' | 'en' = 'ar';
   constructor() {
     this.language = this.localizationService.getLanguage();
-    this.scheduleForm = this.fb.group({
-      scheduleEntries: this.fb.array([]),
-    });
-    this.customClausesForm = this.fb.group({
-      customClauses: this.fb.array([]),
-    });
+    this.languageSubscription = this.localizationService.language$.subscribe(lang => {this.language = lang;if (this.contract.contractId) this.replacePlaceholders()}
+    );
   }
-  get scheduleEntries(): FormArray {
-    return this.scheduleForm.get('scheduleEntries') as FormArray;
-  }
-  get customClauses(): FormArray {
-    return this.customClausesForm.get('customClauses') as FormArray;
+  ngOnDestroy() {
+    this.languageSubscription?.unsubscribe();
   }
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      this.offerId = +(params.get('id') ?? -1);
-      if (this.offerId > -1) {
-        this.contractService.GetByOfferId(this.offerId).subscribe((res) => {
+      const offerId = +(params.get('id') ?? -1);
+      if (offerId > -1) {
+        this.contractService.GetByOfferId(offerId).subscribe((res) => {
           if (res.data) {
-            this.scheduleEntriesData = res.data.scheduleEntries;
-            this.customClausesData = res.data.customClauses;
             this.contract = res.data;
-            console.log(res.data);
-            this.contractId = this.contract.contractId;
             this.replacePlaceholders();
           }
         });
       }
     });
-    this.loadScheduleEntries();
-    this.loadCustomClauses();
-  }
-  private loadScheduleEntries(): void {
-    this.scheduleEntries.clear();
-    this.scheduleEntriesData.forEach(entry => {
-      this.scheduleEntries.push(this.createScheduleEntry(entry));
-    });
-  }
-  private loadCustomClauses(): void {
-    this.customClauses.clear();
-    this.customClausesData.forEach(clause => {
-      this.customClauses.push(this.createCustomClause(clause));
-    });
-  }
-  createCustomClause(clause?: IClause): FormGroup {
-    return this.fb.group({
-      ar: [clause?.htmlContentAr || ''],
-      en: [clause?.htmlContentEn || ''],
-    });
-  }
-  createScheduleEntry(entry?: IScheduleEntry): FormGroup {
-    return this.fb.group({
-      locationAr: [entry?.locationAr || ''],
-      locationEn: [entry?.locationEn || ''],
-      guardsRequired: [entry?.guardsRequired || null],
-      shiftTimeAr: [entry?.shiftTimeAr || ''],
-      shiftTimeEn: [entry?.shiftTimeEn || ''],
-      notesAr: [entry?.notesAr || ''],
-      notesEn: [entry?.notesEn || ''],
-    });
-  }
-  addScheduleEntry(): void {
-    this.scheduleEntries.push(this.createScheduleEntry());
-  }
-  removeScheduleEntry(index: number): void {
-    this.scheduleEntries.removeAt(index);
-  }
-  addCustomClause(): void {
-    this.customClauses.push(this.createCustomClause());
-  }
-  removeCustomClause(index: number): void {
-    this.customClauses.removeAt(index);
-  }
-  saveScheduleEntries(): void {
-    this.scheduleEntriesData = this.scheduleForm.value.scheduleEntries;
-    this.isEditing = false;
-    this.scheduleEntriesService.Create(this.scheduleForm.value.scheduleEntries, this.contractId || 0).subscribe();
-  }
-  saveCustomClauses(): void {
-    this.customClausesData = this.customClausesForm.value.customClauses;
-    this.isEditingClauses = false;
-    this.clausesService.CreateCustomClauses(this.customClausesForm.value.customClauses, this.contractId || 0).subscribe();
-  }
-  toggleEdit(): void {
-    this.isEditing = !this.isEditing;
-    if (this.isEditing) {
-      this.loadScheduleEntries();
-    }
-  }
-  toggleEditClauses(): void {
-    this.isEditingClauses = !this.isEditingClauses;
-    if (this.isEditingClauses) {
-      this.loadCustomClauses();
-    }
   }
   private replacePlaceholders(): void {
     const keys = this.contract.contractKeys.reduce((acc, key) => {acc[key.keyName] = key;return acc;}, {} as Record<string, IContractKey>);
@@ -181,10 +87,26 @@ export class ContractPreviewComponent implements OnInit {
     if (this.placeholderInput) return;
     const parent = target.parentElement;
     if (!parent) return;
-    // Create input field
+    // Find the contract key being edited
+    const keyId = target.classList[1]; // The second class is the key ID
+    const contractKey = this.contract.contractKeys.find((k) => k.id === +keyId);
+    if (!contractKey) return;
+    // Create input field based on dataType
     this.placeholderInput = this.renderer.createElement('input') as HTMLInputElement;
     this.renderer.addClass(this.placeholderInput, 'placeholder-input');
-    this.placeholderInput.value = this.editingValue || '';
+    // Set input type and value based on dataType
+    if (contractKey.dataType === 0) {
+      this.placeholderInput.type = 'number';
+      this.placeholderInput.value = this.editingValue || '';
+    } else if (contractKey.dataType === 1) {
+      this.placeholderInput.type = 'date';
+      // Convert the date to the format expected by the input[type="date"]
+      const dateValue = new Date(this.editingValue || '').toISOString().split('T')[0];
+      this.placeholderInput.value = dateValue;
+    } else {
+        this.placeholderInput.type = 'text';
+        this.placeholderInput.value = this.editingValue || '';
+    }
     // Create save button
     this.saveButton = this.renderer.createElement('button') as HTMLButtonElement;
     this.renderer.addClass(this.saveButton, 'save-button');
@@ -199,8 +121,8 @@ export class ContractPreviewComponent implements OnInit {
     this.renderer.insertBefore(parent, this.cancelButton, target);
     this.renderer.removeChild(parent, target);
     // Add event listeners
-    this.renderer.listen(this.saveButton, 'click', () =>this.onSaveClick(parent));
-    this.renderer.listen(this.cancelButton, 'click', () =>this.onCancelClick(target, parent));
+    this.renderer.listen(this.saveButton, 'click', () => this.onSaveClick(parent));
+    this.renderer.listen(this.cancelButton, 'click', () => this.onCancelClick(target, parent));
   }
   private onSaveClick(parent: HTMLElement): void {
     const newValue = this.placeholderInput?.value;
@@ -209,7 +131,10 @@ export class ContractPreviewComponent implements OnInit {
       // Create a new span element to replace the input field
       const newSpan = this.renderer.createElement('span');
       this.renderer.addClass(newSpan, 'placeholder-key');
+      this.renderer.addClass(newSpan, this.editingKey); // Add the key class
       this.renderer.setProperty(newSpan, 'innerText', newValue || '');
+      // Add the click event listener to the new span
+      this.renderer.listen(newSpan, 'click', (event: MouseEvent) => this.onPlaceholderClick(event));
       // Restore the span in place of input
       this.renderer.insertBefore(parent, newSpan, this.placeholderInput);
       this.renderer.removeChild(parent, this.placeholderInput);
@@ -219,6 +144,8 @@ export class ContractPreviewComponent implements OnInit {
       this.placeholderInput = null;
       this.saveButton = null;
       this.cancelButton = null;
+      this.editingKey = null;
+      this.editingValue = null;
     }
   }
   private onCancelClick(target: HTMLElement, parent: HTMLElement): void {
@@ -236,49 +163,7 @@ export class ContractPreviewComponent implements OnInit {
     const contractKey = this.contract.contractKeys.find((k) => k.id === +key);
     if (contractKey) {
       contractKey.value = newValue;
-      this.contractService.UpdateContractByKeys([{ newValue, contractKeyId: +key }],this.contractId || 0).subscribe();
+      this.contractService.UpdateContractByKeys([{ newValue, contractKeyId: +key }],this.contract.contractId || 0).subscribe();
     }
-  }
-  getTotalDailyCost(services: IPriceOfferService[], otherServices: IPriceOfferOtherService[]): number {
-    let total = 0;
-    total += services.reduce((acc, service) => {return acc + (service.dailyCostPerUnit * service.quantity);}, 0);
-    total += otherServices.reduce((acc, service) => {return acc + (service.dailyCostPerUnit * service.quantity);}, 0);
-    return total
-  }
-  getTotalMonthlyCost(services: IPriceOfferService[], otherServices: IPriceOfferOtherService[]): number {
-    let total = 0;
-    total += services.reduce((acc, service) => {return acc + (service.monthlyCostPerUnit * service.quantity);}, 0);
-    total += otherServices.reduce((acc, service) => {return acc + (service.monthlyCostPerUnit * service.quantity);}, 0);
-    return total
-  }
-
-  tempFacilitySignature = this.contract.facilitySignature;
-  tempCompanySignature = this.contract.companySignature;
-  editingFacility = false;
-  editingCompany = false;
-  editing: boolean[] = [false, false];
-  enableEditing(type: 'facility' | 'company') {
-    if (type === 'facility') {
-      this.editingFacility = true;
-    } else {
-      this.editingCompany = true;
-    }
-  }
-
-  saveSignature(type: 'facility' | 'company') {
-    if (type === 'facility') {
-      this.contract.facilitySignature = this.tempFacilitySignature;
-      this.editingFacility = false;
-      this.sendSignatureToServer('facilitySignature', this.tempFacilitySignature);
-    } else {
-      this.contract.companySignature = this.tempCompanySignature;
-      this.editingCompany = false;
-      this.sendSignatureToServer('companySignature', this.tempCompanySignature);
-    }
-  }
-
-  sendSignatureToServer(key: string, signature: string | null) {
-    this.contractService.signContract(this.contractId || 0, signature || '' ).subscribe();
   }
 }
-

@@ -35,7 +35,7 @@ export class ListFacilityComponent implements OnInit, OnDestroy {
   first = 0;
   rows = 10;
   totalRecords = 0;
-  paginatorIndex: boolean = false;
+  paginatorIndex = false;
   facilities: IResponseData[] = [];
   searchValue = '';
   visibleDeletePopup = false;
