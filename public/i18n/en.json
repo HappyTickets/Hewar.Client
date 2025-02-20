@@ -137,7 +137,8 @@
       "postalCodePlaceholder": "Enter postal code",
       "postalCodeError": "Postal code is required",
       "save": "Save",
-      "cancel": "Cancel"
+      "cancel": "Cancel",
+      "postalCodeInvalidError": "Postal code must be exactly 5 digits."
     },
     "company-services": {
       "create-Service": "Create Service",

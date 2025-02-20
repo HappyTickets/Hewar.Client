@@ -167,7 +167,8 @@
       "postalCodeError": "الرمز البريدي مطلوبة",
 
       "save": "حفظ",
-      "cancel": "الغاء"
+      "cancel": "الغاء",
+      "postalCodeInvalidError": "الرقم البريدى غير صالح"
     },
     "company-services": {
       "create-Service": " إنشاء خدمة ",

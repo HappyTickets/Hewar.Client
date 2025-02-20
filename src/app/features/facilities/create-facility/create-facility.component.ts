@@ -4,6 +4,7 @@ import {
   FormBuilder,
   FormGroup,
   FormsModule,
+  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
@@ -110,6 +111,38 @@ export class CreateFacilityComponent implements OnInit {
         }
       }
     );
+    this.facilityForm = this.fb.group({
+      type: ['', Validators.required],
+      name: ['', Validators.required],
+      commercialRegistration: ['', Validators.required],
+      activityType: ['', Validators.required],
+      responsibleName: ['', Validators.required],
+      logo: [''],
+      responsiblePhone: [
+        '',
+        [Validators.required, Validators.pattern('^[0-9]{8,15}$')],
+      ],
+      address: this.fb.group({
+        street: ['', Validators.required],
+        city: ['', Validators.required],
+        state: ['', Validators.required],
+        country: ['', Validators.required],
+        postalCode: ['', [Validators.required, Validators.minLength(2)]],
+      }),
+      adminInfo: this.fb.group(
+        {
+          email: ['', [Validators.required, Validators.email]],
+          password: ['', [Validators.required, this.passwordValidator]],
+          confirmPassword: ['', [Validators.required]],
+
+          firstName: ['', Validators.required],
+          lastName: ['', Validators.required],
+          phone: ['', Validators.required],
+          imageUrl: [''],
+        },
+        { validator: this.passwordMatchValidator }
+      ),
+    });
   }
   fcilityDataInputs = [
     {
@@ -214,7 +247,7 @@ export class CreateFacilityComponent implements OnInit {
   ];
   addressDataInputs = [
     {
-      placeholder: 'title',
+      placeholder: 'create-update-facility.streetPlaceholder',
       errorKey: 'create-update-facility.streetError',
       controlName: 'street',
       icon: 'pi-map-marker',
@@ -255,42 +288,6 @@ export class CreateFacilityComponent implements OnInit {
     },
   ];
   ngOnInit() {
-    this.facilityForm = this.fb.group({
-      type: ['', Validators.required],
-      name: ['', Validators.required],
-      commercialRegistration: ['', Validators.required],
-      activityType: ['', Validators.required],
-      responsibleName: ['', Validators.required],
-      logo: [''],
-      responsiblePhone: [
-        '',
-        [Validators.required, Validators.pattern('^[0-9]{8,15}$')],
-      ],
-      address: this.fb.group({
-        street: ['', Validators.required],
-        city: ['', Validators.required],
-        state: ['', Validators.required],
-        country: ['', Validators.required],
-        postalCode: ['', Validators.required, Validators.pattern('^[0-9]{5}$')],
-      }),
-      adminInfo: this.fb.group(
-        {
-          email: ['', [Validators.required, Validators.email]],
-          password: [
-            '',
-            Validators.required,
-            Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$'),
-          ],
-          confirmPassword: ['', [Validators.required]],
-
-          firstName: ['', Validators.required],
-          lastName: ['', Validators.required],
-          phone: ['', Validators.required],
-          imageUrl: [''],
-        },
-        { validator: this.checkPasswords }
-      ),
-    });
     this.adminInfoGroup = this.facilityForm.get('adminInfo') as FormGroup;
     this.addressGroup = this.facilityForm.get('address') as FormGroup;
 
@@ -312,6 +309,8 @@ export class CreateFacilityComponent implements OnInit {
 
   onSubmit(): void {
     if (this.facilityForm.invalid) {
+      this.facilityForm.markAllAsTouched();
+      this.facilityForm.updateValueAndValidity();
       this.messageService.add({
         severity: 'error',
         summary: 'Error',
@@ -400,9 +399,7 @@ export class CreateFacilityComponent implements OnInit {
         `Images/Facilities/${this.facilityForm.get('name')?.value}/${imageName}`
       );
   }
-  // get addressFormGroup(): FormGroup {
-  //   return this.facilityForm.get('address') as FormGroup;
-  // }
+
   get adminInfo(): FormGroup {
     return this.facilityForm.get('adminInfo') as FormGroup;
   }
@@ -413,5 +410,67 @@ export class CreateFacilityComponent implements OnInit {
     const password = g.get('password')?.value;
     const confirmPassword = g.get('confirmPassword')?.value;
     return password === confirmPassword ? null : { mismatch: true };
+  }
+  passwordMatchValidator(group: AbstractControl): ValidationErrors | null {
+    const password = group.get('password')?.value;
+    const confirmPassword = group.get('confirmPassword')?.value;
+    return password === confirmPassword ? null : { mismatch: true };
+  }
+  postalCodeValidator(control: AbstractControl): ValidationErrors | null {
+    const value = control.value as string;
+    if (!value) {
+      return { required: true }; // Required validation
+    }
+    return /^\d{5}$/.test(value) ? null : { postalCodeInvalid: true };
+  }
+  passwordValidator(control: AbstractControl): ValidationErrors | null {
+    const value = control.value as string;
+    if (!value) return null;
+
+    const hasUpperCase = /[A-Z]/.test(value);
+    const hasLowerCase = /[a-z]/.test(value);
+    const hasNumber = /\d/.test(value);
+    const isValidLength = value.length >= 8;
+
+    return hasUpperCase && hasLowerCase && hasNumber && isValidLength
+      ? null
+      : { passwordInvalid: true };
+  }
+  getErrorKey(controlName: string): string {
+    const control = this.facilityForm.get(`address.${controlName}`);
+
+    if (!control || !control.errors) return '';
+
+    if (controlName === 'postalCode') {
+      if (control.errors['required']) {
+        return 'create-update-facility.postalCodeError';
+      }
+      if (control.errors['minlength']) {
+        return 'create-update-facility.postalCodeInvalidError';
+      }
+    }
+
+    if (controlName === 'country') {
+      if (control.errors['required']) {
+        return 'create-update-facility.countryError';
+      }
+    }
+    if (controlName === 'state') {
+      if (control.errors['required']) {
+        return 'create-update-facility.stateError';
+      }
+    }
+    if (controlName === 'city') {
+      if (control.errors['required']) {
+        return 'create-update-facility.cityError';
+      }
+    }
+    if (controlName === 'street') {
+      if (control.errors['required']) {
+        return 'create-update-facility.streetError';
+      }
+    }
+
+    return '';
   }
 }
