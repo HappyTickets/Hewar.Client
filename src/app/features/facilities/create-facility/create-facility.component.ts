@@ -82,12 +82,12 @@ export class CreateFacilityComponent implements OnInit {
   language!: 'ar' | 'en';
   private languageSubscription: Subscription;
   selectedImage: { base64: string; imageUrl: string } | null = null;
-  fileUploadError: string = '';
+  fileUploadError = '';
   files: File[] = [];
   uploadedFiles: File[] = [];
-  imageName: string = '';
-  totalSize: number = 0;
-  totalSizePercent: number = 0;
+  imageName = '';
+  totalSize = 0;
+  totalSizePercent = 0;
   facilityForm!: FormGroup;
   addressGroup!: FormGroup;
   createCompForm!: FormGroup;
@@ -261,6 +261,7 @@ export class CreateFacilityComponent implements OnInit {
       commercialRegistration: ['', Validators.required],
       activityType: ['', Validators.required],
       responsibleName: ['', Validators.required],
+      logo: [''],
       responsiblePhone: [
         '',
         [Validators.required, Validators.pattern('^[0-9]{8,15}$')],
@@ -270,12 +271,16 @@ export class CreateFacilityComponent implements OnInit {
         city: ['', Validators.required],
         state: ['', Validators.required],
         country: ['', Validators.required],
-        postalCode: ['', Validators.required],
+        postalCode: ['', Validators.required, Validators.pattern('^[0-9]{5}$')],
       }),
       adminInfo: this.fb.group(
         {
           email: ['', [Validators.required, Validators.email]],
-          password: ['', Validators.required],
+          password: [
+            '',
+            Validators.required,
+            Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$'),
+          ],
           confirmPassword: ['', [Validators.required]],
 
           firstName: ['', Validators.required],
@@ -306,58 +311,79 @@ export class CreateFacilityComponent implements OnInit {
   }
 
   onSubmit(): void {
-    // if (!this.selectedImage) return;
-    // console.log('Submitting form:', this.facilityForm.value);
-    // const facilityData = this.facilityForm.value;
-    // const uploadData = {
-    //   path: facilityData.imageUrl,
-    //   base64: this.selectedImage.base64,
-    // };
-    // this.http.post('API_URL_1', facilityData).subscribe(() => {
-    //   // بعد نجاح إرسال البيانات، نرفع الصورة للـ API الثانية
-    //   this.http.post('API_URL_2', uploadData).subscribe(() => {
-    //     console.log('Facility and image uploaded successfully!');
-    //   });
-    // });
-    if (true) {
-      this.adminInfo.removeControl('confirmPassword');
-      console.log(this.facilityForm);
-
-      this.imageUploader.uploadFiles().subscribe(
-        (imageNames) => {
-          console.log('Uploaded images:', imageNames);
-          this.facilityForm.get('adminInfo.imageUrl')!.setValue(imageNames); // Store image names in form
-
-          // Now submit the form
-          this.facilityService
-            .createFacility(this.facilityForm.value)
-            .subscribe(
-              (response) => {
-                console.log('Facility created successfully:', response);
-              },
-              (error) => {
-                console.error('Facility creation failed:', error);
-                console.log('Uploaded images>>>>>>>>>>>>>>>>:', imageNames);
-              }
-            );
-        },
-        (error) => {
-          console.error('Image upload failed:', error);
-          this.facilityForm.get('adminInfo.imageUrl')!.setValue('imageNames');
-          console.log('Submitting form:', this.facilityForm.value);
-        }
-      );
-      console.log('Facility Data:', this.facilityForm.value);
+    if (this.facilityForm.invalid) {
       this.messageService.add({
-        severity: 'success',
-        summary: 'Success',
-        detail: 'Facility Created',
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Please fill in all required fields correctly.',
       });
-      // setTimeout(() => {
-      //   this.router.navigate(['/facilities']);
-      // }, 1500);
+      return;
     }
+
+    this.adminInfo.removeControl('confirmPassword');
+
+    const facilityName = this.facilityForm.get('name')?.value;
+    const adminname =
+      this.adminInfo.get('firstName')?.value + this.adminInfo.get('lastName');
+    if (!facilityName) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Facility name is required.',
+      });
+      return;
+    }
+
+    this.imageUploader.uploadFiles().subscribe(
+      (imageNames) => {
+        if (!imageNames || imageNames.length === 0) {
+          console.error('No images uploaded.');
+          return;
+        }
+
+        const imagePath = `Images/Facilities/${facilityName}/${imageNames[0]}`;
+        this.facilityForm.get('adminInfo.imageUrl')!.setValue(imagePath);
+
+        // ✅ Handle logo upload separately
+        const logoUploader = this.imageUploader; // Change this if you have a separate uploader for logos
+        logoUploader.uploadFiles().subscribe(
+          (logoNames) => {
+            if (logoNames && logoNames.length > 0) {
+              const logoPath = `Images/Facilities/${facilityName}/${adminname}/${logoNames[0]}`;
+              this.facilityForm.get('logo')!.setValue(logoPath);
+            }
+
+            this.facilityService
+              .createFacility(this.facilityForm.value)
+              .subscribe(
+                (response) => {
+                  console.log('Facility created successfully:', response);
+                  this.messageService.add({
+                    severity: 'success',
+                    summary: 'Success',
+                    detail: 'Facility Created',
+                  });
+
+                  setTimeout(() => {
+                    this.router.navigate(['/facilities']);
+                  }, 1500);
+                },
+                (error) => {
+                  console.error('Facility creation failed:', error);
+                }
+              );
+          },
+          (error) => {
+            console.error('Logo upload failed:', error);
+          }
+        );
+      },
+      (error) => {
+        console.error('Image upload failed:', error);
+      }
+    );
   }
+
   cancel(): void {
     this.router.navigate(['/facilities']);
   }
@@ -366,6 +392,13 @@ export class CreateFacilityComponent implements OnInit {
   }
   handelimagenam(imageName: string): void {
     this.imageName = imageName; // Set error message
+  }
+  handleLogoName(imageName: string): void {
+    this.facilityForm
+      .get('adminInfo.logo')
+      ?.setValue(
+        `Images/Facilities/${this.facilityForm.get('name')?.value}/${imageName}`
+      );
   }
   // get addressFormGroup(): FormGroup {
   //   return this.facilityForm.get('address') as FormGroup;

@@ -1,0 +1,74 @@
+<div class="flex justify-content-center align-items-center">
+  <p-card class="w-6">
+    <ng-template class="text-center" pTemplate="title">{{
+      "app.company-services.create-Service" | translate
+    }}</ng-template>
+    <ng-template pTemplate="content">
+      <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()">
+        <div class="p-fluid">
+          <!-- Service Name Field -->
+          <div class="field">
+            <label for="name">{{
+              "app.company-services.ServiceName" | translate
+            }}</label>
+            <input pInputText id="name" formControlName="name" class="w-full" />
+            <small
+              class="p-error"
+              *ngIf="
+                serviceForm.controls['name'].touched &&
+                serviceForm.controls['name'].hasError('required')
+              "
+            >
+              {{ "app.company-services-validation.name" | translate }}
+            </small>
+          </div>
+
+          <!-- Description Field -->
+          <div class="field">
+            <label for="description">{{
+              "app.company-services.Description" | translate
+            }}</label>
+            <textarea
+              pTextarea
+              id="description"
+              formControlName="description"
+              class="w-full"
+              rows="4"
+            ></textarea>
+            <small
+              class="p-error"
+              *ngIf="
+                serviceForm.controls['description'].touched &&
+                serviceForm.controls['description'].hasError('required')
+              "
+            >
+              {{
+                "app.company-services-validation.descriptionError" | translate
+              }}
+            </small>
+            <small
+              class="p-error"
+              *ngIf="
+                serviceForm.controls['description'].touched &&
+                serviceForm.controls['description'].hasError('minlength')
+              "
+            >
+              {{ "app.company-services-validation.lenght" | translate }}
+            </small>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="flex justify-content-end">
+            <button
+              pButton
+              label="Update"
+              icon="pi pi-check"
+              type="submit"
+              [disabled]="serviceForm.invalid"
+            ></button>
+          </div>
+        </div>
+      </form>
+    </ng-template>
+  </p-card>
+</div>

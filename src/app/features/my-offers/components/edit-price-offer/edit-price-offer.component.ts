@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -22,11 +21,12 @@ import { IUpdatePriceOffer } from '../../models/iupdate-price-offer';
 import { ContractType } from '../../../../shared/enums/contract-type';
 import { DatePickerModule } from 'primeng/datepicker';
 import { InputComponent } from '../../../../shared/components/input/input.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-edit-price-offer',
   standalone: true,
-  imports: [ SelectModule, InputNumberModule, TextareaModule, ButtonModule, ReactiveFormsModule, InputTextModule, TranslatePipe, CommonModule, TranslatePipe , DatePickerModule, InputComponent],
+  imports: [ SelectModule,CommonModule, InputNumberModule, TextareaModule, ButtonModule, ReactiveFormsModule, InputTextModule, TranslatePipe, TranslatePipe , DatePickerModule, InputComponent],
   templateUrl: './edit-price-offer.component.html',
   styleUrl: './edit-price-offer.component.scss',
 })
@@ -47,7 +47,7 @@ export class EditPriceOfferComponent implements OnInit {
   priceOfferData: IGetPriceOfferById = {} as IGetPriceOfferById;
   priceRequestData: IPriceRequest = {} as IPriceRequest;
   facilityData: IFacility = {} as IFacility;
-  createPriceOfferForm: FormGroup;
+  editPriceOfferForm: FormGroup;
   date = new Date();
   loading = false;
 
@@ -55,7 +55,6 @@ export class EditPriceOfferComponent implements OnInit {
     this.route.paramMap.subscribe((params) => {
       const priceRequestId = params.get('priceRequestId');
       const priceOfferId = params.get('priceOfferId');
-
       if (priceRequestId) {
         this.priceRequestsService.getById(+priceRequestId).subscribe((res) => {
           if (res.data) {
@@ -71,7 +70,7 @@ export class EditPriceOfferComponent implements OnInit {
           if (res.data) {
             this.priceOfferData = res.data;
             if (res.data.facility) this.facilityData = res.data.facility;
-            this.getCompanyServices(res.data.priceRequest.company.id)
+            this.getCompanyServices(res.data.priceRequest.company.id);
             this.assignUpdateValues();
             this.mode = 'update';
           }
@@ -85,7 +84,7 @@ export class EditPriceOfferComponent implements OnInit {
     });
   }
   constructor() {
-    this.createPriceOfferForm = this.fb.group({
+    this.editPriceOfferForm = this.fb.group({
       contractType: ['', [Validators.required]],
       startDate: ['', [Validators.required]],
       endDate: ['', [Validators.required]],
@@ -94,15 +93,15 @@ export class EditPriceOfferComponent implements OnInit {
     });
   }
   onSubmit(): void {
-    if (this.createPriceOfferForm.valid) {
+    if (this.editPriceOfferForm.valid) {
       if (this.mode === 'create') {
         const priceOffer: ICreatePriceOffer = {
           priceRequestId: this.priceRequestData.id,
-          contractType: this.createPriceOfferForm.value.contractType,
-          startDate: this.createPriceOfferForm.value.startDate,
-          endDate: this.createPriceOfferForm.value.endDate,
-          services: this.createPriceOfferForm.value.services,
-          otherServices: this.createPriceOfferForm.value.otherServices,
+          contractType: this.editPriceOfferForm.value.contractType,
+          startDate: this.editPriceOfferForm.value.startDate,
+          endDate: this.editPriceOfferForm.value.endDate,
+          services: this.editPriceOfferForm.value.services,
+          otherServices: this.editPriceOfferForm.value.otherServices,
         };
         this.priceOffersService.create(priceOffer).subscribe(() => {
           this.router.navigate(['/company-price-offer']);
@@ -110,13 +109,13 @@ export class EditPriceOfferComponent implements OnInit {
       } else if (this.mode === 'update') {
         const priceOffer: IUpdatePriceOffer = {
           priceOfferId: this.priceOfferData.id,
-          contractType: this.createPriceOfferForm.value.contractType,
-          startDate: this.createPriceOfferForm.value.startDate,
-          endDate: this.createPriceOfferForm.value.endDate,
-          services: this.createPriceOfferForm.value.services,
-          otherServices: this.createPriceOfferForm.value.otherServices,
+          contractType: this.editPriceOfferForm.value.contractType,
+          startDate: this.editPriceOfferForm.value.startDate,
+          endDate: this.editPriceOfferForm.value.endDate,
+          services: this.editPriceOfferForm.value.services,
+          otherServices: this.editPriceOfferForm.value.otherServices,
         };
-      this.priceOffersService.update(priceOffer).subscribe(() => {
+        this.priceOffersService.update(priceOffer).subscribe(() => {
         this.router.navigate(['/company-price-offer']);
       });
       }
@@ -141,10 +140,10 @@ export class EditPriceOfferComponent implements OnInit {
     });
   }
   get services() {
-    return this.createPriceOfferForm.get('services') as FormArray;
+    return this.editPriceOfferForm.get('services') as FormArray;
   }
   get otherServices() {
-    return this.createPriceOfferForm.get('otherServices') as FormArray;
+    return this.editPriceOfferForm.get('otherServices') as FormArray;
   }
   addService(): void {
     this.services.push(this.createServiceGroup());
@@ -163,16 +162,18 @@ export class EditPriceOfferComponent implements OnInit {
     }
   }
   onCancel(): void {
-    this.createPriceOfferForm.reset();
+    this.editPriceOfferForm.reset();
   }
   assignCreateValues() {
-    this.createPriceOfferForm.patchValue({
+    console.log(this.priceRequestData.startDate);
+    this.editPriceOfferForm.patchValue({
       contractType: this.priceRequestData.contractType,
       startDate: new Date(this.priceRequestData.startDate),
       endDate: new Date(this.priceRequestData.endDate),
     });
+
+    this.services.clear();
     if (this.priceRequestData.services) {
-      this.services.clear();
       this.priceRequestData.services.forEach((service) => {
         this.services.push(
           this.fb.group({
@@ -186,8 +187,8 @@ export class EditPriceOfferComponent implements OnInit {
       });
     }
 
+    this.otherServices.clear();
     if (this.priceRequestData.otherServices) {
-      this.otherServices.clear();
       this.priceRequestData.otherServices.forEach((otherService) => {
         this.otherServices.push(
           this.fb.group({
@@ -202,13 +203,14 @@ export class EditPriceOfferComponent implements OnInit {
     }
   }
   assignUpdateValues() {
-    this.createPriceOfferForm.patchValue({
+    this.editPriceOfferForm.patchValue({
       contractType: this.priceOfferData.priceRequest.contractType,
       startDate: new Date(this.priceOfferData.priceRequest.startDate),
       endDate: new Date(this.priceOfferData.priceRequest.endDate),
     });
+
+    this.services.clear();
     if (this.priceOfferData.services) {
-      this.services.clear();
       this.priceOfferData.services.forEach((service) => {
         this.services.push(
           this.fb.group({
@@ -222,8 +224,8 @@ export class EditPriceOfferComponent implements OnInit {
       });
     }
 
+    this.otherServices.clear();
     if (this.priceOfferData.otherServices) {
-      this.otherServices.clear();
       this.priceOfferData.otherServices.forEach((otherService) => {
         this.otherServices.push(
           this.fb.group({

@@ -139,6 +139,25 @@
       "save": "Save",
       "cancel": "Cancel"
     },
+    "company-services": {
+      "create-Service": "Create Service",
+      "ServiceName": "Service Name",
+      "title": "Create New Services",
+      "show-all": "Show All Services",
+      "Description": "Description",
+      "DescriptionPlaceholder": "Description",
+      "edit": "Edit",
+      "delete": "Delete",
+      "add-service": "Add Service",
+      "service-saved-successfully": "Service saved successfully",
+      "service-updated-successfully": "Service updated successfully"
+    },
+    "company-services-validation": {
+      "descriptionError": "Description is required",
+      "descriptionPlaceholder": "Description",
+      "lenght": "Description must be at least 10 characters",
+      "name": "name is required"
+    },
     "validation": {
       "required": "This field is required",
       "email": "Please enter a valid email",
@@ -624,6 +643,100 @@
       "postal-code": "Postal Code",
       "save": "Save",
       "cancel": "Cancel"
+    },
+    "contract": {
+      "form": {
+        "contractDetails": "Contract Details",
+        "contractSignDate": "Contract Signing Date",
+        "contractStartDate": "Contract Start Date",
+        "partyOne": "Party One",
+        "partyTwo": "Party Two",
+        "name": {
+          "ar": "Name in Arabic",
+          "en": "Name in English"
+        },
+        "mainOfficeCity": {
+          "ar": "Main Office City in Arabic",
+          "en": "Main Office City in English"
+        },
+        "publicSecurityLicense": "Public Security License",
+        "telephone": "Telephone",
+        "mobile": "Mobile",
+        "email": "Email",
+        "nationalAddress": {
+          "ar": "City (National Address) in Arabic",
+          "en": "City (National Address) in English"
+        },
+        "postalCode": "Postal Code",
+        "unitNumber": "Unit Number",
+        "buildingNumber": "Building Number",
+        "representativeName": {
+          "ar": "Representative Name in Arabic",
+          "en": "Representative Name in English"
+        },
+        "representativeTitle": {
+          "ar": "Representative Title in Arabic",
+          "en": "Representative Title in English"
+        },
+        "commercialRegistration": "Commercial Registration",
+        "registrationInSabl": "Registration in Sabl",
+        "guardsCount": "Number of Guards",
+        "commercialRegistrationCity": {
+          "ar": "Commercial Registration City in Arabic",
+          "en": "Commercial Registration City in English"
+        },
+        "locationToBeSecured": {
+          "ar": "Location to be Secured in Arabic",
+          "en": "Location to be Secured in English"
+        },
+        "schedule": "Schedule",
+        "location": "Location",
+        "guardsRequired": "Guards Required",
+        "shiftTime": "Shift Time",
+        "notes": "Notes",
+        "delete": "Delete",
+        "addEntry": "Add Entry",
+        "customClauses": "Custom Clauses",
+        "addClause": "Add Clause",
+        "submitContract": "Submit Contract",
+        "lang": {
+          "ar": "Arabic",
+          "en": "English"
+        }
+      },
+      "schedule": {
+        "site": "Site",
+        "gaurdCount": "Guard Count",
+        "workTime": "Work Time",
+        "notes": "Notes",
+        "action": "Action",
+        "siteAr": "Site (Arabic)",
+        "siteEn": "Site (English)",
+        "shiftAr": "Shift (Arabic)",
+        "shiftEn": "Shift (English)",
+        "notesAr": "Notes (Arabic)",
+        "notesEn": "Notes (English)",
+        "addRow": "Add New Row"
+      },
+      "clause": {
+        "contentAr": "Content (Arabic)",
+        "contentEn": "Content (English)",
+        "clause": "Clause",
+        "number": "Number",
+        "edit": "Edit",
+        "add": "Add",
+        "ar": "Clause (Arabic)",
+        "en": "Clause (English)"
+      },
+      "signature": {
+        "facility": "Facility Signature",
+        "company": "Company Signature"
+      },
+      "preview": {
+        "intro": "• Providing a number of security guards, specifying their locations and working hours as shown below:",
+        "12-desc": "Service cost clause for the second party as per the table below:",
+        "12": "Clause Twelve"
+      }
     }
   },
   "enums": {

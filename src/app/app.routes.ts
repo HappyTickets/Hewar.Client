@@ -28,6 +28,20 @@ import { SecurityCertificateComponent } from './features/security-certificate/co
 import { AdsComponent } from './features/ads/components/ads/ads.component';
 import { AllAdsComponent } from './features/ads/components/all-ads/all-ads.component';
 
+import { CreateServicesComponent } from './features/hewar-services/create-services/create-services.component';
+import { ServicessListComponent } from './features/hewar-services/servicess-list/servicess-list.component';
+import { UpdateServicesComponent } from './features/hewar-services/update-services/update-services.component';
+import { UpdateCompanyServiceComponent } from './features/company-services/update-services/update-services.component';
+import { ListServicesComponent } from './features/company-services/list-services/list-services.component';
+import { CreateServiceComponent } from './features/company-services/create-service/create-service.component';
+
+import { ContractFormComponent } from './features/contracts/components/contract-form/contract-form.component';
+import { ContractPreviewComponent } from './features/contracts/components/contract-preview/contract-preview.component';
+
+import { ImageUploadTestComponent } from './image-upload-test/image-upload-test.component';
+
+import { NotificationTestComponent } from './notification-test/compenent/notification-test.component';
+
 export const routes: Route[] = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomePageComponent },
@@ -42,9 +56,9 @@ export const routes: Route[] = [
   { path: 'facilities', component: FacilitiesComponent },
 
   // Companies
+  { path: 'companies', component: CompaniesComponent },
   { path: 'companies/updateCompany/:id', component: UpdateCompanyComponent },
   { path: 'companies/companyDetails/:id', component: CompanyDetailsComponent },
-  { path: 'companies', component: CompaniesComponent },
   { path: 'companies/createCompany', component: CreateCompanyComponent },
 
   // Price Requests
@@ -55,16 +69,22 @@ export const routes: Route[] = [
   { path: 'update-price-request/:priceRequestId', component: EditPriceRequestComponent },
 
   // Price Offers
-  { path: 'price-offer-details/:id', component: PriceOfferDetailsComponent },
   { path: 'company-price-offer', component: CompanyOffersComponent },
   { path: 'facility-price-offer', component: FacilityOffersComponent },
+
   { path: 'create-price-offer/:priceRequestId', component: EditPriceOfferComponent },
   { path: 'update-price-offer/:priceOfferId', component: EditPriceOfferComponent },
+  { path: 'price-offer-details/:id', component: PriceOfferDetailsComponent },
+
 
   // Registration
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'create-reset-password', component: CreateResetPasswordComponent },
+
+  // Testing
+  { path: 'upload-test', component: ImageUploadTestComponent },
+  { path: 'Notifications-test', component: NotificationTestComponent },
 
   // Security Certificate
   { path: 'security-certificate', component: SecurityCertificateComponent },
@@ -74,6 +94,22 @@ export const routes: Route[] = [
   { path: 'ads', component: AllAdsComponent },
   { path: 'ads/edit/:id', component: AdsComponent },
   { path: 'ad/:id', component: AdsComponent },
+
+  // Hewar Services
+  { path: 'get-all-hewar-services', component: ServicessListComponent },
+  { path: 'creat-hewar-service', component: CreateServicesComponent },
+  { path: 'update-hewar-service/:id', component: UpdateServicesComponent },
+
+  //Companies services
+  { path: 'companyservices', component: ListServicesComponent },
+  { path: 'update-company-services/:id', component: UpdateCompanyServiceComponent,},
+  { path: 'create-company-service', component: CreateServiceComponent },
+
+  // Contracts
+  { path: 'contract-form/:id', component: ContractFormComponent },
+  { path: 'contract-preview/:id', component: ContractPreviewComponent },
+
+
 
   { path: '**', component: NotFoundComponent }, // wild card path
 ];

@@ -10,27 +10,16 @@ export class ImageUploadService {
   constructor(private http: HttpClient) {}
   upload(file: File): Observable<HttpEvent<any>> {
     const formData: FormData = new FormData();
-
-    formData.append('path', file.name); // Append the actual file
-    formData.append('base64', file); // Append the file name separately
-
+    formData.append('path', file.name);
+    formData.append('fileData', file);
+  
     const req = new HttpRequest('POST', `${this.baseUrl}/upload`, formData, {
       reportProgress: true,
       responseType: 'json',
     });
-
+  
     return this.http.request(req);
   }
-  // uploadFile(base64EncodedString: string, fileData: any): Observable<any> {
-  //   const formData = {
-  //     base64: base64EncodedString,
-  //     fileData: fileData,
-  //   };
+  
 
-  //   return this.http.post(this.baseUrl, formData);
-  // }
-
-  // getFiles(): Observable<any> {
-  //   return this.http.get(`${this.baseUrl}/files/upload`);
-  // }
 }

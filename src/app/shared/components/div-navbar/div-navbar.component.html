@@ -1,8 +1,5 @@
-<mat-toolbar color="primary" class="overflow-hidden">
-  <span class="spacer"></span>
-  <button mat-button routerLink="/facilities">facilities</button>
-  <button mat-button routerLink="/companies">companies</button>
 
+<mat-toolbar>
   <button mat-button routerLink="/company-price-request">company-price-request</button>
   <button mat-button routerLink="/company-price-offer">company-price-offer</button>
   <button mat-button routerLink="/facility-price-request">facility-price-request</button>
@@ -11,3 +8,9 @@
   <button mat-button routerLink="/createAds">creare-Ads</button>
   <button mat-button routerLink="/ads">ads</button>
 </mat-toolbar>
+<p-menubar [model]="menuItems">
+  <ng-template pTemplate="start">
+    <span class="spacer"></span>
+  </ng-template>
+</p-menubar>
+
