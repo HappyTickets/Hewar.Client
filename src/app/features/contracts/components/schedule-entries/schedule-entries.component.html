@@ -1,0 +1,65 @@
+<p-table [value]="scheduleEntriesData">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>{{'app.contract.schedule.site' | translate}}</th>
+      <th>{{'app.contract.schedule.gaurdCount' | translate}}</th>
+      <th>{{'app.contract.schedule.workTime' | translate}}</th>
+      <th>{{'app.contract.schedule.notes' | translate}}</th>
+      <th class="hide">{{'app.contract.schedule.action' | translate}}</th>
+    </tr>
+  </ng-template>
+  <ng-template let-entry let-i="rowIndex" pTemplate="body">
+    <tr>
+      <td>
+        <ng-container *ngIf="!entry.editing; else editLocation">{{ language === 'ar'? entry.locationAr: entry.locationEn }}</ng-container>
+        <ng-template #editLocation>
+          <input pInputText [(ngModel)]="entry.locationAr" [placeholder]="'app.contract.schedule.siteAr' | translate" />
+          <input pInputText [(ngModel)]="entry.locationEn" [placeholder]="'app.contract.schedule.siteEn' | translate" />
+        </ng-template>
+      </td>
+      <td>
+        <ng-container *ngIf="!entry.editing; else editGuards">{{ entry.guardsRequired }}</ng-container>
+        <ng-template #editGuards><input pInputText [(ngModel)]="entry.guardsRequired" type="number" /></ng-template>
+      </td>
+      <td>
+        <ng-container *ngIf="!entry.editing; else editShiftTime">{{ language === 'ar'? entry.shiftTimeAr: entry.shiftTimeEn }}</ng-container>
+        <ng-template #editShiftTime>
+          <input pInputText [(ngModel)]="entry.shiftTimeAr" [placeholder]="'app.contract.schedule.shiftAr' | translate"/>
+          <input pInputText [(ngModel)]="entry.shiftTimeEn" [placeholder]="'app.contract.schedule.shiftEn' | translate"/>
+        </ng-template>
+      </td>
+      <td>
+        <ng-container *ngIf="!entry.editing; else editNotes">{{ language === 'ar'? entry.notesAr : entry.notesEn }}</ng-container>
+        <ng-template #editNotes>
+          <input pInputText [(ngModel)]="entry.notesAr" [placeholder]="'app.contract.schedule.notesAr' | translate" />
+          <input pInputText [(ngModel)]="entry.notesEn" [placeholder]="'app.contract.schedule.notesEn' | translate" />
+        </ng-template>
+      </td>
+      <td class="hide">
+        <ng-container *ngIf="!entry.editing; else saveCancel">
+          <div class="flex gap-1">
+            <p-button icon="pi pi-pencil" severity="info" (click)="editEntry(entry)"/>
+            <p-button icon="pi pi-trash" severity="danger" (click)="removeEntry(i,entry)"/>
+          </div>
+        </ng-container>
+        <ng-template #saveCancel>
+          <div class="flex gap-1">
+            <p-button icon="pi pi-times" severity="secondary" (click)="cancelEdit(entry)"/>
+            <p-button icon="pi pi-check" severity="success" (click)="saveEntry(entry)"/>
+          </div>
+        </ng-template>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="footer" >
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        <p-button icon="pi pi-plus" severity="success" (click)="addNewEntry()"/>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

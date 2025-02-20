@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {
   ReactiveFormsModule,
   FormsModule,
@@ -18,7 +18,7 @@ import { HewarServicesService } from '../services/hewar-services.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-update-services',
+  selector: 'app-update-service',
   standalone: true,
   imports: [
     InputTextModule,
@@ -33,7 +33,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './update-services.component.html',
   styleUrl: './update-services.component.scss',
 })
-export class UpdateServicesComponent {
+export class UpdateServicesComponent implements OnInit, OnDestroy {
   serviceForm!: FormGroup;
   private languageSubscription!: Subscription;
   language!: 'ar' | 'en';

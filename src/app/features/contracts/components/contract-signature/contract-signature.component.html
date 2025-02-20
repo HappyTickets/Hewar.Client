@@ -1,0 +1,30 @@
+<div class="signatures">
+  <div class="signature">
+    <ng-container *ngIf="!editingFacility; else editFacility">
+      <span class="signature-text" (click)="enableEditing('facility')" (keydown.enter)="enableEditing('facility')" tabindex="0">{{ facilitySignature? facilitySignature : ('app.contract.signature.facility'|translate) }}</span>
+    </ng-container>
+    <ng-template #editFacility>
+      <div class="input-container">
+        <input pInputText [(ngModel)]="tempFacilitySignature" class="signature-input" />
+        <div class="actions">
+          <p-button (click)="saveSignature('facility')" icon="pi pi-check" severity="success" />
+          <p-button (click)="cancelEditing('facility')" icon="pi pi-times" severity="danger" />
+        </div>
+      </div>
+    </ng-template>
+  </div>
+  <div class="signature">
+    <ng-container *ngIf="!editingCompany; else editCompany">
+      <span class="signature-text" (click)="enableEditing('company')" (keydown.enter)="enableEditing('company')" tabindex="0">{{ companySignature ? companySignature: ('app.contract.signature.company'|translate) }}</span>
+    </ng-container>
+    <ng-template #editCompany>
+      <div class="input-container">
+        <input pInputText [(ngModel)]="tempCompanySignature" class="signature-input" />
+        <div class="actions">
+          <p-button (click)="saveSignature('company')" icon="pi pi-check" severity="success" />
+          <p-button (click)="cancelEditing('company')" icon="pi pi-times" severity="danger" />
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>

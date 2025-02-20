@@ -82,12 +82,12 @@ export class CreateFacilityComponent implements OnInit {
   language!: 'ar' | 'en';
   private languageSubscription: Subscription;
   selectedImage: { base64: string; imageUrl: string } | null = null;
-  fileUploadError: string = '';
+  fileUploadError = '';
   files: File[] = [];
   uploadedFiles: File[] = [];
-  imageName: string = '';
-  totalSize: number = 0;
-  totalSizePercent: number = 0;
+  imageName = '';
+  totalSize = 0;
+  totalSizePercent = 0;
   facilityForm!: FormGroup;
   addressGroup!: FormGroup;
   createCompForm!: FormGroup;

@@ -11,10 +11,10 @@ export class ClausesService {
   private http = inject(HttpClient);
   baseEndPoint = '/api/Clauses/';
 
-  CreateCustomClauses(data: {htmlContentAr: string,htmlContentEn: string}[], contractId:number):Observable <IApiResponse<null>> {
+  CreateCustomClauses(data: IClause[], contractId:number):Observable <IApiResponse<null>> {
     return this.http.post<IApiResponse<null>>(`${this.baseEndPoint}CreateCustomClauses`, data, {params: {contractId}})
   }
-  UpdateCustomClauses(data: {id:number, htmlContentAr: string,htmlContentEn: string}[], contractId: number):Observable <IApiResponse<null>> {
+  UpdateCustomClauses(data: IClause[], contractId: number):Observable <IApiResponse<null>> {
     return this.http.put<IApiResponse<null>>(`${this.baseEndPoint}UpdateCustomClauses`, data, {params:{contractId}})
   }
   GetCustomClauseById(contractId: number):Observable <IApiResponse<IClause>> {

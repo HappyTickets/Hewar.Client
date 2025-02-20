@@ -1,4 +1,5 @@
 export interface IEditScheduleEntry {
+  id?: number;
   locationAr: string;
   locationEn: string;
   guardsRequired: number;
@@ -6,5 +7,4 @@ export interface IEditScheduleEntry {
   shiftTimeEn: string;
   notesAr: string;
   notesEn: string;
-  id?: number;
 }

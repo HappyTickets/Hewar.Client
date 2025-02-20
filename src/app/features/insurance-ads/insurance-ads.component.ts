@@ -13,7 +13,7 @@ import { FacilitiesComponent } from '../facilities/facilities.component';
 export class InsuranceAdsComponent implements OnInit {
   _insuranceAdsService = inject(InsuranceAdsService);
   ngOnInit() {
-    let data: ICreateAd = {
+    const data: ICreateAd = {
       securityRole: 1,
       guardsCount: 1,
       workShift: 2,

@@ -18,8 +18,12 @@
 ::ng-deep {
   @media print {
     app-nav-bar,
-    app-footer {
+    app-footer,
+    app-div-navbar {
       display: none !important;
+    }
+    div {
+      padding-top: 0 !important;
     }
   }
 }
