@@ -895,7 +895,7 @@
     }
   },
   "ads": {
-    "crearte-ad": {
+    "create-ad": {
       "header": "Create New Ad",
       "title": "Title",
       "description": "Description",

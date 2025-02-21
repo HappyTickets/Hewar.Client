@@ -1,109 +1,98 @@
 ::ng-deep {
-    h1 {
-      margin-bottom: 0;
-    }
-    h2 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      padding-bottom: 0.5rem;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-      margin-bottom: 1rem;
-    }
+  h1 {
+    margin-bottom: 0;
+  }
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding-bottom: 0.5rem;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
 
-    h3 {
-      font-size: 1.2rem;
-      font-weight: 500;
-      color: #444;
-      margin-top: 1.5rem;
-    }
+  h3 {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #444;
+    margin-top: 1.5rem;
+  }
 
-    p {
-      font-size: 1rem;
-      color: #555;
-      line-height: 1.6;
-      margin: 0;
-    }
+  p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+  }
 
-    .text-base {
-      font-size: 1rem;
-      font-weight: 400;
-    }
+  .text-base {
+    font-size: 1rem;
+    font-weight: 400;
+  }
 
-
-
-    .input-group {
-      display: flex;
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .service-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    background: #f9f9f9;
+    margin: 1rem 0;
+    @media (max-width: 768px) {
       flex-direction: column;
-      gap: 0.5rem;
-    }
-    .service-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem;
-      border: 1px solid #ddd;
-      border-radius: 0.5rem;
-      background: #f9f9f9;
-      margin: 1rem 0;
-      @media (max-width: 768px) {
-        flex-direction: column;
-      }
-    }
-    .input-row {
-      display: flex;
-      width: 100%;
-      gap: 0.5rem;
-      justify-content: space-evenly;
-
-      .p-inputtext,
-      .p-select,
-      .p-inputNumber {
-        width: 100%;
-      }
-      @media (max-width: 768px) {
-        flex-direction: column;
-      }
-    }
-    textarea {
-      width: 100%;
-      padding: 0.75rem;
-      border: 1px solid #ccc;
-      border-radius: 0.5rem;
-    }
-    .button-group {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 2rem;
-      gap: 20px;
-      @media (max-width: 768px) {
-        flex-direction: column;
-        gap: 1rem;
-      }
-    }
-    .p-datepicker,
-    .p-dropdown {
-      width: 100%;
-    }
-    .p-inputtext {
-      min-width: 120px;
     }
   }
-  .readonly-field {
-    pointer-events: auto; /* يسمح بالتفاعل مع الحقل */
-    background-color: white !important; /* يجعل الخلفية مثل الحقول العادية */
-    opacity: 1 !important; /* يزيل الشفافية */
-    border: 1px solid #ccc !important; /* يحافظ على الإطار */
-    color: #000 !important; /* يضمن أن النص واضح */
-    cursor: text; /* يجعل المؤشر مثل الحقول القابلة للتحرير */
+  .input-row {
+    display: flex;
+    width: 100%;
+    gap: 0.5rem;
+    justify-content: space-evenly;
+
+    .p-inputtext,
+    .p-select,
+    .p-inputNumber {
+      width: 100%;
+    }
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
   }
-
-
-
-  // .all{
-  //   padding: 20px;
-  //   border-radius: 10px;
-  //  margin: 50px;
-  //  box-shadow : 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-  // }
+  textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+  }
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    gap: 20px;
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+  .p-datepicker,
+  .p-dropdown {
+    width: 100%;
+  }
+  .p-inputtext {
+    min-width: 120px;
+  }
+}
+.readonly-field {
+  pointer-events: auto;
+  background-color: white !important;
+  opacity: 1 !important;
+  border: 1px solid #ccc !important;
+  color: #000 !important;
+  cursor: text;
+}

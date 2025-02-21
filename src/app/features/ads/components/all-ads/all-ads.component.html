@@ -72,7 +72,6 @@
               icon="pi pi-pencil"
               pTooltip="{{ 'allAds.allMyAds.update' | translate }}"
               tooltipPosition="top"
-              [disabled]="ad.status !== 1"
             ></p-button>
             <p-button
               class="m-1"
@@ -88,7 +87,6 @@
               pTooltip="{{ 'allAds.allMyAds.chat' | translate }}"
               tooltipPosition="top"
               [disabled]="ad.status !== 1"
-
             ></p-button>
             }
           </div>

@@ -1,5 +1,6 @@
 import { ContractType } from '../../../shared/enums/contract-type';
 import { IPriceRequestService } from '../../price-requests/models/iprice-request-service';
+import { AdsStatus } from '../enums/adsStatus';
 
 export interface ICreateAd {
   id?: number;
@@ -8,6 +9,7 @@ export interface ICreateAd {
   startDate: string;
   endDate: string;
   contractType: ContractType;
+  status?: AdsStatus;
   services: IPriceRequestService[];
   showActions?: boolean;
 }

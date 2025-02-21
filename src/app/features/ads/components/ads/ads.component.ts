@@ -20,10 +20,10 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { MessageModule } from 'primeng/message';
 import { ICreateAd } from '../../models/icreate-ad';
 import { CommonModule } from '@angular/common';
-// import { LocalizationService } from '../../../../core/services/localization/localization.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AdStatus, IUpdateAd } from '../../models/iupdate-ad';
 import { IAdService } from '../../models/iad-service';
+import { AdsStatus } from '../../enums/adsStatus';
+import { IUpdateAd } from '../../models/iupdate-ad';
 
 @Component({
   selector: 'app-ads',
@@ -51,10 +51,8 @@ export class AdsComponent implements OnInit {
   id: number | null = null;
   adData: ICreateAd = {} as ICreateAd;
 
-
   private fb = inject(FormBuilder);
   private adsService = inject(AdsService);
-  // private localizationService = inject(LocalizationService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
 
@@ -65,8 +63,9 @@ export class AdsComponent implements OnInit {
     .filter(([key]) => isNaN(Number(key)))
     .map(([key, value]) => ({ label: key, value }));
 
-  // shiftType = this.localizationService.createDropdown(ShiftType);
-  // contractTypes = this.localizationService.createDropdown(ContractType);
+  AdStatus = Object.entries(AdsStatus)
+    .filter(([key]) => isNaN(Number(key)))
+    .map(([key, value]) => ({ label: key, value }));
 
   date = new Date();
   servicesOptions: IAdService[] = [];
@@ -78,6 +77,7 @@ export class AdsComponent implements OnInit {
       contractType: ['', Validators.required],
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
+      status: [''],
       services: this.fb.array([this.createServiceGroup()]),
       // otherServices: this.fb.array([this.createOtherServiceGroup()]),
     });
@@ -100,10 +100,6 @@ export class AdsComponent implements OnInit {
       }
     });
 
-    // this.createAdForm.valueChanges.subscribe(() => {
-    //   console.log('Form Status: ', this.createAdForm.status);
-    // });
-
     this.adsService.getHewarServices().subscribe({
       next: (data) => {
         if (data.data) this.servicesOptions = data.data;
@@ -114,7 +110,6 @@ export class AdsComponent implements OnInit {
     });
   }
 
-
   loadAdData(id: number): void {
     this.adsService.getAdById(id).subscribe((res) => {
       if (res.data) this.adData = res.data;
@@ -123,11 +118,14 @@ export class AdsComponent implements OnInit {
         title: this.adData.title,
         // description: this.adData.description,
         contractType: this.adData.contractType,
-        startDate: this.adData.startDate ? new Date(this.adData.startDate) : null,
-        endDate: this.adData.endDate ? new Date(this.adData.endDate) : null
+        status: this.adData.status,
+        startDate: this.adData.startDate
+          ? new Date(this.adData.startDate)
+          : null,
+        endDate: this.adData.endDate ? new Date(this.adData.endDate) : null,
       });
 
-      this.services.clear()
+      this.services.clear();
 
       this.adData.services.forEach((service) => {
         this.services.push(
@@ -138,9 +136,6 @@ export class AdsComponent implements OnInit {
           })
         );
       });
-
-
-
     });
   }
 
@@ -178,7 +173,6 @@ export class AdsComponent implements OnInit {
       };
 
       if (this.isEditMode && this.id) {
-        
         const updateAdData: IUpdateAd = {
           id: this.id,
           title: this.createAdForm.value.title,
@@ -187,7 +181,7 @@ export class AdsComponent implements OnInit {
           endDate: this.createAdForm.value.endDate,
           contractType: this.createAdForm.value.contractType,
           services: this.createAdForm.value.services,
-          status: AdStatus.Closed,
+          status: this.createAdForm.value.status,
         };
         this.adsService.updateAd(updateAdData).subscribe({
           next: (res) => {
@@ -232,6 +226,6 @@ export class AdsComponent implements OnInit {
   // }
 
   onCancel(): void {
-    this.router.navigate(['/home'])
+    this.router.navigate(['/home']);
   }
 }

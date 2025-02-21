@@ -912,7 +912,7 @@
     }
   },
   "ads": {
-    "crearte-ad": {
+    "create-ad": {
       "header": "إنشاء إعلان جديد",
       "title": "العنوان",
       "description": "الوصف",

@@ -3,14 +3,14 @@
     <div class="content">
       <!-- title  Section -->
 
-      <h2>{{ "ads.crearte-ad.title" | translate }}</h2>
+      <h2>{{ "ads.create-ad.title" | translate }}</h2>
 
       <div class="input-group col-12">
         <input
           pInputText
           formControlName="title"
           name="title"
-          [placeholder]="'ads.crearte-ad.title' | translate"
+          [placeholder]="'ads.create-ad.title' | translate"
           [readonly]="isDetailsMode"
           [class.readonly-field]="isDetailsMode"
         />
@@ -21,14 +21,14 @@
             createAdForm.get('title')?.touched
           "
           severity="error"
-          [text]="'ads.crearte-ad.titleError' | translate"
+          [text]="'ads.create-ad.titleError' | translate"
         ></p-message>
       </div>
 
       <!-- Description Section -->
 
       <h2 *ngIf="!isDetailsMode">
-        {{ "ads.crearte-ad.description" | translate }}
+        {{ "ads.create-ad.description" | translate }}
       </h2>
 
       <div class="input-group col-12">
@@ -36,7 +36,7 @@
           pInputTextarea
           formControlName="description"
           name="description"
-          [placeholder]="'ads.crearte-ad.description' | translate"
+          [placeholder]="'ads.create-ad.description' | translate"
           *ngIf="!isDetailsMode"
         ></textarea>
 
@@ -46,21 +46,21 @@
             createAdForm.get('description')?.touched
           "
           severity="error"
-          [text]="'ads.crearte-ad.descriptionError' | translate"
+          [text]="'ads.create-ad.descriptionError' | translate"
         ></p-message>
       </div>
 
       <!-- Price Request Section -->
 
-      <h2>{{ "ads.crearte-ad.OrderPriceRequest" | translate }}</h2>
+      <h2>{{ "ads.create-ad.OrderPriceRequest" | translate }}</h2>
       <div class="grid">
         <div class="input-group col-12 md:col-6">
           <label for="startDate">{{
-            "ads.crearte-ad.contractDate" | translate
+            "ads.create-ad.contractDate" | translate
           }}</label>
           <p-datepicker
             formControlName="startDate"
-            [placeholder]="'ads.crearte-ad.startContract' | translate"
+            [placeholder]="'ads.create-ad.startContract' | translate"
             showIcon
             iconDisplay="input"
             name="startDate"
@@ -73,17 +73,17 @@
               createAdForm.get('startDate')?.touched
             "
             severity="error"
-            [text]="'ads.crearte-ad.contractDateError' | translate"
+            [text]="'ads.create-ad.contractDateError' | translate"
           ></p-message>
         </div>
         <div class="input-group col-12 md:col-6">
           <label for="endDate">{{
-            "ads.crearte-ad.endContract" | translate
+            "ads.create-ad.endContract" | translate
           }}</label>
           <p-datepicker
             formControlName="endDate"
             name="endDate"
-            [placeholder]="'ads.crearte-ad.endContract' | translate"
+            [placeholder]="'ads.create-ad.startContract' | translate"
             showIcon
             iconDisplay="input"
             [disabled]="isDetailsMode"
@@ -95,13 +95,13 @@
               createAdForm.get('endDate')?.touched
             "
             severity="error"
-            [text]="'ads.crearte-ad.endContractError' | translate"
+            [text]="'ads.create-ad.endContractError' | translate"
           ></p-message>
         </div>
 
         <div class="input-group col-12">
           <label for="contractType">{{
-            "ads.crearte-ad.contractType" | translate
+            "ads.create-ad.contractType" | translate
           }}</label>
 
           <p-select
@@ -114,6 +114,18 @@
             [class.readonly-field]="isDetailsMode"
           >
           </p-select>
+          <h2 *ngIf="isEditMode || isDetailsMode">
+            {{ "allAds.allMyAds.status" | translate }}
+          </h2>
+          <p-select
+            [options]="AdStatus"
+            formControlName="status"
+            name="status"
+            [placeholder]="'allAds.allMyAds.status' | translate"
+            *ngIf="isEditMode || isDetailsMode"
+            [readonly]="!isEditMode"
+            [class.readonly-field]="!isEditMode"
+          ></p-select>
 
           <p-message
             *ngIf="
@@ -121,14 +133,14 @@
               createAdForm.get('contractType')?.touched
             "
             severity="error"
-            [text]="'ads.crearte-ad.contractTypeError' | translate"
+            [text]="'ads.create-ad.contractTypeError' | translate"
           ></p-message>
         </div>
       </div>
 
       <!-- Service Details Section -->
 
-      <h2>{{ "ads.crearte-ad.services" | translate }}</h2>
+      <h2>{{ "ads.create-ad.services" | translate }}</h2>
       <div formArrayName="services">
         @for (service of services.controls ; track service; let i = $index) {
 
@@ -148,7 +160,7 @@
               optionLabel="name"
               optionValue="id"
               name="serviceId"
-              [placeholder]="'ads.crearte-ad.serviceType' | translate"
+              [placeholder]="'ads.create-ad.serviceType' | translate"
               [readonly]="isDetailsMode"
               [class.readonly-field]="isDetailsMode"
             ></p-select>
@@ -159,14 +171,14 @@
                 services.controls[i].get('serviceId')?.touched
               "
               severity="error"
-              [text]="'ads.crearte-ad.serviceTypeError' | translate"
+              [text]="'ads.create-ad.serviceTypeError' | translate"
             ></p-message>
 
             <p-inputNumber
               [showButtons]="true"
               formControlName="quantity"
               name="quantity"
-              [placeholder]="'ads.crearte-ad.quantity' | translate"
+              [placeholder]="'ads.create-ad.quantity' | translate"
               [readonly]="isDetailsMode"
               [class.readonly-field]="isDetailsMode"
             >
@@ -178,14 +190,14 @@
                 services.controls[i].get('quantity')?.touched
               "
               severity="error"
-              [text]="'ads.crearte-ad.quantityError' | translate"
+              [text]="'ads.create-ad.quantityError' | translate"
             ></p-message>
 
             <p-select
               [options]="shiftType"
               formControlName="shiftType"
               name="shiftType"
-              [placeholder]="'ads.crearte-ad.shiftType' | translate"
+              [placeholder]="'ads.create-ad.shiftType' | translate"
               [readonly]="isDetailsMode"
               [class.readonly-field]="isDetailsMode"
             ></p-select>
@@ -196,7 +208,7 @@
                 services.controls[i].get('shiftType')?.touched
               "
               severity="error"
-              [text]="'ads.crearte-ad.shiftTypeError' | translate"
+              [text]="'ads.create-ad.shiftTypeError' | translate"
             ></p-message>
           </div>
           <p-button
@@ -212,7 +224,7 @@
 
       <!-- Other Services Section -->
 
-      <!-- <h2>{{ "ads.crearte-ad.otherDetails" | translate }}</h2>
+      <!-- <h2>{{ "ads.create-ad.otherDetails" | translate }}</h2>
       <div formArrayName="otherServices">
         @for (service of otherServices.controls; track service; let i = $index)
         {
@@ -225,33 +237,33 @@
               pInputText
               formControlName="name"
               name="name"
-              [placeholder]="'ads.crearte-ad.serviceName' | translate"
+              [placeholder]="'ads.create-ad.serviceName' | translate"
             />
             <p-message
             *ngIf="createAdForm.get('name')?.hasError('required') && createAdForm.get('name')?.touched"
               severity="error"
-              [text]="'ads.crearte-ad.serviceNameError' | translate" />
+              [text]="'ads.create-ad.serviceNameError' | translate" />
             <p-inputNumber
               [showButtons]="true"
               formControlName="quantity"
               name="quantity"
               [min]="1"
-              [placeholder]="'ads.crearte-ad.quantity' | translate"
+              [placeholder]="'ads.create-ad.quantity' | translate"
             ></p-inputNumber>
             <p-message
             *ngIf="createAdForm.get('quantity')?.hasError('required') && createAdForm.get('quantity')?.touched"
               severity="error"
-              [text]="'ads.crearte-ad.quantityError' | translate" />
+              [text]="'ads.create-ad.quantityError' | translate" />
             <p-select
               [options]="shiftType"
               formControlName="shiftType"
               name="shiftType"
-              [placeholder]="'ads.crearte-ad.shiftType' | translate"
+              [placeholder]="'ads.create-ad.shiftType' | translate"
             ></p-select>
 
             <p-message *ngIf="createAdForm.get('shiftType')?.hasError('required') && createAdForm.get('shiftType')?.touched"
               severity="error"
-              [text]="'ads.crearte-ad.shiftTypeError' | translate" />
+              [text]="'ads.create-ad.shiftTypeError' | translate" />
           </div>
           <p-button
             icon="pi pi-trash"
@@ -265,7 +277,7 @@
 
       <div class="button-group">
         <p-button
-          [label]="'ads.crearte-ad.cancel' | translate"
+          [label]="'ads.create-ad.cancel' | translate"
           (click)="onCancel()"
           fluid="true"
           *ngIf="!isDetailsMode"
@@ -274,8 +286,8 @@
         <p-button
           [label]="
             isEditMode
-              ? ('ads.crearte-ad.update' | translate)
-              : ('ads.crearte-ad.publish' | translate)
+              ? ('ads.create-ad.update' | translate)
+              : ('ads.create-ad.publish' | translate)
           "
           fluid="true"
           [disabled]="createAdForm.invalid"
