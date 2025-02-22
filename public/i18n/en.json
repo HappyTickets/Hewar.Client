@@ -113,9 +113,12 @@
       "confirmPasswordError": "Confirm password is required",
       "confirmPasswordError-2": "Confirm password is not match with password",
       "firstName": "First name",
+      "passwordInvalidError": "password should contain capital and lowercase characters and specialized characters (#,$,%,*,..)",
+      "short": "password sho be at least 8 characters",
       "firstNamePlaceholder": "Enter first name",
       "firstNameError": "First name is required",
       "lastName": "Last name",
+      "emailInvalidError": "Please enter a valid email address",
       "lastNamePlaceholder": "Enter last name",
       "lastNameError": "Last name is required",
       "phone": "Phone",
@@ -137,7 +140,14 @@
       "postalCodePlaceholder": "Enter postal code",
       "postalCodeError": "Postal code is required",
       "save": "Save",
-      "cancel": "Cancel"
+      "cancel": "Cancel",
+      "postalCodeInvalidError": "Postal code must be exactly 5 digits."
+    },
+    "image-upload": {
+      "drag": "Drag and drop an image here or click to select",
+      "morethan-2": "File size should not exceed 2MB",
+      "filetype": "Only image files are allowed",
+      "remove": "remove"
     },
     "company-services": {
       "create-Service": "Create Service",

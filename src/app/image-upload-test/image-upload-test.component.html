@@ -21,7 +21,9 @@
   </div>
 </mat-form-field>
 
-<button mat-raised-button color="primary" (click)="uploadFiles()">Upload</button>
+<button mat-raised-button color="primary" (click)="uploadFiles()">
+  Upload
+</button>
 
 <div *ngFor="let progressInfo of progressInfos">
   <span>{{ progressInfo.fileName }}</span>
@@ -44,19 +46,31 @@
   </ul>
 </div>
 
-
-
 <h2>Uploaded Files</h2>
 <ul *ngIf="uploadedFiles.length > 0">
   <li *ngFor="let file of uploadedFiles">
     <a [href]="file.url" target="_blank">
-      <img *ngIf="file.url.endsWith('.jpg') || file.url.endsWith('.png') || file.url.endsWith('.jpeg')" 
-           [src]="file.url" 
-           alt="{{ file.fileName }}" 
-           class="uploaded-preview" />
-      <span *ngIf="!file.url.endsWith('.jpg') && !file.url.endsWith('.png') && !file.url.endsWith('.jpeg')">
+      <img
+        *ngIf="
+          file.url.endsWith('.jpg') ||
+          file.url.endsWith('.png') ||
+          file.url.endsWith('.jpeg')
+        "
+        [src]="file.url"
+        alt="{{ file.fileName }}"
+        class="uploaded-preview"
+      />
+      <span
+        *ngIf="
+          !file.url.endsWith('.jpg') &&
+          !file.url.endsWith('.png') &&
+          !file.url.endsWith('.jpeg')
+        "
+      >
         {{ file.fileName }}
       </span>
     </a>
   </li>
 </ul>
+
+<app-upload-image-2 (fileSelected)="handleFile($event)"></app-upload-image-2>

@@ -106,13 +106,16 @@
       "activityTypePLaceHolder": " ادخل نوع النشاط",
       "type": "نوع المنشأة",
       "typeErr": " نوع المنشأة مطلوب",
+      "typeError": "نوع المنشأة مطلوب",
+      "activityTypeError": "   نوع النشاط مطلوب ",
+
       "typePlaceholder": " ادخل نوع المنشأة",
       "responsibleNamePlaceholder": "ادخل اسم المسئول",
       "responsibleName": "اسم المسئول",
       "responsibleNameErr": " اسم المسئول مطلوب",
-      "responsiblePhonePlaceholder": "ادخل رقم الهاتف المس��ول",
-      "responsiblePhoneError": "رقم الهاتف المس��ول مطلوب",
-      "responsibleEmailPlaceholder": "ادخل البريد الالكتروني المس��ول",
+      "responsiblePhonePlaceholder": "ادخل رقم الهاتف المسئول",
+      "responsiblePhoneError": "رقم الهاتف المسئول مطلوب",
+      "responsibleEmailPlaceholder": "ادخل البريد الالكتروني المسئول",
 
       "admin-data-title": "بيانات الادمن",
       "address-data-title": "العنوان بالتفصيل",
@@ -138,8 +141,10 @@
       "passwordPlaceholder": "ادخل كلمه السر",
       "passwordError": "كلمه السر مطلوب",
       "confirmPassword": "تاكيد كلمه السر",
+      "passwordInvalidError": "يجب ان تحتوى على حروف كبيرة حروف خاصة ($او $..# *&)",
       "confirmPasswordPlaceholder": "ادخل تاكيد كلمه السر",
       "confirmPasswordError": "تاكيد كلمه السر مطلوبة",
+      "short": "كلمة السر قصيرة",
       "confirmPasswordError-2": "تاكيد كلمه السر ليست متوافقة مع كلمة السر",
       "firstName": "الاسم الاول",
       "firstNamePlaceholder": "ادخل الاسم الاول",
@@ -151,6 +156,8 @@
       "phonePlaceholder": "ادخل الهاتف المحمول",
       "phoneError": "الهاتف المحمول مطلوب",
       "street": "الشارع",
+
+      "emailInvalidError": "الايميل غير صالح",
       "streetPlaceholder": "ادخل الشارع",
       "streetError": "الشارع مطلوب",
       "city": "المدينة",
@@ -167,7 +174,8 @@
       "postalCodeError": "الرمز البريدي مطلوبة",
 
       "save": "حفظ",
-      "cancel": "الغاء"
+      "cancel": "الغاء",
+      "postalCodeInvalidError": "الرقم البريدى غير صالح"
     },
     "company-services": {
       "create-Service": " إنشاء خدمة ",
@@ -188,6 +196,12 @@
       "descriptionPlaceholder": "الوصف",
       "lenght": "يجب أن يكون الوصف على الأقل 10 أحرف",
       "name": "الاسم مطلوب"
+    },
+    "image-upload": {
+      "drag": "اسحب الصورة وأفلتها هنا أو انقر لتحديدها",
+      "morethan-2": "حجم الصورة اكبر من 2 ميجا",
+      "filetype": "فقط يمكن استخدام الصور",
+      "remove": "إزالة"
     },
     "validation": {
       "required": "هذا الحقل مطلوب",
@@ -644,9 +658,13 @@
     },
     "delete-item": {
       "question": "هل أنت متأكد من حذف ",
+
       "question-2": "؟",
       "hide-request-question": "هل أنت متأكد من إخفاء طلب التسعير؟",
       "cancel-request-question": "هل أنت متأكد من إلغاء طلب التسعير؟",
+
+      "click-accept": "اضغط على \"قبول\" لإكمال العملية.",
+
       "reject-request-question": "هل أنت متأكد من رفض طلب التسعير؟",
       "accept-request-question": "هل أنت متأكد من قبول طلب التسعير؟",
       "complete": "لإكمال الحذف",
@@ -654,7 +672,7 @@
       "click-hide": "اضغط على \"إخفاء\" لإكمال العملية.",
       "click-cancel": "اضغط على \"إكمال\" لإكمال العملية.",
       "click-reject": "اضغط على \"رفض\" لإكمال العملية.",
-      "click-accept": "اضغط على \"قبول\" لإكمال العملية.",
+
       "delete": "حذف",
       "hide": "إخفاء",
       "accept": "قبول",
@@ -662,6 +680,7 @@
       "complete-cancelation": "إكمال",
       "cancel": "إلغاء"
     },
+
     "contract": {
       "form": {
         "contractDetails": "تفاصيل العقد",
@@ -754,6 +773,72 @@
         "intro": "• توفير عدد من حراس الامن وتحديد مواقعهم وأوقات عملهم كما هو موضح أدناه :",
         "12-desc": " بند تكلفة الخدمة المقدمة للطرف الثاني حسب الجدول ادناه :",
         "12": " البند الثاني عشر"
+      }
+      "cancel": "الغاء"
+      "accept": "قبول",
+      "reject": "رفض",
+      "complete-cancelation": "إكمال",
+      "cancel": "إلغاء"
+    },
+    "contract": {
+      "form": {
+        "contractDetails": "تفاصيل العقد",
+        "contractSignDate": "تاريخ توقيع العقد",
+        "contractStartDate": "تاريخ بدء العقد",
+        "partyOne": "الطرف الأول",
+        "partyTwo": "الطرف الثاني",
+        "name": {
+          "ar": "الاسم بالعربية",
+          "en": "الاسم بالإنجليزية"
+        },
+        "mainOfficeCity": {
+          "ar": "المدينة الرئيسية بالعربية",
+          "en": "المدينة الرئيسية بالإنجليزية"
+        },
+        "publicSecurityLicense": "ترخيص الأمن العام",
+        "telephone": "الهاتف",
+        "mobile": "الجوال",
+        "email": "البريد الإلكتروني",
+        "nationalAddress": {
+          "ar": "المدينة (العنوان الوطني) بالعربية",
+          "en": "المدينة (العنوان الوطني) بالإنجليزية"
+        },
+        "postalCode": "الرمز البريدي",
+        "unitNumber": "رقم الوحدة",
+        "buildingNumber": "رقم المبنى",
+        "representativeName": {
+          "ar": "اسم الممثل بالعربية",
+          "en": "اسم الممثل بالإنجليزية"
+        },
+        "representativeTitle": {
+          "ar": "لقب الممثل بالعربية",
+          "en": "لقب الممثل بالإنجليزية"
+        },
+        "commercialRegistration": "السجل التجاري",
+        "registrationInSabl": "التسجيل في صابِل",
+        "guardsCount": "عدد الحراس",
+        "commercialRegistrationCity": {
+          "ar": "مدينة السجل التجاري بالعربية",
+          "en": "مدينة السجل التجاري بالإنجليزية"
+        },
+        "locationToBeSecured": {
+          "ar": "الموقع المطلوب تأمينه بالعربية",
+          "en": "الموقع المطلوب تأمينه بالإنجليزية"
+        },
+        "schedule": "الجدول الزمني",
+        "location": "الموقع",
+        "guardsRequired": "الحراس المطلوبون",
+        "shiftTime": "وقت الوردية",
+        "notes": "ملاحظات",
+        "delete": "حذف",
+        "addEntry": "إضافة بند",
+        "customClauses": "البنود المخصصة",
+        "addClause": "إضافة بند",
+        "submitContract": "إرسال العقد",
+        "lang": {
+          "ar": "بالعربية",
+          "en": "بالإنجليزية"
+        }
       }
     }
   },

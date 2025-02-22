@@ -1,4 +1,4 @@
-import { IContractKey } from "./icontract-key";
+import { IContractKey } from './icontract-key';
 
 export interface IContract {
   contractId: number;

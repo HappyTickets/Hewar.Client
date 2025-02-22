@@ -1,5 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  FormBuilder,
+  FormGroup,
+  Validators,
+  FormArray,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
@@ -26,7 +32,19 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-edit-price-offer',
   standalone: true,
-  imports: [ SelectModule,CommonModule, InputNumberModule, TextareaModule, ButtonModule, ReactiveFormsModule, InputTextModule, TranslatePipe, TranslatePipe , DatePickerModule, InputComponent],
+  imports: [
+    SelectModule,
+    CommonModule,
+    InputNumberModule,
+    TextareaModule,
+    ButtonModule,
+    ReactiveFormsModule,
+    InputTextModule,
+    TranslatePipe,
+    TranslatePipe,
+    DatePickerModule,
+    InputComponent,
+  ],
   templateUrl: './edit-price-offer.component.html',
   styleUrl: './edit-price-offer.component.scss',
 })
@@ -43,7 +61,7 @@ export class EditPriceOfferComponent implements OnInit {
   shiftType = this.localizationService.createDropdown(ShiftType);
   contractTypes = this.localizationService.createDropdown(ContractType);
 
-  mode: "create" | "update" = 'create';
+  mode: 'create' | 'update' = 'create';
   priceOfferData: IGetPriceOfferById = {} as IGetPriceOfferById;
   priceRequestData: IPriceRequest = {} as IPriceRequest;
   facilityData: IFacility = {} as IFacility;
@@ -66,7 +84,7 @@ export class EditPriceOfferComponent implements OnInit {
           }
         });
       } else if (priceOfferId) {
-        this.priceOffersService.getById(+priceOfferId).subscribe(res=> {
+        this.priceOffersService.getById(+priceOfferId).subscribe((res) => {
           if (res.data) {
             this.priceOfferData = res.data;
             if (res.data.facility) this.facilityData = res.data.facility;
@@ -116,8 +134,8 @@ export class EditPriceOfferComponent implements OnInit {
           otherServices: this.editPriceOfferForm.value.otherServices,
         };
         this.priceOffersService.update(priceOffer).subscribe(() => {
-        this.router.navigate(['/company-price-offer']);
-      });
+          this.router.navigate(['/company-price-offer']);
+        });
       }
     }
   }
@@ -218,7 +236,10 @@ export class EditPriceOfferComponent implements OnInit {
             quantity: [service.quantity, [Validators.required]],
             shiftType: [service.shiftType, [Validators.required]],
             dailyCostPerUnit: [service.dailyCostPerUnit, [Validators.required]],
-            monthlyCostPerUnit: [service.monthlyCostPerUnit, [Validators.required]],
+            monthlyCostPerUnit: [
+              service.monthlyCostPerUnit,
+              [Validators.required],
+            ],
           })
         );
       });
@@ -232,8 +253,14 @@ export class EditPriceOfferComponent implements OnInit {
             name: [otherService.name, [Validators.required]],
             quantity: [otherService.quantity, [Validators.required]],
             shiftType: [otherService.shiftType, [Validators.required]],
-            dailyCostPerUnit: [otherService.dailyCostPerUnit, [Validators.required]],
-            monthlyCostPerUnit: [otherService.monthlyCostPerUnit, [Validators.required]],
+            dailyCostPerUnit: [
+              otherService.dailyCostPerUnit,
+              [Validators.required],
+            ],
+            monthlyCostPerUnit: [
+              otherService.monthlyCostPerUnit,
+              [Validators.required],
+            ],
           })
         );
       });
