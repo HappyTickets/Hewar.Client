@@ -741,6 +741,72 @@
           "en": "بالإنجليزية"
         }
       }
+      "cancel": "الغاء"
+      "accept": "قبول",
+      "reject": "رفض",
+      "complete-cancelation": "إكمال",
+      "cancel": "إلغاء"
+    },
+    "contract": {
+      "form": {
+        "contractDetails": "تفاصيل العقد",
+        "contractSignDate": "تاريخ توقيع العقد",
+        "contractStartDate": "تاريخ بدء العقد",
+        "partyOne": "الطرف الأول",
+        "partyTwo": "الطرف الثاني",
+        "name": {
+          "ar": "الاسم بالعربية",
+          "en": "الاسم بالإنجليزية"
+        },
+        "mainOfficeCity": {
+          "ar": "المدينة الرئيسية بالعربية",
+          "en": "المدينة الرئيسية بالإنجليزية"
+        },
+        "publicSecurityLicense": "ترخيص الأمن العام",
+        "telephone": "الهاتف",
+        "mobile": "الجوال",
+        "email": "البريد الإلكتروني",
+        "nationalAddress": {
+          "ar": "المدينة (العنوان الوطني) بالعربية",
+          "en": "المدينة (العنوان الوطني) بالإنجليزية"
+        },
+        "postalCode": "الرمز البريدي",
+        "unitNumber": "رقم الوحدة",
+        "buildingNumber": "رقم المبنى",
+        "representativeName": {
+          "ar": "اسم الممثل بالعربية",
+          "en": "اسم الممثل بالإنجليزية"
+        },
+        "representativeTitle": {
+          "ar": "لقب الممثل بالعربية",
+          "en": "لقب الممثل بالإنجليزية"
+        },
+        "commercialRegistration": "السجل التجاري",
+        "registrationInSabl": "التسجيل في صابِل",
+        "guardsCount": "عدد الحراس",
+        "commercialRegistrationCity": {
+          "ar": "مدينة السجل التجاري بالعربية",
+          "en": "مدينة السجل التجاري بالإنجليزية"
+        },
+        "locationToBeSecured": {
+          "ar": "الموقع المطلوب تأمينه بالعربية",
+          "en": "الموقع المطلوب تأمينه بالإنجليزية"
+        },
+        "schedule": "الجدول الزمني",
+        "location": "الموقع",
+        "guardsRequired": "الحراس المطلوبون",
+        "shiftTime": "وقت الوردية",
+        "notes": "ملاحظات",
+        "delete": "حذف",
+        "addEntry": "إضافة بند",
+        "customClauses": "البنود المخصصة",
+        "addClause": "إضافة بند",
+        "submitContract": "إرسال العقد",
+        "lang": {
+          "ar": "بالعربية",
+          "en": "بالإنجليزية"
+        }
+      }
     }
   },
   "enums": {

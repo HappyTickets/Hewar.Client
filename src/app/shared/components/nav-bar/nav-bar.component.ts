@@ -6,13 +6,29 @@ import { ButtonModule } from 'primeng/button';
 import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 import { LocalizationService } from '../../../core/services/localization/localization.service';
 import { RouterModule } from '@angular/router';
+import { MatIconButton } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatBadgeModule } from '@angular/material/badge';
+import { BadgeModule } from 'primeng/badge';
+import { OverlayBadgeModule } from 'primeng/overlaybadge';
 
 @Component({
   selector: 'app-nav-bar',
   standalone: true,
-  imports: [MenubarModule, ButtonModule, TranslatePipe, RouterModule],
+  imports: [
+    MenubarModule,
+    ButtonModule,
+    TranslatePipe,
+    RouterModule,
+    MatIconModule,
+    MatBadgeModule,
+    MatButtonModule,
+    BadgeModule,
+    OverlayBadgeModule,
+  ],
   templateUrl: './nav-bar.component.html',
-  styleUrl: './nav-bar.component.scss'
+  styleUrl: './nav-bar.component.scss',
 })
 export class NavBarComponent implements OnInit {
   items!: MenuItem[];
@@ -22,25 +38,28 @@ export class NavBarComponent implements OnInit {
     'padding-left': '0.57vw',
     'padding-right': '0.57vw',
     'padding-bottom': '0.25vw',
-    '--p-menubar-item-focus-color': "#1A3A57",
-    '--p-menubar-item-color': "#6F7481",
+    '--p-menubar-item-focus-color': '#1A3A57',
+    '--p-menubar-item-color': '#6F7481',
     'font-size': '1.125rem',
-    'position': 'fixed',
-    'width': 'min(100%, 100vw)',
+    position: 'fixed',
+    width: 'min(100%, 100vw)',
     'border-radius': '0',
     'min-height': 'fit-content',
-    'height': 'var(--nav-height)',
+    height: 'var(--nav-height)',
     '--p-menubar-gap': '3vw',
-  }
+  };
 
-  menubarLabelStyle = {}
+  menubarLabelStyle = {};
   isLoggedIn: () => boolean;
   ngOnInit() {
     setTimeout(() => {
       const navbar = document.querySelector('.nav-bar');
       if (navbar !== null) {
         const height = navbar.getBoundingClientRect().height;
-        document.documentElement.style.setProperty('--nav-height', `${height}px`);
+        document.documentElement.style.setProperty(
+          '--nav-height',
+          `${height}px`
+        );
       }
     });
     this.items = [
@@ -48,13 +67,13 @@ export class NavBarComponent implements OnInit {
         translateToken: 'app.navbar.home',
         label: this.translate.instant('app.navbar.home'),
         style: this.menubarLabelStyle,
-        routerLink: '/home'
+        routerLink: '/home',
       },
       {
         translateToken: 'app.navbar.about',
         label: this.translate.instant('app.navbar.about'),
         style: this.menubarLabelStyle,
-        routerLink: '/companies'
+        routerLink: '/companies',
       },
       {
         translateToken: 'app.navbar.jobs',
@@ -69,7 +88,11 @@ export class NavBarComponent implements OnInit {
     ];
   }
 
-  constructor(private translate: TranslateService, private localizationService: LocalizationService, private authService: AuthService) {
+  constructor(
+    private translate: TranslateService,
+    private localizationService: LocalizationService,
+    private authService: AuthService
+  ) {
     this.language = this.localizationService.getLanguage();
     this.isLoggedIn = this.authService.isLoggedIn;
   }
@@ -79,10 +102,12 @@ export class NavBarComponent implements OnInit {
     this.localizationService.setLanguage(this.language);
     this.translate.use(this.language);
     document.documentElement.dir = this.language === 'ar' ? 'rtl' : 'ltr';
-    this.items.forEach(item => {
+    this.items.forEach((item) => {
       item.label = this.translate.instant(item['translateToken']);
     });
   }
 
-  logout() {this.authService.logout();}
+  logout() {
+    this.authService.logout();
+  }
 }

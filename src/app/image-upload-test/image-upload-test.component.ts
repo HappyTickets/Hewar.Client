@@ -11,12 +11,12 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatListModule } from '@angular/material/list';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
-
+import { UploadImage2Component } from '../shared/upload-image-2/upload-image-2.component';
 
 @Component({
   selector: 'app-image-upload-test',
   templateUrl: './image-upload-test.component.html',
-  standalone:true,
+  standalone: true,
   imports: [
     MatCardModule,
     MatToolbarModule,
@@ -26,8 +26,9 @@ import { Observable } from 'rxjs';
     MatProgressBarModule,
     MatListModule,
     CommonModule,
+    UploadImage2Component,
   ],
-  styleUrls: ['./image-upload-test.component.scss']
+  styleUrls: ['./image-upload-test.component.scss'],
 })
 export class ImageUploadTestComponent {
   selectedFiles: File[] = [];
@@ -58,7 +59,7 @@ export class ImageUploadTestComponent {
       }
     }
 
-    this.selectedFileNames = this.selectedFiles.map(f => f.name);
+    this.selectedFileNames = this.selectedFiles.map((f) => f.name);
   }
 
   uploadFiles(): void {
@@ -70,34 +71,37 @@ export class ImageUploadTestComponent {
     });
   }
 
-private readonly apiBaseUrl = 'http://188.138.101.4:6852';
+  private readonly apiBaseUrl = 'http://188.138.101.4:6852';
 
-upload(index: number, file: File): void {
-  this.progressInfos[index] = { value: 0, fileName: file.name };
+  upload(index: number, file: File): void {
+    this.progressInfos[index] = { value: 0, fileName: file.name };
 
-  this.uploadService.upload(file).subscribe({
-    next: (event) => {
-      if (event.type === HttpEventType.UploadProgress) {
-        if (event.total) {
-          this.progressInfos[index].value = Math.round(
-            (100 * event.loaded) / event.total
-          );
+    this.uploadService.upload(file).subscribe({
+      next: (event) => {
+        if (event.type === HttpEventType.UploadProgress) {
+          if (event.total) {
+            this.progressInfos[index].value = Math.round(
+              (100 * event.loaded) / event.total
+            );
+          }
+        } else if (event instanceof HttpResponse) {
+          this.message.push(`Uploaded ${file.name} successfully.`);
+
+          if (event.body && event.body.data && event.body.data.url) {
+            this.uploadedFiles.push({
+              url: `${this.apiBaseUrl}${event.body.data.url}`,
+              fileName: file.name,
+            });
+          }
         }
-      } else if (event instanceof HttpResponse) {
-        this.message.push(`Uploaded ${file.name} successfully.`);
-
-        if (event.body && event.body.data && event.body.data.url) {
-          this.uploadedFiles.push({
-            url: `${this.apiBaseUrl}${event.body.data.url}`,
-            fileName: file.name,
-          });
-        }
-      }
-    },
-    error: (err) => {
-      this.progressInfos[index].value = 0;
-      this.message.push(`Could not upload ${file.name}.`);
-    }
-  });
-}
+      },
+      error: (err) => {
+        this.progressInfos[index].value = 0;
+        this.message.push(`Could not upload ${file.name}.`);
+      },
+    });
+  }
+  handleFile(file: File) {
+    console.log('Selected File:', file);
+  }
 }
