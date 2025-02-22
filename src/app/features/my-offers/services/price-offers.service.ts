@@ -4,8 +4,7 @@ import { ICreatePriceOffer } from '../models/icreate-price-offer';
 import { IUpdatePriceOffer } from '../models/iupdate-price-offer';
 import { Observable } from 'rxjs';
 import { IApiResponse } from '../../../shared/models/IApiResponse';
-import { IGetPriceOffersByRequest } from '../models/iprice-offer';
-import { IGetPriceOfferById } from '../models/iget-price-offer-by-id';
+import { IGetPriceOffersByRequest, IPriceOffer } from '../models/iprice-offer';
 
 @Injectable({
   providedIn: 'root',
@@ -35,14 +34,14 @@ export class PriceOffersService {
   cancel(offerId: number):Observable <IApiResponse<null>> {
     return this.http.patch<IApiResponse<null>>(`${this.baseEndPoint}cancel`, {} , {params: { offerId }});
   }
-  getById(offerId: number):Observable <IApiResponse<IGetPriceOfferById>> {
-    return this.http.get<IApiResponse<IGetPriceOfferById>>(`${this.baseEndPoint}getById`,{params: { offerId }});
+  getById(offerId: number):Observable <IApiResponse<IPriceOffer>> {
+    return this.http.get<IApiResponse<IPriceOffer>>(`${this.baseEndPoint}getById`,{params: { offerId }});
   }
-  getMyCompanyOffers(): Observable <IApiResponse<IGetPriceOfferById[]>> {
-    return this.http.get<IApiResponse<IGetPriceOfferById[]>>(`${this.baseEndPoint}getMyCompanyOffers`);
+  getMyCompanyOffers(): Observable <IApiResponse<IPriceOffer[]>> {
+    return this.http.get<IApiResponse<IPriceOffer[]>>(`${this.baseEndPoint}getMyCompanyOffers`);
   }
-  getMyFacilityOffers():Observable<IApiResponse<IGetPriceOfferById[]>> {
-    return this.http.get<IApiResponse<IGetPriceOfferById[]>>(`${this.baseEndPoint}getMyFacilityOffers`);
+  getMyFacilityOffers():Observable<IApiResponse<IPriceOffer[]>> {
+    return this.http.get<IApiResponse<IPriceOffer[]>>(`${this.baseEndPoint}getMyFacilityOffers`);
   }
   getMyCompanyOffersByRequestId(requestId: number):Observable<IApiResponse<IGetPriceOffersByRequest>> {
     return this.http.get<IApiResponse<IGetPriceOffersByRequest>>(`${this.baseEndPoint}getMyCompanyOffersByRequestId`, {params: {requestId}});

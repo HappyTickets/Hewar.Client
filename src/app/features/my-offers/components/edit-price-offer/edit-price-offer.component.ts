@@ -1,11 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import {
-  ReactiveFormsModule,
-  FormBuilder,
-  FormGroup,
-  Validators,
-  FormArray,
-} from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
@@ -22,29 +16,17 @@ import { IPriceRequest } from '../../../price-requests/models/iprice-request';
 import { PriceRequestsService } from '../../../price-requests/services/price-requests.service';
 import { ICreatePriceOffer } from '../../models/icreate-price-offer';
 import { PriceOffersService } from '../../services/price-offers.service';
-import { IGetPriceOfferById } from '../../models/iget-price-offer-by-id';
 import { IUpdatePriceOffer } from '../../models/iupdate-price-offer';
 import { ContractType } from '../../../../shared/enums/contract-type';
 import { DatePickerModule } from 'primeng/datepicker';
 import { InputComponent } from '../../../../shared/components/input/input.component';
 import { CommonModule } from '@angular/common';
+import { IPriceOffer } from '../../models/iprice-offer';
 
 @Component({
   selector: 'app-edit-price-offer',
   standalone: true,
-  imports: [
-    SelectModule,
-    CommonModule,
-    InputNumberModule,
-    TextareaModule,
-    ButtonModule,
-    ReactiveFormsModule,
-    InputTextModule,
-    TranslatePipe,
-    TranslatePipe,
-    DatePickerModule,
-    InputComponent,
-  ],
+  imports: [ SelectModule, CommonModule, InputNumberModule, TextareaModule, ButtonModule, ReactiveFormsModule, InputTextModule, TranslatePipe, TranslatePipe, DatePickerModule, InputComponent ],
   templateUrl: './edit-price-offer.component.html',
   styleUrl: './edit-price-offer.component.scss',
 })
@@ -61,8 +43,8 @@ export class EditPriceOfferComponent implements OnInit {
   shiftType = this.localizationService.createDropdown(ShiftType);
   contractTypes = this.localizationService.createDropdown(ContractType);
 
-  mode: 'create' | 'update' = 'create';
-  priceOfferData: IGetPriceOfferById = {} as IGetPriceOfferById;
+  mode: "create" | "update" = 'create';
+  priceOfferData: IPriceOffer = {} as IPriceOffer;
   priceRequestData: IPriceRequest = {} as IPriceRequest;
   facilityData: IFacility = {} as IFacility;
   editPriceOfferForm: FormGroup;

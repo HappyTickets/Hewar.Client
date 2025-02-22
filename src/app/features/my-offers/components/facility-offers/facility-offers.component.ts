@@ -11,11 +11,11 @@ import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { PriceOffersService } from '../../services/price-offers.service';
-import { IGetPriceOfferById } from '../../models/iget-price-offer-by-id';
 import { TooltipModule } from 'primeng/tooltip';
 import { DeletePopupComponent } from '../../../../shared/components/delete-popup/delete-popup.component';
 import { IPriceOfferService } from '../../models/iprice-offer-service';
 import { IPriceOfferOtherService } from '../../models/iprice-offer-other-service';
+import { IPriceOffer } from '../../models/iprice-offer';
 
 @Component({
   selector: 'app-facility-offers',
@@ -28,7 +28,7 @@ export class FacilityOffersComponent implements OnInit {
   private priceOffersService = inject(PriceOffersService);
   private toastr = inject(ToastrService);
   private router = inject(Router);
-  priceOffers: IGetPriceOfferById[] = [];
+  priceOffers: IPriceOffer[] = [];
   searchTerm = '';
 
   currentId = 0;
@@ -81,7 +81,7 @@ export class FacilityOffersComponent implements OnInit {
     this.showHidePopUp = false;
     this.priceOffersService.hide(this.currentId).subscribe(()=>{this.getPrices();})
   }
-  toggleActions(service: IGetPriceOfferById) {
+  toggleActions(service: IPriceOffer) {
     service.showActions = !service.showActions;
   }
 }

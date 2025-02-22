@@ -16,8 +16,8 @@ import { ICompanyService } from '../../../companies/models/i-company-service';
 import { CompanyUtilitiesService } from '../../../companies/services/company-utilities.service';
 import { IFacility } from '../../../price-requests/models/ifacility';
 import { IPriceRequest } from '../../../price-requests/models/iprice-request';
-import { IGetPriceOfferById } from '../../models/iget-price-offer-by-id';
 import { PriceOffersService } from '../../services/price-offers.service';
+import { IPriceOffer } from '../../models/iprice-offer';
 
 @Component({
   selector: 'app-price-offer-details',
@@ -37,7 +37,7 @@ export class PriceOfferDetailsComponent implements OnInit {
   shiftType = this.localizationService.createDropdown(ShiftType);
   contractTypes = this.localizationService.createDropdown(ContractType);
 
-  priceOfferData: IGetPriceOfferById = {} as IGetPriceOfferById;
+  priceOfferData: IPriceOffer = {} as IPriceOffer;
   priceRequestData: IPriceRequest = {} as IPriceRequest;
   facilityData: IFacility = {} as IFacility;
   createPriceOfferForm: FormGroup;

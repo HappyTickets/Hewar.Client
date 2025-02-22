@@ -10,11 +10,11 @@ import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
-import { IGetPriceOfferById } from '../../models/iget-price-offer-by-id';
 import { TooltipModule } from 'primeng/tooltip';
 import { DeletePopupComponent } from '../../../../shared/components/delete-popup/delete-popup.component';
 import { IPriceOfferService } from '../../models/iprice-offer-service';
 import { IPriceOfferOtherService } from '../../models/iprice-offer-other-service';
+import { IPriceOffer } from '../../models/iprice-offer';
 
 @Component({
   selector: 'app-company-offers',
@@ -26,7 +26,7 @@ import { IPriceOfferOtherService } from '../../models/iprice-offer-other-service
 export class CompanyOffersComponent implements OnInit {
   private priceOffersService = inject(PriceOffersService);
   private toastr = inject(ToastrService);
-  priceOffers: IGetPriceOfferById[] = [];
+  priceOffers: IPriceOffer[] = [];
   searchTerm = '';
   currentId = 0;
   showCancelPopUp = false;
@@ -74,7 +74,7 @@ export class CompanyOffersComponent implements OnInit {
     this.priceOffersService.hide(this.currentId).subscribe(()=>{this.getPrices();})
   }
 
-  toggleActions(service: IGetPriceOfferById) {
+  toggleActions(service: IPriceOffer) {
     service.showActions = !service.showActions;
   }
 }

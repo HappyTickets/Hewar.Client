@@ -1,10 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { InputComponent } from '../../../../shared/components/input/input.component';
@@ -14,26 +9,23 @@ import { CommonModule } from '@angular/common';
 import { catchError, EMPTY, tap } from 'rxjs';
 import { ContractService } from '../../services/contract.service';
 import { IContractFields } from '../../models/icontract-fields';
+import { IPriceOffer } from '../../../my-offers/models/iprice-offer';
+import { PriceOffersService } from '../../../my-offers/services/price-offers.service';
 
 @Component({
   selector: 'app-contract-form',
   standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    CardModule,
-    ButtonModule,
-    InputComponent,
-    TranslatePipe,
-    CommonModule,
-  ],
+  imports: [ ReactiveFormsModule, CardModule, ButtonModule, InputComponent, TranslatePipe, CommonModule ],
   templateUrl: './contract-form.component.html',
   styleUrl: './contract-form.component.scss',
 })
 export class ContractFormComponent implements OnInit {
   private contractService = inject(ContractService);
+  private priceOffersService = inject(PriceOffersService);
   private route = inject(ActivatedRoute);
   private fb = inject(FormBuilder);
   private router = inject(Router);
+  priceOffer:IPriceOffer = {} as IPriceOffer;
   date = new Date(Date.now());
   mode: 'create' | 'update' = 'create';
   contractForm!: FormGroup;
@@ -43,23 +35,24 @@ export class ContractFormComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.offerId = +(params.get('id') ?? 0);
-      this.contractService
-        .GetContractFieldsByOfferId(this.offerId)
-        .pipe(
-          tap((res) => {
-            if (res.data) {
-              if (res.data.contractId) this.contractId = res.data.contractId;
-              this.mode = 'update';
-              this.assignValues(res.data);
-            }
-          }),
-          catchError(() => {
-            this.mode = 'create';
-            return EMPTY;
+      this.contractService.GetContractFieldsByOfferId(this.offerId).pipe(
+        tap((res) => {
+          if (res.data) {
+            if (res.data.contractId) this.contractId = res.data.contractId;
+            this.mode = 'update';
+          }
+        }),
+        catchError(() => {
+          this.priceOffersService.getById(this.offerId).subscribe(res=> {
+            if (res.data) this.priceOffer = res.data;
+            this.assignCreateValues();
           })
-        )
-        .subscribe();
+          this.mode = 'create';
+          return EMPTY;
+        })
+      ).subscribe();
     });
+
   }
   constructor() {
     this.contractForm = this.fb.group({
@@ -128,5 +121,17 @@ export class ContractFormComponent implements OnInit {
   }
   assignValues(res: IContractFields) {
     this.contractForm.patchValue(res.contractFields);
+  }
+  assignCreateValues() {
+    this.contractForm.patchValue({
+      companyNameAr: this.priceOffer.comapny?.name,
+      companyMainOfficeCityAr: this.priceOffer.comapny?.address.city,
+      companyTelephone: this.priceOffer.comapny?.phoneNumber,
+      companyAddressPostalCode: this.priceOffer.comapny?.address.postalCode,
+      companyEmail: this.priceOffer.comapny?.contactEmail,
+      facilityNameAr: this.priceOffer.facility?.name,
+      facilityMobile: this.priceOffer.facility?.responsiblePhone,
+      facilityRepresentativeNameAr: this.priceOffer.facility?.responsibleName,
+    })
   }
 }
