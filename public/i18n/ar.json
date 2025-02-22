@@ -106,13 +106,16 @@
       "activityTypePLaceHolder": " ادخل نوع النشاط",
       "type": "نوع المنشأة",
       "typeErr": " نوع المنشأة مطلوب",
+      "typeError": "نوع المنشأة مطلوب",
+      "activityTypeError": "   نوع النشاط مطلوب ",
+
       "typePlaceholder": " ادخل نوع المنشأة",
       "responsibleNamePlaceholder": "ادخل اسم المسئول",
       "responsibleName": "اسم المسئول",
       "responsibleNameErr": " اسم المسئول مطلوب",
-      "responsiblePhonePlaceholder": "ادخل رقم الهاتف المس��ول",
-      "responsiblePhoneError": "رقم الهاتف المس��ول مطلوب",
-      "responsibleEmailPlaceholder": "ادخل البريد الالكتروني المس��ول",
+      "responsiblePhonePlaceholder": "ادخل رقم الهاتف المسئول",
+      "responsiblePhoneError": "رقم الهاتف المسئول مطلوب",
+      "responsibleEmailPlaceholder": "ادخل البريد الالكتروني المسئول",
 
       "admin-data-title": "بيانات الادمن",
       "address-data-title": "العنوان بالتفصيل",
@@ -138,8 +141,10 @@
       "passwordPlaceholder": "ادخل كلمه السر",
       "passwordError": "كلمه السر مطلوب",
       "confirmPassword": "تاكيد كلمه السر",
+      "passwordInvalidError": "يجب ان تحتوى على حروف كبيرة حروف خاصة ($او $..# *&)",
       "confirmPasswordPlaceholder": "ادخل تاكيد كلمه السر",
       "confirmPasswordError": "تاكيد كلمه السر مطلوبة",
+      "short": "كلمة السر قصيرة",
       "confirmPasswordError-2": "تاكيد كلمه السر ليست متوافقة مع كلمة السر",
       "firstName": "الاسم الاول",
       "firstNamePlaceholder": "ادخل الاسم الاول",
@@ -151,6 +156,8 @@
       "phonePlaceholder": "ادخل الهاتف المحمول",
       "phoneError": "الهاتف المحمول مطلوب",
       "street": "الشارع",
+
+      "emailInvalidError": "الايميل غير صالح",
       "streetPlaceholder": "ادخل الشارع",
       "streetError": "الشارع مطلوب",
       "city": "المدينة",
@@ -189,6 +196,12 @@
       "descriptionPlaceholder": "الوصف",
       "lenght": "يجب أن يكون الوصف على الأقل 10 أحرف",
       "name": "الاسم مطلوب"
+    },
+    "image-upload": {
+      "drag": "اسحب الصورة وأفلتها هنا أو انقر لتحديدها",
+      "morethan-2": "حجم الصورة اكبر من 2 ميجا",
+      "filetype": "فقط يمكن استخدام الصور",
+      "remove": "إزالة"
     },
     "validation": {
       "required": "هذا الحقل مطلوب",

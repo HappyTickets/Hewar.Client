@@ -14,7 +14,7 @@
             <app-input
               [formGroup]="facilityForm"
               [placeholder]="input.placeholder"
-              [errorKey]="input.errorKey"
+              [errorKey]="getErrorKeyForFacility(input.controlName)"
               [controlName]="input.controlName"
               [icon]="input.icon"
               [type]="input.type"
@@ -23,20 +23,10 @@
             </app-input>
           </div>
           }
-          <div class="group">
-            <div class="image-upload">
-              <label for="">{{
-                "app.facilities.upload-logo" | translate
-              }}</label>
-              <i class="pi pi-cloud-upload"></i>
-              <app-image-uploader
-                (fileSizeError)="handleFileSizeError($event)"
-                (imageName)="handleLogoName($event)"
-              ></app-image-uploader>
-              <div *ngIf="fileUploadError" class="error-message">
-                {{ fileUploadError }}
-              </div>
-            </div>
+          <div class="group image-upload">
+            <app-upload-image-2
+              (fileSelected)="onFileSelectlogo($event)"
+            ></app-upload-image-2>
           </div>
         </div>
         <input type="text" formControlName="logo" hidden />
@@ -53,7 +43,7 @@
                 #ad
                 [formGroup]="addressGroup"
                 [placeholder]="input.placeholder"
-                [errorKey]="getErrorKey(input.controlName)"
+                [errorKey]="getErrorKeyForAddress(input.controlName)"
                 [controlName]="input.controlName"
                 [icon]="input.icon"
                 [type]="input.type"
@@ -77,7 +67,7 @@
               <app-input
                 [formGroup]="adminInfo"
                 [placeholder]="input.placeholder"
-                [errorKey]="input.errorKey"
+                [errorKey]="getErrorKeyForAdmin(input.controlName)"
                 [controlName]="input.controlName"
                 [icon]="input.icon"
                 [type]="input.type"
@@ -85,7 +75,7 @@
               >
               </app-input>
               @if(input.controlName === 'confirmPassword' &&
-              facilityForm.get('adminInfo')?.hasError('mismatch')){
+              facilityForm.get('adminInfo')?.hasError('passwordMismatch')){
               <p-message
                 severity="error"
                 [text]="'app.' + input.errorKey | translate"
@@ -93,20 +83,10 @@
               }
             </div>
             }
-            <div class="group">
-              <div class="image-upload">
-                <label for="">{{
-                  "app.facilities.upload-image" | translate
-                }}</label>
-                <i class="pi pi-cloud-upload"></i>
-                <app-image-uploader
-                  (fileSizeError)="handleFileSizeError($event)"
-                  (imageName)="handelimagenam($event)"
-                ></app-image-uploader>
-                <div *ngIf="fileUploadError" class="error-message">
-                  {{ fileUploadError }}
-                </div>
-              </div>
+            <div class="group image-upload">
+              <app-upload-image-2
+                (fileSelected)="onFileSelectedImage($event)"
+              ></app-upload-image-2>
             </div>
           </ng-container>
         </div>
@@ -128,3 +108,17 @@
     </form>
   </div>
 </div>
+
+<!-- <div class="image-upload">
+  <label for="">{{
+    "app.facilities.upload-image" | translate
+  }}</label>
+  <i class="pi pi-cloud-upload"></i>
+  <app-image-uploader
+    (fileSizeError)="handleFileSizeError($event)"
+    (imageName)="handelimagenam($event)"
+  ></app-image-uploader>
+  <div *ngIf="fileUploadError" class="error-message">
+    {{ fileUploadError }}
+  </div>
+</div> -->

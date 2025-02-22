@@ -69,17 +69,17 @@ export class FacilitiesService {
       .pipe(catchError((error) => this.handleError(error)));
   }
   private handleError(error: any): Observable<never> {
-    let errorMessage = 'An unknown error occurred.';
-    if (error.status === 401) {
-      errorMessage = 'Unauthorized: Please log in and try again.';
-    } else if (error.status === 500) {
-      errorMessage = 'Internal server error, please try again later.';
-    } else if (error.status === 400) {
-      console.log(
-        error.error.message + '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<????'
-      );
-      errorMessage = error.error.errorCode;
+    console.error('API Error:', error); // Debugging log
+
+    // Check if the error has a response body
+    if (error.error) {
+      return throwError(() => error.error); // Return full API response
     }
-    return throwError(() => new Error(errorMessage));
+
+    return throwError(() => ({
+      status: error.status || 500,
+      isSuccess: false,
+      errorCode: 'UNKNOWN_ERROR',
+    }));
   }
 }
