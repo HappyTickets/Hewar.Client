@@ -39,6 +39,7 @@ import { ContractPreviewComponent } from './features/contracts/components/contra
 import { ImageUploadTestComponent } from './image-upload-test/image-upload-test.component';
 
 import { NotificationTestComponent } from './notification-test/compenent/notification-test.component';
+import { UploadImage2Component } from './shared/upload-image-2/upload-image-2.component';
 
 export const routes: Route[] = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -98,6 +99,7 @@ export const routes: Route[] = [
   { path: 'upload-test', component: ImageUploadTestComponent },
   // { path: 'Notifications-test', component: NotificationTestComponent },
   { path: 'Notifications-test', component: NotificationTestComponent },
+  { path: 'testimage', component: UploadImage2Component },
 
   // Security Certificate
   { path: 'security-certificate', component: SecurityCertificateComponent },

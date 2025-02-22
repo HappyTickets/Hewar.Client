@@ -1,0 +1,33 @@
+<div
+  class="upload-container"
+  (drop)="onDrop($event)"
+  (dragover)="preventDefault($event)"
+  (dragenter)="preventDefault($event)"
+>
+  <label [for]="'fileInput-' + uniqueId" class="upload-box">
+    <ng-container *ngIf="!imagePreview; else previewTemplate">
+      <mat-icon>cloud_upload</mat-icon>
+      <p>{{ "app.image-upload.drag" | translate }}</p>
+    </ng-container>
+  </label>
+  <input
+    [id]="'fileInput-' + uniqueId"
+    type="file"
+    (change)="onFileSelected($event)"
+    hidden
+  />
+</div>
+<p-message
+  *ngIf="errorMessage"
+  severity="error"
+  text="{{ errorMessage | translate }}"
+></p-message>
+
+<ng-template #previewTemplate>
+  <div class="preview-container">
+    <img [src]="imagePreview" class="preview-image" />
+    <button type="button" mat-button color="warn" (click)="removeFile()">
+      {{ "app.image-upload.remove" | translate }}
+    </button>
+  </div>
+</ng-template>
