@@ -107,6 +107,7 @@ export const routes: Route[] = [
   // Hewar Services
   { path: 'get-all-hewar-services', component: ServicessListComponent },
   { path: 'creat-hewar-service', component: CreateServicesComponent },
+  { path: 'creat-hewar-service', component: CreateServicesComponent },
   { path: 'update-hewar-service/:id', component: UpdateServicesComponent },
 
   //Companies services
