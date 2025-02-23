@@ -37,8 +37,8 @@
             <button [routerLink]="'/companies/create-price-request/' + company.id" class="details">{{'app.companies.companies-list.actions.request-quote' | translate}}</button>
             <button class="delete" role="button" (click)="openDeletePopup(company)"> {{'app.companies.companies-list.actions.delete' | translate}} </button>
             <div class="card delete-container flex justify-center" *ngIf="showDeletePopup">
-              @if (currentCompany) {
-                <app-delete-popup [visible]="showDeletePopup" [itemName]="currentCompany?.name" (confirmDelete)="deleteFacility()" (closePopup)="showDeletePopup = false"> </app-delete-popup>
+              @if (currentCompany.name) {
+                <app-delete-popup [visible]="showDeletePopup" [itemName]="currentCompany.name" (confirmDelete)="deleteFacility()" (closePopup)="showDeletePopup = false"> </app-delete-popup>
               }
             </div>
           </div>

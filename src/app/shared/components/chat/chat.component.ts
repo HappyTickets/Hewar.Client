@@ -59,33 +59,33 @@ export class ChatComponent implements OnInit, OnChanges {
 
   sendMessage() {
     const newMessage = this.chatForm.value.message?.trim();
-    // If a file is selected, upload it first
+    console.log(this.selectedFile)
     if (this.selectedFile) {
       this._chatService.uploadFile(this.selectedFile).subscribe({
         next: (fileUrl) => {
-          // Send message with file URL
+          console.log(fileUrl)
           this.sendChatMessage(newMessage, fileUrl);
         },
         error: (err) => {
-          console.error('File upload error:',
-            err);
+          console.error('File upload error:', err);
         }
       });
     } else {
-      // No file, send message directly
       this.sendChatMessage(newMessage, '');
     }
   }
 
   sendChatMessage(content?: string, fileUrl?: string) {
+    console.log(content)
+    console.log(fileUrl)
     const data : ISendMessage = {
       content: content || '',
       medias: [],
       chatId: this.currentPriceReq.chatId ?? null,
     };
-    console.log(data)
-    console.log(this.selectedFile)
-    console.log(fileUrl)
+    // console.log(data)
+    // console.log(this.selectedFile)
+    // console.log(fileUrl)
 
     if (fileUrl) {
       data.medias.push({
@@ -93,9 +93,9 @@ export class ChatComponent implements OnInit, OnChanges {
         url: fileUrl
       });
     }
-    console.log(data)
-    console.log(this.selectedFile)
-    console.log(fileUrl)
+    // console.log(data)
+    // console.log(this.selectedFile)
+    // console.log(fileUrl)
 
     this._chatService.sendMessage(data).subscribe({
       next: () => {
