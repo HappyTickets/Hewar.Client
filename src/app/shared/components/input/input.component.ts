@@ -38,6 +38,7 @@ export class InputComponent {
   @Input() options: { name: string, code: number }[] = [];
   showPassword = false;
 
+
   get formControl(): FormControl {
     return this.formGroup.get(this.controlName) as FormControl;
   }
@@ -48,5 +49,4 @@ export class InputComponent {
   togglePassword() {
     this.showPassword = !this.showPassword;
   }
-
 }
