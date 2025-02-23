@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { IPriceOfferService } from '../../../my-offers/models/iprice-offer-service';
-import { IPriceOfferOtherService } from '../../../my-offers/models/iprice-offer-other-service';
+import { IPriceOfferService } from '../../../price-offers/models/iprice-offer-service';
+import { IPriceOfferOtherService } from '../../../price-offers/models/iprice-offer-other-service';
 import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';

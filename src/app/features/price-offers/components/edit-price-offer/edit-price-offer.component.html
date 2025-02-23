@@ -1,7 +1,7 @@
 <form class="container" [formGroup]="editPriceOfferForm">
-  <div class="header">
-    <img *ngIf="facilityData.id" class="logo" [src]="facilityData.logo" alt="Security Logo"/>
-    <div *ngIf="facilityData.id">
+  <div class="header" *ngIf="facilityData.id">
+    <img class="logo" [src]="facilityData.logo" alt="Security Logo"/>
+    <div>
       <h2>{{ facilityData.name }}</h2>
       <p>{{ facilityData.responsibleName }}</p>
     </div>
@@ -50,7 +50,7 @@
     <div formArrayName="otherServices">
       <div *ngFor="let service of otherServices.controls; let i = index" [formGroupName]="i" class="service-item">
         <div class="service-inputs">
-          <p-button icon="pi pi-trash" (click)="removeOtherService(i)" [disabled]="i === 0 && editPriceOfferForm.value.otherServices.length <= 1"></p-button>
+          <p-button icon="pi pi-trash" (click)="removeOtherService(i)"></p-button>
           <div class="input-row grid">
             <div class="flex flex-column gap-1 lg:col-2 col-12">
               <label *ngIf="i===0" for="otherServiceName-{{i}}">{{ 'app.price-offer.create-price-offer.serviceName' | translate }}</label>

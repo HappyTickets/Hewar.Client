@@ -1,5 +1,5 @@
-import { IPriceOfferOtherService } from '../../my-offers/models/iprice-offer-other-service';
-import { IPriceOfferService } from '../../my-offers/models/iprice-offer-service';
+import { IPriceOfferOtherService } from '../../price-offers/models/iprice-offer-other-service';
+import { IPriceOfferService } from '../../price-offers/models/iprice-offer-service';
 import { IClause } from './iclause';
 import { IContractKey } from './icontract-key';
 import { IScheduleEntry } from './ischedule-entry';

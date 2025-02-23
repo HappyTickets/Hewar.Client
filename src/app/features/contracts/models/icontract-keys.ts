@@ -1,6 +1,6 @@
 import { IContractKey } from "./icontract-key";
 
-export interface IContract {
+export interface IContractKeys {
   contractId: number;
   contractKeys: IContractKey[];
 }

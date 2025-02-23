@@ -3,7 +3,6 @@
     <img class="logo" [src]="companyData.logo" alt="Security Logo"/>
     @if (companyData.id) {<div><h2>{{ companyData.name }}</h2><p>{{ companyData.contactEmail }}</p></div>}
   </div>
-
   <div class="content">
     <h2>{{ 'app.price-request.edit-price-request.header' | translate }}</h2>
     <div class="grid">
@@ -11,7 +10,6 @@
       <app-input class="col-12 md:col-4" placeholder="price-request.edit-price-request.endContract" label="price-request.edit-price-request.endContract" [formGroup]="editPriceRequestForm" controlName="endDate" type="date" [minDate]="editPriceRequestForm.get('startDate')?.value || date"></app-input>
       <app-input class="col-12 md:col-4" placeholder="price-request.edit-price-request.contractType" label="price-request.edit-price-request.contractType" [formGroup]="editPriceRequestForm" [options]="contractTypes" errorKey="price-request.edit-price-request.invaliContractType" controlName="contractType" icon="pi-map" type="dropdown"></app-input>
     </div>
-
     <h2>{{ 'app.price-request.edit-price-request.services' | translate }}</h2>
     <div formArrayName="services">
       @for (service of services.controls; track service; let i = $index) {
@@ -20,21 +18,15 @@
             <p-button icon="pi pi-trash" (click)="removeService(i)" [disabled]="i === 0 && editPriceRequestForm.value.services.length <= 1"></p-button>
             <div class="input-row grid">
               <div class="flex flex-column gap-1 md:col-4 col-12">
-                @if (i === 0) {
-                  <label for="serviceId-{{i}}">{{ 'app.price-request.edit-price-request.chooseService' | translate }}</label>
-                }
+                <label *ngIf="i===0" for="serviceId-{{i}}">{{ 'app.price-request.edit-price-request.chooseService' | translate }}</label>
                 <p-select [options]="companyServices" formControlName="serviceId" [placeholder]="'app.price-request.edit-price-request.chooseService' | translate" optionLabel="name" optionValue="id"></p-select>
               </div>
               <div class="flex flex-column gap-1 md:col-4 col-12">
-                @if (i === 0) {
-                  <label for="shiftType-{{i}}">{{ 'app.price-request.edit-price-request.shiftType' | translate }}</label>
-                }
+                <label *ngIf="i===0" for="shiftType-{{i}}">{{ 'app.price-request.edit-price-request.shiftType' | translate }}</label>
                 <p-select [options]="shiftType" formControlName="shiftType" [placeholder]="'app.price-request.edit-price-request.shiftType' | translate" optionLabel="name" optionValue="code"></p-select>
               </div>
               <div class="flex flex-column gap-1 md:col-4 col-12">
-                @if (i === 0) {
-                  <label for="quantity-{{i}}">{{ 'app.price-request.edit-price-request.quantity' | translate }}</label>
-                }
+                <label *ngIf="i===0" for="quantity-{{i}}">{{ 'app.price-request.edit-price-request.quantity' | translate }}</label>
                 <p-inputNumber fluid="true" [showButtons]="true" [min]="0" formControlName="quantity" [placeholder]="'app.price-request.edit-price-request.quantity' | translate" ></p-inputNumber>
               </div>
             </div>
@@ -45,8 +37,6 @@
         }
       }
     </div>
-
-    <!-- Other Services Section -->
     <h2>{{ 'app.price-request.edit-price-request.otherDetails' | translate }}</h2>
     <div formArrayName="otherServices" class="services">
       @for (service of otherServices.controls; track service; let i = $index) {
@@ -55,21 +45,15 @@
             <p-button icon="pi pi-trash" (click)="removeOtherService(i)"></p-button>
             <div class="input-row grid">
               <div class="input-group col-12 md:col-4">
-                @if (i === 0) {
-                  <label for="otherServiceName-{{i}}">{{ 'app.price-request.edit-price-request.serviceName' | translate }}</label>
-                }
+                <label *ngIf="i===0" for="otherServiceName-{{i}}">{{ 'app.price-request.edit-price-request.serviceName' | translate }}</label>
                 <input pInputText formControlName="name" [placeholder]="'app.price-request.edit-price-request.serviceName' | translate"/>
               </div>
               <div class="input-group col-12 md:col-4">
-                @if (i === 0) {
-                  <label for="otherShiftType-{{i}}">{{ 'app.price-request.edit-price-request.shiftType' | translate }}</label>
-                }
+                <label *ngIf="i===0" for="otherShiftType-{{i}}">{{ 'app.price-request.edit-price-request.shiftType' | translate }}</label>
                 <p-select [options]="shiftType" formControlName="shiftType" [placeholder]="'app.price-request.edit-price-request.shiftType' | translate" optionLabel="name" optionValue="code"></p-select>
               </div>
               <div class="input-group col-12 md:col-4">
-                @if (i === 0) {
-                  <label for="otherQuantity-{{i}}">{{ 'app.price-request.edit-price-request.quantity' | translate }}</label>
-                }
+                <label *ngIf="i===0" for="otherQuantity-{{i}}">{{ 'app.price-request.edit-price-request.quantity' | translate }}</label>
                 <p-inputNumber fluid="true" [showButtons]="true" formControlName="quantity" [min]="1" [placeholder]="'app.price-request.edit-price-request.quantity' | translate"></p-inputNumber>
               </div>
             </div>

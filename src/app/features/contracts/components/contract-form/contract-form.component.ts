@@ -44,8 +44,7 @@ export class ContractFormComponent implements OnInit {
             this.mode = 'create';
             return EMPTY;
           })
-        )
-        .subscribe();
+        ).subscribe();
     });
   }
   constructor() {
