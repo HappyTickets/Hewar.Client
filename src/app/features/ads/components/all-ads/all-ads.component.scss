@@ -8,7 +8,8 @@ h2 {
 }
 
 .smooth-buttons.visible {
-  opacity: 1;
+  opacity: 1 ;
   transform: translateX(0);
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
+

@@ -81,6 +81,7 @@
               [disabled]="ad.status !== 1"
               tooltipPosition="top"
             ></p-button>
+
             <p-button
               class="m-1"
               icon="pi pi-comments"
@@ -88,8 +89,23 @@
               tooltipPosition="top"
               [disabled]="ad.status !== 1"
             ></p-button>
+            <p-button
+              class="m-1"
+              icon="pi pi-times"
+              (click)="deleteAd(ad.id)"
+              pTooltip="{{ 'allAds.allMyAds.delete' | translate }}"
+              tooltipPosition="top"
+            ></p-button>
+
             }
           </div>
+          <app-delete-popup
+            [visible]="visible"
+            icon="pi pi-times"
+            (closePopup)="onCancelDelete()"
+            (confirmDelete)="onConfirmDelete()"
+            type="delete"
+          ></app-delete-popup>
         </td>
       </tr>
     </ng-template>

@@ -73,13 +73,12 @@ export class AdsComponent implements OnInit {
   constructor() {
     this.createAdForm = this.fb.group({
       title: ['', Validators.required],
-      description: ['', Validators.required],
       contractType: ['', Validators.required],
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
       status: [''],
       services: this.fb.array([this.createServiceGroup()]),
-      // otherServices: this.fb.array([this.createOtherServiceGroup()]),
+      otherServices: this.fb.array([this.createOtherServiceGroup()]),
     });
   }
 
@@ -116,7 +115,6 @@ export class AdsComponent implements OnInit {
       this.createAdForm.patchValue({
         id: this.adData.id,
         title: this.adData.title,
-        // description: this.adData.description,
         contractType: this.adData.contractType,
         status: this.adData.status,
         startDate: this.adData.startDate
@@ -136,6 +134,19 @@ export class AdsComponent implements OnInit {
           })
         );
       });
+
+      this.otherServices.clear();
+
+      this.adData.otherServices.forEach((otherService)=> {
+        this.otherServices.push(
+          this.fb.group({
+            name: [otherService.name],
+            quantity: [otherService.quantity],
+            shiftType: [otherService.shiftType]
+          })
+          
+        )
+      })
     });
   }
 
@@ -165,23 +176,23 @@ export class AdsComponent implements OnInit {
     if (this.createAdForm.valid) {
       const adData: ICreateAd = {
         title: this.createAdForm.value.title,
-        description: this.createAdForm.value.description,
         startDate: this.createAdForm.value.startDate,
         endDate: this.createAdForm.value.endDate,
         contractType: this.createAdForm.value.contractType,
         services: this.createAdForm.value.services,
+        otherServices: this.createAdForm.value.otherServices
       };
 
       if (this.isEditMode && this.id) {
         const updateAdData: IUpdateAd = {
           id: this.id,
           title: this.createAdForm.value.title,
-          description: this.createAdForm.value.description,
           startDate: this.createAdForm.value.startDate,
           endDate: this.createAdForm.value.endDate,
           contractType: this.createAdForm.value.contractType,
           services: this.createAdForm.value.services,
           status: this.createAdForm.value.status,
+          otherServices: this.createAdForm.value.otherServices
         };
         this.adsService.updateAd(updateAdData).subscribe({
           next: (res) => {
@@ -205,25 +216,25 @@ export class AdsComponent implements OnInit {
       }
     }
   }
-  // createOtherServiceGroup(): FormGroup {
-  //   return this.fb.group({
-  //     name: [''],
-  //     quantity: [null, [Validators.required]],
-  //     shiftType: ['', [Validators.required]],
-  //   });
-  // }
-  // get otherServices() {
-  //   return this.createAdForm.get('otherServices') as FormArray;
-  // }
+  createOtherServiceGroup(): FormGroup {
+    return this.fb.group({
+      name: [''],
+      quantity: [null, [Validators.required]],
+      shiftType: ['', [Validators.required]],
+    });
+  }
+  get otherServices() {
+    return this.createAdForm.get('otherServices') as FormArray;
+  }
 
-  // addOtherService(): void {
-  //   this.otherServices.push(this.createOtherServiceGroup());
-  // }
-  // removeOtherService(index: number): void {
-  //   if (this.otherServices.length > 0) {
-  //     this.otherServices.removeAt(index);
-  //   }
-  // }
+  addOtherService(): void {
+    this.otherServices.push(this.createOtherServiceGroup());
+  }
+  removeOtherService(index: number): void {
+    if (this.otherServices.length > 0) {
+      this.otherServices.removeAt(index);
+    }
+  }
 
   onCancel(): void {
     this.router.navigate(['/home']);

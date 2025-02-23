@@ -25,31 +25,6 @@
         ></p-message>
       </div>
 
-      <!-- Description Section -->
-
-      <h2 *ngIf="!isDetailsMode">
-        {{ "ads.create-ad.description" | translate }}
-      </h2>
-
-      <div class="input-group col-12">
-        <textarea
-          pInputTextarea
-          formControlName="description"
-          name="description"
-          [placeholder]="'ads.create-ad.description' | translate"
-          *ngIf="!isDetailsMode"
-        ></textarea>
-
-        <p-message
-          *ngIf="
-            createAdForm.get('description')?.hasError('required') &&
-            createAdForm.get('description')?.touched
-          "
-          severity="error"
-          [text]="'ads.create-ad.descriptionError' | translate"
-        ></p-message>
-      </div>
-
       <!-- Price Request Section -->
 
       <h2>{{ "ads.create-ad.OrderPriceRequest" | translate }}</h2>
@@ -222,15 +197,19 @@
         }
       </div>
 
-      <!-- Other Services Section -->
+      <!-- Other Services Section  -->
 
-      <!-- <h2>{{ "ads.create-ad.otherDetails" | translate }}</h2>
+      <h2>{{ "ads.create-ad.otherDetails" | translate }}</h2>
       <div formArrayName="otherServices">
         @for (service of otherServices.controls; track service; let i = $index)
         {
         <div [formGroupName]="i" class="service-item">
           @if (i === createAdForm.value.otherServices.length - 1) {
-          <p-button icon="pi pi-plus" (click)="addOtherService()"></p-button>
+          <p-button
+            *ngIf="!isDetailsMode"
+            icon="pi pi-plus"
+            (click)="addOtherService()"
+          ></p-button>
           }
           <div class="input-row">
             <input
@@ -238,42 +217,61 @@
               formControlName="name"
               name="name"
               [placeholder]="'ads.create-ad.serviceName' | translate"
+              [readonly]="isDetailsMode"
+              [class.readonly-field]="isDetailsMode"
             />
             <p-message
-            *ngIf="createAdForm.get('name')?.hasError('required') && createAdForm.get('name')?.touched"
+              *ngIf="
+                createAdForm.get('name')?.hasError('required') &&
+                createAdForm.get('name')?.touched
+              "
               severity="error"
-              [text]="'ads.create-ad.serviceNameError' | translate" />
+              [text]="'ads.create-ad.serviceNameError' | translate"
+            />
             <p-inputNumber
               [showButtons]="true"
               formControlName="quantity"
               name="quantity"
               [min]="1"
               [placeholder]="'ads.create-ad.quantity' | translate"
+              [readonly]="isDetailsMode"
+              [class.readonly-field]="isDetailsMode"
             ></p-inputNumber>
             <p-message
-            *ngIf="createAdForm.get('quantity')?.hasError('required') && createAdForm.get('quantity')?.touched"
+              *ngIf="
+                createAdForm.get('quantity')?.hasError('required') &&
+                createAdForm.get('quantity')?.touched
+              "
               severity="error"
-              [text]="'ads.create-ad.quantityError' | translate" />
+              [text]="'ads.create-ad.quantityError' | translate"
+            />
             <p-select
               [options]="shiftType"
               formControlName="shiftType"
               name="shiftType"
               [placeholder]="'ads.create-ad.shiftType' | translate"
+              [readonly]="isDetailsMode"
+              [class.readonly-field]="isDetailsMode"
             ></p-select>
 
-            <p-message *ngIf="createAdForm.get('shiftType')?.hasError('required') && createAdForm.get('shiftType')?.touched"
+            <p-message
+              *ngIf="
+                createAdForm.get('shiftType')?.hasError('required') &&
+                createAdForm.get('shiftType')?.touched
+              "
               severity="error"
-              [text]="'ads.create-ad.shiftTypeError' | translate" />
+              [text]="'ads.create-ad.shiftTypeError' | translate"
+            />
           </div>
           <p-button
             icon="pi pi-trash"
             (click)="removeOtherService(i)"
             [disabled]="i === 0 && createAdForm.value.otherServices.length <= 1"
+            *ngIf="!isDetailsMode"
           ></p-button>
         </div>
         }
-      </div> -->
-      <!-- Buttons -->
+      </div>
 
       <div class="button-group">
         <p-button

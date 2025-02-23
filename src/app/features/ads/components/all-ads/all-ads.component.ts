@@ -3,8 +3,6 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { AdsService } from '../../services/ads.service';
-// import { Observable } from 'rxjs';
-// import { IResponse } from '../../../insurance-ads/model/IResponsive';
 import { ICreateAd } from '../../models/icreate-ad';
 import { CommonModule, DatePipe } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -52,8 +50,8 @@ export class AllAdsComponent implements OnInit {
   private router = inject(Router);
   myAds: ICreateAd[] = [];
   search = '';
-
-  // ads$ : Observable<IResponse<ICreateAd[]>> = this.adsService.getMyAds()
+  visible = false;
+  selectedAdId: number | null = null;
 
   ngOnInit(): void {
     this.gitMyAds();
@@ -71,15 +69,29 @@ export class AllAdsComponent implements OnInit {
   }
 
   deleteAd(id: number): void {
-    this.adsService.deleteAd(id).subscribe({
-      next: () => {
-        console.log();
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
+    this.selectedAdId = id;
+    this.visible = true;
   }
+
+  onConfirmDelete(): void {
+    if (this.selectedAdId !== null) {
+      this.adsService.deleteAd(this.selectedAdId).subscribe({
+        next: (res) => {
+          console.log(res);
+          this.gitMyAds();
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
+    }
+    this.visible = false;
+  }
+
+  onCancelDelete(): void {
+    this.visible = false;
+  }
+
   toggleActions(ad: ICreateAd) {
     ad.showActions = !ad.showActions;
   }

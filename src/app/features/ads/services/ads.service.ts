@@ -21,15 +21,21 @@ export class AdsService {
     );
   }
 
-  updateAd(data: IUpdateAd) : Observable<IApiResponse<null>>  {
-    return this.http.put<IApiResponse<null>>(`${this.baseEndPoint}update`, data );
+  updateAd(data: IUpdateAd): Observable<IApiResponse<null>> {
+    return this.http.put<IApiResponse<null>>(
+      `${this.baseEndPoint}update`,
+      data
+    );
   }
 
-  getAdById(id: number) : Observable<IApiResponse<ICreateAd>> {
-    return this.http.get<IApiResponse<ICreateAd>>(`${this.baseEndPoint}getAdById` , {params:{id}})
+  getAdById(id: number): Observable<IApiResponse<ICreateAd>> {
+    return this.http.get<IApiResponse<ICreateAd>>(
+      `${this.baseEndPoint}getAdById`,
+      { params: { id } }
+    );
   }
 
-  getMyAds() : Observable<IApiResponse<ICreateAd[]>> {
+  getMyAds(): Observable<IApiResponse<ICreateAd[]>> {
     return this.http.get<IApiResponse<ICreateAd[]>>(
       `${this.baseEndPoint}getMyAds`
     );
@@ -42,12 +48,13 @@ export class AdsService {
   }
 
   deleteAd(id: number) {
-    return this.http.delete<IApiResponse<unknown>>(`${this.baseEndPoint}/${id}`);
+    return this.http.delete<IApiResponse<ICreateAd>>(
+      `${this.baseEndPoint}delete`,
+      { params: { id } }
+    );
   }
 
   getHewarServices(): Observable<IApiResponse<IAdService[]>> {
-    return this.http
-      .get<IApiResponse<IAdService[]>>(this.HewarServiceEndPoint)
-
+    return this.http.get<IApiResponse<IAdService[]>>(this.HewarServiceEndPoint);
   }
 }
