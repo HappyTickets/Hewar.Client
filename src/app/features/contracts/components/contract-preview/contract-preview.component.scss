@@ -15,20 +15,17 @@
     text-align: center;
     font-size: 2.5vw;
     font-weight: bold;
-    color: #000;
     margin-bottom: 2vw;
   }
   h3 {
     font-size: 1.8vw;
     font-weight: bold;
-    color: #000;
     margin-top: 2vw;
     margin-bottom: 0;
   }
   p {
     font-size: 1.5vw;
     line-height: 2.4vw;
-    color: #222;
     margin-bottom: 1.5vw;
     margin-top: 0;
     text-align: justify;
@@ -175,7 +172,6 @@
     page-break-after: auto;
   }
   ::ng-deep .placeholder-key {
-    color: #000000 !important;
     font-size: 10pt !important;
     font-weight: normal !important;
   }

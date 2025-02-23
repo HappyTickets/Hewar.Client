@@ -14,7 +14,6 @@
       "search-here": "search here...",
       "search": "search",
       "facility-list": "Facility List",
-
       "title": "Facility",
       "Address": "Adress  ",
       "city": "city",
@@ -139,7 +138,6 @@
       "save": "Save",
       "cancel": "Cancel"
     },
-
     "image-upload": {
       "drag": "Drag and drop an image here or click to select",
       "morethan-2": "File size should not exceed 2MB",
@@ -751,6 +749,7 @@
         "number": "Number",
         "edit": "Edit",
         "add": "Add",
+        "add-clause": "Add New Clause",
         "ar": "Clause (Arabic)",
         "en": "Clause (English)"
       },
@@ -948,15 +947,14 @@
       "quantityError": "Quantity is required",
       "shiftTypeError": "Shift Type is required",
       "update": "Update"
-
     }
   },
   "allAds": {
     "allMyAds": {
       "startContract": "Start of Contracting",
       "endContract": "End of Contracting",
-      "delete":"Delete",
-      "edit":"edit",
+      "delete": "Delete",
+      "edit": "edit",
       "global-search": "Global Search",
       "company-name": "Company Name",
       "contract-type": "Contract Type",
@@ -978,9 +976,6 @@
       "other-services": "Other Services",
       "service": "Service",
       "title": "Title"
-
-
-
     }
   }
 }

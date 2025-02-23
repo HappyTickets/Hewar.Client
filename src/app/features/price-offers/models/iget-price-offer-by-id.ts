@@ -8,8 +8,8 @@ import { IPriceOfferService } from './iprice-offer-service';
 export interface IGetPriceOfferById {
   id: number;
   chatId: number | null;
-  facility?: IFacility;
-  comapny?: ICompany;
+  facility: IFacility;
+  company: ICompany;
   offerStatus: RequestStatus;
   otherServices: IPriceOfferOtherService[];
   services: IPriceOfferService[];
