@@ -41,6 +41,7 @@ import { ContractPreviewComponent } from './features/contracts/components/contra
 import { ImageUploadTestComponent } from './image-upload-test/image-upload-test.component';
 
 import { NotificationTestComponent } from './notification-test/compenent/notification-test.component';
+import { CreateCompanyAdOfferComponent } from './features/ads/components/ads-offers/create-company-ad-offer/create-company-ad-offer.component';
 
 export const routes: Route[] = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -94,6 +95,11 @@ export const routes: Route[] = [
   { path: 'ads', component: AllAdsComponent },
   { path: 'ads/edit/:id', component: AdsComponent },
   { path: 'ad/:id', component: AdsComponent },
+
+  // Ads Offers
+
+  {path: 'create-offer-for-ad/:adId', component: CreateCompanyAdOfferComponent},
+
 
   // Hewar Services
   { path: 'get-all-hewar-services', component: ServicessListComponent },

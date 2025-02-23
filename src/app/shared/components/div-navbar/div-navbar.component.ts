@@ -83,6 +83,13 @@ export class DivNavbarComponent {
         { label: 'Update Hewar Service', routerLink: '/update-hewar-service/1' },
       ]
     },
+    {
+      label: 'ads',
+      items: [
+        { label: 'ads', routerLink: '/ads' },
+        { label: 'createAds', routerLink: '/createAds' },
+      ]
+    },
   ];
 }
 

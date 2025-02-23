@@ -90,12 +90,22 @@
               [disabled]="ad.status !== 1"
             ></p-button>
             <p-button
+            class="m-1"
+            [routerLink]="['/create-offer-for-ad/', ad.id]"
+            icon="pi pi-file-edit"
+            pTooltip="{{
+              'app.price-request.price-request-page.make-offer' | translate
+            }}"
+            tooltipPosition="top"
+          ></p-button>
+            <p-button
               class="m-1"
               icon="pi pi-times"
               (click)="deleteAd(ad.id)"
               pTooltip="{{ 'allAds.allMyAds.delete' | translate }}"
               tooltipPosition="top"
             ></p-button>
+         
 
             }
           </div>
