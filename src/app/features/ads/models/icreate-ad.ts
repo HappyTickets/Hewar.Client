@@ -14,7 +14,7 @@ export interface ICreateAd {
   services: IPriceRequestService[];
   otherServices: {
     name: string;
-    quantity: 0;
+    quantity: number;
     shiftType: ShiftType;
   }[];
 }
