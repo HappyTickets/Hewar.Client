@@ -106,13 +106,16 @@
       "activityTypePLaceHolder": " ادخل نوع النشاط",
       "type": "نوع المنشأة",
       "typeErr": " نوع المنشأة مطلوب",
+      "typeError": "نوع المنشأة مطلوب",
+      "activityTypeError": "   نوع النشاط مطلوب ",
+
       "typePlaceholder": " ادخل نوع المنشأة",
       "responsibleNamePlaceholder": "ادخل اسم المسئول",
       "responsibleName": "اسم المسئول",
       "responsibleNameErr": " اسم المسئول مطلوب",
-      "responsiblePhonePlaceholder": "ادخل رقم الهاتف المس��ول",
-      "responsiblePhoneError": "رقم الهاتف المس��ول مطلوب",
-      "responsibleEmailPlaceholder": "ادخل البريد الالكتروني المس��ول",
+      "responsiblePhonePlaceholder": "ادخل رقم الهاتف المسئول",
+      "responsiblePhoneError": "رقم الهاتف المسئول مطلوب",
+      "responsibleEmailPlaceholder": "ادخل البريد الالكتروني المسئول",
 
       "admin-data-title": "بيانات الادمن",
       "address-data-title": "العنوان بالتفصيل",
@@ -138,8 +141,10 @@
       "passwordPlaceholder": "ادخل كلمه السر",
       "passwordError": "كلمه السر مطلوب",
       "confirmPassword": "تاكيد كلمه السر",
+      "passwordInvalidError": "يجب ان تحتوى على حروف كبيرة حروف خاصة ($او $..# *&)",
       "confirmPasswordPlaceholder": "ادخل تاكيد كلمه السر",
       "confirmPasswordError": "تاكيد كلمه السر مطلوبة",
+      "short": "كلمة السر قصيرة",
       "confirmPasswordError-2": "تاكيد كلمه السر ليست متوافقة مع كلمة السر",
       "firstName": "الاسم الاول",
       "firstNamePlaceholder": "ادخل الاسم الاول",
@@ -151,6 +156,8 @@
       "phonePlaceholder": "ادخل الهاتف المحمول",
       "phoneError": "الهاتف المحمول مطلوب",
       "street": "الشارع",
+
+      "emailInvalidError": "الايميل غير صالح",
       "streetPlaceholder": "ادخل الشارع",
       "streetError": "الشارع مطلوب",
       "city": "المدينة",
@@ -167,7 +174,8 @@
       "postalCodeError": "الرمز البريدي مطلوبة",
 
       "save": "حفظ",
-      "cancel": "الغاء"
+      "cancel": "الغاء",
+      "postalCodeInvalidError": "الرقم البريدى غير صالح"
     },
     "company-services": {
       "create-Service": " إنشاء خدمة ",
@@ -188,6 +196,12 @@
       "descriptionPlaceholder": "الوصف",
       "lenght": "يجب أن يكون الوصف على الأقل 10 أحرف",
       "name": "الاسم مطلوب"
+    },
+    "image-upload": {
+      "drag": "اسحب الصورة وأفلتها هنا أو انقر لتحديدها",
+      "morethan-2": "حجم الصورة اكبر من 2 ميجا",
+      "filetype": "فقط يمكن استخدام الصور",
+      "remove": "إزالة"
     },
     "validation": {
       "required": "هذا الحقل مطلوب",
@@ -644,9 +658,13 @@
     },
     "delete-item": {
       "question": "هل أنت متأكد من حذف ",
+
       "question-2": "؟",
       "hide-request-question": "هل أنت متأكد من إخفاء طلب التسعير؟",
       "cancel-request-question": "هل أنت متأكد من إلغاء طلب التسعير؟",
+
+      "click-accept": "اضغط على \"قبول\" لإكمال العملية.",
+
       "reject-request-question": "هل أنت متأكد من رفض طلب التسعير؟",
       "accept-request-question": "هل أنت متأكد من قبول طلب التسعير؟",
       "complete": "لإكمال الحذف",
@@ -654,7 +672,7 @@
       "click-hide": "اضغط على \"إخفاء\" لإكمال العملية.",
       "click-cancel": "اضغط على \"إكمال\" لإكمال العملية.",
       "click-reject": "اضغط على \"رفض\" لإكمال العملية.",
-      "click-accept": "اضغط على \"قبول\" لإكمال العملية.",
+
       "delete": "حذف",
       "hide": "إخفاء",
       "accept": "قبول",
@@ -662,6 +680,7 @@
       "complete-cancelation": "إكمال",
       "cancel": "إلغاء"
     },
+
     "contract": {
       "form": {
         "contractDetails": "تفاصيل العقد",
@@ -721,39 +740,6 @@
           "ar": "بالعربية",
           "en": "بالإنجليزية"
         }
-      },
-      "schedule": {
-        "site": "الموقع",
-        "gaurdCount": "عدد الحراس",
-        "workTime": "وقت العمل",
-        "notes": "ملاحظات",
-        "action": "إجراء",
-        "siteAr": "الموقع بالعربية",
-        "siteEn": "الموقع بالإنجليزية",
-        "shiftAr": "الوردية بالعربية",
-        "shiftEn": "الوردية بالإنجليزية",
-        "notesAr": "الملاحظات بالعربية",
-        "notesEn": "الملاحظات بالإنجليزية",
-        "addRow": "إضافة صف جديد"
-      },
-      "clause": {
-        "clause": "البند",
-        "number": "رقم",
-        "edit": "تعديل",
-        "add": "إضافة",
-        "contentAr": "المحتوى بالعربية",
-        "contentEn": "المحتوى بالإنجليزية",
-        "ar": "البند بالعربية",
-        "en": "البند بالإنجليزية"
-      },
-      "signature": {
-        "facility": "توقيع المنشأة",
-        "company": "توقيع الشركة"
-      },
-      "preview": {
-        "intro": "• توفير عدد من حراس الامن وتحديد مواقعهم وأوقات عملهم كما هو موضح أدناه :",
-        "12-desc": " بند تكلفة الخدمة المقدمة للطرف الثاني حسب الجدول ادناه :",
-        "12": " البند الثاني عشر"
       }
     }
   },

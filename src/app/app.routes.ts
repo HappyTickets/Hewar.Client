@@ -42,6 +42,7 @@ import { ImageUploadTestComponent } from './image-upload-test/image-upload-test.
 
 import { NotificationTestComponent } from './notification-test/compenent/notification-test.component';
 import { CreateCompanyAdOfferComponent } from './features/ads/components/ads-offers/create-company-ad-offer/create-company-ad-offer.component';
+import { NotificationsComponent } from './shared/components/notifications/notifications.component';
 
 export const routes: Route[] = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -65,18 +66,32 @@ export const routes: Route[] = [
   // Price Requests
   { path: 'company-price-request', component: CompanyPriceRequestsComponent },
   { path: 'facility-price-request', component: FacilityPriceRequestsComponent },
-  { path: 'price-request-details/:id', component: PriceRequestDetailsComponent },
-  { path: 'create-price-request/:companyId', component: EditPriceRequestComponent },
-  { path: 'update-price-request/:priceRequestId', component: EditPriceRequestComponent },
+  {
+    path: 'price-request-details/:id',
+    component: PriceRequestDetailsComponent,
+  },
+  {
+    path: 'create-price-request/:companyId',
+    component: EditPriceRequestComponent,
+  },
+  {
+    path: 'update-price-request/:priceRequestId',
+    component: EditPriceRequestComponent,
+  },
 
   // Price Offers
   { path: 'company-price-offer', component: CompanyOffersComponent },
   { path: 'facility-price-offer', component: FacilityOffersComponent },
 
-  { path: 'create-price-offer/:priceRequestId', component: EditPriceOfferComponent },
-  { path: 'update-price-offer/:priceOfferId', component: EditPriceOfferComponent },
+  {
+    path: 'create-price-offer/:priceRequestId',
+    component: EditPriceOfferComponent,
+  },
+  {
+    path: 'update-price-offer/:priceOfferId',
+    component: EditPriceOfferComponent,
+  },
   { path: 'price-offer-details/:id', component: PriceOfferDetailsComponent },
-
 
   // Registration
   { path: 'login', component: LoginComponent },
@@ -86,6 +101,7 @@ export const routes: Route[] = [
   // Testing
   { path: 'upload-test', component: ImageUploadTestComponent },
   { path: 'Notifications-test', component: NotificationTestComponent },
+  { path: 'Notifications', component: NotificationsComponent },
 
   // Security Certificate
   { path: 'security-certificate', component: SecurityCertificateComponent },
@@ -108,14 +124,15 @@ export const routes: Route[] = [
 
   //Companies services
   { path: 'companyservices', component: ListServicesComponent },
-  { path: 'update-company-services/:id', component: UpdateCompanyServiceComponent,},
+  {
+    path: 'update-company-services/:id',
+    component: UpdateCompanyServiceComponent,
+  },
   { path: 'create-company-service', component: CreateServiceComponent },
 
   // Contracts
   { path: 'contract-form/:id', component: ContractFormComponent },
   { path: 'contract-preview/:id', component: ContractPreviewComponent },
-
-
 
   { path: '**', component: NotFoundComponent }, // wild card path
 ];

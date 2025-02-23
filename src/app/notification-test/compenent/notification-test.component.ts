@@ -22,7 +22,7 @@ export class NotificationTestComponent implements OnInit, OnDestroy {
     // Subscribe to connection state updates
     this.subscriptions.push(
       this.notificationService.connectionState$.subscribe(
-        state => (this.isConnected = state)
+        (state) => (this.isConnected = state)
       )
     );
 
@@ -30,16 +30,20 @@ export class NotificationTestComponent implements OnInit, OnDestroy {
       this.notifications.push(notif);
     };
 
-    this.notificationService.subscribeNotificationReceived(this.notificationCallback);
+    this.notificationService.subscribeNotificationReceived(
+      this.notificationCallback
+    );
 
     this.notificationService.enableNotificationListener();
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach(sub => sub.unsubscribe());
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
 
     if (this.notificationCallback) {
-      this.notificationService.unsubscribeNotificationReceived(this.notificationCallback);
+      this.notificationService.unsubscribeNotificationReceived(
+        this.notificationCallback
+      );
     }
   }
 }

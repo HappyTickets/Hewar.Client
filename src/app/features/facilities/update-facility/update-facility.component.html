@@ -1,19 +1,19 @@
 <p-toast></p-toast>
 
 <div class="facility-form">
-  <h2>{{ "app.facilities.add-facility" | translate }}</h2>
+  <h2>{{ "app.facilities.edit-facility" | translate }}</h2>
 
   <form
     [formGroup]="facilityForm"
     (ngSubmit)="onSubmit()"
     class="form-create-facility f"
   >
-    <p class="p-group">{{ "app.facilities.facility-data" | translate }}</p>
     <div class="group n">
+      <p class="p-group">{{ "app.facilities.facility-data" | translate }}</p>
       <app-input
         placeholder="facilities.facility-name"
         [formGroup]="facilityForm"
-        errorKey="invalidName"
+        errorKey="create-update-facility.nameError"
         controlName="name"
         icon="pi-id-card"
         type="text"
@@ -23,7 +23,7 @@
       <app-input
         placeholder="facilities.facility-type"
         [formGroup]="facilityForm"
-        errorKey="facilities.facility-type"
+        errorKey="create-update-facility.activityTypeError"
         controlName="type"
         icon="pi-building"
         type="text"
@@ -33,7 +33,7 @@
       <app-input
         placeholder="facilities.Commercial-Registration"
         [formGroup]="facilityForm"
-        errorKey="facilities.Commercial-Registration"
+        errorKey="create-update-facility.registrationNumberError"
         controlName="commercialRegistration"
         icon="pi-file"
         type="text"
@@ -43,7 +43,7 @@
       <app-input
         placeholder="facilities.activity-type"
         [formGroup]="facilityForm"
-        errorKey="facilities.activity-type"
+        errorKey="create-update-facility.activityTypeError"
         controlName="activityType"
         icon="pi-barcode"
         type="text"
@@ -57,7 +57,7 @@
           <app-input
             [formGroup]="addressFormGroup"
             placeholder="facilities.street"
-            errorKey="facilities.street"
+            errorKey="create-update-facility.streetError"
             controlName="street"
             icon="pi-map-marker"
             type="text"
@@ -68,7 +68,7 @@
           <app-input
             placeholder="facilities.city"
             [formGroup]="addressFormGroup"
-            errorKey="facilities.city"
+            errorKey="create-update-facility.cityError"
             controlName="city"
             icon="pi-map"
             type="text"
@@ -79,7 +79,7 @@
           <app-input
             placeholder="facilities.state"
             [formGroup]="addressFormGroup"
-            errorKey="facilities.state"
+            errorKey="create-update-facility.stateErrors"
             controlName="state"
             icon="pi-globe"
             type="text"
@@ -90,7 +90,7 @@
           <app-input
             placeholder="facilities.country"
             [formGroup]="addressFormGroup"
-            errorKey="facilities.country"
+            errorKey="create-update-facility.countryError"
             controlName="country"
             icon="pi-flag"
             type="text"
@@ -101,7 +101,7 @@
           <app-input
             placeholder="facilities.postalCode"
             [formGroup]="addressFormGroup"
-            errorKey="facilities.postalCode"
+            errorKey="create-update-facility.postalCodeError"
             controlName="postalCode"
             icon="pi-flag"
             type="text"
@@ -120,7 +120,7 @@
           <app-input
             placeholder="facilities.responsipoleNam"
             [formGroup]="facilityForm"
-            errorKey="facilities.responsipoleNam"
+            errorKey="create-update-facility.responsibleNameErr"
             controlName="responsibleName"
             icon="pi-user"
             type="text"
@@ -132,7 +132,7 @@
             (keypress)="validateNumberInput($event)"
             placeholder="facilities.phone"
             [formGroup]="facilityForm"
-            errorKey="facilities.phone"
+            errorKey="create-update-facility.responsiblePhoneError"
             controlName="responsiblePhone"
             icon="pi-phone"
             type="text"
@@ -145,27 +145,20 @@
     <p class="p-group">
       {{ "app.facilities.facility-image" | translate }}
     </p>
-    <div class="group">
-      <div class="imag-uplod">
-        <label for="">{{ "app.facilities.upload-image" | translate }}</label>
-        <i class="pi pi-cloud-upload"></i>
 
-        <app-image-uploader
-          (fileSizeError)="handleFileSizeError($event)"
-          (imageName)="handelImageName($event)"
-        ></app-image-uploader>
-        <div *ngIf="fileUploadError" class="error-message">
-          {{ fileUploadError }}
-        </div>
-      </div>
+    <div class="group image-upload">
+      <app-upload-image-2
+        (fileSelected)="onFileSelectedImage($event)"
+      ></app-upload-image-2>
     </div>
+
     <div class="buttons">
       <div class="form-buttons">
         <div>
           <button
             pButton
             type="submit"
-            label="Create "
+            label="update"
             class="p-button-success"
           ></button>
         </div>
