@@ -139,6 +139,13 @@
       "save": "Save",
       "cancel": "Cancel"
     },
+
+    "image-upload": {
+      "drag": "Drag and drop an image here or click to select",
+      "morethan-2": "File size should not exceed 2MB",
+      "filetype": "Only image files are allowed",
+      "remove": "remove"
+    },
     "company-services": {
       "create-Service": "Create Service",
       "ServiceName": "Service Name",
