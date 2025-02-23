@@ -1,0 +1,98 @@
+<!-- Notification Bell Icon with Badge -->
+<!-- <button
+pBadge
+  pButton
+  pRipple
+  icon="pi pi-bell"
+  class="p-button-rounded p-button-text"
+  (click)="togglePanel($event)"
+  [value]="unreadCount"
+>
+
+  <span *ngIf="unreadCount > 0" class="p-badge p-badge-danger p-badge-lg">{{
+    unreadCount
+  }}</span>
+</button> -->
+<i
+  class="pi pi-bell text-4xl"
+  pBadge
+  [value]="unreadCount"
+  (click)="togglePanel($event)"
+></i>
+
+<!-- <p-button
+  (click)="togglePanel($event)"
+  label="Emails"
+  icon="pi pi-bell"
+  label="Notifications"
+  badge="2"
+/> -->
+
+<!-- Overlay Panel for Notifications -->
+<p-overlayPanel #op [dismissable]="true">
+  <div class="notification-panel">
+    <!-- If no notifications -->
+    <div *ngIf="notifications.length === 0" class="p-3 text-center">
+      <p>No new notifications</p>
+    </div>
+
+    <!-- Notifications List (Scrollable) -->
+    <div class="notifications-list">
+      <div
+        *ngFor="let notification of notifications"
+        class="notification-item"
+        [class.unread]="!notification.isRead"
+      >
+        <p>{{ notification.contentEn }}</p>
+        <p>
+          {{ notification.notifiedOn | date : "medium" }}
+        </p>
+      </div>
+    </div>
+
+    <!-- Mark all as read button -->
+    <button
+      *ngIf="unreadCount > 0"
+      pButton
+      label="Mark all as read"
+      class="mark-read-btn w-full"
+      (click)="markAsRead()"
+    ></button>
+  </div>
+</p-overlayPanel>
+
+<!-- Notification Bell Icon with Badge -->
+<!-- <i
+  class="pi pi-bell text-4xl cursor-pointer"
+  pBadge
+  [value]="unreadCount"
+  (click)="togglePopover()"
+></i> -->
+
+<!-- Popover Content -->
+<!-- <p-dialog
+  [(visible)]="popoverVisible"
+  [modal]="false"
+  [closable]="false"
+  [style]="{ width: '250px' }"
+>
+  <ng-template pTemplate="header">
+    <span class="font-bold">Notifications</span>
+  </ng-template>
+
+  <div class="p-3 text-center" *ngIf="notifications.length === 0">
+    <p>No new notifications</p>
+  </div>
+
+  <div *ngFor="let notification of notifications" class="p-2 border-bottom">
+    <p>{{ notification.contentAr }}</p>
+  </div>
+
+  <button
+    *ngIf="unreadCount > 0"
+    pButton
+    label="Mark all as read"
+    class="p-mt-2 w-full"
+    (click)="markAsRead()"
+  ></button>
+</p-dialog> -->
