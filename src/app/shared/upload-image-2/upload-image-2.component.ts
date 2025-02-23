@@ -7,7 +7,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { BrowserModule } from '@angular/platform-browser';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-import { DxFileUploaderModule, DxProgressBarModule } from 'devextreme-angular';
+// import { DxFileUploaderModule, DxProgressBarModule } from 'devextreme-angular';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MessageModule } from 'primeng/message';
