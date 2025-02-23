@@ -1,0 +1,20 @@
+<form class="container" [formGroup]="editAdOfferAdForm">
+  <div class="content">
+    <h2>{{ "app.price-request.edit-price-request.header" | translate }}</h2>
+  </div>
+  <div class="grid">
+    <div class="grid">
+      <app-input
+        class="col-12 md:col-4"
+        placeholder="price-request.edit-price-request.contractType"
+        label="price-request.edit-price-request.contractType"
+        [formGroup]="editAdOfferAdForm"
+        [options]="contractTypes"
+        errorKey="price-request.edit-price-request.invaliContractType"
+        controlName="contractType"
+        icon="pi-map"
+        type="dropdown"
+      ></app-input>
+    </div>
+  </div>
+</form>
