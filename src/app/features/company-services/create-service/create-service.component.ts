@@ -34,6 +34,7 @@ import { Router } from '@angular/router';
   styleUrl: './create-service.component.scss',
 })
 export class CreateServiceComponent implements OnInit {
+
   serviceForm!: FormGroup;
   private languageSubscription: Subscription;
   language!: 'ar' | 'en';

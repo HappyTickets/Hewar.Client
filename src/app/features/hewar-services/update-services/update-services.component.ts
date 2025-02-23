@@ -34,6 +34,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './update-services.component.scss',
 })
 export class UpdateServicesComponent implements OnInit, OnDestroy {
+
   serviceForm!: FormGroup;
   private languageSubscription!: Subscription;
   language!: 'ar' | 'en';

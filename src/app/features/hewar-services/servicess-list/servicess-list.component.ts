@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { HewarServicesComponent } from '../hewar-services.component';
 import { HewarServicesService } from '../services/hewar-services.service';
 import { IResponse } from '../models/iresponse';
@@ -36,6 +37,7 @@ interface PageEvent {
 export class ServicessListComponent implements OnInit {
   first = 0;
   rows = 5;
+
   totalRecords = 0;
   paginatedServices: any[] = []; // Displayed services per page
   loading = true;

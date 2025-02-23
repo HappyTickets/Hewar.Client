@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
+
 import { Component, OnInit } from '@angular/core';
+
 import {
   FormBuilder,
   FormGroup,
@@ -35,6 +37,7 @@ import { Router } from '@angular/router';
   styleUrl: './create-services.component.scss',
 })
 export class CreateServicesComponent implements OnInit {
+
   serviceForm!: FormGroup;
   private languageSubscription: Subscription;
   language!: 'ar' | 'en';

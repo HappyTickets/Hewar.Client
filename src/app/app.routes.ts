@@ -25,8 +25,10 @@ import { PriceRequestDetailsComponent } from './features/price-requests/componen
 import { PriceOfferDetailsComponent } from './features/price-offers/components/price-offer-details/price-offer-details.component';
 import { CompanyPriceRequestsComponent } from './features/price-requests/components/company-price-requests/company-price-requests.component';
 import { SecurityCertificateComponent } from './features/security-certificate/components/security-certificate/security-certificate.component';
+
 import { AdsComponent } from './features/ads/components/ads/ads.component';
 import { AllAdsComponent } from './features/ads/components/all-ads/all-ads.component';
+
 
 import { CreateServicesComponent } from './features/hewar-services/create-services/create-services.component';
 import { ServicessListComponent } from './features/hewar-services/servicess-list/servicess-list.component';
@@ -34,6 +36,7 @@ import { UpdateServicesComponent } from './features/hewar-services/update-servic
 import { UpdateCompanyServiceComponent } from './features/company-services/update-services/update-services.component';
 import { ListServicesComponent } from './features/company-services/list-services/list-services.component';
 import { CreateServiceComponent } from './features/company-services/create-service/create-service.component';
+
 
 import { ContractFormComponent } from './features/contracts/components/contract-form/contract-form.component';
 import { ContractPreviewComponent } from './features/contracts/components/contract-preview/contract-preview.component';
@@ -43,6 +46,7 @@ import { ImageUploadTestComponent } from './image-upload-test/image-upload-test.
 import { NotificationTestComponent } from './notification-test/compenent/notification-test.component';
 import { CreateCompanyAdOfferComponent } from './features/ads/components/ads-offers/create-company-ad-offer/create-company-ad-offer.component';
 import { NotificationsComponent } from './shared/components/notifications/notifications.component';
+
 
 export const routes: Route[] = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -93,6 +97,7 @@ export const routes: Route[] = [
   },
   { path: 'price-offer-details/:id', component: PriceOfferDetailsComponent },
 
+
   // Registration
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -120,6 +125,9 @@ export const routes: Route[] = [
   // Hewar Services
   { path: 'get-all-hewar-services', component: ServicessListComponent },
   { path: 'creat-hewar-service', component: CreateServicesComponent },
+  // Hewar Services
+  { path: 'creat-hewar-service', component: CreateServicesComponent },
+  { path: 'get-all-hewar-services', component: ServicessListComponent },
   { path: 'update-hewar-service/:id', component: UpdateServicesComponent },
 
   //Companies services
@@ -133,6 +141,5 @@ export const routes: Route[] = [
   // Contracts
   { path: 'contract-form/:id', component: ContractFormComponent },
   { path: 'contract-preview/:id', component: ContractPreviewComponent },
-
   { path: '**', component: NotFoundComponent }, // wild card path
 ];

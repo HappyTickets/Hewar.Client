@@ -203,6 +203,26 @@
       "filetype": "فقط يمكن استخدام الصور",
       "remove": "إزالة"
     },
+    "company-services": {
+      "create-Service": " إنشاء خدمة ",
+      "ServiceName": "اسم الخدمة",
+      "title": "إنشاء خدمة جديدة",
+      "show-all": "عرض جميع الخدمات",
+      "Description": "الوصف",
+      "DescriptionPlaceholder": "الوصف",
+      "edit": "تعديل",
+      "delete": "حذف",
+      "add-service": "إضافة خدمة",
+      "service-saved-successfully": "تم حفظ الخدمة بنجاح",
+      "service-updated-successfully": "تم تحديث الخدمة بنجاح"
+    },
+    "company-services-validation": {
+      "descriptionError": "الوصف مطلوب",
+
+      "descriptionPlaceholder": "الوصف",
+      "lenght": "يجب أن يكون الوصف على الأقل 10 أحرف",
+      "name": "الاسم مطلوب"
+    },
     "validation": {
       "required": "هذا الحقل مطلوب",
       "email": "يرجى إدخال بريد إلكتروني صحيح",
