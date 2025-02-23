@@ -1,18 +1,24 @@
-
 .background {
   background: #f2fbff;
 }
-.preview-btn {
+.preview-btn,
+.fill-btn {
   position: fixed;
-  top: 25%;
-  right: -100px;
+  bottom: 20%;
   transform: translateY(-50%);
   z-index: 1000;
   padding: 10px 20px;
   font-size: 14px;
   transition: 0.3s;
+  right: -97px;
 }
-.preview-btn:hover {
+.fill-btn {
+  right: -130px;
+  bottom: 25%;
+}
+.preview-btn:hover,
+.fill-btn:hover {
   transition: 0.3s;
   right: -20px;
 }
+

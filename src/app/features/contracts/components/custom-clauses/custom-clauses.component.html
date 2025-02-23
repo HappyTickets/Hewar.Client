@@ -1,15 +1,15 @@
 <h3>{{ 'app.contract.form.customClauses' | translate }}</h3>
 
 <div *ngFor="let clause of customClausesData; let i = index">
-  <div *ngIf="!clause.editing" class="flex flex-row justify-content-between align-items-center hover">
-    <div>
+  <div *ngIf="!clause.editing" class="hover">
+    <div class="flex flex-row justify-content-between align-items-center">
       <h3>{{'app.contract.clause.clause'| translate}} {{'app.contract.clause.number' | translate}} ({{ i + 1 }})</h3>
-      <p>{{ language === 'ar' ? clause.htmlContentAr : clause.htmlContentEn }}</p>
+      <div class="flex gap-1">
+        <p-button icon="pi pi-pencil" (click)="editClause(clause)" severity="primary" />
+        <p-button icon="pi pi-trash" (click)="removeClause(i, clause)" severity="danger" />
+      </div>
     </div>
-    <div class="flex gap-1">
-      <p-button icon="pi pi-pencil" (click)="editClause(clause)" severity="primary" />
-      <p-button icon="pi pi-trash" (click)="removeClause(i, clause)" severity="danger" />
-    </div>
+    <div [innerHTML]="language === 'ar' ? getSafeHtml(clause.htmlContentAr) : getSafeHtml(clause.htmlContentEn)"></div>
   </div>
   <div *ngIf="clause.editing" class="edit-mode">
     <div class="flex flex-row justify-content-between align-items-center">
@@ -22,15 +22,15 @@
 
     <div class="flex flex-row justify-content-between align-items-center">
       <div class="flex flex-column w-full">
-        <p for="">{{'app.contract.clause.ar'| translate}}:</p>
-        <textarea pTextarea [(ngModel)]="clause.htmlContentAr" [autoResize]="true" rows="4" [placeholder]="'app.contract.clause.contentAr'| translate"></textarea>
+        <p>{{'app.contract.clause.ar'| translate}}:</p>
+        <p-editor [(ngModel)]="clause.htmlContentAr"></p-editor>
       </div>
       <div class="flex flex-column w-full">
-        <p for="">{{'app.contract.clause.en'| translate}}:</p>
-        <textarea pTextarea [(ngModel)]="clause.htmlContentEn" [autoResize]="true" rows="4" [placeholder]="'app.contract.clause.contentEn'| translate"></textarea>
+        <p>{{'app.contract.clause.en'| translate}}:</p>
+        <p-editor [(ngModel)]="clause.htmlContentEn"></p-editor>
       </div>
     </div>
   </div>
 </div>
 
-<div class="flex justify-content-end"><p-button label="إضافة بند جديد" icon="pi pi-plus" (click)="addNewEntry()" severity="success" /></div>
+<div class="flex justify-content-end"><p-button [label]="'app.contract.clause.add-clause'| translate" icon="pi pi-plus" (click)="addNewEntry()" severity="success" /></div>

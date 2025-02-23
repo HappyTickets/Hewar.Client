@@ -10,17 +10,19 @@ import { FormsModule } from '@angular/forms';
 import { LocalizationService } from '../../../../core/services/localization/localization.service';
 import { TextareaModule } from 'primeng/textarea';
 import { Subscription } from 'rxjs';
-
+import { EditorModule } from 'primeng/editor';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 @Component({
   selector: 'app-custom-clauses',
   standalone: true,
-  imports: [CommonModule, ButtonModule, InputTextModule, TableModule, TranslatePipe, FormsModule, TextareaModule, TranslatePipe],
+  imports: [CommonModule, ButtonModule, InputTextModule, TableModule, TranslatePipe, FormsModule, TextareaModule, TranslatePipe, EditorModule ],
   templateUrl: './custom-clauses.component.html',
   styleUrl: './custom-clauses.component.scss'
 })
 export class CustomClausesComponent implements OnInit, OnDestroy {
   private localizationService = inject(LocalizationService);
   private clausesService = inject(ClausesService);
+  private sanitizer = inject(DomSanitizer);
   private languageSubscription: Subscription;
   @Input() customClausesData: IClause[] = [];
   @Input() contractId: number | null = null;
@@ -34,6 +36,9 @@ export class CustomClausesComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy() {
     this.languageSubscription?.unsubscribe();
+  }
+  getSafeHtml(content: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(content);
   }
   ngOnInit(): void {
     this.language = this.localizationService.getLanguage();

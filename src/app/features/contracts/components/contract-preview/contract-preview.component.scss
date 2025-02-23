@@ -15,20 +15,17 @@
     text-align: center;
     font-size: 2.5vw;
     font-weight: bold;
-    color: #000;
     margin-bottom: 2vw;
   }
   h3 {
     font-size: 1.8vw;
     font-weight: bold;
-    color: #000;
     margin-top: 2vw;
     margin-bottom: 0;
   }
   p {
     font-size: 1.5vw;
     line-height: 2.4vw;
-    color: #222;
     margin-bottom: 1.5vw;
     margin-top: 0;
     text-align: justify;
@@ -175,23 +172,22 @@
     page-break-after: auto;
   }
   ::ng-deep .placeholder-key {
-    color: #000000 !important;
-    font-size: 12pt !important;
+    font-size: 10pt !important;
     font-weight: normal !important;
   }
 
   ::ng-deep .contract-preview h1 {
-    font-size: 14pt;
+    font-size: 12pt;
     font-weight: bold;
     page-break-before: avoid;
   }
 
   ::ng-deep .contract-preview h3 {
-    font-size: 13pt;
+    font-size: 11pt;
   }
 
   ::ng-deep .contract-preview p {
-    font-size: 12pt;
+    font-size: 10pt;
     line-height: 1.6 !important;
   }
   ::ng-deep .contract-preview h1:first-child {

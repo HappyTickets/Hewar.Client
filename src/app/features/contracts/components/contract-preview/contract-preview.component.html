@@ -1,23 +1,23 @@
 <!-- eslint-disable-next-line @angular-eslint/template/click-events-have-key-events -->
 <div *ngIf="contract.staticContractTemplate" class="contract-preview" (click)="onPlaceholderClick($event)" tabindex="0">
-  <h1>{{ language === 'ar'? contract.staticContractTemplate.titleAr : contract.staticContractTemplate.titleEn }}</h1>
-  <p [innerHTML]="language === 'ar'? contract.staticContractTemplate.preambleAr : contract.staticContractTemplate.preambleEn"></p>
+  <h1> {{ language === "ar" ? contract.staticContractTemplate.titleAr : contract.staticContractTemplate.titleEn}}</h1>
+  <p [innerHTML]=" language === 'ar' ? contract.staticContractTemplate.preambleAr : contract.staticContractTemplate.preambleEn"></p>
 
-  <p>{{'app.contract.preview.intro' | translate}}</p>
-  <app-schedule-entries [scheduleEntriesData]="contract.scheduleEntries" [contractId]="contract.contractId"></app-schedule-entries>
-
+  <p>{{ "app.contract.preview.intro" | translate }}</p>
+  <app-schedule-entries
+    [scheduleEntriesData]="contract.scheduleEntries"
+    [contractId]="contract.contractId"
+  ></app-schedule-entries>
   <div *ngFor="let clause of contract.staticClauses; let i = index" class="clause">
     <ng-container *ngIf="i === 11">
-      <h3>{{'app.contract.preview.12' | translate}}</h3>
-      <p>{{'app.contract.preview.12-desc' | translate}}</p>
+      <h3>{{ "app.contract.preview.12" | translate }}</h3>
+      <p>{{ "app.contract.preview.12-desc" | translate }}</p>
       <app-contract-dispay-service [services]="contract.services" [otherServices]="contract.otherServices"></app-contract-dispay-service>
     </ng-container>
-    <h3>{{ language === 'ar'? clause.titleAr : clause.titleEn}}</h3>
-    <p [innerHTML]="language === 'ar'? clause.contentAr : clause.contentEn"></p>
+    <h3>{{ language === "ar" ? clause.titleAr : clause.titleEn }}</h3>
+    <p [innerHTML]="language === 'ar' ? clause.contentAr : clause.contentEn"></p>
   </div>
-
   <app-custom-clauses [customClausesData]="contract.customClauses" [contractId]="contract.contractId"></app-custom-clauses>
-
   <p [innerHTML]="contract.staticContractTemplate.closingRemarkAr"></p>
   <app-contract-signature [contractId]="contract.contractId" [facilitySignature]="contract.facilitySignature" [companySignature]="contract.companySignature"></app-contract-signature>
 </div>
