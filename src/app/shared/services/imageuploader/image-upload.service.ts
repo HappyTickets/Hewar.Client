@@ -12,14 +12,14 @@ export class ImageUploadService {
     const formData: FormData = new FormData();
     formData.append('path', file.name);
     formData.append('fileData', file);
-  
+
     const req = new HttpRequest('POST', `${this.baseUrl}/upload`, formData, {
       reportProgress: true,
       responseType: 'json',
     });
-  
+
     return this.http.request(req);
   }
-  
+
 
 }

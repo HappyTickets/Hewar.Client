@@ -673,7 +673,21 @@
       }
     },
     "companies": {
-      "companies-list": {},
+      "companies-list": {
+        "add-comp": "اضافة شركة",
+        "classification": "تصنيف",
+        "industrial-security": "الامن الصناعي",
+        "facilities-security": " امن المنشأت",
+        "delete": "مسح",
+        "search-here": "ابحث هنا",
+        "search": "ابحث",
+        "location": "الموقع",
+        "actions": {
+          "edit": "تعديل الشركه",
+          "request-quote": "طلب عرض سعر",
+          "delete": " حذف الشركه "
+        }
+      },
       "companies-details": {
         "name": "الاسم",
         "phone": "الهاتف",

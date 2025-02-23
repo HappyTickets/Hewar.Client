@@ -11,6 +11,11 @@
               <app-input [formGroup]="createCompForm" [placeholder]="input.placeholder" [errorKey]="input.errorKey" [controlName]="input.controlName" [icon]="input.icon" [type]="input.type" [label]="input.label"> </app-input>
             </div>
             }
+            <div class="group image-upload">
+              <app-upload-image-2
+                (fileSelected)="onFileSelectlogo($event)"
+              ></app-upload-image-2>
+            </div>
           </div>
             <p class="p-group"> {{ "app.companies.create-update-company.address-data-title" | translate }} </p>
           <div class="grid">
@@ -36,15 +41,10 @@
                 }
               </div>
               }
-              <div class="group">
-                <div class="image-upload">
-                  <label for="">{{ "app.facilities.upload-image" | translate }}</label>
-                  <i class="pi pi-cloud-upload"></i>
-                  <app-image-uploader
-                    (fileSizeError)="handleFileSizeError($event)"
-                    (imageName)="handelimagenam($event)"></app-image-uploader>
-                  <div *ngIf="fileUploadError" class="error-message"> {{ fileUploadError }} </div>
-                </div>
+              <div class="group image-upload">
+                <app-upload-image-2
+                  (fileSelected)="onFileSelectedImage($event)"
+                ></app-upload-image-2>
               </div>
             </ng-container>
         </div>

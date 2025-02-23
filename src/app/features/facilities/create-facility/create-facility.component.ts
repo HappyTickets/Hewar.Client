@@ -140,7 +140,6 @@ export class CreateFacilityComponent implements OnInit {
             '',
             [
               Validators.required,
-
               Validators.minLength(8),
               Validators.pattern(
                 /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$%*&^#])[A-Za-z\d@$%*&^#]{8,}$/
@@ -148,7 +147,6 @@ export class CreateFacilityComponent implements OnInit {
             ],
           ],
           confirmPassword: ['', Validators.required],
-
           firstName: ['', Validators.required],
           lastName: ['', Validators.required],
           phone: ['', Validators.required],

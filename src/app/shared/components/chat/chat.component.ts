@@ -6,11 +6,13 @@ import { ChatService } from './services/chat.service';
 import { IChat, IResponseChat } from './models/IGetChat';
 import { ICompanyPriceRequest } from '../../../features/price-requests/models/icompany-price-request';
 import { ISendMessage } from './models/ISendMessage';
+import { UploadImage2Component } from '../../upload-image-2/upload-image-2.component';
+import { ImageUploadService } from '../../services/upload2/image-upload.service';
 
 @Component({
   selector: 'app-chat',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, ButtonModule],
+  imports: [ReactiveFormsModule, CommonModule, ButtonModule, UploadImage2Component],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.scss'
 })
@@ -20,16 +22,17 @@ export class ChatComponent implements OnInit, OnChanges {
   @Output() closeChat = new EventEmitter<void>();
   @ViewChild('messagesContainer') messagesContainer!: ElementRef;
   @ViewChild('fileInput') fileInput!: ElementRef;
+  uploadedFile: File | null = null;
 
   messages: IChat[] = [];
   currentUserId = 0;
   chatForm = new FormGroup({
     message: new FormControl('')
   });
-  selectedFile: File | null = null;
 
   constructor(
     private _chatService: ChatService,
+    private imageUploadService: ImageUploadService
   ) {}
 
   ngOnInit(): void {
@@ -57,19 +60,27 @@ export class ChatComponent implements OnInit, OnChanges {
     this.closeChat.emit();
   }
 
+  onFileSelect(file: File | null) {
+    this.uploadedFile = file;
+    console.log('Select file:', typeof file);
+  }
+
   sendMessage() {
     const newMessage = this.chatForm.value.message?.trim();
-    console.log(this.selectedFile)
-    if (this.selectedFile) {
-      this._chatService.uploadFile(this.selectedFile).subscribe({
-        next: (fileUrl) => {
-          console.log(fileUrl)
-          this.sendChatMessage(newMessage, fileUrl);
-        },
-        error: (err) => {
-          console.error('File upload error:', err);
-        }
-      });
+    console.log(this.uploadedFile)
+    if (this.uploadedFile) {
+      this.imageUploadService.uploadImageBinary(this.uploadedFile.type, this.uploadedFile).subscribe((res) => {
+        console.log(res)
+      })
+      // this._chatService.uploadFile(this.uploadedFile).subscribe({
+      //   next: (fileUrl) => {
+      //     console.log(fileUrl)
+      //     this.sendChatMessage(newMessage, fileUrl);
+      //   },
+      //   error: (err) => {
+      //     console.error('File upload error:', err);
+      //   }
+      // });
     } else {
       this.sendChatMessage(newMessage, '');
     }
@@ -84,17 +95,17 @@ export class ChatComponent implements OnInit, OnChanges {
       chatId: this.currentPriceReq.chatId ?? null,
     };
     // console.log(data)
-    // console.log(this.selectedFile)
+    // console.log(this.uploadedFile)
     // console.log(fileUrl)
 
     if (fileUrl) {
       data.medias.push({
-        type: this.selectedFile?.type || '',
+        type: this.uploadedFile?.type || '',
         url: fileUrl
       });
     }
     // console.log(data)
-    // console.log(this.selectedFile)
+    // console.log(this.uploadedFile)
     // console.log(fileUrl)
 
     this._chatService.sendMessage(data).subscribe({
@@ -107,7 +118,7 @@ export class ChatComponent implements OnInit, OnChanges {
       },
       complete: () => {
         this.chatForm.reset();
-        this.selectedFile = null;
+        this.uploadedFile = null;
         if (this.fileInput && this.fileInput.nativeElement) {
           this.fileInput.nativeElement.value = '';
         }
@@ -130,8 +141,8 @@ export class ChatComponent implements OnInit, OnChanges {
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
-      this.selectedFile = input.files[0];
-      console.log('Selected file:', this.selectedFile);
+      this.uploadedFile = input.files[0];
+      console.log('Selected file:', this.uploadedFile);
     }
   }
 }

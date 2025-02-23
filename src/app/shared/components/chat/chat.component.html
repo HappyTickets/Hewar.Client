@@ -28,7 +28,12 @@
   <div class="chat-input">
     <input type="text" [formControl]="chatForm.controls['message']" placeholder="Type a message..." (keyup.enter)="sendMessage()" />
     <p-button icon="pi pi-paperclip" class="attachment-btn" (click)="openFileDialog()"></p-button>
-    <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)" />
+    <div class="group image-upload" #fileInput style="display: none">
+      <app-upload-image-2
+        (fileSelected)="onFileSelect($event)"
+      ></app-upload-image-2>
+    </div>
+    <!-- <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)" /> -->
     <p-button icon="pi pi-send" class="send-btn" (click)="sendMessage()"></p-button>
   </div>
 </section>
