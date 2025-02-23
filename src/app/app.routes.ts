@@ -57,8 +57,8 @@ export const routes: Route[] = [
   { path: 'facilities/:id', component: DetialsFacilityComponent },
   { path: 'facilities', component: FacilitiesComponent },
 
-  // Companies
   { path: 'companies', component: CompaniesComponent },
+  { path: 'createCompany', component: CreateCompanyComponent },
   { path: 'companies/updateCompany/:id', component: UpdateCompanyComponent },
   { path: 'companies/companyDetails/:id', component: CompanyDetailsComponent },
   { path: 'companies/createCompany', component: CreateCompanyComponent },

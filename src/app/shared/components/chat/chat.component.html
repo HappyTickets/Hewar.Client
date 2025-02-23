@@ -1,0 +1,34 @@
+<section class="chat-container" [ngClass]="{'show': showChat}">
+  <div class="chat-header">
+    <h3>Chat</h3>
+    <button class="close-btn" (click)="toggleChat()">✖</button>
+  </div>
+  <div class="chat-messages" #messagesContainer>
+    @for (msg of messages; track $index) {
+      @if ($index === 0 || (msg.sentOn | date:'dd-MM-yyyy') !== (messages[$index - 1].sentOn | date:'dd-MM-yyyy')) {
+        <p class="date">{{ msg.sentOn | date:'dd-MM-yyyy' }}</p>
+      }
+      <div class="flex mb-3" [ngClass]="{ 'sent': msg.sender.id === currentUserId, 'received': msg.sender.id !== currentUserId }">
+        @if (msg.sender.id === currentUserId) {
+          <p>
+            {{ msg.content }}
+            <span class="time">{{ msg.sentOn | date:'hh:mm a' }}</span>
+          </p>
+          <img [src]="msg.sender.imageUrl" alt="Profile Picture" class="profile-pic">
+        } @else {
+          <img [src]="msg.sender.imageUrl" alt="Profile Picture" class="profile-pic">
+          <p>
+            {{ msg.content }}
+            <span class="time">{{ msg.sentOn | date:'hh:mm a' }}</span>
+          </p>
+        }
+      </div>
+    }
+  </div>
+  <div class="chat-input">
+    <input type="text" [formControl]="chatForm.controls['message']" placeholder="Type a message..." (keyup.enter)="sendMessage()" />
+    <p-button icon="pi pi-paperclip" class="attachment-btn" (click)="openFileDialog()"></p-button>
+    <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)" />
+    <p-button icon="pi pi-send" class="send-btn" (click)="sendMessage()"></p-button>
+  </div>
+</section>

@@ -7,12 +7,19 @@
   } @else if (type === 'date') {
     <p-datepicker fluid="true" [formControl]="formControl" [placeholder]="'app.' + placeholder | translate" showIcon iconDisplay="input" [minDate]="minDate" [maxDate]="maxDate"></p-datepicker>
   } @else {
-    <p-iconfield>
+  <p-iconfield>
+    @if(type === 'password' || type === 'confirmPassword'){
       <p-inputicon class="pi" [ngClass]="icon" />
-      <input pInputText [type]="type" [placeholder]="'app.' + placeholder | translate" [formControl]="formControl" fluid="true"/>
-    </p-iconfield>
-  }
-  @if (hasError && errorKey) {
-    <p-message severity="error" [text]="'app.' + errorKey | translate"></p-message>
-  }
+      <input pInputText [type]="showPassword ? 'text' : 'password'" [placeholder]="'app.' + placeholder | translate" [formControl]="formControl" />
+      <p-inputicon class="pi" [ngClass]="showPassword ? 'pi-eye-slash' : 'pi-eye'" (click)="togglePassword()" />
+    } @else {
+      <p-inputicon class="pi" [ngClass]="icon" />
+      <input pInputText [type]="type" [placeholder]="'app.' + placeholder | translate" [formControl]="formControl"/>
+    }
+  </p-iconfield>
+  } @if (hasError) {<p-message
+    severity="error"
+    [text]="'app.' + errorKey | translate"
+  ></p-message
+  >}
 </div>

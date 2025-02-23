@@ -1,5 +1,5 @@
 <div class="container">
-  <p-table [value]="priceRequests" dataKey="id" stripedRows [paginator]="true" [rows]="10" [globalFilterFields]="['facility.name']" selectionMode="single" #dt [rowsPerPageOptions]="[5, 10, 20]" [tableStyle]="{ 'min-width': '50rem'}">
+  <p-table [value]="priceRequests" dataKey="id" stripedRows [paginator]="true" [rows]="11" [globalFilterFields]="['facility.name']" selectionMode="single" #dt [rowsPerPageOptions]="[5, 10, 20]" [tableStyle]="{ 'min-width': '50rem'}">
     <ng-template #caption>
       <p-iconfield iconPosition="left">
         <p-inputicon><i class="pi pi-search"></i></p-inputicon>
@@ -30,7 +30,7 @@
               <p-button class="m-1" (click)="showHidePopUp=true;currentId=service.id" icon="pi pi-eye-slash" pTooltip="{{ 'app.price-request.price-request-page.hide' | translate }}" tooltipPosition="top"></p-button>
               <p-button class="m-1" [routerLink]="['/create-price-offer/', service.id]" icon="pi pi-file-edit" pTooltip="{{ 'app.price-request.price-request-page.make-offer' | translate }}" tooltipPosition="top"></p-button>
               <p-button class="m-1" [routerLink]="['/price-request-details/', service.id]" icon="pi pi-info-circle" pTooltip="{{ 'app.price-request.price-request-page.details' | translate }}" tooltipPosition="top"></p-button>
-              <p-button class="m-1" (click)="openChat()" icon="pi pi-comments" pTooltip="{{ 'app.price-request.price-request-page.chat' | translate }}" tooltipPosition="top"></p-button>
+              <p-button class="m-1" [disabled]="service.requestStatus > 1" (click)="toggleChat(service)" icon="pi pi-comments" pTooltip="{{ 'app.price-request.price-request-page.chat' | translate }}" tooltipPosition="top"></p-button>
             }
           </div>
           <app-delete-popup [visible]="showHidePopUp" type="hide" (confirmDelete)="hide()" (closePopup)="showHidePopUp = false"></app-delete-popup>
@@ -85,3 +85,4 @@
     </ng-template>
   </p-table>
 </div>
+<app-chat [showChat]="isChatVisible" [currentPriceReq]="currentPriceReq" (closeChat)="onCloseChat()"></app-chat>

@@ -37,9 +37,11 @@ export class InputComponent {
   @Input() errorKey!: string;
   @Input() type = 'text';
   @Input() icon!: string;
+  @Input() options: { name: string, code: number }[] = [];
+  showPassword = false;
+
   @Input() readonly = false;
   @Input() nestedControlName?: string;
-  @Input() options: { name: string; code: number }[] = [];
 
   // For Date
   @Input() minDate: Date = new Date(Date.now());
@@ -55,5 +57,9 @@ export class InputComponent {
   }
   get hasError(): boolean {
     return this.formControl?.invalid && this.formControl.touched;
+  }
+
+  togglePassword() {
+    this.showPassword = !this.showPassword;
   }
 }

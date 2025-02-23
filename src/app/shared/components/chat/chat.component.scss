@@ -1,0 +1,135 @@
+.chat-container {
+  z-index: 9999999;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 30rem;
+  height: 52rem;
+  background: white;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  display: none;
+  flex-direction: column;
+  border-radius: 15px;
+  overflow: hidden;
+  &.show {
+    display: flex;
+  }
+  .chat-header {
+    background: #055bcc;
+    color: white;
+    position: relative;
+    text-align: center;
+    .close-btn {
+      background: rgb(10, 50, 68) !important;
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      line-height: 25px;
+      &:hover {
+      background: rgb(14, 79, 109) !important;
+      }
+    }
+  }
+  .chat-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    .date {
+      background-color: #055bcc;
+      text-align: center;
+      width: fit-content;
+      margin: 12px auto;
+      color: #ddd;
+      font-size: 14px;
+      padding: 5px 10px;
+      border-radius: 31px;
+    }
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+    div {
+      max-width: 75%;
+      p {
+        padding: 15px;
+        border-radius: 15px;
+        position: relative;
+        margin: 0;
+        &::before {
+          content: "";
+          width: 0;
+          height: 0;
+          border: 9px solid;
+          position: absolute;
+          top: 12px;
+          right: -16px;
+          border-color: transparent transparent transparent #055bcc;
+        }
+        .time {
+          display: block;
+          margin-top: 15px;
+          font-size: 14px;
+          color: #777;
+        }
+      }
+      &.sent {
+        color: white;
+        align-self: flex-end;
+        p {
+          background: #055bcc;
+          .time {
+            color: #ddd;
+          }
+        }
+      }
+      &.received {
+        justify-content: flex-start;
+        p {
+          background: #f1f1f1;
+          &::before {
+            left: -16px;
+            border-color: transparent #f1f1f1 transparent transparent ;
+          }
+        }
+      }
+    }
+  }
+  .chat-input {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    background: white;
+    input {
+      flex: 1;
+      padding: 13px 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+    }
+    .send-btn, .attachment-btn {
+      padding: 0 4px;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: auto;
+      ::ng-deep button {
+        border-radius: 50%;
+        padding: 0;
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
+}
