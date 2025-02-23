@@ -25,6 +25,8 @@ import { PriceRequestDetailsComponent } from './features/price-requests/componen
 import { PriceOfferDetailsComponent } from './features/price-offers/components/price-offer-details/price-offer-details.component';
 import { CompanyPriceRequestsComponent } from './features/price-requests/components/company-price-requests/company-price-requests.component';
 import { SecurityCertificateComponent } from './features/security-certificate/components/security-certificate/security-certificate.component';
+import { AdsComponent } from './features/ads/components/ads/ads.component';
+import { AllAdsComponent } from './features/ads/components/all-ads/all-ads.component';
 
 import { CreateServicesComponent } from './features/hewar-services/create-services/create-services.component';
 import { ServicessListComponent } from './features/hewar-services/servicess-list/servicess-list.component';
@@ -39,6 +41,7 @@ import { ContractPreviewComponent } from './features/contracts/components/contra
 import { ImageUploadTestComponent } from './image-upload-test/image-upload-test.component';
 
 import { NotificationTestComponent } from './notification-test/compenent/notification-test.component';
+import { CreateCompanyAdOfferComponent } from './features/ads/components/ads-offers/create-company-ad-offer/create-company-ad-offer.component';
 import { NotificationsComponent } from './shared/components/notifications/notifications.component';
 
 export const routes: Route[] = [
@@ -102,6 +105,17 @@ export const routes: Route[] = [
 
   // Security Certificate
   { path: 'security-certificate', component: SecurityCertificateComponent },
+
+  // Ads
+  { path: 'createAds', component: AdsComponent },
+  { path: 'ads', component: AllAdsComponent },
+  { path: 'ads/edit/:id', component: AdsComponent },
+  { path: 'ad/:id', component: AdsComponent },
+
+  // Ads Offers
+
+  {path: 'create-offer-for-ad/:adId', component: CreateCompanyAdOfferComponent},
+
 
   // Hewar Services
   { path: 'get-all-hewar-services', component: ServicessListComponent },

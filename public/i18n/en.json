@@ -900,5 +900,68 @@
       "1": "Monthly",
       "2": "Yearly"
     }
+  },
+  "ads": {
+    "create-ad": {
+      "header": "Create New Ad",
+      "title": "Title",
+      "OrderPriceRequest": "Order PriceRe quest",
+      "contractDate": "Contract Date",
+      "startContract": "Start of Contracting",
+      "endContract": "End of Contracting",
+      "contractType": "Contract Type",
+      "services": "Services",
+      "serviceType": "Service Type",
+      "quantity": "Quantity",
+      "shiftType": "Shift Type",
+      "otherDetails": "Other Services",
+      "serviceName": "Service",
+      "addNotes": "Notes",
+      "enterDetails": "Enter additional details",
+      "publish": "Publish",
+      "cancel": "Cancel",
+      "titleError": "Title is required",
+      "contractDateError": "Contract Date is required",
+      "startContractError": "Start of Contracting is required",
+      "endContractError": "End of Contracting is required",
+      "contractTypeError": "Contract Type is required",
+      "serviceTypeError": "Service Type is required",
+      "quantityError": "Quantity is required",
+      "shiftTypeError": "Shift Type is required",
+      "update": "Update"
+
+    }
+  },
+  "allAds": {
+    "allMyAds": {
+      "startContract": "Start of Contracting",
+      "endContract": "End of Contracting",
+      "delete":"Delete",
+      "edit":"edit",
+      "global-search": "Global Search",
+      "company-name": "Company Name",
+      "contract-type": "Contract Type",
+      "status": "Status",
+      "actions": "Actions",
+      "update": "Update",
+      "cancel": "Cancel",
+      "hide": "Hide",
+      "chat": "Chat",
+      "make-offer": "Make Offer",
+      "details": "Details",
+      "start-date": "Start Date",
+      "end-date": "End Date",
+      "services": "Services",
+      "facility-name": "Facility Name",
+      "service-id": "ID",
+      "quantity": "Quantity",
+      "shift": "Shift",
+      "other-services": "Other Services",
+      "service": "Service",
+      "title": "Title"
+
+
+
+    }
   }
 }

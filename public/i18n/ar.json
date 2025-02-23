@@ -896,5 +896,64 @@
       "1": "شهري",
       "2": "سنوي"
     }
+  },
+  "ads": {
+    "create-ad": {
+      "header": "إنشاء إعلان جديد",
+      "title": "العنوان",
+      "OrderPriceRequest": "طلب عرض سعر",
+      "contractDate": "تاريخ التعاقد",
+      "startContract": "بداية التعاقد",
+      "endContract": "نهاية التعاقد",
+      "contractType": "نوع التعاقد",
+      "services": "الخدمات",
+      "serviceType": "نوع الخدمة",
+      "quantity": "الكمية",
+      "shiftType": "نوع الوردية",
+      "otherDetails": "تفاصيل أخرى",
+      "serviceName": "اسم الخدمة",
+      "publish": "نشر",
+      "cancel": "إلغاء",
+      "titleError": "العنوان مطلوب",
+      "contractDateError": "تاريخ التعاقد مطلوب",
+      "startContractError": "بداية التعاقد مطلوب",
+      "endContractError": "نهاية التعاقد مطلوب",
+      "contractTypeError": "نوع التعاقد مطلوب",
+      "servicesError": "الخدمات مطلوبة",
+      "serviceTypeError": "نوع الخدمة مطلوب",
+      "quantityError": "الكمية مطلوبة",
+      "shiftTypeError": "نوع الوردية مطلوب",
+      "update": "تحديث"
+
+    }
+  },
+  "allAds": {
+    "allMyAds": {
+      "startContract": "بداية التعاقد",
+      "endContract": "نهاية التعاقد",
+      "delete": "حذف",
+      "edit": "تعديل",
+      "global-search": "بحث عام",
+      "contract-type": "نوع العقد",
+      "status": "الحالة",
+      "actions": "الإجراءات",
+      "update": "تحديث",
+      "cancel": "إلغاء",
+      "hide": "إخفاء",
+      "chat": "الدردشة",
+      "details": "التفاصيل",
+      "make-offer": "تقديم عرض",
+      "start-date": "تاريخ البدء",
+      "end-date": "تاريخ الانتهاء",
+      "services": "الخدمات",
+      "service-id": "الخدمة",
+      "quantity": "الكمية",
+      "shift": "الوردية",
+      "service": "الخدمة",
+      "title": "العنوان",
+      "other-services": "خدمات أخرى"
+
+
+    }
   }
 }
