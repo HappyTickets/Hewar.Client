@@ -1,14 +1,11 @@
 <div class="input-container mb-3">
-  <label [for]="formControl" class="input-label">{{"app." + label | translate}}</label>
+  @if (label) {
+    <label [for]="controlName" class="input-label">{{"app." + label | translate}}</label>
+  }
   @if (type === 'dropdown') {
-  <p-select
-    [options]="options"
-    [placeholder]="'app.' + placeholder | translate"
-    [formControl]="formControl"
-    inputId="{{ controlName }}"
-    optionLabel="name"
-    optionValue="code"
-  ></p-select>
+    <p-select [options]="options" [placeholder]="'app.' + placeholder | translate" [formControl]="formControl" inputId="{{ controlName }}" optionLabel="name" optionValue="code" fluid="true"></p-select>
+  } @else if (type === 'date') {
+    <p-datepicker fluid="true" [formControl]="formControl" [placeholder]="'app.' + placeholder | translate" showIcon iconDisplay="input" [minDate]="minDate" [maxDate]="maxDate"></p-datepicker>
   } @else {
   <p-iconfield>
     @if(type === 'password' || type === 'confirmPassword'){

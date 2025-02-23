@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+
 import { CompanyServicesService } from '../services/company-services.service';
 import {
   FormBuilder,
@@ -33,7 +34,8 @@ import { TextareaModule } from 'primeng/textarea';
   templateUrl: './update-services.component.html',
   styleUrl: './update-services.component.scss',
 })
-export class UpdateCompanyServiceComponent {
+export class UpdateCompanyServiceComponent implements OnInit, OnDestroy {
+
   serviceForm!: FormGroup;
   private languageSubscription!: Subscription;
   language!: 'ar' | 'en';

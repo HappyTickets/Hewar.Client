@@ -1,7 +1,9 @@
-<mat-toolbar color="primary" class="overflow-hidden">
-  <span class="spacer"></span>
-  <button mat-button routerLink="/facilities">facilities</button>
-  <button mat-button routerLink="/companies">companies</button>
+
+<p-menubar [model]="menuItems">
+  <ng-template pTemplate="start">
+    <span class="spacer"></span>
+  </ng-template>
+</p-menubar>
 
   <button mat-button routerLink="/company-price-request">
     company-price-request

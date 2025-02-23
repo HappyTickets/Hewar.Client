@@ -1,0 +1,53 @@
+.p-badge {
+  position: absolute;
+  top: 7px;
+  right: 5px;
+  font-size: 12px;
+}
+
+/* Notification Bell Icon */
+.notification-bell {
+  position: relative;
+  cursor: pointer;
+}
+
+/* Notification Panel */
+.notification-panel {
+  width: 350px;
+  max-height: 400px; /* Ensures scrolling if too many notifications */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Notifications List (Scrollable) */
+.notifications-list {
+  max-height: 350px; /* Adjust for better UX */
+  overflow-y: auto;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Individual Notification Item */
+.notification-item {
+  padding: 10px;
+  border-radius: 5px;
+  background: #f9f9f9;
+  margin-bottom: 8px;
+  transition: background 0.3s;
+}
+
+/* Unread Notifications - Darker Background */
+.notification-item.unread {
+  background: #2c3e50;
+  color: white;
+  font-weight: bold;
+}
+
+/* Mark All as Read Button */
+.mark-read-btn {
+  background: #007bff;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px;
+}

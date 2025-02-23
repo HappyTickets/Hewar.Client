@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+
+import { Component, OnInit } from '@angular/core';
 import { DeletePopupComponent } from '../../../shared/components/delete-popup/delete-popup.component';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
@@ -28,7 +29,8 @@ import { InputTextModule } from 'primeng/inputtext';
   templateUrl: './list-services.component.html',
   styleUrl: './list-services.component.scss',
 })
-export class ListServicesComponent {
+export class ListServicesComponent implements OnInit {
+
   AllServices!: IUpdate[];
   visibleDeletePopup = false;
   showDeletePopup = false;

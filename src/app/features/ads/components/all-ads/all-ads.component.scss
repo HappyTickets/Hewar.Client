@@ -1,0 +1,15 @@
+h2 {
+  margin: 5px 0 10px;
+}
+.smooth-buttons {
+  opacity: 0;
+  transform: translateX(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.smooth-buttons.visible {
+  opacity: 1 ;
+  transform: translateX(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   ReactiveFormsModule,
   FormsModule,
@@ -33,7 +33,8 @@ import { Router } from '@angular/router';
   templateUrl: './create-service.component.html',
   styleUrl: './create-service.component.scss',
 })
-export class CreateServiceComponent {
+export class CreateServiceComponent implements OnInit {
+
   serviceForm!: FormGroup;
   private languageSubscription: Subscription;
   language!: 'ar' | 'en';

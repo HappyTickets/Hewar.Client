@@ -23,7 +23,7 @@
           font-size: 16px;
           border-radius: 6px;
           transition: 0.3s;
-          width: 8rem;
+          width: 9rem;
           text-align: center;
           &:hover {
             background-color: $main-color-2;
@@ -185,9 +185,8 @@
       justify-content: space-evenly;
       padding: 10px;
       padding-inline: 20px;
-      align-items: end;
+      // align-items: end;
       .pi-share-alt {
-        text-align: left;
         color: $main-color;
         margin-bottom: 10px;
       }

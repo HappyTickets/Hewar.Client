@@ -1,0 +1,16 @@
+.edit-mode,
+.hover:hover {
+  background: #f8f9fa;
+}
+::ng-deep textarea {
+  width: 48% !important;
+  min-width: 30vw !important;
+  max-width: 60vw !important;
+  height: 15vh !important;
+  min-height: 10vh !important;
+  padding: 1vw !important;
+  font-size: 1vw !important;
+  border-radius: 0.5vw !important;
+  outline: none !important;
+  resize: vertical !important;
+}

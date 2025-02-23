@@ -106,13 +106,16 @@
       "activityTypePLaceHolder": " ادخل نوع النشاط",
       "type": "نوع المنشأة",
       "typeErr": " نوع المنشأة مطلوب",
+      "typeError": "نوع المنشأة مطلوب",
+      "activityTypeError": "   نوع النشاط مطلوب ",
+
       "typePlaceholder": " ادخل نوع المنشأة",
       "responsibleNamePlaceholder": "ادخل اسم المسئول",
       "responsibleName": "اسم المسئول",
       "responsibleNameErr": " اسم المسئول مطلوب",
-      "responsiblePhonePlaceholder": "ادخل رقم الهاتف المس��ول",
-      "responsiblePhoneError": "رقم الهاتف المس��ول مطلوب",
-      "responsibleEmailPlaceholder": "ادخل البريد الالكتروني المس��ول",
+      "responsiblePhonePlaceholder": "ادخل رقم الهاتف المسئول",
+      "responsiblePhoneError": "رقم الهاتف المسئول مطلوب",
+      "responsibleEmailPlaceholder": "ادخل البريد الالكتروني المسئول",
 
       "admin-data-title": "بيانات الادمن",
       "address-data-title": "العنوان بالتفصيل",
@@ -138,8 +141,10 @@
       "passwordPlaceholder": "ادخل كلمه السر",
       "passwordError": "كلمه السر مطلوب",
       "confirmPassword": "تاكيد كلمه السر",
+      "passwordInvalidError": "يجب ان تحتوى على حروف كبيرة حروف خاصة ($او $..# *&)",
       "confirmPasswordPlaceholder": "ادخل تاكيد كلمه السر",
       "confirmPasswordError": "تاكيد كلمه السر مطلوبة",
+      "short": "كلمة السر قصيرة",
       "confirmPasswordError-2": "تاكيد كلمه السر ليست متوافقة مع كلمة السر",
       "firstName": "الاسم الاول",
       "firstNamePlaceholder": "ادخل الاسم الاول",
@@ -151,6 +156,8 @@
       "phonePlaceholder": "ادخل الهاتف المحمول",
       "phoneError": "الهاتف المحمول مطلوب",
       "street": "الشارع",
+
+      "emailInvalidError": "الايميل غير صالح",
       "streetPlaceholder": "ادخل الشارع",
       "streetError": "الشارع مطلوب",
       "city": "المدينة",
@@ -167,7 +174,34 @@
       "postalCodeError": "الرمز البريدي مطلوبة",
 
       "save": "حفظ",
-      "cancel": "الغاء"
+      "cancel": "الغاء",
+      "postalCodeInvalidError": "الرقم البريدى غير صالح"
+    },
+    "company-services": {
+      "create-Service": " إنشاء خدمة ",
+      "ServiceName": "اسم الخدمة",
+      "title": "إنشاء خدمة جديدة",
+      "show-all": "عرض جميع الخدمات",
+      "Description": "الوصف",
+      "DescriptionPlaceholder": "الوصف",
+      "edit": "تعديل",
+      "delete": "حذف",
+      "add-service": "إضافة خدمة",
+      "service-saved-successfully": "تم حفظ الخدمة بنجاح",
+      "service-updated-successfully": "تم تحديث الخدمة بنجاح"
+    },
+    "company-services-validation": {
+      "descriptionError": "الوصف مطلوب",
+
+      "descriptionPlaceholder": "الوصف",
+      "lenght": "يجب أن يكون الوصف على الأقل 10 أحرف",
+      "name": "الاسم مطلوب"
+    },
+    "image-upload": {
+      "drag": "اسحب الصورة وأفلتها هنا أو انقر لتحديدها",
+      "morethan-2": "حجم الصورة اكبر من 2 ميجا",
+      "filetype": "فقط يمكن استخدام الصور",
+      "remove": "إزالة"
     },
     "company-services": {
       "create-Service": " إنشاء خدمة ",
@@ -659,7 +693,21 @@
       }
     },
     "companies": {
-      "companies-list": {},
+      "companies-list": {
+        "add-comp": "اضافة شركة",
+        "classification": "تصنيف",
+        "industrial-security": "الامن الصناعي",
+        "facilities-security": " امن المنشأت",
+        "delete": "مسح",
+        "search-here": "ابحث هنا",
+        "search": "ابحث",
+        "location": "الموقع",
+        "actions": {
+          "edit": "تعديل الشركه",
+          "request-quote": "طلب عرض سعر",
+          "delete": " حذف الشركه "
+        }
+      },
       "companies-details": {
         "name": "الاسم",
         "phone": "الهاتف",
@@ -729,16 +777,90 @@
       }
     },
     "delete-item": {
-      "question": " هل انت متأكد من حذف ",
+      "question": "هل أنت متأكد من حذف ",
+
       "question-2": "؟",
-      "hide-request-question": "هل انت متأكد من إخفاء طلب عرض السعر ؟",
-      "cancel-request-question": "هل انت متأكد من إخفاء طلب عرض السعر ؟",
-      "reject-request-question": "هل انت متأكد من إخفاء طلب عرض السعر ؟",
-      "click": "إضغط على \"حذف\" لإتمام العملية. ",
-      "click-hide": "إضغط على \"إخفاء\" لإتمام العملية. ",
+      "hide-request-question": "هل أنت متأكد من إخفاء طلب التسعير؟",
+      "cancel-request-question": "هل أنت متأكد من إلغاء طلب التسعير؟",
+
+      "click-accept": "اضغط على \"قبول\" لإكمال العملية.",
+
+      "reject-request-question": "هل أنت متأكد من رفض طلب التسعير؟",
+      "accept-request-question": "هل أنت متأكد من قبول طلب التسعير؟",
+      "complete": "لإكمال الحذف",
+      "click": "اضغط على \"حذف\" لإكمال العملية.",
+      "click-hide": "اضغط على \"إخفاء\" لإكمال العملية.",
+      "click-cancel": "اضغط على \"إكمال\" لإكمال العملية.",
+      "click-reject": "اضغط على \"رفض\" لإكمال العملية.",
+
       "delete": "حذف",
       "hide": "إخفاء",
-      "cancel": "الغاء"
+      "accept": "قبول",
+      "reject": "رفض",
+      "complete-cancelation": "إكمال",
+      "cancel": "إلغاء"
+    },
+
+    "contract": {
+      "form": {
+        "contractDetails": "تفاصيل العقد",
+        "contractSignDate": "تاريخ توقيع العقد",
+        "contractStartDate": "تاريخ بدء العقد",
+        "partyOne": "الطرف الأول",
+        "partyTwo": "الطرف الثاني",
+        "name": {
+          "ar": "الاسم بالعربية",
+          "en": "الاسم بالإنجليزية"
+        },
+        "mainOfficeCity": {
+          "ar": "المدينة الرئيسية بالعربية",
+          "en": "المدينة الرئيسية بالإنجليزية"
+        },
+        "publicSecurityLicense": "ترخيص الأمن العام",
+        "telephone": "الهاتف",
+        "mobile": "الجوال",
+        "email": "البريد الإلكتروني",
+        "nationalAddress": {
+          "ar": "المدينة (العنوان الوطني) بالعربية",
+          "en": "المدينة (العنوان الوطني) بالإنجليزية"
+        },
+        "postalCode": "الرمز البريدي",
+        "unitNumber": "رقم الوحدة",
+        "buildingNumber": "رقم المبنى",
+        "representativeName": {
+          "ar": "اسم الممثل بالعربية",
+          "en": "اسم الممثل بالإنجليزية"
+        },
+        "representativeTitle": {
+          "ar": "لقب الممثل بالعربية",
+          "en": "لقب الممثل بالإنجليزية"
+        },
+        "commercialRegistration": "السجل التجاري",
+        "registrationInSabl": "التسجيل في صابِل",
+        "guardsCount": "عدد الحراس",
+        "commercialRegistrationCity": {
+          "ar": "مدينة السجل التجاري بالعربية",
+          "en": "مدينة السجل التجاري بالإنجليزية"
+        },
+        "locationToBeSecured": {
+          "ar": "الموقع المطلوب تأمينه بالعربية",
+          "en": "الموقع المطلوب تأمينه بالإنجليزية"
+        },
+        "schedule": "الجدول الزمني",
+        "location": "الموقع",
+        "guardsRequired": "الحراس المطلوبون",
+        "shiftTime": "وقت الوردية",
+        "notes": "ملاحظات",
+        "delete": "حذف",
+        "addEntry": "إضافة بند",
+        "customClauses": "البنود المخصصة",
+        "addClause": "إضافة بند",
+        "submitContract": "إرسال العقد",
+        "lang": {
+          "ar": "بالعربية",
+          "en": "بالإنجليزية"
+        }
+      }
     }
   },
   "enums": {
@@ -893,6 +1015,65 @@
       "0": "مؤقت",
       "1": "شهري",
       "2": "سنوي"
+    }
+  },
+  "ads": {
+    "create-ad": {
+      "header": "إنشاء إعلان جديد",
+      "title": "العنوان",
+      "OrderPriceRequest": "طلب عرض سعر",
+      "contractDate": "تاريخ التعاقد",
+      "startContract": "بداية التعاقد",
+      "endContract": "نهاية التعاقد",
+      "contractType": "نوع التعاقد",
+      "services": "الخدمات",
+      "serviceType": "نوع الخدمة",
+      "quantity": "الكمية",
+      "shiftType": "نوع الوردية",
+      "otherDetails": "تفاصيل أخرى",
+      "serviceName": "اسم الخدمة",
+      "publish": "نشر",
+      "cancel": "إلغاء",
+      "titleError": "العنوان مطلوب",
+      "contractDateError": "تاريخ التعاقد مطلوب",
+      "startContractError": "بداية التعاقد مطلوب",
+      "endContractError": "نهاية التعاقد مطلوب",
+      "contractTypeError": "نوع التعاقد مطلوب",
+      "servicesError": "الخدمات مطلوبة",
+      "serviceTypeError": "نوع الخدمة مطلوب",
+      "quantityError": "الكمية مطلوبة",
+      "shiftTypeError": "نوع الوردية مطلوب",
+      "update": "تحديث"
+
+    }
+  },
+  "allAds": {
+    "allMyAds": {
+      "startContract": "بداية التعاقد",
+      "endContract": "نهاية التعاقد",
+      "delete": "حذف",
+      "edit": "تعديل",
+      "global-search": "بحث عام",
+      "contract-type": "نوع العقد",
+      "status": "الحالة",
+      "actions": "الإجراءات",
+      "update": "تحديث",
+      "cancel": "إلغاء",
+      "hide": "إخفاء",
+      "chat": "الدردشة",
+      "details": "التفاصيل",
+      "make-offer": "تقديم عرض",
+      "start-date": "تاريخ البدء",
+      "end-date": "تاريخ الانتهاء",
+      "services": "الخدمات",
+      "service-id": "الخدمة",
+      "quantity": "الكمية",
+      "shift": "الوردية",
+      "service": "الخدمة",
+      "title": "العنوان",
+      "other-services": "خدمات أخرى"
+
+
     }
   }
 }
