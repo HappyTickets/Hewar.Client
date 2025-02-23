@@ -915,7 +915,6 @@
     "create-ad": {
       "header": "إنشاء إعلان جديد",
       "title": "العنوان",
-      "description": "الوصف",
       "OrderPriceRequest": "طلب عرض سعر",
       "contractDate": "تاريخ التعاقد",
       "startContract": "بداية التعاقد",
@@ -930,7 +929,6 @@
       "publish": "نشر",
       "cancel": "إلغاء",
       "titleError": "العنوان مطلوب",
-      "descriptionError": "الوصف مطلوب",
       "contractDateError": "تاريخ التعاقد مطلوب",
       "startContractError": "بداية التعاقد مطلوب",
       "endContractError": "نهاية التعاقد مطلوب",
@@ -967,7 +965,8 @@
       "shift": "الوردية",
       "service": "الخدمة",
       "title": "العنوان",
-      "description": "الوصف"
+      "other-services": "خدمات أخرى"
+
 
     }
   }

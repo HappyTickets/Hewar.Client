@@ -148,6 +148,32 @@
               </tr>
             </ng-template>
           </p-table>
+          <h2>
+            {{ "allAds.allMyAds.other-services" | translate }}
+          </h2>
+          <p-table [value]="ad.otherServices" dataKey="id">
+            <ng-template pTemplate="header">
+              <tr>
+                <th style="width: 30%">
+                  {{ "allAds.allMyAds.service" | translate }}
+                </th>
+                <th style="width: 30%">
+                  {{ "allAds.allMyAds.shift" | translate }}
+                </th>
+                <th style="width: 30%">
+                  {{ "allAds.allMyAds.quantity" | translate }}
+                </th>
+              </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-ad>
+              <tr>
+                <td>{{ ad.name }}</td>
+                <td>{{ "enums.shift-type." + ad.shiftType | translate }}</td>
+                <td>{{ ad.quantity }}</td>
+              </tr>
+            </ng-template>
+          </p-table>
         </td>
       </tr>
     </ng-template>

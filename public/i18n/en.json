@@ -898,7 +898,6 @@
     "create-ad": {
       "header": "Create New Ad",
       "title": "Title",
-      "description": "Description",
       "OrderPriceRequest": "Order PriceRe quest",
       "contractDate": "Contract Date",
       "startContract": "Start of Contracting",
@@ -915,7 +914,6 @@
       "publish": "Publish",
       "cancel": "Cancel",
       "titleError": "Title is required",
-      "descriptionError": "Description is required",
       "contractDateError": "Contract Date is required",
       "startContractError": "Start of Contracting is required",
       "endContractError": "End of Contracting is required",
@@ -953,8 +951,8 @@
       "shift": "Shift",
       "other-services": "Other Services",
       "service": "Service",
-      "title": "Title",
-      "description": "Description"
+      "title": "Title"
+
 
 
     }
