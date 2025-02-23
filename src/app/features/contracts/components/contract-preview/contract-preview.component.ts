@@ -7,11 +7,10 @@ import { Component, inject, OnInit, Renderer2, OnDestroy } from '@angular/core';
 import { IContractTemplate } from '../../models/icontract-template';
 import { ContractService } from '../../services/contract.service';
 import { IContractKey } from '../../models/icontract-key';
+import { TranslatePipe } from '@ngx-translate/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
-import { TranslatePipe } from '@ngx-translate/core';
-
 @Component({
   selector: 'app-contract-preview',
   standalone: true,
@@ -47,6 +46,7 @@ export class ContractPreviewComponent implements OnInit, OnDestroy {
         this.contractService.GetByOfferId(offerId).subscribe((res) => {
           if (res.data) {
             this.contract = res.data;
+            this.contract.staticContractTemplate.preambleAr = "أبرم هذا العقد بين كل من:\n الطرف الأول: شركة {{CompanyNameAr}} ومركزها الرئيسي في مدينة {{CompanyMainOfficeCityAr}} مسجــلة بالسجل التجاري رقم ({{CompanyCommercialRegistration}}) ترخيص الأمن العام رقم {{CompanyPublicSecurityLicense}} هاتف {{CompanyTelephone}} جوال {{CompanyMobile}} العنوان الوطني {{CompanyAddressCityAr}} الرمز البريدي ({{CompanyAddressPostalCode}}) وحدة رقم ({{CompanyAddressUnitNumber}}) مبنى رقم ({{CompanyAddressBuildingNumber}}) رقم التسجيل في سبل، واصل ({{CompanyRegistrationInSabl}}) بريد إلكتروني {{CompanyEmail}} ويمثلها في التوقيع على هذا العقد  / {{CompanyRepresentativeNameAr}} بصفته {{CompanyRepresentativeTitleAr}}.\n\n الطرف الثاني: السادة/ {{FacilityNameAr}} العقد الأساسي الموقع بتاريخ {{ContractSignDate}}\n ومركزها الرئيسي في مدينة {{FacilityMainOfficeCityAr}} : مسجــلة بالسجل التجاري مسجل بمدينة {{FacilityCommercialRegistrationCityAr}}  جوال ({{FacilityMobile}}) العنوان الوطني ({{FacilityAddressCityAr}}) الرمز البريدي ({{FacilityAddressPostalCode}}) وحدة رقم ({{FacilityAddressUnitNumber}}) مبنى رقم ({{FacilityAddressBuildingNumber}}) بريد إلكتروني {{FacilityEmail}} ويمثلها في التوقيع على هذا العقد\n الأستاذ / {{FacilityRepresentativeNameAr}} بصفته : {{FacilityRepresentativeTitleAr}}. \n\nحيث أن الطرف الثاني يرغب في تأمين خدمات الحراسة الأمنية المدنية لموقعه {{FacilityLocationToBeSecuredAr}} فتقدم الطرف الأول بعرضه رقـــــــم ({{OfferNumber}}) وتاريخ ({{OfferDate}}) المرفق به بيان الخدمات التي يقدمها الطرف الأول وأسلوبها وأسعارها وقد لقي العرض قبولاً لدى الطرف الثاني وعليه فقد اتفق الطرفان وتراضيا على البنود والشروط التالية:\n\n • عدم فسخ العقد من قبل الطرفين الا بعد أشعار شعبة الحراسات الأمنية بالميدانية بذالك. \n• الالتزام بعمل جدول موضح به عدد الحراسات وأوقات ساعات العمل \n• التقيد بالتعليمات فيما يخص نظام مكتب العمل والعمال من حيث عدد ساعات العمل بشهر رمضان المبارك.\n"
             this.replacePlaceholders();
           }
         });
@@ -70,10 +70,11 @@ export class ContractPreviewComponent implements OnInit, OnDestroy {
       const trimmedKey = key.trim();
       const keyDetails = keys[trimmedKey];
       if(trimmedKey === 'OfferNumber') {return `<span>${this.contract.offerNumber}</span>`;}
-      else if(trimmedKey === 'OfferDate') {return `<span>${new Date(this.contract.offerDate).toLocaleDateString('en-GB')}</span>`;}
+      if(trimmedKey === 'OfferDate') {return `<span>${new Date(this.contract.offerDate).toLocaleDateString('en-GB')}</span>`;}
       if (!keyDetails)return `<span class="placeholder-key">${trimmedKey}</span>`;
+      if (keyDetails.value === '') return `<span class="placeholder-key ${keyDetails.id}">----------</span>`;;
       return `<span class="placeholder-key ${keyDetails.id}">${keyDetails.value}</span>`;
-      }).replace(/\n/g, '<br>');
+      }).replace(/\n/g, '<br>')
   }
   onPlaceholderClick(event: MouseEvent): void {
     const target = event.target as HTMLElement;
