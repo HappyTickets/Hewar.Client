@@ -1,39 +1,56 @@
-import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, OnChanges, ViewChild, ElementRef } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { ChatService } from './services/chat.service';
 import { IChat, IResponseChat } from './models/IGetChat';
+import { ICompanyPriceRequest } from '../../../features/price-requests/models/icompany-price-request';
+import { ISendMessage } from './models/ISendMessage';
 
 @Component({
   selector: 'app-chat',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, ButtonModule ],
+  imports: [ReactiveFormsModule, CommonModule, ButtonModule],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.scss'
 })
-export class ChatComponent implements OnInit {
-  @Input() showChat = false
+export class ChatComponent implements OnInit, OnChanges {
+  @Input() showChat = false;
+  @Input() currentPriceReq!: ICompanyPriceRequest;
   @Output() closeChat = new EventEmitter<void>();
+  @ViewChild('messagesContainer') messagesContainer!: ElementRef;
+  @ViewChild('fileInput') fileInput!: ElementRef;
 
-  messages: IChat[] = []
-  currentUserId  = 40
+  messages: IChat[] = [];
+  currentUserId = 0;
   chatForm = new FormGroup({
     message: new FormControl('')
   });
+  selectedFile: File | null = null;
 
-  constructor(private _chatService:ChatService) {
-  }
+  constructor(
+    private _chatService: ChatService,
+  ) {}
+
   ngOnInit(): void {
     const userInfoString = localStorage.getItem('userInfo');
     if (userInfoString) {
       const userInfo = JSON.parse(userInfoString);
-      this.currentUserId = userInfo.userId
+      this.currentUserId = userInfo.userId;
     }
-    this._chatService.getChat(1).subscribe((res:IResponseChat) => {
-      this.messages = res.data
-      console.log(res.data)
-    })
+  }
+
+  ngOnChanges(): void {
+    this.getChat();
+  }
+
+  getChat() {
+    if (this.currentPriceReq && this.currentPriceReq.chatId) {
+      this._chatService.getChat(this.currentPriceReq.chatId).subscribe((res: IResponseChat) => {
+        this.messages = res.data;
+        setTimeout(() => this.scrollToEnd(), 100);
+      });
+    }
   }
 
   toggleChat() {
@@ -42,8 +59,79 @@ export class ChatComponent implements OnInit {
 
   sendMessage() {
     const newMessage = this.chatForm.value.message?.trim();
-    if (newMessage) {
-      console.log('yes')
+    // If a file is selected, upload it first
+    if (this.selectedFile) {
+      this._chatService.uploadFile(this.selectedFile).subscribe({
+        next: (fileUrl) => {
+          // Send message with file URL
+          this.sendChatMessage(newMessage, fileUrl);
+        },
+        error: (err) => {
+          console.error('File upload error:',
+            err);
+        }
+      });
+    } else {
+      // No file, send message directly
+      this.sendChatMessage(newMessage, '');
+    }
+  }
+
+  sendChatMessage(content?: string, fileUrl?: string) {
+    const data : ISendMessage = {
+      content: content || '',
+      medias: [],
+      chatId: this.currentPriceReq.chatId ?? null,
+    };
+    console.log(data)
+    console.log(this.selectedFile)
+    console.log(fileUrl)
+
+    if (fileUrl) {
+      data.medias.push({
+        type: this.selectedFile?.type || '',
+        url: fileUrl
+      });
+    }
+    console.log(data)
+    console.log(this.selectedFile)
+    console.log(fileUrl)
+
+    this._chatService.sendMessage(data).subscribe({
+      next: () => {
+        this.getChat();
+        this.scrollToEnd();
+      },
+      error: (err) => {
+        console.error('Error occurred:', err);
+      },
+      complete: () => {
+        this.chatForm.reset();
+        this.selectedFile = null;
+        if (this.fileInput && this.fileInput.nativeElement) {
+          this.fileInput.nativeElement.value = '';
+        }
+      }
+    });
+  }
+
+  scrollToEnd(): void {
+    setTimeout(() => {
+      if (this.messagesContainer) {
+        this.messagesContainer.nativeElement.scrollTop = this.messagesContainer.nativeElement.scrollHeight;
+      }
+    }, 100);
+  }
+
+  openFileDialog(): void {
+    this.fileInput.nativeElement.click();
+  }
+
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0];
+      console.log('Selected file:', this.selectedFile);
     }
   }
 }

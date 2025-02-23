@@ -1,32 +1,3 @@
-// .chat-toggle-btn {
-//   position: fixed;
-//   bottom: 6vw;
-//   right: 2vw;
-//   width: max(3vw, 2rem);
-//   height: max(3vw, 2rem);
-//   background: rgb(26, 117, 159);
-//   color: var(--p-button-primary-color);
-//   border: none;
-//   border-radius: 50%;
-//   font-size: 22px;
-//   cursor: pointer;
-//   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   &:hover {
-//     background: rgb(10, 50, 68);
-//   }
-// }
-// ::ng-deep .pi-comments {
-//   .p-button {
-//     background: transparent !important;
-//     &:hover {
-//       background: transparent !important;
-//     }
-//   }
-// }
-
 .chat-container {
   z-index: 9999999;
   position: fixed;
@@ -44,7 +15,7 @@
     display: flex;
   }
   .chat-header {
-    background: #007bff;
+    background: #055bcc;
     color: white;
     position: relative;
     text-align: center;
@@ -73,19 +44,64 @@
     overflow-y: auto;
     display: flex;
     flex-direction: column;
+    .date {
+      background-color: #055bcc;
+      text-align: center;
+      width: fit-content;
+      margin: 12px auto;
+      color: #ddd;
+      font-size: 14px;
+      padding: 5px 10px;
+      border-radius: 31px;
+    }
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
     div {
       max-width: 75%;
-      padding: 8px 12px;
-      margin: 5px 0;
-      border-radius: 15px;
+      p {
+        padding: 15px;
+        border-radius: 15px;
+        position: relative;
+        margin: 0;
+        &::before {
+          content: "";
+          width: 0;
+          height: 0;
+          border: 9px solid;
+          position: absolute;
+          top: 12px;
+          right: -16px;
+          border-color: transparent transparent transparent #055bcc;
+        }
+        .time {
+          display: block;
+          margin-top: 15px;
+          font-size: 14px;
+          color: #777;
+        }
+      }
       &.sent {
-        background: #007bff;
         color: white;
         align-self: flex-end;
+        p {
+          background: #055bcc;
+          .time {
+            color: #ddd;
+          }
+        }
       }
       &.received {
-        background: #f1f1f1;
-        align-self: flex-start;
+        justify-content: flex-start;
+        p {
+          background: #f1f1f1;
+          &::before {
+            left: -16px;
+            border-color: transparent #f1f1f1 transparent transparent ;
+          }
+        }
       }
     }
   }
@@ -96,17 +112,24 @@
     background: white;
     input {
       flex: 1;
-      padding: 0 8px;
+      padding: 13px 8px;
       border: 1px solid #ccc;
       border-radius: 5px;
       outline: none;
     }
-    .send-btn {
-      padding: 8px 15px;
-    border: none;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+    .send-btn, .attachment-btn {
+      padding: 0 4px;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: auto;
+      ::ng-deep button {
+        border-radius: 50%;
+        padding: 0;
+        width: 40px;
+        height: 40px;
+      }
+    }
   }
 }

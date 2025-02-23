@@ -13,16 +13,16 @@
             }
           </div>
             <p class="p-group"> {{ "app.companies.create-update-company.address-data-title" | translate }} </p>
-        <div class="grid">
-          <ng-container formGroupName="address">
-            @for (input of addressDataInputs; track $index) {
-              <div class="col-12 md:col-6 lg:col-4">
-                <app-input [formGroup]="addressGroup" [placeholder]="input.placeholder" [errorKey]="input.errorKey" [controlName]="input.controlName" [icon]="input.icon" [type]="input.type" [label]="input.label"> </app-input>
-              </div>
-            }
-          </ng-container>
+          <div class="grid">
+            <ng-container formGroupName="address">
+              @for (input of addressDataInputs; track $index) {
+                <div class="col-12 md:col-6 lg:col-4">
+                  <app-input [formGroup]="addressGroup" [placeholder]="input.placeholder" [errorKey]="input.errorKey" [controlName]="input.controlName" [icon]="input.icon" [type]="input.type" [label]="input.label"> </app-input>
+                </div>
+              }
+            </ng-container>
+          </div>
         </div>
-      </div>
       <!-- admin Data -->
       <div class="card">
         <p class="p-group"> {{ "app.companies.create-update-company.admin-data-title" | translate }} </p>
@@ -47,19 +47,6 @@
                 </div>
               </div>
             </ng-container>
-        </div>
-      </div>
-      <!-- address Data -->
-      <div class="card">
-        <p class="p-group"> {{ "app.companies.create-update-company.address-data-title" | translate }} </p>
-        <div class="grid">
-          <ng-container formGroupName="address">
-            @for (input of addressDataInputs; track $index) {
-              <div class="col-12 md:col-6 lg:col-4">
-                <app-input [formGroup]="addressGroup" [placeholder]="input.placeholder" [errorKey]="input.errorKey" [controlName]="input.controlName" [icon]="input.icon" [type]="input.type" [label]="input.label"> </app-input>
-              </div>
-              }
-          </ng-container>
         </div>
       </div>
       <!-- actions -->
