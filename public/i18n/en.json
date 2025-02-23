@@ -139,6 +139,32 @@
       "save": "Save",
       "cancel": "Cancel"
     },
+
+    "image-upload": {
+      "drag": "Drag and drop an image here or click to select",
+      "morethan-2": "File size should not exceed 2MB",
+      "filetype": "Only image files are allowed",
+      "remove": "remove"
+    },
+    "company-services": {
+      "create-Service": "Create Service",
+      "ServiceName": "Service Name",
+      "title": "Create New Services",
+      "show-all": "Show All Services",
+      "Description": "Description",
+      "DescriptionPlaceholder": "Description",
+      "edit": "Edit",
+      "delete": "Delete",
+      "add-service": "Add Service",
+      "service-saved-successfully": "Service saved successfully",
+      "service-updated-successfully": "Service updated successfully"
+    },
+    "company-services-validation": {
+      "descriptionError": "Description is required",
+      "descriptionPlaceholder": "Description",
+      "lenght": "Description must be at least 10 characters",
+      "name": "name is required"
+    },
     "validation": {
       "required": "This field is required",
       "email": "Please enter a valid email",
@@ -643,6 +669,100 @@
       "postal-code": "Postal Code",
       "save": "Save",
       "cancel": "Cancel"
+    },
+    "contract": {
+      "form": {
+        "contractDetails": "Contract Details",
+        "contractSignDate": "Contract Signing Date",
+        "contractStartDate": "Contract Start Date",
+        "partyOne": "Party One",
+        "partyTwo": "Party Two",
+        "name": {
+          "ar": "Name in Arabic",
+          "en": "Name in English"
+        },
+        "mainOfficeCity": {
+          "ar": "Main Office City in Arabic",
+          "en": "Main Office City in English"
+        },
+        "publicSecurityLicense": "Public Security License",
+        "telephone": "Telephone",
+        "mobile": "Mobile",
+        "email": "Email",
+        "nationalAddress": {
+          "ar": "City (National Address) in Arabic",
+          "en": "City (National Address) in English"
+        },
+        "postalCode": "Postal Code",
+        "unitNumber": "Unit Number",
+        "buildingNumber": "Building Number",
+        "representativeName": {
+          "ar": "Representative Name in Arabic",
+          "en": "Representative Name in English"
+        },
+        "representativeTitle": {
+          "ar": "Representative Title in Arabic",
+          "en": "Representative Title in English"
+        },
+        "commercialRegistration": "Commercial Registration",
+        "registrationInSabl": "Registration in Sabl",
+        "guardsCount": "Number of Guards",
+        "commercialRegistrationCity": {
+          "ar": "Commercial Registration City in Arabic",
+          "en": "Commercial Registration City in English"
+        },
+        "locationToBeSecured": {
+          "ar": "Location to be Secured in Arabic",
+          "en": "Location to be Secured in English"
+        },
+        "schedule": "Schedule",
+        "location": "Location",
+        "guardsRequired": "Guards Required",
+        "shiftTime": "Shift Time",
+        "notes": "Notes",
+        "delete": "Delete",
+        "addEntry": "Add Entry",
+        "customClauses": "Custom Clauses",
+        "addClause": "Add Clause",
+        "submitContract": "Submit Contract",
+        "lang": {
+          "ar": "Arabic",
+          "en": "English"
+        }
+      },
+      "schedule": {
+        "site": "Site",
+        "gaurdCount": "Guard Count",
+        "workTime": "Work Time",
+        "notes": "Notes",
+        "action": "Action",
+        "siteAr": "Site (Arabic)",
+        "siteEn": "Site (English)",
+        "shiftAr": "Shift (Arabic)",
+        "shiftEn": "Shift (English)",
+        "notesAr": "Notes (Arabic)",
+        "notesEn": "Notes (English)",
+        "addRow": "Add New Row"
+      },
+      "clause": {
+        "contentAr": "Content (Arabic)",
+        "contentEn": "Content (English)",
+        "clause": "Clause",
+        "number": "Number",
+        "edit": "Edit",
+        "add": "Add",
+        "ar": "Clause (Arabic)",
+        "en": "Clause (English)"
+      },
+      "signature": {
+        "facility": "Facility Signature",
+        "company": "Company Signature"
+      },
+      "preview": {
+        "intro": "• Providing a number of security guards, specifying their locations and working hours as shown below:",
+        "12-desc": "Service cost clause for the second party as per the table below:",
+        "12": "Clause Twelve"
+      }
     }
   },
   "enums": {
@@ -798,6 +918,69 @@
       "0": "Temporary",
       "1": "Monthly",
       "2": "Yearly"
+    }
+  },
+  "ads": {
+    "create-ad": {
+      "header": "Create New Ad",
+      "title": "Title",
+      "OrderPriceRequest": "Order PriceRe quest",
+      "contractDate": "Contract Date",
+      "startContract": "Start of Contracting",
+      "endContract": "End of Contracting",
+      "contractType": "Contract Type",
+      "services": "Services",
+      "serviceType": "Service Type",
+      "quantity": "Quantity",
+      "shiftType": "Shift Type",
+      "otherDetails": "Other Services",
+      "serviceName": "Service",
+      "addNotes": "Notes",
+      "enterDetails": "Enter additional details",
+      "publish": "Publish",
+      "cancel": "Cancel",
+      "titleError": "Title is required",
+      "contractDateError": "Contract Date is required",
+      "startContractError": "Start of Contracting is required",
+      "endContractError": "End of Contracting is required",
+      "contractTypeError": "Contract Type is required",
+      "serviceTypeError": "Service Type is required",
+      "quantityError": "Quantity is required",
+      "shiftTypeError": "Shift Type is required",
+      "update": "Update"
+
+    }
+  },
+  "allAds": {
+    "allMyAds": {
+      "startContract": "Start of Contracting",
+      "endContract": "End of Contracting",
+      "delete":"Delete",
+      "edit":"edit",
+      "global-search": "Global Search",
+      "company-name": "Company Name",
+      "contract-type": "Contract Type",
+      "status": "Status",
+      "actions": "Actions",
+      "update": "Update",
+      "cancel": "Cancel",
+      "hide": "Hide",
+      "chat": "Chat",
+      "make-offer": "Make Offer",
+      "details": "Details",
+      "start-date": "Start Date",
+      "end-date": "End Date",
+      "services": "Services",
+      "facility-name": "Facility Name",
+      "service-id": "ID",
+      "quantity": "Quantity",
+      "shift": "Shift",
+      "other-services": "Other Services",
+      "service": "Service",
+      "title": "Title"
+
+
+
     }
   }
 }

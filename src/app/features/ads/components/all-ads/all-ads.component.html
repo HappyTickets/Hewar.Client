@@ -1,0 +1,191 @@
+<div class="container">
+  <p-table
+    [value]="myAds"
+    [paginator]="true"
+    [rows]="10"
+    dataKey="id"
+    #dt
+    [tableStyle]="{ 'min-width': '60rem' }"
+    [globalFilterFields]="['title', 'contractType', 'requestStatus']"
+    [rowsPerPageOptions]="[5, 10, 20]"
+  >
+    <ng-template #caption>
+      <p-iconfield iconPosition="left">
+        <p-inputicon><i class="pi pi-search"></i> </p-inputicon>
+        <input
+          pInputText
+          type="text"
+          [(ngModel)]="search"
+          (input)="dt.filterGlobal(search, 'contains')"
+          [placeholder]="
+            'app.price-request.price-request-page.global-search' | translate
+          "
+        />
+      </p-iconfield>
+    </ng-template>
+
+    <ng-template #header>
+      <tr>
+        <th></th>
+        <th pSortableColumn="title" style="width: 20%">
+          {{ "allAds.allMyAds.title" | translate
+          }}<p-sortIcon field="title"></p-sortIcon>
+        </th>
+        <th pSortableColumn="contractType" style="width: 20%">
+          {{ "allAds.allMyAds.contract-type" | translate }}
+          <p-sortIcon field="contractType"></p-sortIcon>
+        </th>
+        <th pSortableColumn="requestStatus" style="width: 20%">
+          {{ "allAds.allMyAds.status" | translate }}
+          <p-sortIcon field="requestStatus"></p-sortIcon>
+        </th>
+        <th style="width: 30%">
+          {{ "allAds.allMyAds.actions" | translate }}
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-ad pTemplate="body" let-expanded="expanded">
+      <tr>
+        <td>
+          <p-button
+            type="button"
+            [pRowToggler]="ad"
+            [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"
+          />
+        </td>
+        <td>{{ ad.title }}</td>
+        <td>{{ "enums.contract-types." + ad.contractType | translate }}</td>
+        <td>{{ "enums.ad-status." + ad.status | translate }}</td>
+        <td class="flex flex-row">
+          <p-button
+            icon="pi pi-cog"
+            (click)="toggleActions(ad)"
+            pTooltip="{{ 'allAds.allMyAds.actions' | translate }}"
+            tooltipPosition="top"
+          ></p-button>
+          <div [class.visible]="ad.showActions" class="smooth-buttons">
+            @if(ad.showActions){
+
+            <p-button
+              class="m-1"
+              [routerLink]="['/ads/edit/' + ad.id]"
+              icon="pi pi-pencil"
+              pTooltip="{{ 'allAds.allMyAds.update' | translate }}"
+              tooltipPosition="top"
+            ></p-button>
+            <p-button
+              class="m-1"
+              icon="pi pi-info-circle"
+              pTooltip="{{ 'allAds.allMyAds.details' | translate }}"
+              (click)="details(ad.id)"
+              [disabled]="ad.status !== 1"
+              tooltipPosition="top"
+            ></p-button>
+
+            <p-button
+              class="m-1"
+              icon="pi pi-comments"
+              pTooltip="{{ 'allAds.allMyAds.chat' | translate }}"
+              tooltipPosition="top"
+              [disabled]="ad.status !== 1"
+            ></p-button>
+            <p-button
+            class="m-1"
+            [routerLink]="['/create-offer-for-ad/', ad.id]"
+            icon="pi pi-file-edit"
+            pTooltip="{{
+              'app.price-request.price-request-page.make-offer' | translate
+            }}"
+            tooltipPosition="top"
+          ></p-button>
+            <p-button
+              class="m-1"
+              icon="pi pi-times"
+              (click)="deleteAd(ad.id)"
+              pTooltip="{{ 'allAds.allMyAds.delete' | translate }}"
+              tooltipPosition="top"
+            ></p-button>
+         
+
+            }
+          </div>
+          <app-delete-popup
+            [visible]="visible"
+            icon="pi pi-times"
+            (closePopup)="onCancelDelete()"
+            (confirmDelete)="onConfirmDelete()"
+            type="delete"
+          ></app-delete-popup>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="rowexpansion" let-ad>
+      <tr>
+        <td colspan="5">
+          <div class="flex justify-content-between">
+            <div>
+              {{ "allAds.allMyAds.start-date" | translate }}:
+              <strong>{{ ad.startDate | date }}</strong>
+            </div>
+            <div>
+              {{ "allAds.allMyAds.end-date" | translate }}:
+              <strong>{{ ad.endDate | date }}</strong>
+            </div>
+          </div>
+          <h2>
+            {{ "allAds.allMyAds.services" | translate }}
+          </h2>
+          <p-table [value]="ad.services" dataKey="id">
+            <ng-template pTemplate="header">
+              <tr>
+                <th style="width: 20%">
+                  {{ "allAds.allMyAds.service-id" | translate }}
+                </th>
+                <th style="width: 20%">
+                  {{ "allAds.allMyAds.shift" | translate }}
+                </th>
+                <th style="width: 20%">
+                  {{ "allAds.allMyAds.quantity" | translate }}
+                </th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-ad>
+              <tr>
+                <td>{{ ad.serviceName }}</td>
+                <td>{{ "enums.shift-type." + ad.shiftType | translate }}</td>
+                <td>{{ ad.quantity }}</td>
+              </tr>
+            </ng-template>
+          </p-table>
+          <h2>
+            {{ "allAds.allMyAds.other-services" | translate }}
+          </h2>
+          <p-table [value]="ad.otherServices" dataKey="id">
+            <ng-template pTemplate="header">
+              <tr>
+                <th style="width: 30%">
+                  {{ "allAds.allMyAds.service" | translate }}
+                </th>
+                <th style="width: 30%">
+                  {{ "allAds.allMyAds.shift" | translate }}
+                </th>
+                <th style="width: 30%">
+                  {{ "allAds.allMyAds.quantity" | translate }}
+                </th>
+              </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-ad>
+              <tr>
+                <td>{{ ad.name }}</td>
+                <td>{{ "enums.shift-type." + ad.shiftType | translate }}</td>
+                <td>{{ ad.quantity }}</td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

@@ -1,0 +1,36 @@
+<h3>{{ 'app.contract.form.customClauses' | translate }}</h3>
+
+<div *ngFor="let clause of customClausesData; let i = index">
+  <div *ngIf="!clause.editing" class="flex flex-row justify-content-between align-items-center hover">
+    <div>
+      <h3>{{'app.contract.clause.clause'| translate}} {{'app.contract.clause.number' | translate}} ({{ i + 1 }})</h3>
+      <p>{{ language === 'ar' ? clause.htmlContentAr : clause.htmlContentEn }}</p>
+    </div>
+    <div class="flex gap-1">
+      <p-button icon="pi pi-pencil" (click)="editClause(clause)" severity="primary" />
+      <p-button icon="pi pi-trash" (click)="removeClause(i, clause)" severity="danger" />
+    </div>
+  </div>
+  <div *ngIf="clause.editing" class="edit-mode">
+    <div class="flex flex-row justify-content-between align-items-center">
+      <h3>{{clause.new? ('app.contract.clause.add'| translate) : ('app.contract.clause.edit'| translate)}} {{'app.contract.clause.clause'| translate}} {{'app.contract.clause.number'| translate}} ({{ i + 1 }})</h3>
+      <div class="flex gap-1">
+        <p-button icon="pi pi-check" (click)="saveClause(clause)" severity="success"/>
+        <p-button icon="pi pi-times" (click)="cancelEdit(clause,i)" severity="secondary"/>
+      </div>
+    </div>
+
+    <div class="flex flex-row justify-content-between align-items-center">
+      <div class="flex flex-column w-full">
+        <p for="">{{'app.contract.clause.ar'| translate}}:</p>
+        <textarea pTextarea [(ngModel)]="clause.htmlContentAr" [autoResize]="true" rows="4" [placeholder]="'app.contract.clause.contentAr'| translate"></textarea>
+      </div>
+      <div class="flex flex-column w-full">
+        <p for="">{{'app.contract.clause.en'| translate}}:</p>
+        <textarea pTextarea [(ngModel)]="clause.htmlContentEn" [autoResize]="true" rows="4" [placeholder]="'app.contract.clause.contentEn'| translate"></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="flex justify-content-end"><p-button label="إضافة بند جديد" icon="pi pi-plus" (click)="addNewEntry()" severity="success" /></div>
