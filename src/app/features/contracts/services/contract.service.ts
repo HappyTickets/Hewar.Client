@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IApiResponse } from '../../../shared/models/IApiResponse';
 import { ICreateContract } from '../models/icreate-contract';
-import { IContract } from '../models/icontract';
+import { IContractKeys } from '../models/icontract-keys';
 import { IContractTemplate } from '../models/icontract-template';
 import { IContractFields } from '../models/icontract-fields';
 
@@ -32,11 +32,11 @@ export class ContractService {
   GetByOfferId(offerId: number):Observable <IApiResponse<IContractTemplate>> {
     return this.http.get<IApiResponse<IContractTemplate>>(`${this.baseEndPoint}GetByOfferId`, {params: {offerId}})
   }
-  GetContractKeysByContractId(contractId: number):Observable <IApiResponse<IContract>> {
-    return this.http.get<IApiResponse<IContract>>(`${this.baseEndPoint}GetContractKeysByContractId`, {params: {contractId}})
+  GetContractKeysByContractId(contractId: number):Observable <IApiResponse<IContractKeys>> {
+    return this.http.get<IApiResponse<IContractKeys>>(`${this.baseEndPoint}GetContractKeysByContractId`, {params: {contractId}})
   }
-  GetContractKeysByOfferId(offerId: number):Observable <IApiResponse<IContract>> {
-    return this.http.get<IApiResponse<IContract>>(`${this.baseEndPoint}GetContractKeysByOfferId`, {params: {offerId}})
+  GetContractKeysByOfferId(offerId: number):Observable <IApiResponse<IContractKeys>> {
+    return this.http.get<IApiResponse<IContractKeys>>(`${this.baseEndPoint}GetContractKeysByOfferId`, {params: {offerId}})
   }
   GetContractFieldsByOfferId(offerId: number):Observable <IApiResponse<IContractFields>> {
     return this.http.get<IApiResponse<IContractFields>>(`${this.baseEndPoint}GetContractFieldsByOfferId`, {params: {offerId}})

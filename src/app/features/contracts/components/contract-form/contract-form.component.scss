@@ -2,3 +2,17 @@
 .background {
   background: #f2fbff;
 }
+.preview-btn {
+  position: fixed;
+  top: 25%;
+  right: -100px;
+  transform: translateY(-50%);
+  z-index: 1000;
+  padding: 10px 20px;
+  font-size: 14px;
+  transition: 0.3s;
+}
+.preview-btn:hover {
+  transition: 0.3s;
+  right: -20px;
+}

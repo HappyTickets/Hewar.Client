@@ -17,12 +17,12 @@ import { DetialsFacilityComponent } from './features/facilities/detials-facility
 import { UpdateCompanyComponent } from './features/companies/components/update-company/update-company.component';
 import { CompanyDetailsComponent } from './features/companies/components/company-details/company-details.component';
 import { FacilityPriceRequestsComponent } from './features/price-requests/components/facility-price-requests/facility-price-requests.component';
-import { CompanyOffersComponent } from './features/my-offers/components/company-offers/company-offers.component';
-import { FacilityOffersComponent } from './features/my-offers/components/facility-offers/facility-offers.component';
+import { CompanyOffersComponent } from './features/price-offers/components/company-offers/company-offers.component';
+import { FacilityOffersComponent } from './features/price-offers/components/facility-offers/facility-offers.component';
 import { EditPriceRequestComponent } from './features/price-requests/components/edit-price-request/edit-price-request.component';
-import { EditPriceOfferComponent } from './features/my-offers/components/edit-price-offer/edit-price-offer.component';
+import { EditPriceOfferComponent } from './features/price-offers/components/edit-price-offer/edit-price-offer.component';
 import { PriceRequestDetailsComponent } from './features/price-requests/components/price-request-details/price-request-details.component';
-import { PriceOfferDetailsComponent } from './features/my-offers/components/price-offer-details/price-offer-details.component';
+import { PriceOfferDetailsComponent } from './features/price-offers/components/price-offer-details/price-offer-details.component';
 import { CompanyPriceRequestsComponent } from './features/price-requests/components/company-price-requests/company-price-requests.component';
 import { SecurityCertificateComponent } from './features/security-certificate/components/security-certificate/security-certificate.component';
 import { AdsComponent } from './features/ads/components/ads/ads.component';

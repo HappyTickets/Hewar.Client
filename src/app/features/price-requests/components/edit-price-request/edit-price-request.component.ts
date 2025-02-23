@@ -19,7 +19,6 @@ import { IPriceRequest } from '../../models/iprice-request';
 import { PriceRequestsService } from '../../services/price-requests.service';
 import { ICreatePriceRequest } from '../../models/icreate-price-request';
 import { CommonModule } from '@angular/common';
-
 @Component({
   selector: 'app-edit-price-request',
   standalone: true,
@@ -35,7 +34,6 @@ export class EditPriceRequestComponent implements OnInit {
   private router = inject(Router);
   private route = inject(ActivatedRoute);
   private fb = inject(FormBuilder);
-
   shiftType = this.localizationService.createDropdown(ShiftType);
   contractTypes = this.localizationService.createDropdown(ContractType);
   companyServices: ICompanyService[] = [];
@@ -91,32 +89,20 @@ export class EditPriceRequestComponent implements OnInit {
   }
   onSubmit(): void {
     if (this.editPriceRequestForm.valid) {
+      const priceRequest: ICreatePriceRequest = {
+        contractType: this.editPriceRequestForm.value.contractType,
+        startDate: this.editPriceRequestForm.value.startDate,
+        endDate: this.editPriceRequestForm.value.endDate,
+        notes: this.editPriceRequestForm.value.notes,
+        services: this.editPriceRequestForm.value.services,
+        otherServices: this.editPriceRequestForm.value.otherServices,
+      };
       if (this.mode === 'create') {
-        const priceRequest: ICreatePriceRequest = {
-          companyId: this.companyData.id,
-          contractType: this.editPriceRequestForm.value.contractType,
-          startDate: this.editPriceRequestForm.value.startDate,
-          endDate: this.editPriceRequestForm.value.endDate,
-          notes: this.editPriceRequestForm.value.notes,
-          services: this.editPriceRequestForm.value.services,
-          otherServices: this.editPriceRequestForm.value.otherServices,
-        };
-        this.priceRequestsService.create(priceRequest).subscribe(() => {
-          this.router.navigate(['/facility-price-request']);
-        });
+        priceRequest.companyId = this.companyData.id;
+        this.priceRequestsService.create(priceRequest).subscribe(() => {this.router.navigate(['/facility-price-request'])});
       } else if (this.mode === 'update') {
-        const priceRequest: ICreatePriceRequest = {
-          priceRequestId: this.priceRequestData.id,
-          contractType: this.editPriceRequestForm.value.contractType,
-          startDate: this.editPriceRequestForm.value.startDate,
-          endDate: this.editPriceRequestForm.value.endDate,
-          notes: this.editPriceRequestForm.value.notes,
-          services: this.editPriceRequestForm.value.services,
-          otherServices: this.editPriceRequestForm.value.otherServices,
-        };
-        this.priceRequestsService.update(priceRequest).subscribe(() => {
-          this.router.navigate(['/facility-price-request']);
-        });
+        priceRequest.priceRequestId = this.priceRequestData.id;
+        this.priceRequestsService.update(priceRequest).subscribe(() => {this.router.navigate(['/facility-price-request'])});
       }
     }
   }
@@ -152,9 +138,7 @@ export class EditPriceRequestComponent implements OnInit {
     this.otherServices.push(this.createOtherServiceGroup());
   }
   removeOtherService(index: number): void {
-    if (this.otherServices.length > 0) {
-      this.otherServices.removeAt(index);
-    }
+    if (this.otherServices.length > 0) this.otherServices.removeAt(index);
   }
   onCancel(): void {
     this.editPriceRequestForm.reset();
@@ -166,7 +150,6 @@ export class EditPriceRequestComponent implements OnInit {
       endDate: new Date(this.priceRequestData.endDate),
       notes: this.priceRequestData.notes,
     });
-
     if (this.priceRequestData.services) {
       this.services.clear();
       this.priceRequestData.services.forEach((service) => {
@@ -179,7 +162,6 @@ export class EditPriceRequestComponent implements OnInit {
         );
       });
     }
-
     if (this.priceRequestData.otherServices) {
       this.otherServices.clear();
       this.priceRequestData.otherServices.forEach((otherService) => {
