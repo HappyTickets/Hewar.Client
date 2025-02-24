@@ -41,7 +41,7 @@ export class AdsService {
     );
   }
 
-  getOpenAds() {
+  getOpenedAds() {
     return this.http.get<IApiResponse<ICreateAd[]>>(
       `${this.baseEndPoint}getOpened`
     );

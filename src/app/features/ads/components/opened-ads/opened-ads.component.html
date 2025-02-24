@@ -65,14 +65,6 @@
           ></p-button>
           <div [class.visible]="ad.showActions" class="smooth-buttons">
             @if(ad.showActions){
-
-            <p-button
-              class="m-1"
-              [routerLink]="['/ad/edit/' + ad.id]"
-              icon="pi pi-pencil"
-              pTooltip="{{ 'allAds.allMyAds.update' | translate }}"
-              tooltipPosition="top"
-            ></p-button>
             <p-button
               class="m-1"
               icon="pi pi-info-circle"
@@ -91,21 +83,16 @@
             ></p-button>
             <p-button
               class="m-1"
-              icon="pi pi-times"
-              (click)="deleteAd(ad.id)"
-              pTooltip="{{ 'allAds.allMyAds.delete' | translate }}"
+              [routerLink]="['/create-ad-offer/', ad.id]"
+              icon="pi pi-file-edit"
+              pTooltip="{{
+                'app.price-request.price-request-page.make-offer' | translate
+              }}"
               tooltipPosition="top"
             ></p-button>
 
             }
           </div>
-          <app-delete-popup
-            [visible]="visible"
-            icon="pi pi-times"
-            (closePopup)="onCancelDelete()"
-            (confirmDelete)="onConfirmDelete()"
-            type="delete"
-          ></app-delete-popup>
         </td>
       </tr>
     </ng-template>

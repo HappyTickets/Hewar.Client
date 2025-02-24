@@ -197,7 +197,7 @@ export class AdsComponent implements OnInit {
         this.adsService.updateAd(updateAdData).subscribe({
           next: (res) => {
             console.log(res);
-            this.router.navigate(['/ads']);
+            this.router.navigate(['/myAds']);
           },
           error: (err) => {
             console.log(err);
@@ -207,7 +207,7 @@ export class AdsComponent implements OnInit {
         this.adsService.createAD(adData).subscribe({
           next: (res) => {
             console.log(res);
-            this.router.navigate(['/ads']);
+            this.router.navigate(['/myAds']);
           },
           error: (err) => {
             console.log(err);

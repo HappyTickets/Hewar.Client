@@ -86,8 +86,9 @@ export class DivNavbarComponent {
     {
       label: 'ads',
       items: [
-        { label: 'ads', routerLink: '/ads' },
+        { label: 'myAds', routerLink: '/myAds' },
         { label: 'createAds', routerLink: '/createAds' },
+        { label: 'openedAds', routerLink: '/openedAds' }
       ]
     },
   ];

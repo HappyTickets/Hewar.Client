@@ -140,14 +140,14 @@
               [class.readonly-field]="isDetailsMode"
             ></p-select>
 
-            <p-message
+            <!-- <p-message
               *ngIf="
                 services.controls[i].get('serviceId')?.hasError('required') &&
                 services.controls[i].get('serviceId')?.touched
               "
               severity="error"
               [text]="'ads.create-ad.serviceTypeError' | translate"
-            ></p-message>
+            ></p-message> -->
 
             <p-inputNumber
               [showButtons]="true"
@@ -158,7 +158,7 @@
               [class.readonly-field]="isDetailsMode"
             >
             </p-inputNumber>
-
+<!-- 
             <p-message
               *ngIf="
                 services.controls[i].get('quantity')?.hasError('required') &&
@@ -166,7 +166,7 @@
               "
               severity="error"
               [text]="'ads.create-ad.quantityError' | translate"
-            ></p-message>
+            ></p-message> -->
 
             <p-select
               [options]="shiftType"
@@ -177,14 +177,14 @@
               [class.readonly-field]="isDetailsMode"
             ></p-select>
 
-            <p-message
+            <!-- <p-message
               *ngIf="
                 services.controls[i].get('shiftType')?.hasError('required') &&
                 services.controls[i].get('shiftType')?.touched
               "
               severity="error"
               [text]="'ads.create-ad.shiftTypeError' | translate"
-            ></p-message>
+            ></p-message> -->
           </div>
           <p-button
             icon="pi pi-trash"
@@ -220,14 +220,14 @@
               [readonly]="isDetailsMode"
               [class.readonly-field]="isDetailsMode"
             />
-            <p-message
+            <!-- <p-message
               *ngIf="
                 createAdForm.get('name')?.hasError('required') &&
                 createAdForm.get('name')?.touched
               "
               severity="error"
               [text]="'ads.create-ad.serviceNameError' | translate"
-            />
+            /> -->
             <p-inputNumber
               [showButtons]="true"
               formControlName="quantity"
@@ -237,14 +237,14 @@
               [readonly]="isDetailsMode"
               [class.readonly-field]="isDetailsMode"
             ></p-inputNumber>
-            <p-message
+            <!-- <p-message
               *ngIf="
                 createAdForm.get('quantity')?.hasError('required') &&
                 createAdForm.get('quantity')?.touched
               "
               severity="error"
               [text]="'ads.create-ad.quantityError' | translate"
-            />
+            /> -->
             <p-select
               [options]="shiftType"
               formControlName="shiftType"
@@ -254,14 +254,14 @@
               [class.readonly-field]="isDetailsMode"
             ></p-select>
 
-            <p-message
+            <!-- <p-message
               *ngIf="
                 createAdForm.get('shiftType')?.hasError('required') &&
                 createAdForm.get('shiftType')?.touched
               "
               severity="error"
               [text]="'ads.create-ad.shiftTypeError' | translate"
-            />
+            /> -->
           </div>
           <p-button
             icon="pi pi-trash"

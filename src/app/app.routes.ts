@@ -43,6 +43,7 @@ import { ImageUploadTestComponent } from './image-upload-test/image-upload-test.
 import { NotificationTestComponent } from './notification-test/compenent/notification-test.component';
 import { NotificationsComponent } from './shared/components/notifications/notifications.component';
 import { EditAdOfferComponent } from './features/ads/components/ads-offers/edit-ad-offer/edit-ad-offer.component';
+import { OpenedAdsComponent } from './features/ads/components/opened-ads/opened-ads.component';
 
 export const routes: Route[] = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -108,8 +109,9 @@ export const routes: Route[] = [
 
   // Ads
   { path: 'createAds', component: AdsComponent },
-  { path: 'ads', component: AllAdsComponent },
-  { path: 'ads/edit/:id', component: AdsComponent },
+  { path: 'myAds', component: AllAdsComponent },
+  {path: 'openedAds', component: OpenedAdsComponent},
+  { path: 'ad/edit/:id', component: AdsComponent },
   { path: 'ad/:id', component: AdsComponent },
 
   // Ads Offers
