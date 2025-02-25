@@ -8,16 +8,14 @@ import { IPriceOfferService } from './iprice-offer-service';
 export interface IGetPriceOfferById {
   id: number;
   chatId: number | null;
-  facility: IFacility;
-  company: ICompany;
   contractType: ContractType;
+  facility: IFacility;
   startDate: string;
   endDate: string;
-  offerStatus: RequestStatus;
   otherServices: IPriceOfferOtherService[];
   services: IPriceOfferService[];
   priceRequest: {
-    id: 83;
+    id: number;
     chatId: number | null;
     contractType: ContractType;
     startDate: string;

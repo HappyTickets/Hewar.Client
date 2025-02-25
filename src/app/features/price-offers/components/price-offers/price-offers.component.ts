@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule, Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { ButtonModule } from 'primeng/button';
@@ -18,11 +18,12 @@ import { IPriceOfferOtherService } from '../../models/iprice-offer-other-service
 import { IPriceOfferService } from '../../models/iprice-offer-service';
 import { PriceOffersService } from '../../services/price-offers.service';
 import { StorageService } from '../../../auth/services/storage.service';
+import { PaginatorModule, PaginatorState } from 'primeng/paginator';
 
 @Component({
   selector: 'app-price-offers',
   standalone: true,
-imports: [ CommonModule, IconFieldModule, InputTextModule, InputIconModule, ButtonModule, TableModule, TooltipModule, ToastModule, FormsModule, TranslatePipe, RouterModule, DeletePopupComponent, HasPermissionDirective],
+  imports: [ CommonModule, IconFieldModule, PaginatorModule, InputTextModule, InputIconModule, ButtonModule, TableModule, TooltipModule, ToastModule, FormsModule, TranslatePipe, RouterModule, DeletePopupComponent, HasPermissionDirective],
   templateUrl: './price-offers.component.html',
   styleUrl: './price-offers.component.scss'
 })
@@ -30,10 +31,14 @@ export class PriceOffersComponent implements OnInit {
   private priceOffersService = inject(PriceOffersService);
   private storageService = inject(StorageService);
   private toastr = inject(ToastrService);
-  private router = inject(Router);
   priceOffers: IGetPriceOfferById[] = [];
   type: 'Company' | "Facility" | null = null;
   searchTerm = '';
+
+  // Pagination
+  pageNumber = 1;
+  pageSize = 5;
+  totalPages = 0;
 
   currentId = 0;
   showAcceptPopUp = false;
@@ -45,18 +50,32 @@ export class PriceOffersComponent implements OnInit {
     this.getPrices();
   }
   getPrices(): void {
-    if (this.storageService.getUserRole() && this.storageService.getUserRole() === 'Facility') {
-      this.priceOffersService.getMyFacilityOffers().subscribe(res => {
-        if (res.data) this.priceOffers = res.data;
+    const role = this.storageService.getUserRole();
+    if (role && role === 'Facility') {
+      this.priceOffersService.getMyFacilityOffers(this.pageNumber, this.pageSize).subscribe(res => {
+        if (res.data?.items) {
+          this.priceOffers = res.data.items;
+          this.totalPages = res.data.totalPages * this.pageSize; // Calculate total items
+        } else {
+          this.priceOffers = [];
+          this.totalPages = 0;
+        }
         this.type = "Facility";
-      })
-    } else if (this.storageService.getUserRole() && this.storageService.getUserRole() === 'Company') {
-      this.priceOffersService.getMyCompanyOffers().subscribe(res => {
-        if (res.data) this.priceOffers = res.data;
+      });
+    } else if (role && role === 'Company') {
+      this.priceOffersService.getMyCompanyOffers(this.pageNumber, this.pageSize).subscribe(res => {
+        if (res.data?.items) {
+          this.priceOffers = res.data.items;
+          this.totalPages = res.data.totalPages * this.pageSize;
+        } else {
+          this.priceOffers = [];
+          this.totalPages = 0;
+        }
         this.type = "Company";
-      })
+      });
     }
   }
+
   openChat(): void {
     this.toastr.info('Chat feature is coming soon!', 'Coming Soon');
   }
@@ -101,4 +120,10 @@ export class PriceOffersComponent implements OnInit {
   toggleActions(service: IGetPriceOfferById) {
     service.showActions = !service.showActions;
   }
+  onPageChange(event: PaginatorState): void {
+    this.pageNumber = (event.page ?? 0) + 1;
+    this.pageSize = event.rows ?? 10;
+    this.getPrices();
+  }
+
 }
