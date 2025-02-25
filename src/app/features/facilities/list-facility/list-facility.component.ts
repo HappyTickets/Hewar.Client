@@ -11,6 +11,7 @@ import { LocalizationService } from '../../../core/services/localization/localiz
 import { Subscription } from 'rxjs/internal/Subscription';
 import { TranslateModule } from '@ngx-translate/core';
 import { DeletePopupComponent } from '../../../shared/components/delete-popup/delete-popup.component';
+import { HasPermissionDirective } from '../../../core/directives/has-permission.directive';
 
 @Component({
   selector: 'app-list-facility',
@@ -25,6 +26,7 @@ import { DeletePopupComponent } from '../../../shared/components/delete-popup/de
     TranslateModule,
     RouterModule,
     DeletePopupComponent,
+    HasPermissionDirective
   ],
   templateUrl: './list-facility.component.html',
   styleUrl: './list-facility.component.scss',

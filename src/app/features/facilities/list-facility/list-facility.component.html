@@ -12,6 +12,7 @@
           <i class="pi pi-search"></i>
           <input
             type="text"
+            *appHasPermission="100"
             placeholder="{{ 'app.facilities.search-here' | translate }}"
             [(ngModel)]="searchValue"
             [ngModelOptions]="{ standalone: true }"
@@ -31,7 +32,7 @@
     >
       <div class="card-image">
         <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEfH9O71AqLC5OqNlOVBTVSZjTRQSUr9gmmg&s"
+          [src]="card.logo"
           alt=""
           (click)="goToFacilityDetails(card.id)"
           (keydown.enter)="goToFacilityDetails(card.id)"
@@ -48,11 +49,11 @@
       </div>
       <div class="card-actions">
         <div class="share-i"><i class="pi pi-share-alt"></i></div>
-        <button class="edit" (click)="updateFacility(card.id)">
+        <button class="edit" (click)="updateFacility(card.id)" *appHasPermission="101">
           {{ "app.facilities.edit-facility" | translate }}
         </button>
 
-        <button class="delete" (click)="openDeletePopup(card)">
+        <button class="delete" (click)="openDeletePopup(card)" *appHasPermission="102">
           {{ "app.facilities.delete-facility" | translate }}
         </button>
         <div class="card flex justify-center popUp">

@@ -16,15 +16,17 @@ import { TooltipModule } from 'primeng/tooltip';
 import { DeletePopupComponent } from '../../../../shared/components/delete-popup/delete-popup.component';
 import { IPriceOfferService } from '../../models/iprice-offer-service';
 import { IPriceOfferOtherService } from '../../models/iprice-offer-other-service';
+import { HasPermissionDirective } from '../../../../core/directives/has-permission.directive';
 
 @Component({
   selector: 'app-facility-offers',
   standalone: true,
-  imports: [ CommonModule, IconFieldModule, InputTextModule, InputIconModule, ButtonModule, TableModule, TooltipModule, ToastModule, FormsModule, TranslatePipe, RouterModule, DeletePopupComponent],
+  imports: [ CommonModule, IconFieldModule, InputTextModule, InputIconModule, ButtonModule, TableModule, TooltipModule, ToastModule, FormsModule, TranslatePipe, RouterModule, DeletePopupComponent, HasPermissionDirective],
   templateUrl: './facility-offers.component.html',
   styleUrl: './facility-offers.component.scss'
 })
 export class FacilityOffersComponent implements OnInit {
+
   private priceOffersService = inject(PriceOffersService);
   private toastr = inject(ToastrService);
   private router = inject(Router);

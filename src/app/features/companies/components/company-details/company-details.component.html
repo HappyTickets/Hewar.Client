@@ -31,13 +31,13 @@
     <div class="card-actions mt-4 w-100">
       <div class="grid">
         <div class="col-12 md:col-4">
-          <button routerLink="" class="details">{{'app.companies.companies-list.actions.request-quote' | translate}}</button>
+          <button *appHasPermission="50" [routerLink]="'/companies/createCompany'" class="details">{{'app.companies.companies-list.actions.request-quote' | translate}} asdasdasd</button>
         </div>
         <div class="col-12 md:col-4">
-          <button [routerLink]="'/companies/updateCompany/' + currentCompany?.id" class="edit">{{'app.companies.companies-list.actions.edit' | translate}}</button>
+          <button *appHasPermission="51" [routerLink]="'/companies/updateCompany/' + currentCompany?.id" class="edit">{{'app.companies.companies-list.actions.edit' | translate}}</button>
         </div>
         <div class="col-12 md:col-4">
-          <button class="delete" role="button" (click)="openDeletePopup(currentCompany!)">
+          <button *appHasPermission="52" class="delete" role="button" (click)="openDeletePopup(currentCompany!)">
             {{'app.companies.companies-list.actions.delete' | translate}}
           </button>
           <div class="card flex justify-center">

@@ -20,7 +20,8 @@ import { ContractType } from '../../../../shared/enums/contract-type';
 import { DatePickerModule } from 'primeng/datepicker';
 import { InputComponent } from '../../../../shared/components/input/input.component';
 import { CommonModule } from '@angular/common';
-import { IEditPriceOffer } from '../../models/iedit-price-offer';
+import { ICreatePriceOffer } from '../../models/icreate-price-offer';
+import { IUpdatePriceOffer } from '../../models/iupdate-price-offer';
 
 @Component({
   selector: 'app-edit-price-offer',
@@ -57,9 +58,9 @@ export class EditPriceOfferComponent implements OnInit {
       if (priceRequestId) {
         this.priceRequestsService.getById(+priceRequestId).subscribe((res) => {
           if (res.data) {
-            this.facilityData = res.data.facility;
+            if (res.data.facility) this.facilityData = res.data.facility;
             this.priceRequestData = res.data;
-            this.getCompanyServices(this.priceRequestData.company.id);
+            if (this.priceRequestData.company) this.getCompanyServices(this.priceRequestData.company.id);
             this.assignCreateValues();
             this.mode = 'create';
           }
@@ -69,7 +70,7 @@ export class EditPriceOfferComponent implements OnInit {
           if (res.data) {
             this.priceOfferData = res.data;
             if (res.data.facility) this.facilityData = res.data.facility;
-            this.getCompanyServices(res.data.priceRequest.company.id);
+            if (res.data.priceRequest.company) this.getCompanyServices(res.data.priceRequest.company.id);
             this.assignUpdateValues();
             this.mode = 'update';
           }
@@ -93,21 +94,27 @@ export class EditPriceOfferComponent implements OnInit {
   }
   onSubmit(): void {
     if (this.editPriceOfferForm.valid) {
-      const priceOffer: IEditPriceOffer = {
-        priceRequestId: this.priceRequestData.id,
-        contractType: this.editPriceOfferForm.value.contractType,
-        startDate: this.editPriceOfferForm.value.startDate,
-        endDate: this.editPriceOfferForm.value.endDate,
-        services: this.editPriceOfferForm.value.services,
-        otherServices: this.editPriceOfferForm.value.otherServices,
-      };
       if (this.mode === 'create') {
-        priceOffer.priceRequestId = this.priceRequestData.id;
+        const priceOffer: ICreatePriceOffer = {
+          priceRequestId: this.priceRequestData.id,
+          contractType: this.editPriceOfferForm.value.contractType,
+          startDate: this.editPriceOfferForm.value.startDate,
+          endDate: this.editPriceOfferForm.value.endDate,
+          services: this.editPriceOfferForm.value.services,
+          otherServices: this.editPriceOfferForm.value.otherServices,
+        };
         this.priceOffersService.create(priceOffer).subscribe(() => {
           this.router.navigate(['/company-price-offer']);
         });
       } else if (this.mode === 'update') {
-        priceOffer.priceOfferId = this.priceOfferData.id;
+        const priceOffer: IUpdatePriceOffer = {
+          priceOfferId: this.priceOfferData.id,
+          contractType: this.editPriceOfferForm.value.contractType,
+          startDate: this.editPriceOfferForm.value.startDate,
+          endDate: this.editPriceOfferForm.value.endDate,
+          services: this.editPriceOfferForm.value.services,
+          otherServices: this.editPriceOfferForm.value.otherServices,
+        };
         this.priceOffersService.update(priceOffer).subscribe(() => {
         this.router.navigate(['/company-price-offer']);
       });

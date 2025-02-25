@@ -16,11 +16,12 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { CheckboxModule } from 'primeng/checkbox';
 import { DatePickerModule } from 'primeng/datepicker';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { HasPermissionDirective } from '../../../../core/directives/has-permission.directive';
 
 @Component({
   selector: 'app-security-certificate',
   standalone: true,
-  imports: [ToastModule, ConfirmDialogModule, TableModule, ButtonModule, DialogModule, ReactiveFormsModule, InputTextModule, CommonModule, TooltipModule, TranslatePipe, FormsModule, CheckboxModule, DatePickerModule, InputNumberModule],
+  imports: [ToastModule, ConfirmDialogModule, TableModule, ButtonModule, DialogModule, ReactiveFormsModule, InputTextModule, CommonModule, TooltipModule, TranslatePipe, FormsModule, CheckboxModule, DatePickerModule, InputNumberModule, HasPermissionDirective],
   templateUrl: './security-certificate.component.html',
   styleUrl: './security-certificate.component.scss',
   providers: [MessageService, ConfirmationService]
@@ -61,8 +62,8 @@ export class SecurityCertificateComponent implements OnInit {
   }
 
   loadCertificates() {
-    this.certificateService.getAll().subscribe(response => {
-      if (response.data) this.certificates = response.data;
+    this.certificateService.getAll().subscribe(res => {
+      if (res.data) this.certificates = res.data;
     });
   }
 

@@ -26,6 +26,7 @@
     "@primeng/themes": "^18.0.2",
     "hewar.client": "file:",
     "intl-tel-input": "^17.0.21",
+    "jwt-decode": "^4.0.0",
     "libphonenumber-js": "^1.11.18",
     "ngx-bootstrap": "^0.0.1",
     "ngx-dropzone": "^3.1.0",

@@ -19,6 +19,7 @@ export interface IContractTemplate {
   scheduleEntries: IScheduleEntry[];
 }
 export interface StaticClauses {
+  id?: number;
   titleAr: string;
   titleEn: string;
   contentAr: string;

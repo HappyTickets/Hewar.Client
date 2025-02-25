@@ -67,6 +67,7 @@
             @if(ad.showActions){
 
             <p-button
+            *appHasPermission="201"
               class="m-1"
               [routerLink]="['/ads/edit/' + ad.id]"
               icon="pi pi-pencil"
@@ -74,6 +75,7 @@
               tooltipPosition="top"
             ></p-button>
             <p-button
+            *appHasPermission="203"
               class="m-1"
               icon="pi pi-info-circle"
               pTooltip="{{ 'allAds.allMyAds.details' | translate }}"
@@ -83,6 +85,7 @@
             ></p-button>
 
             <p-button
+            *appHasPermission="350"
               class="m-1"
               icon="pi pi-comments"
               pTooltip="{{ 'allAds.allMyAds.chat' | translate }}"
@@ -90,6 +93,7 @@
               [disabled]="ad.status !== 1"
             ></p-button>
             <p-button
+            *appHasPermission="250"
             class="m-1"
             [routerLink]="['/create-offer-for-ad/', ad.id]"
             icon="pi pi-file-edit"
@@ -99,14 +103,13 @@
             tooltipPosition="top"
           ></p-button>
             <p-button
+            *appHasPermission="202"
               class="m-1"
               icon="pi pi-times"
               (click)="deleteAd(ad.id)"
               pTooltip="{{ 'allAds.allMyAds.delete' | translate }}"
               tooltipPosition="top"
             ></p-button>
-         
-
             }
           </div>
           <app-delete-popup

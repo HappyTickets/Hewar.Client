@@ -4,7 +4,8 @@ import { Observable } from 'rxjs';
 import { IApiResponse } from '../../../shared/models/IApiResponse';
 import { IGetPriceOffersByRequest } from '../models/iprice-offer';
 import { IGetPriceOfferById } from '../models/iget-price-offer-by-id';
-import { IEditPriceOffer } from '../models/iedit-price-offer';
+import { ICreatePriceOffer } from '../models/icreate-price-offer';
+import { IUpdatePriceOffer } from '../models/iupdate-price-offer';
 
 @Injectable({
   providedIn: 'root',
@@ -13,10 +14,10 @@ export class PriceOffersService {
   private http = inject(HttpClient);
   baseEndPoint = '/api/PriceOffers/';
 
-  create(data: IEditPriceOffer):Observable<IApiResponse<null>> {
+  create(data: ICreatePriceOffer):Observable<IApiResponse<null>> {
     return this.http.post<IApiResponse<null>>(`${this.baseEndPoint}create`, data);
   }
-  update(data: IEditPriceOffer):Observable <IApiResponse<null>> {
+  update(data: IUpdatePriceOffer):Observable <IApiResponse<null>> {
     return this.http.put<IApiResponse<null>>(`${this.baseEndPoint}update`, data);
   }
   accept(offerId: number):Observable <IApiResponse<null>> {

@@ -4,6 +4,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ICompany } from '../../models/ICompany';
 import { TranslateModule } from '@ngx-translate/core';
 import { DeletePopupComponent } from '../../../../shared/components/delete-popup/delete-popup.component';
+import { HasPermissionDirective } from '../../../../core/directives/has-permission.directive';
 
 @Component({
   selector: 'app-company-details',
@@ -11,7 +12,8 @@ import { DeletePopupComponent } from '../../../../shared/components/delete-popup
   imports: [
     TranslateModule,
     DeletePopupComponent,
-    RouterLink
+    RouterLink,
+    HasPermissionDirective
   ],
   templateUrl: './company-details.component.html',
   styleUrl: './company-details.component.scss'

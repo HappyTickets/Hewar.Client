@@ -2,7 +2,7 @@
   <div class="grid mt-7">
     <div class="col-5">
       <div class="image-details">
-        <img src="images/card-image.svg" alt="" />
+        <img [src]="facility.logo" alt="" />
       </div>
     </div>
     <div class="col-7">
@@ -36,17 +36,18 @@
     <div class="card-actions mt-4 w-100">
       <div class="grid">
         <div class="col">
-          <a routerLink="/createFacility" class="p-my-button">
+          <a routerLink="/createFacility" class="p-my-button" *appHasPermission="100">
             {{ "app.facilities.add-facility" | translate }}
           </a>
         </div>
         <div class="col">
-          <button class="edit" (click)="updateFacility(facility.id)">
+          <button class="edit" (click)="updateFacility(facility.id)" *appHasPermission="101">
             {{ "app.facilities.edit-facility" | translate }}
           </button>
         </div>
         <div class="col">
           <button
+          *appHasPermission="102"
             class="delete"
             role="button"
             (click)="openDeletePopup(facility!)"
