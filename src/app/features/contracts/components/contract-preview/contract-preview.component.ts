@@ -8,13 +8,13 @@ import { IContractTemplate } from '../../models/icontract-template';
 import { ContractService } from '../../services/contract.service';
 import { IContractKey } from '../../models/icontract-key';
 import { TranslatePipe } from '@ngx-translate/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Subscription } from 'rxjs';
+import { catchError, EMPTY, Subscription } from 'rxjs';
 @Component({
   selector: 'app-contract-preview',
   standalone: true,
-  imports: [CommonModule, ScheduleEntriesComponent, ContractDispayServiceComponent, CustomClausesComponent, ContractSignatureComponent, TranslatePipe],
+  imports: [CommonModule,ScheduleEntriesComponent, ContractDispayServiceComponent, CustomClausesComponent, ContractSignatureComponent, TranslatePipe],
   templateUrl: './contract-preview.component.html',
   styleUrls: ['./contract-preview.component.scss'],
 })
@@ -23,6 +23,7 @@ export class ContractPreviewComponent implements OnInit, OnDestroy {
   private contractService = inject(ContractService);
   private languageSubscription: Subscription;
   private route = inject(ActivatedRoute);
+  private router = inject(Router);
   private renderer = inject(Renderer2);
   private placeholderInput: HTMLInputElement | null = null;
   private cancelButton: HTMLButtonElement | null = null;
@@ -33,7 +34,9 @@ export class ContractPreviewComponent implements OnInit, OnDestroy {
   language: 'ar' | 'en' = 'ar';
   constructor() {
     this.language = this.localizationService.getLanguage();
-    this.languageSubscription = this.localizationService.language$.subscribe(lang => {this.language = lang;if (this.contract.contractId) this.replacePlaceholders()}
+    this.languageSubscription = this.localizationService.language$.subscribe(lang => {
+      this.language = lang;
+      if (this.contract.contractId) this.replacePlaceholders()}
     );
   }
   ngOnDestroy() {
@@ -43,7 +46,12 @@ export class ContractPreviewComponent implements OnInit, OnDestroy {
     this.route.paramMap.subscribe((params) => {
       const offerId = +(params.get('id') ?? -1);
       if (offerId > -1) {
-        this.contractService.GetByOfferId(offerId).subscribe((res) => {
+        this.contractService.GetByOfferId(offerId).pipe(
+          catchError(() => {
+            this.router.navigate(['/contract-form/',offerId]);
+            return EMPTY;
+          })
+        ).subscribe((res) => {
           if (res.data) {
             this.contract = res.data;
             this.replacePlaceholders();

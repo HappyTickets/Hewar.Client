@@ -40,12 +40,18 @@
                 <p-button *appHasPermission="452" class="m-1" icon="pi pi-eye-slash" (click)="showHidePopUp = true;currentId=service.id" pTooltip="{{ 'app.price-offer.price-offers-page.hide' | translate }}" tooltipPosition="top"/>
                 <p-button *appHasPermission="457" class="m-1" icon="pi pi-info-circle" [routerLink]="['/price-offer-details/', service.id]" pTooltip="{{ 'app.price-offer.price-offers-page.details' | translate }}" tooltipPosition="top"/>
                 <p-button *appHasPermission="351" class="m-1" icon="pi pi-comments" (click)="openChat()" pTooltip="{{ 'app.price-offer.price-offers-page.chat' | translate }}" tooltipPosition="top"/>
+                @if (service.offerStatus === 2) {
+                  <p-button *appHasPermission="302" class="m-1" icon="pi pi-file" [routerLink]="['/contract-preview/', service.id]" pTooltip="{{ 'app.price-offer.price-offers-page.contract' | translate }}" tooltipPosition="top"/>
+                }
               } @else if (type === "Company") {
                 <p-button *appHasPermission="451" class="m-1" [routerLink]="['/update-price-offer/', service.id]" icon="pi pi-pencil" [disabled]="service.offerStatus !== 1" pTooltip="{{ 'app.price-offer.price-offers-page.update' | translate }}" tooltipPosition="top"/>
                 <p-button *appHasPermission="452" class="m-1" icon="pi pi-eye-slash" (click)="showHidePopUp=true;currentId=service.id" pTooltip="{{ 'app.price-offer.price-offers-page.hide' | translate }}" tooltipPosition="top"/>
                 <p-button *appHasPermission="456" class="m-1" icon="pi pi-times" (click)="showCancelPopUp=true;currentId=service.id" [disabled]="service.offerStatus !== 1" pTooltip="{{'app.price-offer.price-offers-page.cancel' | translate}}" tooltipPosition="top"/>
                 <p-button *appHasPermission="457" class="m-1" [routerLink]="['/price-offer-details/', service.id]" icon="pi pi-info-circle" pTooltip="{{ 'app.price-offer.price-offers-page.details' | translate }}" tooltipPosition="top"/>
                 <p-button *appHasPermission="351" class="m-1" icon="pi pi-comments" (click)="openChat()" pTooltip="{{ 'app.price-offer.price-offers-page.chat' | translate }}" tooltipPosition="top"/>
+                @if (service.offerStatus === 2) {
+                  <p-button *appHasPermission="302" class="m-1" icon="pi pi-file" [routerLink]="['/contract-preview/', service.id]" pTooltip="{{ 'app.price-offer.price-offers-page.contract' | translate }}" tooltipPosition="top"/>
+                }
               }
             }
           </div>

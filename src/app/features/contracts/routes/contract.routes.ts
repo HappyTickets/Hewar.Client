@@ -9,7 +9,7 @@ export const ContractRoutes: Route[] = [
     path: 'contract-form/:id',
     component: ContractFormComponent,
     canActivate: [AuthGuard, permissionGuard],
-    data: { permission: 300 },
+    data: { permission: 301 },
   },
   {
     path: 'contract-preview/:id',

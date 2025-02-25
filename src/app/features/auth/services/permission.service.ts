@@ -28,6 +28,11 @@ export class PermissionService {
   isAdmin(): boolean {
     return this.storageService.isSuperAdmin();
   }
+
+  hasRole(role: string): boolean {
+    return this.isAdmin() || this.storageService.getUserRole() === role;
+  }
+
   private getCookie(name: string): string | null {
     const cookies = document.cookie.split(';');
     for (const cookie of cookies) {

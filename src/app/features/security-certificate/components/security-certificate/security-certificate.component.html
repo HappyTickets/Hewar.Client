@@ -39,8 +39,8 @@
             @if (cert.showActions) {
               <p-button [disabled]="cert.status === 1" *appHasPermission="651" icon="pi pi-pencil" class="p-button-text p-button-rounded" pTooltip="{{ 'app.security-certificate.edit' | translate }}" tooltipPosition="top" (click)="editCertificate(cert)"></p-button>
               <p-button [disabled]="cert.status === 1" *appHasPermission="652" icon="pi pi-trash" class="p-button-text p-button-rounded p-button-danger" pTooltip="{{ 'app.security-certificate.delete' | translate }}" tooltipPosition="top" (click)="confirmDelete(cert.id)"></p-button>
-              <p-button [disabled]="cert.status === 1" icon="pi pi-check" class="p-button-text p-button-rounded p-button-success" pTooltip="{{ 'app.security-certificate.approve' | translate }}" tooltipPosition="top" (click)="approve(cert.id)"></p-button>
-              <p-button [disabled]="cert.status === 1" icon="pi pi-times" class="p-button-text p-button-rounded p-button-warning" pTooltip="{{ 'app.security-certificate.reject' | translate }}" tooltipPosition="top" (click)="reject(cert.id)"></p-button>
+              <p-button *appHasPermission="50" icon="pi pi-check" class="p-button-text p-button-rounded p-button-success" pTooltip="{{ 'app.security-certificate.approve' | translate }}" tooltipPosition="top" (click)="approve(cert.id)"></p-button>
+              <p-button *appHasPermission="50" icon="pi pi-times" class="p-button-text p-button-rounded p-button-warning" pTooltip="{{ 'app.security-certificate.reject' | translate }}" tooltipPosition="top" (click)="reject(cert.id)"></p-button>
             }
           </div>
         </td>

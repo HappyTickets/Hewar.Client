@@ -24,8 +24,8 @@ export class SecurityCertificateService {
   getById(id: number): Observable<IApiResponse<ISecurityCertificate>> {
     return this.http.get<IApiResponse<ISecurityCertificate>>(`${this.baseEndPoint}getById`,{params: {id} });
   }
-  getByFacilityId(facilityId: number): Observable<IApiResponse<ISecurityCertificate>> {
-    return this.http.get<IApiResponse<ISecurityCertificate>>(`${this.baseEndPoint}getByFacilityId`,{params: {facilityId} });
+  getByFacilityId(facilityId: number): Observable<IApiResponse<ISecurityCertificate[]>> {
+    return this.http.get<IApiResponse<ISecurityCertificate[]>>(`${this.baseEndPoint}getByFacilityId`,{params: {facilityId} });
   }
   getAll(): Observable<IApiResponse<ISecurityCertificate[]>> {
     return this.http.get<IApiResponse<ISecurityCertificate[]>>(`${this.baseEndPoint}getAll`);

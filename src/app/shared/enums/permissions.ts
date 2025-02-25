@@ -84,5 +84,6 @@ export enum Permissions {
   UpdateSecurityCertificate = 651,
   DeleteSecurityCertificate = 652,
   ViewSecurityCertificate = 653,
+
   SendPriceRequestMessage = 3543,
 }

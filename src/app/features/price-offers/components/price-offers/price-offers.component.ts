@@ -84,7 +84,6 @@ export class PriceOffersComponent implements OnInit {
     this.showAcceptPopUp = false;
     this.priceOffersService.accept(this.currentId).subscribe(()=>{
       this.getPrices();
-      this.router.navigate([`/contract-form/${this.currentId}`])
     })
   }
   rejectOffer(){

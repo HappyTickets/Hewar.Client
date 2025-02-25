@@ -45,6 +45,14 @@ export class StorageService {
     }
     return null;
   }
+  getId(): string | null {
+    const token = this.getAccessToken();
+    if (token) {
+      const decodedToken: IDecodedToken = jwtDecode(token);
+      return decodedToken.EntityId;
+    }
+    return null;
+  }
   isSuperAdmin(): boolean {
     return this.getUserRole() === 'SuperAdmin';
   }
