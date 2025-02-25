@@ -985,7 +985,6 @@
   },
   "ads": {
     "create-ad": {
-      "header": "إنشاء إعلان جديد",
       "title": "العنوان",
       "OrderPriceRequest": "طلب عرض سعر",
       "contractDate": "تاريخ التعاقد",
@@ -1010,7 +1009,6 @@
       "quantityError": "الكمية مطلوبة",
       "shiftTypeError": "نوع الوردية مطلوب",
       "update": "تحديث"
-
     }
   },
   "allAds": {
@@ -1038,8 +1036,28 @@
       "service": "الخدمة",
       "title": "العنوان",
       "other-services": "خدمات أخرى"
-
-
     }
-  }
+  },
+
+  
+    "ad-offer": {
+      "create-Ad-offer": {
+        "servicesCost": "تكلفة الخدمات",
+        "serviceId": "معرّف الخدمة",
+        "quantity": "الكمية",
+        "shiftType": "نوع الوردية",
+        "dailyCostPerUnit": "التكلفة اليومية للوحدة",
+        "monthlyCostPerUnit": "التكلفة الشهرية للوحدة",
+        "otherServicesCost": "تكلفة خدمات أخرى",
+        "ServiceName": "اسم الخدمة",
+        "companyServicesCost": "تكلفة خدمات الشركة",
+        "securityRoles": "اختر دور الأمن",
+        "add-servicesCost": "أضف تكلفة خدمة",
+        "add-otherServicesCost": "اضف تكلفة خدمات اخري",
+        "add-companyServicesCost": "اضف تكلفة خدمات الشركة"
+
+      }
+    }
+  
+  
 }

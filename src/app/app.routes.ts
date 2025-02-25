@@ -44,6 +44,7 @@ import { NotificationTestComponent } from './notification-test/compenent/notific
 import { NotificationsComponent } from './shared/components/notifications/notifications.component';
 import { EditAdOfferComponent } from './features/ads/components/ads-offers/edit-ad-offer/edit-ad-offer.component';
 import { OpenedAdsComponent } from './features/ads/components/opened-ads/opened-ads.component';
+import { CompanyAdOffersComponent } from './features/ads/components/ads-offers/company-ad-offers/company-ad-offers.component';
 
 export const routes: Route[] = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -117,6 +118,7 @@ export const routes: Route[] = [
   // Ads Offers
 
   {path: 'create-ad-offer/:adId', component: EditAdOfferComponent},
+  {path: 'my-offers-as-company', component: CompanyAdOffersComponent},
 
 
   // Hewar Services

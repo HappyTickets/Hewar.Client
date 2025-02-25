@@ -1,20 +1,310 @@
 <form class="container" [formGroup]="editAdOfferAdForm">
-  <div class="content">
-    <h2>{{ "app.price-request.edit-price-request.header" | translate }}</h2>
+  <div class="header" *ngIf="facilityData.id">
+    <img class="logo" [src]="facilityData.logo" alt="Security Logo" />
+    <div>
+      <h2>{{ facilityData.name }}</h2>
+      <p>{{ facilityData.responsibleName }}</p>
+    </div>
   </div>
-  <div class="grid">
-    <div class="grid">
-      <app-input
-        class="col-12 md:col-4"
-        placeholder="price-request.edit-price-request.contractType"
-        label="price-request.edit-price-request.contractType"
-        [formGroup]="editAdOfferAdForm"
-        [options]="contractTypes"
-        errorKey="price-request.edit-price-request.invaliContractType"
-        controlName="contractType"
-        icon="pi-map"
-        type="dropdown"
-      ></app-input>
+
+  <div class="content">
+    <h2>{{ "ad-offer.create-Ad-offer.servicesCost" | translate }}</h2>
+
+    <div formArrayName="servicesCost">
+      <div
+        *ngFor="let serviceCost of ServicesCost.controls; let i = index"
+        [formGroupName]="i"
+        class="service-item"
+      >
+        <div class="service-inputs">
+          <p-button
+          [disabled]="i <= 0 "
+            icon="pi pi-trash"
+            (click)="removeServicesCost(i)"
+          ></p-button>
+          <div class="input-row grid">
+            <div class="flex flex-column gap-1 lg:col-2 col-12">
+              <label *ngIf="i === 0" for="serviceId-{{ i }}">{{
+                "ad-offer.create-Ad-offer.securityRoles" | translate
+              }}</label>
+              <p-select
+                [options]="serviceId"
+                formControlName="serviceId"
+                [placeholder]="
+                  'ad-offer.create-Ad-offer.securityRoles' | translate
+                "
+                optionLabel="name"
+                optionValue="id"
+              ></p-select>
+            </div>
+            <div class="flex flex-column gap-1 lg:col-2 col-12">
+              <label *ngIf="i === 0" for="shiftType-{{ i }}">{{
+                "ad-offer.create-Ad-offer.shiftType" | translate
+              }}</label>
+              <p-select
+                [options]="shiftType"
+                formControlName="shiftType"
+                [placeholder]="'ad-offer.create-Ad-offer.shiftType' | translate"
+                optionLabel="name"
+                optionValue="code"
+              ></p-select>
+            </div>
+            <div class="flex flex-column gap-1 lg:col-2 col-12">
+              <label *ngIf="i === 0" for="quantity-{{ i }}">{{
+                "ad-offer.create-Ad-offer.quantity" | translate
+              }}</label>
+              <p-inputNumber
+                [min]="0"
+                fluid="true"
+                [showButtons]="true"
+                formControlName="quantity"
+                [placeholder]="'ad-offer.create-Ad-offer.quantity' | translate"
+              ></p-inputNumber>
+            </div>
+            <div class="flex flex-column gap-1 lg:col-3 col-12">
+              <label *ngIf="i === 0" for="dailyCostPerUnit-{{ i }}">{{
+                "ad-offer.create-Ad-offer.dailyCostPerUnit" | translate
+              }}</label>
+              <p-inputNumber
+                [min]="0"
+                fluid="true"
+                [showButtons]="true"
+                formControlName="dailyCostPerUnit"
+                [placeholder]="
+                  'ad-offer.create-Ad-offer.dailyCostPerUnit' | translate
+                "
+              ></p-inputNumber>
+            </div>
+            <div class="flex flex-column gap-1 lg:col-3 col-12">
+              <label *ngIf="i === 0" for="monthlyCostPerUnit-{{ i }}">{{
+                "ad-offer.create-Ad-offer.monthlyCostPerUnit" | translate
+              }}</label>
+              <p-inputNumber
+                [min]="0"
+                fluid="true"
+                [showButtons]="true"
+                formControlName="monthlyCostPerUnit"
+                [placeholder]="
+                  'ad-offer.create-Ad-offer.monthlyCostPerUnit' | translate
+                "
+              ></p-inputNumber>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="flex justify-content-center"
+        *ngIf="ServicesCost.controls.length > 0"
+      >
+        <p-button
+          [label]="'ad-offer.create-Ad-offer.add-servicesCost' | translate"
+          (click)="addServicesCost()"
+        ></p-button>
+      </div>
+    </div>
+
+    <h2>{{ "ad-offer.create-Ad-offer.otherServicesCost" | translate }}</h2>
+    <div formArrayName="otherServicesCost">
+      <div
+        *ngFor="
+          let otherServiceCost of OtherServicesCost.controls;
+          let i = index
+        "
+        [formGroupName]="i"
+        class="service-item"
+      >
+        <div class="service-inputs">
+          <p-button
+            [disabled]="i <= 0"
+            icon="pi pi-trash"
+            (click)="removeOtherServicesCost(i)"
+          ></p-button>
+          <div class="input-row grid">
+            <div class="flex flex-column gap-1 lg:col-2 col-12">
+              <label *ngIf="i === 0" for="otherServicesCost-{{ i }}">{{
+                "ad-offer.create-Ad-offer.ServiceName" | translate
+              }}</label>
+              <input
+                pInputText
+                formControlName="name"
+                [placeholder]="
+                  'ad-offer.create-Ad-offer.ServiceName' | translate
+                "
+              />
+            </div>
+            <div class="flex flex-column gap-1 lg:col-2 col-12">
+              <label *ngIf="i === 0" for="shiftType-{{ i }}">{{
+                "ad-offer.create-Ad-offer.shiftType" | translate
+              }}</label>
+              <p-select
+                [options]="shiftType"
+                formControlName="shiftType"
+                [placeholder]="'ad-offer.create-Ad-offer.shiftType' | translate"
+                optionLabel="name"
+                optionValue="code"
+              ></p-select>
+            </div>
+            <div class="flex flex-column gap-1 lg:col-2 col-12">
+              <label *ngIf="i === 0" for="quantity-{{ i }}">{{
+                "ad-offer.create-Ad-offer.quantity" | translate
+              }}</label>
+              <p-inputNumber
+                [min]="0"
+                fluid="true"
+                [showButtons]="true"
+                formControlName="quantity"
+                [placeholder]="'ad-offer.create-Ad-offer.quantity' | translate"
+              ></p-inputNumber>
+            </div>
+            <div class="flex flex-column gap-1 lg:col-3 col-12">
+              <label *ngIf="i === 0" for="dailyCostPerUnit-{{ i }}">{{
+                "ad-offer.create-Ad-offer.dailyCostPerUnit" | translate
+              }}</label>
+              <p-inputNumber
+                [min]="0"
+                fluid="true"
+                [showButtons]="true"
+                formControlName="dailyCostPerUnit"
+                [placeholder]="
+                  'ad-offer.create-Ad-offer.dailyCostPerUnit' | translate
+                "
+              ></p-inputNumber>
+            </div>
+            <div class="flex flex-column gap-1 lg:col-3 col-12">
+              <label *ngIf="i === 0" for="monthlyCostPerUnit-{{ i }}">{{
+                "ad-offer.create-Ad-offer.monthlyCostPerUnit" | translate
+              }}</label>
+              <p-inputNumber
+                [min]="0"
+                fluid="true"
+                [showButtons]="true"
+                formControlName="monthlyCostPerUnit"
+                [placeholder]="
+                  'ad-offer.create-Ad-offer.monthlyCostPerUnit' | translate
+                "
+              ></p-inputNumber>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-content-center">
+        <p-button
+          [label]="'ad-offer.create-Ad-offer.add-otherServicesCost' | translate"
+          (click)="addOtherServicesCost()"
+        ></p-button>
+      </div>
+    </div>
+    <h2>{{ "ad-offer.create-Ad-offer.companyServicesCost" | translate }}</h2>
+
+    <div formArrayName="companyServicesCost">
+      <div
+        *ngFor="
+          let companyServiceCost of CompanyServicesCost.controls;
+          let i = index
+        "
+        [formGroupName]="i"
+        class="service-item"
+      >
+        <div class="service-inputs">
+          <p-button
+            [disabled]="i <= 0"
+            icon="pi pi-trash"
+            (click)="removeCompanyServicesCost(i)"
+          ></p-button>
+          <div class="input-row grid">
+            <div class="flex flex-column gap-1 lg:col-2 col-12">
+              <label *ngIf="i === 0" for="serviceId-{{ i }}">{{
+                "ad-offer.create-Ad-offer.securityRoles" | translate
+              }}</label>
+              <p-select
+                [options]="serviceId"
+                formControlName="serviceId"
+                [placeholder]="
+                  'ad-offer.create-Ad-offer.securityRoles' | translate
+                "
+                optionLabel="name"
+                optionValue="id"
+              ></p-select>
+            </div>
+            <div class="flex flex-column gap-1 lg:col-2 col-12">
+              <label *ngIf="i === 0" for="shiftType-{{ i }}">{{
+                "ad-offer.create-Ad-offer.shiftType" | translate
+              }}</label>
+              <p-select
+                [options]="shiftType"
+                formControlName="shiftType"
+                [placeholder]="'ad-offer.create-Ad-offer.shiftType' | translate"
+                optionLabel="name"
+                optionValue="code"
+              ></p-select>
+            </div>
+            <div class="flex flex-column gap-1 lg:col-2 col-12">
+              <label *ngIf="i === 0" for="quantity-{{ i }}">{{
+                "ad-offer.create-Ad-offer.quantity" | translate
+              }}</label>
+              <p-inputNumber
+                [min]="0"
+                fluid="true"
+                [showButtons]="true"
+                formControlName="quantity"
+                [placeholder]="'ad-offer.create-Ad-offer.quantity' | translate"
+              ></p-inputNumber>
+            </div>
+            <div class="flex flex-column gap-1 lg:col-3 col-12">
+              <label *ngIf="i === 0" for="dailyCostPerUnit-{{ i }}">{{
+                "ad-offer.create-Ad-offer.dailyCostPerUnit" | translate
+              }}</label>
+              <p-inputNumber
+                [min]="0"
+                fluid="true"
+                [showButtons]="true"
+                formControlName="dailyCostPerUnit"
+                [placeholder]="
+                  'ad-offer.create-Ad-offer.dailyCostPerUnit' | translate
+                "
+              ></p-inputNumber>
+            </div>
+            <div class="flex flex-column gap-1 lg:col-3 col-12">
+              <label *ngIf="i === 0" for="monthlyCostPerUnit-{{ i }}">{{
+                "ad-offer.create-Ad-offer.monthlyCostPerUnit" | translate
+              }}</label>
+              <p-inputNumber
+                [min]="0"
+                fluid="true"
+                [showButtons]="true"
+                formControlName="monthlyCostPerUnit"
+                [placeholder]="
+                  'ad-offer.create-Ad-offer.monthlyCostPerUnit' | translate
+                "
+              ></p-inputNumber>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-content-center">
+        <p-button
+          [label]="
+            'ad-offer.create-Ad-offer.add-companyServicesCost' | translate
+          "
+          (click)="addCompanyServicesCost()"
+        >
+        </p-button>
+      </div>
+    </div>
+    <div class="button-group">
+      <p-button
+        [label]="'app.price-offer.create-price-offer.cancel' | translate"
+        (click)="onCancel()"
+        fluid="true"
+      ></p-button>
+      <p-button
+        [label]="'app.price-offer.create-price-offer.submit' | translate"
+        (click)="onSubmit()"
+        fluid="true"
+        [disabled]="editAdOfferAdForm.invalid"
+      ></p-button>
+
+      <!-- <p-button [label]="'app.price-offer.create-price-offer.submit' | translate"  fluid="true" [disabled]="editAdOfferAdForm.invalid" [loading]="loading"></p-button> -->
     </div>
   </div>
 </form>

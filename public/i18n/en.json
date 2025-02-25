@@ -924,7 +924,7 @@
     "create-ad": {
       "header": "Create New Ad",
       "title": "Title",
-      "OrderPriceRequest": "Order PriceRe quest",
+      "OrderPriceRequest": "Order Price Request",
       "contractDate": "Contract Date",
       "startContract": "Start of Contracting",
       "endContract": "End of Contracting",
@@ -948,15 +948,14 @@
       "quantityError": "Quantity is required",
       "shiftTypeError": "Shift Type is required",
       "update": "Update"
-
     }
   },
   "allAds": {
     "allMyAds": {
       "startContract": "Start of Contracting",
       "endContract": "End of Contracting",
-      "delete":"Delete",
-      "edit":"edit",
+      "delete": "Delete",
+      "edit": "edit",
       "global-search": "Global Search",
       "company-name": "Company Name",
       "contract-type": "Contract Type",
@@ -978,8 +977,24 @@
       "other-services": "Other Services",
       "service": "Service",
       "title": "Title"
+    }
+  },
 
-
+ "ad-offer": {
+    "create-Ad-offer": {
+      "servicesCost": "Services Cost",
+      "serviceId": "Service ID",
+      "quantity": "Quantity",
+      "shiftType": "Shift Type",
+      "dailyCostPerUnit": "Daily Cost Per Unit",
+      "monthlyCostPerUnit": "Monthly Cost Per Unit",
+      "otherServicesCost": "Other Services Cost",
+      "ServiceName": "Service Name",
+      "companyServicesCost": "Company Services Cost",
+      "securityRoles": "Select Security Role",
+      "add-servicesCost": "Add Service Cost",
+      "add-otherServicesCost": "Add Other Services Cost",
+      "add-companyServicesCost": "Add Company Services Cost"
 
     }
   }
