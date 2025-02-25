@@ -220,3 +220,21 @@
     display: none;
   }
 }
+
+
+
+.side-btn {
+  position: fixed;
+  bottom: 20%;
+  transform: translateY(-50%);
+  z-index: 1000;
+  padding: 10px 20px;
+  font-size: 14px;
+  transition: 0.3s;
+  right: -75px;
+}
+.side-btn:hover {
+  transition: 0.3s;
+  right: -20px;
+}
+

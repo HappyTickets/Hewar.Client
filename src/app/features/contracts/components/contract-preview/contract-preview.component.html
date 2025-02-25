@@ -21,3 +21,6 @@
   <p [innerHTML]="contract.staticContractTemplate.closingRemarkAr"></p>
   <app-contract-signature [contractId]="contract.contractId" [facilitySignature]="contract.facilitySignature" [companySignature]="contract.companySignature"></app-contract-signature>
 </div>
+<div>
+  <p-button type="button" *appHasPermission="301" icon="pi pi-file" label="Form" class="side-btn" [routerLink]="['/contract-form', offerId]" />
+</div>

@@ -8,13 +8,15 @@ import { IContractTemplate } from '../../models/icontract-template';
 import { ContractService } from '../../services/contract.service';
 import { IContractKey } from '../../models/icontract-key';
 import { TranslatePipe } from '@ngx-translate/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { catchError, EMPTY, Subscription } from 'rxjs';
+import { ButtonModule } from 'primeng/button';
+import { HasPermissionDirective } from '../../../../core/directives/has-permission.directive';
 @Component({
   selector: 'app-contract-preview',
   standalone: true,
-  imports: [CommonModule,ScheduleEntriesComponent, ContractDispayServiceComponent, CustomClausesComponent, ContractSignatureComponent, TranslatePipe],
+  imports: [CommonModule,ScheduleEntriesComponent, ContractDispayServiceComponent, CustomClausesComponent, ContractSignatureComponent, TranslatePipe, ButtonModule, RouterModule, HasPermissionDirective],
   templateUrl: './contract-preview.component.html',
   styleUrls: ['./contract-preview.component.scss'],
 })
@@ -32,6 +34,7 @@ export class ContractPreviewComponent implements OnInit, OnDestroy {
   editingKey: string | null = null;
   contract: IContractTemplate = {} as IContractTemplate;
   language: 'ar' | 'en' = 'ar';
+  offerId: number|null = null;
   constructor() {
     this.language = this.localizationService.getLanguage();
     this.languageSubscription = this.localizationService.language$.subscribe(lang => {
@@ -44,11 +47,11 @@ export class ContractPreviewComponent implements OnInit, OnDestroy {
   }
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      const offerId = +(params.get('id') ?? -1);
-      if (offerId > -1) {
-        this.contractService.GetByOfferId(offerId).pipe(
+      this.offerId = +(params.get('id') ?? -1);
+      if (this.offerId > -1) {
+        this.contractService.GetByOfferId(this.offerId).pipe(
           catchError(() => {
-            this.router.navigate(['/contract-form/',offerId]);
+            this.router.navigate(['/contract-form/',this.offerId]);
             return EMPTY;
           })
         ).subscribe((res) => {
