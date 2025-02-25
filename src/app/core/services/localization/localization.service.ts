@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { ErrorCodes } from '../../enums/error-codes';
-import { errorCodeTranslator } from '../../enums/error-codes-translator';
-import { SuccessCodes } from '../../enums/success-codes';
-import { successCodeTranslator } from '../../enums/success-codes-translator';
+
 import { BehaviorSubject } from 'rxjs';
+import { ErrorCodes } from '../../enums/error-codes';
+import { SuccessCodes } from '../../enums/success-codes';
+import { errorCodeTranslator } from '../../enums/error-codes-translator';
+import { successCodeTranslator } from '../../enums/success-codes-translator';
 
 @Injectable({
   providedIn: 'root',

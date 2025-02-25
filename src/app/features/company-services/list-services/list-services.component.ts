@@ -9,6 +9,7 @@ import { PaginatorModule, PaginatorState } from 'primeng/paginator';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { InputTextModule } from 'primeng/inputtext';
+import { HasPermissionDirective } from '../../../core/directives/has-permission.directive';
 
 @Component({
   selector: 'app-list-services',
@@ -23,6 +24,7 @@ import { InputTextModule } from 'primeng/inputtext';
     TranslateModule,
     RouterModule,
     DeletePopupComponent,
+    HasPermissionDirective
   ],
   templateUrl: './list-services.component.html',
   styleUrl: './list-services.component.scss',

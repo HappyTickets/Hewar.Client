@@ -7,6 +7,7 @@ import { ButtonModule } from 'primeng/button';
 import { Router } from '@angular/router';
 import { InputOtp } from 'primeng/inputotp';
 import { TranslatePipe } from '@ngx-translate/core';
+import { EmailService } from '../../services/email.service';
 
 @Component({
   selector: 'app-confirm-email',
@@ -17,6 +18,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 })
 export class ConfirmEmailComponent {
   private authService = inject(AuthService);
+  private emailService = inject(EmailService);
   private router = inject(Router);
 
   @Input() showDialog = false;
@@ -28,7 +30,7 @@ export class ConfirmEmailComponent {
 
   onConfirm(): void {
     if (this.confirmationCode && this.email) {
-      this.authService.confirmEmail({ verificationCode: this.confirmationCode, email: this.email }).subscribe(() => {
+      this.emailService.confirmEmail({ verificationCode: this.confirmationCode, email: this.email }).subscribe(() => {
           this.onCancel();
           this.loginAfterVerification();
           this.router.navigate(['/login']);
@@ -40,6 +42,6 @@ export class ConfirmEmailComponent {
   }
   onCancel(): void {this.closeDialog.emit(); }
   resentVerificationCode(): void {
-    this.authService.sendConfirmationEmail(this.email).subscribe();
+    this.emailService.sendConfirmationEmail(this.email).subscribe();
   }
 }

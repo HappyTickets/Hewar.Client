@@ -52,7 +52,7 @@ export class PriceOfferDetailsComponent implements OnInit {
           if (res.data) {
             this.priceOfferData = res.data;
             if (res.data.facility) this.facilityData = res.data.facility;
-            this.getCompanyServices(res.data.priceRequest.company.id)
+            if (res.data.priceRequest.company) this.getCompanyServices(res.data.priceRequest.company.id)
             this.assignValues();
           }
         });

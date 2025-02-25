@@ -16,25 +16,27 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { CheckboxModule } from 'primeng/checkbox';
 import { DatePickerModule } from 'primeng/datepicker';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { HasPermissionDirective } from '../../../../core/directives/has-permission.directive';
+import { StorageService } from '../../../auth/services/storage.service';
 
 @Component({
   selector: 'app-security-certificate',
   standalone: true,
-  imports: [ToastModule, ConfirmDialogModule, TableModule, ButtonModule, DialogModule, ReactiveFormsModule, InputTextModule, CommonModule, TooltipModule, TranslatePipe, FormsModule, CheckboxModule, DatePickerModule, InputNumberModule],
+  imports: [ToastModule, ConfirmDialogModule, TableModule, ButtonModule, DialogModule, ReactiveFormsModule, InputTextModule, CommonModule, TooltipModule, TranslatePipe, FormsModule, CheckboxModule, DatePickerModule, InputNumberModule, HasPermissionDirective],
   templateUrl: './security-certificate.component.html',
   styleUrl: './security-certificate.component.scss',
   providers: [MessageService, ConfirmationService]
 })
 export class SecurityCertificateComponent implements OnInit {
-  certificateService = inject(SecurityCertificateService);
-  confirmationService = inject(ConfirmationService);
-  messageService = inject(MessageService);
+  private certificateService = inject(SecurityCertificateService);
+  private storageService = inject(StorageService);
+  private confirmationService = inject(ConfirmationService);
   fb = inject(FormBuilder);
 
   certificates: ISecurityCertificate[] = [];
+  selectedCertificate: ISecurityCertificate | null = null;
   displayDialog = false;
   certificateForm: FormGroup;
-  selectedCertificate: ISecurityCertificate | null = null;
   searchTerm = '';
 
   constructor() {
@@ -61,9 +63,16 @@ export class SecurityCertificateComponent implements OnInit {
   }
 
   loadCertificates() {
-    this.certificateService.getAll().subscribe(response => {
-      if (response.data) this.certificates = response.data;
-    });
+    const id = this.storageService.getId();
+    if (id) {
+      this.certificateService.getByFacilityId(+id).subscribe(res => {
+        if (res.data) this.certificates = res.data;
+      });
+    } else {
+      this.certificateService.getAll().subscribe(res => {
+        if (res.data) this.certificates = res.data;
+      });
+    }
   }
 
   editCertificate(cert: ISecurityCertificate) {

@@ -7,7 +7,7 @@
     <ng-template #caption>
       <div class="flex justify-content-between gap-2">
         <input pInputText type="text" [(ngModel)]="searchTerm" [placeholder]="'app.security-certificate.search-placeholder' | translate" (input)="dt.filterGlobal(searchTerm, 'contains')">
-        <p-button [label]="'app.security-certificate.add-certificate' | translate" icon="pi pi-plus" (click)="openAddDialog()"></p-button>
+        <p-button *appHasPermission="650" [label]="'app.security-certificate.add-certificate' | translate" icon="pi pi-plus" (click)="openAddDialog()"></p-button>
       </div>
     </ng-template>
     <ng-template pTemplate="header">
@@ -37,10 +37,10 @@
           <p-button icon="pi pi-cog" (click)="toggleActions(cert)" pTooltip="{{ 'app.security-certificate.actions' | translate }}" tooltipPosition="top"></p-button>
           <div [class.visible]="cert.showActions" class="smooth-buttons">
             @if (cert.showActions) {
-              <p-button icon="pi pi-pencil" class="p-button-text p-button-rounded" pTooltip="{{ 'app.security-certificate.edit' | translate }}" tooltipPosition="top" (click)="editCertificate(cert)"></p-button>
-              <p-button icon="pi pi-trash" class="p-button-text p-button-rounded p-button-danger" pTooltip="{{ 'app.security-certificate.delete' | translate }}" tooltipPosition="top" (click)="confirmDelete(cert.id)"></p-button>
-              <p-button *ngIf="cert.status !== 'Approved'" icon="pi pi-check" class="p-button-text p-button-rounded p-button-success" pTooltip="{{ 'app.security-certificate.approve' | translate }}" tooltipPosition="top" (click)="approve(cert.id)"></p-button>
-              <p-button *ngIf="cert.status !== 'Rejected'" icon="pi pi-times" class="p-button-text p-button-rounded p-button-warning" pTooltip="{{ 'app.security-certificate.reject' | translate }}" tooltipPosition="top" (click)="reject(cert.id)"></p-button>
+              <p-button [disabled]="cert.status === 1" *appHasPermission="651" icon="pi pi-pencil" class="p-button-text p-button-rounded" pTooltip="{{ 'app.security-certificate.edit' | translate }}" tooltipPosition="top" (click)="editCertificate(cert)"></p-button>
+              <p-button [disabled]="cert.status === 1" *appHasPermission="652" icon="pi pi-trash" class="p-button-text p-button-rounded p-button-danger" pTooltip="{{ 'app.security-certificate.delete' | translate }}" tooltipPosition="top" (click)="confirmDelete(cert.id)"></p-button>
+              <p-button *appHasPermission="50" icon="pi pi-check" class="p-button-text p-button-rounded p-button-success" pTooltip="{{ 'app.security-certificate.approve' | translate }}" tooltipPosition="top" (click)="approve(cert.id)"></p-button>
+              <p-button *appHasPermission="50" icon="pi pi-times" class="p-button-text p-button-rounded p-button-warning" pTooltip="{{ 'app.security-certificate.reject' | translate }}" tooltipPosition="top" (click)="reject(cert.id)"></p-button>
             }
           </div>
         </td>

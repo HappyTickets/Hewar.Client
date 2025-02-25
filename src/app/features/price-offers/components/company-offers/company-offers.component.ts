@@ -15,11 +15,12 @@ import { TooltipModule } from 'primeng/tooltip';
 import { DeletePopupComponent } from '../../../../shared/components/delete-popup/delete-popup.component';
 import { IPriceOfferService } from '../../models/iprice-offer-service';
 import { IPriceOfferOtherService } from '../../models/iprice-offer-other-service';
+import { HasPermissionDirective } from '../../../../core/directives/has-permission.directive';
 
 @Component({
   selector: 'app-company-offers',
   standalone: true,
-  imports: [ IconFieldModule, TooltipModule, InputTextModule, InputIconModule, ButtonModule, TableModule, ToastModule, FormsModule, TranslatePipe, RouterModule, DeletePopupComponent],
+  imports: [ IconFieldModule, TooltipModule, InputTextModule, InputIconModule, ButtonModule, TableModule, ToastModule, FormsModule, TranslatePipe, RouterModule, DeletePopupComponent, HasPermissionDirective],
   templateUrl: './company-offers.component.html',
   styleUrl: './company-offers.component.scss'
 })
@@ -38,8 +39,6 @@ export class CompanyOffersComponent implements OnInit {
   getPrices(): void {
     this.priceOffersService.getMyCompanyOffers().subscribe(res => {
       if (res.data) this.priceOffers = res.data;
-      console.log(res.data);
-
     })
   }
   openChat(): void {

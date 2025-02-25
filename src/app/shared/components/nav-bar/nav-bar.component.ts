@@ -41,7 +41,6 @@ export class NavBarComponent implements OnInit {
   };
 
   menubarLabelStyle = {};
-  isLoggedIn: () => boolean;
   ngOnInit() {
     setTimeout(() => {
       const navbar = document.querySelector('.nav-bar');
@@ -76,7 +75,7 @@ export class NavBarComponent implements OnInit {
         label: this.translate.instant('app.navbar.contact'),
         style: this.menubarLabelStyle,
       },
-    ];
+    ]
   }
 
   constructor(
@@ -85,7 +84,9 @@ export class NavBarComponent implements OnInit {
     private authService: AuthService
   ) {
     this.language = this.localizationService.getLanguage();
-    this.isLoggedIn = this.authService.isLoggedIn;
+  }
+  isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
   }
 
   switchLanguage() {

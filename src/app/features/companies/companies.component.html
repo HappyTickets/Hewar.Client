@@ -2,7 +2,7 @@
   <section class="companies" id="companies-section">
     <div class="header d-flex">
       <div class="add-company">
-        <a routerLink="createCompany">{{"app.companies.companies-list.add-comp" | translate}}</a>
+        <a *appHasPermission="50" routerLink="createCompany">{{"app.companies.companies-list.add-comp" | translate}}</a>
       </div>
       <div class="search">
         <form class="form-facility">
@@ -33,9 +33,9 @@
         <div class="col-12 md:col-6 lg:col-2">
           <div class="card-actions">
             <i class="pi pi-share-alt"></i>
-            <button [routerLink]="'/companies/updateCompany/' + company.id" class="edit">{{'app.companies.companies-list.actions.edit' | translate}}</button>
-            <button [routerLink]="'/create-price-request/' + company.id" class="details">{{'app.companies.companies-list.actions.request-quote' | translate}}</button>
-            <button class="delete" role="button" (click)="openDeletePopup(company)"> {{'app.companies.companies-list.actions.delete' | translate}} </button>
+            <button *appHasPermission="50" [routerLink]="'/companies/updateCompany/' + company.id" class="edit">{{'app.companies.companies-list.actions.edit' | translate}}</button>
+            <button *appHasPermission="400" [routerLink]="'/create-price-request/' + company.id" class="details">{{'app.companies.companies-list.actions.request-quote' | translate}}</button>
+            <button *appHasPermission="52" class="delete" role="button" (click)="openDeletePopup(company)"> {{'app.companies.companies-list.actions.delete' | translate}} </button>
             <div class="card delete-container flex justify-center" *ngIf="showDeletePopup">
               @if (currentCompany.name) {
                 <app-delete-popup [visible]="showDeletePopup" [itemName]="currentCompany.name" (confirmDelete)="deleteFacility()" (closePopup)="showDeletePopup = false"> </app-delete-popup>

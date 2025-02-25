@@ -8,6 +8,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
 import { IResponseData } from '../models/iresponse-data';
 import { DeletePopupComponent } from '../../../shared/components/delete-popup/delete-popup.component';
+import { HasPermissionDirective } from '../../../core/directives/has-permission.directive';
 
 @Component({
   selector: 'app-detials-facility',
@@ -18,6 +19,7 @@ import { DeletePopupComponent } from '../../../shared/components/delete-popup/de
     ButtonModule,
     RouterLink,
     DeletePopupComponent,
+    HasPermissionDirective
   ],
   templateUrl: './detials-facility.component.html',
   styleUrl: './detials-facility.component.scss',

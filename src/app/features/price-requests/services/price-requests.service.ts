@@ -2,8 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { IApiResponse } from '../../../shared/models/IApiResponse';
 import { Observable } from 'rxjs';
-import { IFacilityPriceRequest } from '../models/ifacility-price-request';
-import { ICompanyPriceRequest } from '../models/icompany-price-request';
 import { IPriceRequest } from '../models/iprice-request';
 import { ICreatePriceRequest } from '../models/icreate-price-request';
 
@@ -53,13 +51,13 @@ export class PriceRequestsService {
       { params: { priceRequestId } }
     );
   }
-  getMyFacilityRequests(): Observable<IApiResponse<IFacilityPriceRequest[]>> {
-    return this.http.get<IApiResponse<IFacilityPriceRequest[]>>(
+  getMyFacilityRequests(): Observable<IApiResponse<IPriceRequest[]>> {
+    return this.http.get<IApiResponse<IPriceRequest[]>>(
       `${this.baseEndPoint}getMyFacilityRequests`
     );
   }
-  getMyCompanyRequests(): Observable<IApiResponse<ICompanyPriceRequest[]>> {
-    return this.http.get<IApiResponse<ICompanyPriceRequest[]>>(
+  getMyCompanyRequests(): Observable<IApiResponse<IPriceRequest[]>> {
+    return this.http.get<IApiResponse<IPriceRequest[]>>(
       `${this.baseEndPoint}getMyCompanyRequests`
     );
   }

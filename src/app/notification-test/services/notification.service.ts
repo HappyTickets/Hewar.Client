@@ -12,7 +12,7 @@ import { HubConnection, HubConnectionBuilder, HubConnectionState } from '@micros
 export class NotificationService {
   private hubConnection!: HubConnection;
   private unreadCountSubject = new BehaviorSubject<number>(0);
-  private connectionStateSubject = new BehaviorSubject<boolean>(false); 
+  private connectionStateSubject = new BehaviorSubject<boolean>(false);
 
   unreadCount$ = this.unreadCountSubject.asObservable();
   connectionState$ = this.connectionStateSubject.asObservable(); // Expose connection state
@@ -75,8 +75,8 @@ export class NotificationService {
   }
 
   private initializeSignalRConnection(): void {
-    if (!this.authService.isLoggedIn()) return;
-    
+    if (!this.authService.isLoggedIn) return;
+
     this.hubConnection = new HubConnectionBuilder()
       .withUrl('http://188.138.101.4:6852/hubs/notifications', {
         accessTokenFactory: async () => {

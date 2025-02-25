@@ -11,6 +11,7 @@ import { DeletePopupComponent } from '../../shared/components/delete-popup/delet
 import { LocalizationService } from '../../core/services/localization/localization.service';
 import { CompaniesService } from './services/companies.service';
 import { ICompany } from './models/ICompany';
+import { HasPermissionDirective } from '../../core/directives/has-permission.directive';
 
 @Component({
   selector: 'app-companies',
@@ -25,6 +26,7 @@ import { ICompany } from './models/ICompany';
       TranslateModule,
       RouterModule,
       DeletePopupComponent,
+      HasPermissionDirective
   ],
   templateUrl: './companies.component.html',
   styleUrl: './companies.component.scss'

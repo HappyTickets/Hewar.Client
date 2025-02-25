@@ -4,8 +4,8 @@ import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { ChatService } from './services/chat.service';
 import { IChat, IResponseChat } from './models/IGetChat';
-import { ICompanyPriceRequest } from '../../../features/price-requests/models/icompany-price-request';
 import { ISendMessage } from './models/ISendMessage';
+import { IPriceRequest } from '../../../features/price-requests/models/iprice-request';
 
 @Component({
   selector: 'app-chat',
@@ -16,7 +16,7 @@ import { ISendMessage } from './models/ISendMessage';
 })
 export class ChatComponent implements OnInit, OnChanges {
   @Input() showChat = false;
-  @Input() currentPriceReq!: ICompanyPriceRequest;
+  @Input() currentPriceReq!: IPriceRequest;
   @Output() closeChat = new EventEmitter<void>();
   @ViewChild('messagesContainer') messagesContainer!: ElementRef;
   @ViewChild('fileInput') fileInput!: ElementRef;

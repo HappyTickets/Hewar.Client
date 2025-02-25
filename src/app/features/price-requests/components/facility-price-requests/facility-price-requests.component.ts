@@ -8,25 +8,26 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
-import { IFacilityPriceRequest } from '../../models/ifacility-price-request';
 import { PriceRequestsService } from '../../services/price-requests.service';
 import { TranslatePipe } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 import { TooltipModule } from 'primeng/tooltip';
 import { DeletePopupComponent } from '../../../../shared/components/delete-popup/delete-popup.component';
 import { CommonModule } from '@angular/common';
+import { HasPermissionDirective } from '../../../../core/directives/has-permission.directive';
+import { IPriceRequest } from '../../models/iprice-request';
 
 @Component({
   selector: 'app-facility-price-requests',
   standalone: true,
-  imports: [IconFieldModule, ButtonModule, InputTextModule, InputIconModule, TooltipModule, ButtonModule, TableModule, ToastModule, InputNumberModule, FormsModule, TranslatePipe, RouterModule, DeletePopupComponent, CommonModule],
+  imports: [IconFieldModule, HasPermissionDirective, ButtonModule, InputTextModule, InputIconModule, TooltipModule, ButtonModule, TableModule, ToastModule, InputNumberModule, FormsModule, TranslatePipe, RouterModule, DeletePopupComponent, CommonModule],
   templateUrl: './facility-price-requests.component.html',
   styleUrl: './facility-price-requests.component.scss'
 })
 export class FacilityPriceRequestsComponent implements OnInit {
   private priceRequestsService = inject(PriceRequestsService);
   private toastr = inject(ToastrService);
-  priceRequests: IFacilityPriceRequest[] = [];
+  priceRequests: IPriceRequest[] = [];
   searchTerm = '';
   showCancelPopUp = false;
   showHidePopUp = false;
@@ -59,7 +60,7 @@ export class FacilityPriceRequestsComponent implements OnInit {
       this.getPriceRequests();
     })
   }
-  toggleActions(service: IFacilityPriceRequest) {
+  toggleActions(service: IPriceRequest) {
     service.showActions = !service.showActions;
   }
 }

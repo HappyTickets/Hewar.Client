@@ -8,13 +8,15 @@ import { IContractTemplate } from '../../models/icontract-template';
 import { ContractService } from '../../services/contract.service';
 import { IContractKey } from '../../models/icontract-key';
 import { TranslatePipe } from '@ngx-translate/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Subscription } from 'rxjs';
+import { catchError, EMPTY, Subscription } from 'rxjs';
+import { ButtonModule } from 'primeng/button';
+import { HasPermissionDirective } from '../../../../core/directives/has-permission.directive';
 @Component({
   selector: 'app-contract-preview',
   standalone: true,
-  imports: [CommonModule, ScheduleEntriesComponent, ContractDispayServiceComponent, CustomClausesComponent, ContractSignatureComponent, TranslatePipe],
+  imports: [CommonModule,ScheduleEntriesComponent, ContractDispayServiceComponent, CustomClausesComponent, ContractSignatureComponent, TranslatePipe, ButtonModule, RouterModule, HasPermissionDirective],
   templateUrl: './contract-preview.component.html',
   styleUrls: ['./contract-preview.component.scss'],
 })
@@ -23,6 +25,7 @@ export class ContractPreviewComponent implements OnInit, OnDestroy {
   private contractService = inject(ContractService);
   private languageSubscription: Subscription;
   private route = inject(ActivatedRoute);
+  private router = inject(Router);
   private renderer = inject(Renderer2);
   private placeholderInput: HTMLInputElement | null = null;
   private cancelButton: HTMLButtonElement | null = null;
@@ -31,9 +34,12 @@ export class ContractPreviewComponent implements OnInit, OnDestroy {
   editingKey: string | null = null;
   contract: IContractTemplate = {} as IContractTemplate;
   language: 'ar' | 'en' = 'ar';
+  offerId: number|null = null;
   constructor() {
     this.language = this.localizationService.getLanguage();
-    this.languageSubscription = this.localizationService.language$.subscribe(lang => {this.language = lang;if (this.contract.contractId) this.replacePlaceholders()}
+    this.languageSubscription = this.localizationService.language$.subscribe(lang => {
+      this.language = lang;
+      if (this.contract.contractId) this.replacePlaceholders()}
     );
   }
   ngOnDestroy() {
@@ -41,12 +47,16 @@ export class ContractPreviewComponent implements OnInit, OnDestroy {
   }
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      const offerId = +(params.get('id') ?? -1);
-      if (offerId > -1) {
-        this.contractService.GetByOfferId(offerId).subscribe((res) => {
+      this.offerId = +(params.get('id') ?? -1);
+      if (this.offerId > -1) {
+        this.contractService.GetByOfferId(this.offerId).pipe(
+          catchError(() => {
+            this.router.navigate(['/contract-form/',this.offerId]);
+            return EMPTY;
+          })
+        ).subscribe((res) => {
           if (res.data) {
             this.contract = res.data;
-            // this.contract.staticContractTemplate.preambleAr = "أبرم هذا العقد بين كل من:\n الطرف الأول: شركة {{CompanyNameAr}} ومركزها الرئيسي في مدينة {{CompanyMainOfficeCityAr}} مسجــلة بالسجل التجاري رقم ({{CompanyCommercialRegistration}}) ترخيص الأمن العام رقم {{CompanyPublicSecurityLicense}} هاتف {{CompanyTelephone}} جوال {{CompanyMobile}} العنوان الوطني {{CompanyAddressCityAr}} الرمز البريدي ({{CompanyAddressPostalCode}}) وحدة رقم ({{CompanyAddressUnitNumber}}) مبنى رقم ({{CompanyAddressBuildingNumber}}) رقم التسجيل في سبل، واصل ({{CompanyRegistrationInSabl}}) بريد إلكتروني {{CompanyEmail}} ويمثلها في التوقيع على هذا العقد  / {{CompanyRepresentativeNameAr}} بصفته {{CompanyRepresentativeTitleAr}}.\n\n الطرف الثاني: السادة/ {{FacilityNameAr}} العقد الأساسي الموقع بتاريخ {{ContractSignDate}}\n ومركزها الرئيسي في مدينة {{FacilityMainOfficeCityAr}} : مسجــلة بالسجل التجاري مسجل بمدينة {{FacilityCommercialRegistrationCityAr}}  جوال ({{FacilityMobile}}) العنوان الوطني ({{FacilityAddressCityAr}}) الرمز البريدي ({{FacilityAddressPostalCode}}) وحدة رقم ({{FacilityAddressUnitNumber}}) مبنى رقم ({{FacilityAddressBuildingNumber}}) بريد إلكتروني {{FacilityEmail}} ويمثلها في التوقيع على هذا العقد\n الأستاذ / {{FacilityRepresentativeNameAr}} بصفته : {{FacilityRepresentativeTitleAr}}. \n\nحيث أن الطرف الثاني يرغب في تأمين خدمات الحراسة الأمنية المدنية لموقعه {{FacilityLocationToBeSecuredAr}} فتقدم الطرف الأول بعرضه رقـــــــم ({{OfferNumber}}) وتاريخ ({{OfferDate}}) المرفق به بيان الخدمات التي يقدمها الطرف الأول وأسلوبها وأسعارها وقد لقي العرض قبولاً لدى الطرف الثاني وعليه فقد اتفق الطرفان وتراضيا على البنود والشروط التالية:\n\n • عدم فسخ العقد من قبل الطرفين الا بعد أشعار شعبة الحراسات الأمنية بالميدانية بذالك. \n• الالتزام بعمل جدول موضح به عدد الحراسات وأوقات ساعات العمل \n• التقيد بالتعليمات فيما يخص نظام مكتب العمل والعمال من حيث عدد ساعات العمل بشهر رمضان المبارك.\n"
             this.replacePlaceholders();
           }
         });

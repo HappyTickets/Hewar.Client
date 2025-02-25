@@ -1,3 +1,5 @@
+import { IAddress } from '../../auth/models/register/iaddress';
+
 export interface IResponseData {
   id: number;
   type: string;
@@ -6,13 +8,8 @@ export interface IResponseData {
   activityType: string;
   responsibleName: string;
   responsiblePhone: string;
-  address: {
-    street: string;
-    city: string;
-    state: string;
-    country: string;
-    postalCode: string;
-  };
+  logo: string;
+  address: IAddress;
 }
 
 export interface IGetFacilityResponse {

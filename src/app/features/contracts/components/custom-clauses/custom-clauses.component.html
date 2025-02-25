@@ -5,17 +5,17 @@
     <div class="flex flex-row justify-content-between align-items-center">
       <h3>{{'app.contract.clause.clause'| translate}} {{'app.contract.clause.number' | translate}} ({{ i + 1 }})</h3>
       <div class="flex gap-1">
-        <p-button icon="pi pi-pencil" (click)="editClause(clause)" severity="primary" />
-        <p-button icon="pi pi-trash" (click)="removeClause(i, clause)" severity="danger" />
+        <p-button *appHasPermission="551" icon="pi pi-pencil" (click)="editClause(clause)" severity="primary" />
+        <p-button *appHasPermission="552" icon="pi pi-trash" (click)="removeClause(i, clause)" severity="danger" />
       </div>
     </div>
     <div [innerHTML]="language === 'ar' ? getSafeHtml(clause.htmlContentAr) : getSafeHtml(clause.htmlContentEn)"></div>
   </div>
   <div *ngIf="clause.editing" class="edit-mode">
     <div class="flex flex-row justify-content-between align-items-center">
-      <h3>{{clause.new? ('app.contract.clause.add'| translate) : ('app.contract.clause.edit'| translate)}} {{'app.contract.clause.clause'| translate}} {{'app.contract.clause.number'| translate}} ({{ i + 1 }})</h3>
+      <h3>{{clause.new ? ('app.contract.clause.add'| translate) : ('app.contract.clause.edit'| translate)}} {{'app.contract.clause.clause'| translate}} {{'app.contract.clause.number'| translate}} ({{ i + 1 }})</h3>
       <div class="flex gap-1">
-        <p-button icon="pi pi-check" (click)="saveClause(clause)" severity="success"/>
+        <p-button *appHasPermission="550" icon="pi pi-check" (click)="saveClause(clause)" severity="success"/>
         <p-button icon="pi pi-times" (click)="cancelEdit(clause,i)" severity="secondary"/>
       </div>
     </div>
@@ -33,4 +33,4 @@
   </div>
 </div>
 
-<div class="flex justify-content-end"><p-button [label]="'app.contract.clause.add-clause'| translate" icon="pi pi-plus" (click)="addNewEntry()" severity="success" /></div>
+<div class="flex justify-content-end"><p-button *appHasPermission="550" [label]="'app.contract.clause.add-clause'| translate" icon="pi pi-plus" (click)="addNewEntry()" severity="success" /></div>

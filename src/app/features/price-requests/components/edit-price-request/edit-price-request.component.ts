@@ -63,7 +63,7 @@ export class EditPriceRequestComponent implements OnInit {
         this.priceRequestsService.getById(+priceRequestId).subscribe((res) => {
           if (res.data) {
             this.priceRequestData = res.data;
-            this.companyData = res.data.company;
+            if (res.data.company) this.companyData = res.data.company;
             this.getCompanyServices(this.companyData.id);
             this.assignValues();
           }

@@ -3,19 +3,18 @@ import { IClause } from '../../models/iclause';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-import { TableModule } from 'primeng/table';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ClausesService } from '../../services/clauses.service';
 import { FormsModule } from '@angular/forms';
 import { LocalizationService } from '../../../../core/services/localization/localization.service';
-import { TextareaModule } from 'primeng/textarea';
 import { Subscription } from 'rxjs';
 import { EditorModule } from 'primeng/editor';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { HasPermissionDirective } from '../../../../core/directives/has-permission.directive';
 @Component({
   selector: 'app-custom-clauses',
   standalone: true,
-  imports: [CommonModule, ButtonModule, InputTextModule, TableModule, TranslatePipe, FormsModule, TextareaModule, TranslatePipe, EditorModule ],
+  imports: [CommonModule, ButtonModule, InputTextModule, TranslatePipe, FormsModule, TranslatePipe, EditorModule, HasPermissionDirective ],
   templateUrl: './custom-clauses.component.html',
   styleUrl: './custom-clauses.component.scss'
 })
