@@ -6,7 +6,13 @@ import { ContractPreviewComponent } from '../components/contract-preview/contrac
 
 export const ContractRoutes: Route[] = [
   {
-    path: 'contract-form/:id',
+    path: 'create-contract/:id',
+    component: ContractFormComponent,
+    canActivate: [AuthGuard, permissionGuard],
+    data: { permission: 300 },
+  },
+  {
+    path: 'update-contract/:id',
     component: ContractFormComponent,
     canActivate: [AuthGuard, permissionGuard],
     data: { permission: 301 },

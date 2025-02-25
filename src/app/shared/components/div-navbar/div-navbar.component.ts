@@ -72,11 +72,11 @@ export class DivNavbarComponent {
             },
             {
               label: 'Update Price Request',
-              routerLink: 'update-price-request/72',
+              routerLink: 'update-price-request/90',
             },
             {
               label: 'Price Request Details',
-              routerLink: 'price-request-details/72',
+              routerLink: 'price-request-details/90',
             },
           ],
         },
@@ -108,15 +108,15 @@ export class DivNavbarComponent {
             },
             {
               label: 'Create Price Offer',
-              routerLink: 'create-price-offer/68',
+              routerLink: 'create-price-offer/91',
             },
             {
               label: 'Update Price Offer',
-              routerLink: 'update-price-offer/24',
+              routerLink: 'update-price-offer/32',
             },
             {
               label: 'Price Offer Details',
-              routerLink: 'price-offer-details/24',
+              routerLink: 'price-offer-details/32',
             },
           ],
         },
@@ -125,8 +125,9 @@ export class DivNavbarComponent {
     {
       label: 'Contract',
       items: [
-        { label: 'Contract Form', routerLink: '/contract-form/18' },
-        { label: 'Contract Preview', routerLink: '/contract-preview/18' },
+        { label: 'Create Contract Form', routerLink: '/create-contract/35' },
+        { label: 'Update Contract Form', routerLink: '/update-contract/35' },
+        { label: 'Contract Preview', routerLink: '/contract-preview/35' },
       ],
     },
     {
