@@ -41,8 +41,8 @@ export class FacilityOffersComponent implements OnInit {
     this.getPrices();
   }
   getPrices(): void {
-    this.priceOffersService.getMyFacilityOffers().subscribe(res => {
-      if (res.data) this.priceOffers = res.data;
+    this.priceOffersService.getMyFacilityOffers(1,5).subscribe(res => {
+      if (res.data) this.priceOffers = res.data.items;
     })
   }
   openChat(): void {

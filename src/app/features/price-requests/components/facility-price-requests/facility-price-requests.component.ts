@@ -38,9 +38,9 @@ export class FacilityPriceRequestsComponent implements OnInit {
   }
 
   getPriceRequests(): void {
-    this.priceRequestsService.getMyFacilityRequests().subscribe(res => {
+    this.priceRequestsService.getMyFacilityRequests(1,5).subscribe(res => {
       if (res.data) {
-        this.priceRequests = res.data;
+        this.priceRequests = res.data.items;
       }
     })
   }

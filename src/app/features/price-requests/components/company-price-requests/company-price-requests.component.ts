@@ -43,8 +43,8 @@ export class CompanyPriceRequestsComponent implements OnInit {
   }
 
   getPrices(): void {
-    this.priceRequestsService.getMyCompanyRequests().subscribe((res) => {
-      if (res.data) this.priceRequests = res.data;
+    this.priceRequestsService.getMyCompanyRequests(1,5).subscribe((res) => {
+      if (res.data) this.priceRequests = res.data.items;
     });
   }
 

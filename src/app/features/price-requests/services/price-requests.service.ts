@@ -4,6 +4,7 @@ import { IApiResponse } from '../../../shared/models/IApiResponse';
 import { Observable } from 'rxjs';
 import { IPriceRequest } from '../models/iprice-request';
 import { ICreatePriceRequest } from '../models/icreate-price-request';
+import { IPaginationResponse } from '../../../shared/models/ipagination-response';
 
 @Injectable({
   providedIn: 'root',
@@ -13,52 +14,30 @@ export class PriceRequestsService {
   baseEndPoint = '/api/PriceRequests/';
 
   create(data: ICreatePriceRequest): Observable<IApiResponse<number>> {
-    return this.http.post<IApiResponse<number>>(
-      `${this.baseEndPoint}create`,
-      data
-    );
+    return this.http.post<IApiResponse<number>>(`${this.baseEndPoint}create`,data);
   }
   update(data: ICreatePriceRequest): Observable<IApiResponse<number>> {
-    return this.http.put<IApiResponse<number>>(
-      `${this.baseEndPoint}update`,
-      data
-    );
+    return this.http.put<IApiResponse<number>>(`${this.baseEndPoint}update`,data);
   }
   getById(priceRequestId: number): Observable<IApiResponse<IPriceRequest>> {
-    return this.http.get<IApiResponse<IPriceRequest>>(
-      `${this.baseEndPoint}getById`,
-      { params: { priceRequestId } }
-    );
+    return this.http.get<IApiResponse<IPriceRequest>>(`${this.baseEndPoint}getById`,{ params: { priceRequestId }});
   }
   cancel(priceRequestId: number): Observable<IApiResponse<unknown>> {
-    return this.http.patch<IApiResponse<unknown>>(
-      `${this.baseEndPoint}cancel`,
-      {},
-      { params: { priceRequestId } }
-    );
+    return this.http.patch<IApiResponse<unknown>>(`${this.baseEndPoint}cancel`,{},{ params: { priceRequestId }});
+  }
+  reject(priceRequestId: number): Observable<IApiResponse<unknown>> {
+    return this.http.patch<IApiResponse<unknown>>(`${this.baseEndPoint}reject`,{},{ params: { priceRequestId }});
   }
   hide(priceRequestId: number): Observable<IApiResponse<unknown>> {
-    return this.http.patch<IApiResponse<unknown>>(
-      `${this.baseEndPoint}hide`,
-      {},
-      { params: { priceRequestId } }
-    );
+    return this.http.patch<IApiResponse<unknown>>(`${this.baseEndPoint}hide`,{},{ params: { priceRequestId } });
   }
   show(priceRequestId: number): Observable<IApiResponse<unknown>> {
-    return this.http.patch<IApiResponse<unknown>>(
-      `${this.baseEndPoint}show`,
-      {},
-      { params: { priceRequestId } }
-    );
+    return this.http.patch<IApiResponse<unknown>>(`${this.baseEndPoint}show`,{},{ params: { priceRequestId } });
   }
-  getMyFacilityRequests(): Observable<IApiResponse<IPriceRequest[]>> {
-    return this.http.get<IApiResponse<IPriceRequest[]>>(
-      `${this.baseEndPoint}getMyFacilityRequests`
-    );
+  getMyFacilityRequests(PageNumber: number, PageSize: number): Observable<IPaginationResponse<IPriceRequest[]>> {
+    return this.http.get<IPaginationResponse<IPriceRequest[]>>(`${this.baseEndPoint}getMyFacilityRequests`, {params: {PageNumber,PageSize}});
   }
-  getMyCompanyRequests(): Observable<IApiResponse<IPriceRequest[]>> {
-    return this.http.get<IApiResponse<IPriceRequest[]>>(
-      `${this.baseEndPoint}getMyCompanyRequests`
-    );
+  getMyCompanyRequests(PageNumber: number, PageSize: number): Observable<IPaginationResponse<IPriceRequest[]>> {
+    return this.http.get<IPaginationResponse<IPriceRequest[]>>(`${this.baseEndPoint}getMyCompanyRequests`, {params: {PageNumber,PageSize}});
   }
 }

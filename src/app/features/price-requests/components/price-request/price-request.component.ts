@@ -17,11 +17,11 @@ import { HasPermissionDirective } from '../../../../core/directives/has-permissi
 import { DeletePopupComponent } from '../../../../shared/components/delete-popup/delete-popup.component';
 import { IPriceRequest } from '../../models/iprice-request';
 import { StorageService } from '../../../auth/services/storage.service';
-
+import { PaginatorModule, PaginatorState } from 'primeng/paginator';
 @Component({
   selector: 'app-price-request',
   standalone: true,
-  imports: [IconFieldModule, HasPermissionDirective, ButtonModule, InputTextModule, InputIconModule, TooltipModule, ButtonModule, TableModule, ToastModule, InputNumberModule, FormsModule, TranslatePipe, RouterModule, DeletePopupComponent, CommonModule],
+  imports: [IconFieldModule, PaginatorModule, HasPermissionDirective, ButtonModule, InputTextModule, InputIconModule, TooltipModule, ButtonModule, TableModule, ToastModule, InputNumberModule, FormsModule, TranslatePipe, RouterModule, DeletePopupComponent, CommonModule],
   templateUrl: './price-request.component.html',
   styleUrl: './price-request.component.scss'
 })
@@ -35,21 +35,36 @@ export class PriceRequestComponent implements OnInit {
   showCancelPopUp = false;
   showHidePopUp = false;
   currentId = 0;
+  // Pagination
+  pageNumber = 1;
+  pageSize = 5;
+  totalPages = 0;
 
   ngOnInit(): void {
     this.getPriceRequests()
   }
   getPriceRequests(): void {
-    if (this.storageService.getUserRole() && this.storageService.getUserRole() === 'Facility') {
-      this.priceRequestsService.getMyFacilityRequests().subscribe(res => {
-        if (res.data) {
-          this.priceRequests = res.data;
+    const role = this.storageService.getUserRole();
+    if (role && role === 'Facility') {
+      this.priceRequestsService.getMyFacilityRequests(this.pageNumber, this.pageSize).subscribe(res => {
+        if (res.data?.items) {
+          this.priceRequests = res.data.items;
+          this.totalPages = res.data.totalPages * this.pageSize;
           this.type = "Facility";
+        } else {
+          this.priceRequests = [];
+          this.totalPages = 0;
         }
       })
-    } else if (this.storageService.getUserRole() && this.storageService.getUserRole() === 'Company') {
-      this.priceRequestsService.getMyCompanyRequests().subscribe((res) => {
-        if (res.data) this.priceRequests = res.data;
+    } else if (role && role === 'Company') {
+      this.priceRequestsService.getMyCompanyRequests(this.pageNumber, this.pageSize).subscribe((res) => {
+        if (res.data?.items) {
+          this.priceRequests = res.data.items;
+          this.totalPages = res.data.totalPages * this.pageSize;
+        } else {
+          this.priceRequests = [];
+          this.totalPages = 0;
+        }
         this.type = "Company";
       });
     }
@@ -71,5 +86,10 @@ export class PriceRequestComponent implements OnInit {
   }
   toggleActions(service: IPriceRequest) {
     service.showActions = !service.showActions;
+  }
+  onPageChange(event: PaginatorState): void {
+    this.pageNumber = (event.page ?? 0) + 1;
+    this.pageSize = event.rows ?? 10;
+    this.getPriceRequests();
   }
 }
